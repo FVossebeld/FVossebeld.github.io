@@ -57,6 +57,95 @@ boxes. But every visual still has to clarify, not decorate.
 
 ---
 
+# Signature system motifs (reuse first)
+
+These are the recurring visuals for this garden's core thesis. Reuse these when they fit so
+readers see one coherent visual language across pages.
+
+## Capability ladder (chatbot → copilot → system operator)
+
+````markdown
+```mermaid
+flowchart LR
+  accTitle: Capability ladder from chatbot to system operator
+  accDescr: AI moves from text responses to assisted actions and then to governed system operation.
+  classDef copilot fill:#53665a,stroke:#3f4f45,color:#f7f3ea,rx:6,ry:6
+  classDef operator fill:#8a6f4d,stroke:#6b5740,color:#f7f3ea,rx:6,ry:6
+  A[Chatbot<br/>text responses] --> B[Copilot<br/>prepares and suggests actions]:::copilot
+  B --> C[System operator<br/>executes approved changes]:::operator
+```
+````
+
+## Coordination boundary (process-scoped orchestrator vs system-scoped specialists)
+
+````markdown
+```mermaid
+flowchart TD
+  accTitle: Process-scoped orchestration with system-scoped execution
+  accDescr: An orchestrator manages cross-system process flow while specialists mutate only their own systems.
+  classDef orchestrator fill:#8a6f4d,stroke:#6b5740,color:#f7f3ea,rx:6,ry:6
+  classDef specialist fill:#53665a,stroke:#3f4f45,color:#f7f3ea,rx:6,ry:6
+  I[Cross-system intent] --> O[Process-scoped orchestrator]:::orchestrator
+  O --> S1[Salesforce specialist<br/>system scope: CRM]:::specialist
+  O --> S2[SAP specialist<br/>system scope: ERP]:::specialist
+  O --> S3[ServiceNow specialist<br/>system scope: ITSM]:::specialist
+```
+````
+
+## Memory stack (enterprise layers)
+
+````markdown
+```mermaid
+flowchart TD
+  accTitle: Enterprise memory layers
+  accDescr: Memory broadens from thread to reusable skill, with stricter governance at wider layers.
+  classDef narrow fill:#53665a,stroke:#3f4f45,color:#f7f3ea,rx:6,ry:6
+  classDef wide fill:#8a6f4d,stroke:#6b5740,color:#f7f3ea,rx:6,ry:6
+  T[Thread]:::narrow --> U[User]
+  U --> C[Customer or project]
+  C --> O[Team or organization]:::wide
+  O --> P[Procedural playbook]
+  P --> S[Reusable skill]:::wide
+```
+````
+
+## Action surface map (GUI / API / CLI / DSL)
+
+````markdown
+```mermaid
+flowchart LR
+  accTitle: Action surfaces converging on governed execution
+  accDescr: Intent can route through GUI, API, CLI, and DSL surfaces into one governed action path.
+  classDef accent fill:#8a6f4d,stroke:#6b5740,color:#f7f3ea,rx:6,ry:6
+  I[Intent] --> GUI[GUI]
+  I --> API[API]
+  I --> CLI[CLI]
+  I --> DSL[DSL]
+  GUI --> G[Governed execution]:::accent
+  API --> G
+  CLI --> G
+  DSL --> G
+```
+````
+
+## Governance loop (intent → approval → action → trace → evaluation)
+
+````markdown
+```mermaid
+flowchart LR
+  accTitle: Agent governance loop
+  accDescr: Actions run through approval and traceability, then feed evaluation for the next cycle.
+  classDef accent fill:#53665a,stroke:#3f4f45,color:#f7f3ea,rx:6,ry:6
+  I[Intent] --> A[Approval]
+  A --> C[Action]
+  C --> T[Trace]
+  T --> E[Evaluation]:::accent
+  E --> I
+```
+````
+
+---
+
 # Mermaid patterns
 
 Quartz injects the site palette as Mermaid `themeVariables` and re-renders on every

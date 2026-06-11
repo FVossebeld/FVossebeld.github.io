@@ -14,4 +14,16 @@ Scope also maps onto things organisations already have. It follows an existing i
 
 What scope buys you is concrete. A Salesforce specialist can inspect an opportunity, explain why a missing field is blocking the next stage, update the next step, log a meeting note, and, when a change is risky or needs sign-off, stop and ask before committing. That's the whole arc: real semantics, a bounded set of actions, a human gate on the irreversible ones. The same shape holds for a ServiceNow or SAP specialist (the [[thoughts/from-chatbots-to-system-operators|essay]] walks through both). In each case the agent stops being a chatbot bolted onto an app and becomes [[the-agent-as-semantic-ui|the interface to the system itself]].
 
+```mermaid
+flowchart LR
+  accTitle: Agent governance loop
+  accDescr: A scoped specialist turns intent into action through approval, tracing, and evaluation, then uses the result to improve the next intent.
+  classDef accent fill:#53665a,stroke:#3f4f45,color:#f7f3ea,rx:6,ry:6
+  I[Intent] --> A[Approval gate]
+  A --> C[Action]
+  C --> T[Trace]
+  T --> E[Evaluation]:::accent
+  E --> I
+```
+
 **The caveat that matters:** scope solves governability but creates fragmentation. Real workflows cross systems (a renewal touches CRM, billing, legal, email, calendar, and support tickets), so a wall of narrow agents that can't coordinate is as useless as one broad agent is dangerous. The missing layer is [[orchestrating-scoped-agents|orchestration]]: broad intent, narrow execution. A conversational orchestrator understands the cross-system goal and routes the work; the scoped specialists still do every actual mutation inside their own boundaries. And the hardest of those boundaries is [[federated-memory-for-enterprise-agents|memory]]: what a specialist is allowed to learn and carry.

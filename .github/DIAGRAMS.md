@@ -52,6 +52,20 @@ Most of these have a ready recipe in [`PATTERNS.md`](./skills/wiki-visualize/PAT
 The bar is "does it clarify or pace the page?", not "is the page allowed to have one?".
 On a long page, actively look for the one or two spots where a visual would do real work.
 
+### House visual system for this garden
+
+When a page needs a visual and one of these fits, prefer the same recurring motifs so the site
+feels coherent across pages. Reuse the matching snippet from
+[`PATTERNS.md`](./skills/wiki-visualize/PATTERNS.md), then adapt labels to the page's facts.
+
+1. **Capability ladder**: chatbot → copilot → system operator.
+2. **Coordination boundary**: process-scoped orchestrator vs system-scoped specialists.
+3. **Memory stack**: thread/user/customer/team/procedural/skill layers.
+4. **Action surface map**: GUI, API, CLI, DSL converging on governed execution.
+5. **Governance loop**: intent → approval → action → trace → evaluation.
+
+These are defaults, not decoration. Use them only when they clarify the local argument.
+
 ---
 
 ## 2. The toolbox (and how to choose)

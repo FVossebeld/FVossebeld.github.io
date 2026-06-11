@@ -11,6 +11,16 @@ That turns out to be a different problem than making the model smarter. It's a q
 
 This is a working theory, not a finished one. It's an index essay: I name the pattern here and pull each thread apart on its own [concept page](../concepts/). Expect both to change as I do.
 
+```mermaid
+flowchart LR
+  accTitle: The shift from chatbot to copilot to system operator
+  accDescr: Enterprise AI evolves from chat-only assistants to copilots that suggest actions and then to governed system operators that execute approved changes.
+  classDef accent fill:#53665a,stroke:#3f4f45,color:#f7f3ea,rx:6,ry:6
+  classDef outcome fill:#8a6f4d,stroke:#6b5740,color:#f7f3ea,rx:6,ry:6
+  A[Chatbot<br/>answers in text] --> B[Copilot<br/>suggests and prepares actions]:::accent
+  B --> C[System operator<br/>executes governed changes]:::outcome
+```
+
 ## Chat was the demo
 
 It started with chat. You typed, the model replied. The whole interface was a transcript, and the model's only power was to produce more text. That was the right first move (it made the capability legible to everyone at once), but a transcript is sealed off from anything that isn't language. You can ask it to draft the email; you can't ask it to send the email, check whether the customer already replied, and update the CRM. Chat made LLMs _accessible_. It didn't make them _operational_.
