@@ -10,6 +10,7 @@ It's built on the idea of a [living wiki as agent memory](https://gist.github.co
 - **Content:** plain Markdown in [`content/`](./content).
 - **Hosting:** GitHub Pages, auto-deployed by [`.github/workflows/deploy.yml`](./.github/workflows/deploy.yml) on every push to `main`.
 - **Agent schema:** [`AGENTS.md`](./AGENTS.md) tells AI assistants how to maintain the wiki.
+- **Anti-slop pipeline:** [`.github/AGENTIC-PIPELINE.md`](./.github/AGENTIC-PIPELINE.md) — custom Copilot agents (`style-editor`, `slop-verifier`) and an automated content-quality PR review, all enforcing [`.github/CONTENT-QUALITY.md`](./.github/CONTENT-QUALITY.md).
 
 ## Repository layout
 

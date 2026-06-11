@@ -2,6 +2,8 @@
 
 This file tells an AI agent (Claude Code, Codex, Copilot CLI, etc.) **how** to help maintain this digital garden. It is the "schema" layer of the [Karpathy LLM-wiki pattern](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f). The human (Floris) is the editor-in-chief and approves every change; the agent does the bookkeeping.
 
+> **Quality bar:** all published prose must clear [`.github/CONTENT-QUALITY.md`](.github/CONTENT-QUALITY.md) — no AI slop. The full AI pipeline (style-editor + slop-verifier agents, automated PR review) is documented in [`.github/AGENTIC-PIPELINE.md`](.github/AGENTIC-PIPELINE.md).
+
 ## The three layers
 
 - `raw/` — **immutable** source material I drop in (articles, notes, transcripts). Read these; never edit them.
