@@ -16,12 +16,34 @@ function renderMarkdown(src: string): string {
   return s.replace(/\n/g, "<br>")
 }
 
+// The widget re-initialises on every Quartz SPA navigation (the DOM is morphed,
+// not preserved), so the conversation is kept in sessionStorage and rehydrated.
+// This is what lets the agent navigate the visitor to another page mid-chat
+// without the panel and its history vanishing.
+const OPEN_KEY = "garden-agent:open"
+const LOG_KEY = "garden-agent:log"
+const MSGS_KEY = "garden-agent:messages"
+
+type Entry =
+  | { kind: "user" | "assistant" | "error"; text: string }
+  | { kind: "issue"; title: string; body: string }
+
+function readJSON<T>(key: string): T | null {
+  try {
+    const raw = sessionStorage.getItem(key)
+    return raw ? (JSON.parse(raw) as T) : null
+  } catch {
+    return null
+  }
+}
+
+const normPath = (p: string) => p.replace(/\/+$/, "") || "/"
+
 function setupGardenAgent() {
   const root = document.querySelector<HTMLElement>(".garden-agent")
-  if (!root || root.dataset.wired === "true") return
+  if (!root) return
   const endpoint = root.dataset.endpoint
   if (!endpoint) return // no endpoint configured → widget stays dormant
-  root.dataset.wired = "true"
 
   const repo = root.dataset.repo ?? ""
   const label = root.dataset.label ?? "from-agent"
@@ -40,6 +62,12 @@ function setupGardenAgent() {
     fetch: window.fetch.bind(window),
   })
 
+  // Restore prior model context so the conversation continues across pages.
+  const savedMessages = readJSON<(typeof agent.messages)[number][]>(MSGS_KEY)
+  if (Array.isArray(savedMessages) && savedMessages.length) {
+    agent.messages.push(...savedMessages)
+  }
+
   const scrollDown = () => (log.scrollTop = log.scrollHeight)
 
   const addMessage = (cls: string, html: string): HTMLElement => {
@@ -49,6 +77,13 @@ function setupGardenAgent() {
     log.appendChild(el)
     scrollDown()
     return el
+  }
+
+  const greeting =
+    "Hi — ask me anything about Floris's garden, I can take you to a page, " +
+    "or describe a thought and I'll draft a GitHub issue you can post."
+  const showGreeting = () => {
+    if (log.childElementCount === 0) addMessage("ga-assistant", escapeHtml(greeting))
   }
 
   const openIssue = (title: string, body: string) => {
@@ -79,6 +114,63 @@ function setupGardenAgent() {
     scrollDown()
   }
 
+  // Serialise the visible transcript (including any edits to issue-card fields)
+  // so it can be rebuilt verbatim after a navigation morphs the DOM away.
+  const snapshotLog = (): Entry[] => {
+    const out: Entry[] = []
+    for (const node of Array.from(log.children)) {
+      const el = node as HTMLElement
+      if (el.classList.contains("ga-user")) out.push({ kind: "user", text: el.textContent ?? "" })
+      else if (el.classList.contains("ga-assistant"))
+        out.push({ kind: "assistant", text: el.dataset.raw ?? el.textContent ?? "" })
+      else if (el.classList.contains("ga-error"))
+        out.push({ kind: "error", text: el.textContent ?? "" })
+      else if (el.classList.contains("ga-issue"))
+        out.push({
+          kind: "issue",
+          title: el.querySelector<HTMLInputElement>(".ga-issue-title")?.value ?? "",
+          body: el.querySelector<HTMLTextAreaElement>(".ga-issue-body")?.value ?? "",
+        })
+    }
+    return out
+  }
+
+  const rehydrate = (entries: Entry[]) => {
+    for (const e of entries) {
+      if (e.kind === "issue") {
+        renderIssueCard(e.title, e.body)
+      } else if (e.kind === "assistant") {
+        const el = addMessage("ga-assistant", renderMarkdown(e.text))
+        el.dataset.raw = e.text
+      } else if (e.kind === "user") {
+        addMessage("ga-user", escapeHtml(e.text))
+      } else {
+        addMessage("ga-error", escapeHtml(e.text))
+      }
+    }
+  }
+
+  const persist = () => {
+    try {
+      sessionStorage.setItem(OPEN_KEY, panel.hidden ? "0" : "1")
+      sessionStorage.setItem(LOG_KEY, JSON.stringify(snapshotLog()))
+      sessionStorage.setItem(MSGS_KEY, JSON.stringify(agent.messages))
+    } catch {
+      /* storage unavailable (private mode / quota) → degrade silently */
+    }
+  }
+
+  // Build a same-origin garden URL from a page slug; null if it's empty/invalid.
+  const toGardenURL = (slug: string | undefined): URL | null => {
+    if (typeof slug !== "string") return null
+    const clean = slug.trim().replace(/^\/+|\/+$/g, "")
+    try {
+      return new URL(`/${clean}`, window.location.origin)
+    } catch {
+      return null
+    }
+  }
+
   const run = async (text: string) => {
     agent.messages.push({ id: randomUUID(), role: "user", content: text })
     addMessage("ga-user", escapeHtml(text))
@@ -97,6 +189,9 @@ function setupGardenAgent() {
     const bubbles: Record<string, HTMLElement> = {}
     const issueArgs: Record<string, string> = {}
     let issueCallId = ""
+    const navArgs: Record<string, string> = {}
+    let navCallId = ""
+    let pendingNav: URL | null = null
 
     // Create the assistant bubble lazily, on first content, so messages that
     // only carry a tool call never leave an empty bubble behind.
@@ -120,11 +215,17 @@ function setupGardenAgent() {
               issueCallId = event.toolCallId
               issueArgs[event.toolCallId] = ""
               setStatus("Drafting an issue…")
+            } else if (event.toolCallName === "navigate_garden") {
+              navCallId = event.toolCallId
+              navArgs[event.toolCallId] = ""
+              setStatus("Opening a page…")
             }
           },
           onToolCallArgsEvent({ event }) {
             if (event.toolCallId in issueArgs) {
               issueArgs[event.toolCallId] += event.delta
+            } else if (event.toolCallId in navArgs) {
+              navArgs[event.toolCallId] += event.delta
             }
           },
           onToolCallEndEvent({ event }) {
@@ -135,6 +236,17 @@ function setupGardenAgent() {
                 renderIssueCard(args.title ?? "Untitled", args.body ?? "")
               } catch {
                 /* malformed args → skip the card, the text answer still lands */
+              }
+            } else if (event.toolCallId === navCallId) {
+              try {
+                const args = JSON.parse(navArgs[event.toolCallId] || "{}")
+                const target = toGardenURL(args.slug)
+                // Only navigate if it's a different page than the one we're on.
+                if (target && normPath(target.pathname) !== normPath(window.location.pathname)) {
+                  pendingNav = target
+                }
+              } catch {
+                /* malformed args → stay put, the text answer still lands */
               }
             }
           },
@@ -158,30 +270,51 @@ function setupGardenAgent() {
       send.disabled = false
       input.disabled = false
       input.focus()
+      // Hand off to Quartz's SPA router. persist() runs in the nav cleanup hook
+      // before the morph, so the destination page rehydrates this conversation.
+      if (pendingNav) window.spaNavigate(pendingNav)
     }
   }
 
-  launch.addEventListener("click", () => {
+  const onLaunch = () => {
     panel.hidden = false
     launch.hidden = true
-    if (log.childElementCount === 0) {
-      addMessage(
-        "ga-assistant",
-        "Hi — ask me anything about Floris's garden, or describe a thought and I'll draft a GitHub issue you can post.",
-      )
-    }
+    showGreeting()
     input.focus()
-  })
-  closeBtn.addEventListener("click", () => {
+  }
+  const onClose = () => {
     panel.hidden = true
     launch.hidden = false
-  })
-  form.addEventListener("submit", (e) => {
+    persist()
+  }
+  const onSubmit = (e: Event) => {
     e.preventDefault()
     const text = input.value.trim()
     if (!text) return
     input.value = ""
     void run(text)
+  }
+
+  launch.addEventListener("click", onLaunch)
+  closeBtn.addEventListener("click", onClose)
+  form.addEventListener("submit", onSubmit)
+
+  // Restore the panel state and transcript saved before the last navigation.
+  if (sessionStorage.getItem(OPEN_KEY) === "1") {
+    panel.hidden = false
+    launch.hidden = true
+    const savedLog = readJSON<Entry[]>(LOG_KEY)
+    if (Array.isArray(savedLog) && savedLog.length) rehydrate(savedLog)
+    else showGreeting()
+    scrollDown()
+  }
+
+  // Save state and detach listeners before Quartz morphs this page away.
+  window.addCleanup(() => {
+    persist()
+    launch.removeEventListener("click", onLaunch)
+    closeBtn.removeEventListener("click", onClose)
+    form.removeEventListener("submit", onSubmit)
   })
 }
 
