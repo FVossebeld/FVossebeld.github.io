@@ -9,7 +9,6 @@ title: Floris Vossebeld
 <nav class="masthead-nav">
   <a href="about">About</a>
   <a href="how-this-works">How this works</a>
-  <a href="thoughts/welcome">Notes</a>
   <a href="https://github.com/FVossebeld/FVossebeld.github.io">Source</a>
 </nav>
 
@@ -21,27 +20,21 @@ I keep coming back to the same question: as language models start interacting wi
 
 <ul class="index-list">
   <li>
-    <a href="about">
-      <span class="index-title">About</span>
-      <span class="index-desc">Who I am, what I work on, and why this site exists.</span>
+    <a href="thoughts/from-chatbots-to-system-operators">
+      <span class="index-title">From chatbots to system operators</span>
+      <span class="index-desc">My working theory: LLM agents are turning into scoped operators of real systems. Start with the essay, then follow it into the concept notes.</span>
+    </a>
+  </li>
+  <li>
+    <a href="concepts/">
+      <span class="index-title">Concept notes</span>
+      <span class="index-desc">The cluster underneath that theory: action languages, agent workspaces, scoped specialists, federated memory. I take each one apart on its own page.</span>
     </a>
   </li>
   <li>
     <a href="how-this-works">
       <span class="index-title">How this works</span>
-      <span class="index-desc">The living wiki idea: version controlled, interlinked, edited as my thinking moves.</span>
-    </a>
-  </li>
-  <li>
-    <a href="thoughts/welcome">
-      <span class="index-title">Notes</span>
-      <span class="index-desc">Shorter, rawer thoughts. The first entries in the field log.</span>
-    </a>
-  </li>
-  <li>
-    <a href="thoughts/from-chatbots-to-system-operators">
-      <span class="index-title">From chatbots to system operators</span>
-      <span class="index-desc">A working theory on how LLM agents are turning into scoped operators of real systems — and the concept notes it links out to.</span>
+      <span class="index-desc">The living wiki idea: version controlled, interlinked, an AI maintains it but I edit and approve every change.</span>
     </a>
   </li>
 </ul>
