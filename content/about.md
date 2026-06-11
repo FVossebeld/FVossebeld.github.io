@@ -9,11 +9,11 @@ description: Who I am, what I work on, and why this site exists.
 
 </div>
 
-I'm Floris Vossebeld. I work on applied AI in regulated enterprises — mostly financial services — at Microsoft. The job sits in an awkward, interesting place: between the demo that impressed everyone in the room and the system that has to survive real data, permissions, latency, cost, and someone owning it on Monday.
+I'm Floris Vossebeld. I work on applied AI in regulated enterprises (mostly financial services) at Microsoft. The job sits in an awkward, interesting place: between the demo that impressed everyone in the room and the system that has to survive real data, permissions, latency, cost, and someone owning it on Monday.
 
 That gap is what this site is about.
 
-A lot of AI looks convincing right up until it touches any of that. I spend my time close to where it does — with banks and insurers and the constraints they can't wish away. So I'm less interested in whether a model is impressive than in what it takes to make one a governable, useful part of a system people actually depend on.
+A lot of AI looks convincing right up until it touches any of that. I spend my time close to where it does, with banks and insurers and the constraints they can't wish away. So I'm less interested in whether a model is impressive than in what it takes to make one a governable, useful part of a system people actually depend on.
 
 ## Where I come from
 
@@ -80,4 +80,4 @@ The current spine is [[thoughts/from-chatbots-to-system-operators|From chatbots 
 
 ## How this site works
 
-This is a public, version-controlled wiki. I curate the sources and stay the editor-in-chief; an AI agent does the cross-referencing and maintenance. The source is fully open — [view or fork it on GitHub](https://github.com/FVossebeld/FVossebeld.github.io). See [[how-this-works]] for the full picture.
+This is a public, version-controlled wiki. I curate the sources and stay the editor-in-chief; an AI agent does the cross-referencing and maintenance. The source is fully open: [view or fork it on GitHub](https://github.com/FVossebeld/FVossebeld.github.io). See [[how-this-works]] for the full picture.
