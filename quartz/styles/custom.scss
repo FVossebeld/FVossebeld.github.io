@@ -18,6 +18,7 @@
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
   --accent: var(--secondary); /* olive */
   --accent-2: var(--tertiary); /* copper */
+  --ms: oklch(0.55 0.14 250); /* a muted Microsoft blue, for interaction */
   --leadFont: var(--headerFont);
   --step--1: clamp(0.84rem, 0.81rem + 0.12vw, 0.9rem);
   --step-0: clamp(1.02rem, 0.98rem + 0.18vw, 1.1rem);
@@ -32,6 +33,7 @@
 
 :root[saved-theme="dark"] {
   --sand: oklch(0.215 0.011 80);
+  --ms: oklch(0.74 0.12 248);
 }
 
 /* ── Page surface ───────────────────────────────────────── */
@@ -56,7 +58,7 @@ li {
 
 /* Restrained text selection + highlight */
 ::selection {
-  background: color-mix(in srgb, var(--accent) 22%, transparent);
+  background: color-mix(in srgb, var(--ms) 22%, transparent);
   color: var(--dark);
 }
 .text-highlight {
@@ -66,7 +68,7 @@ li {
 
 .navigation-progress {
   height: 2px;
-  background: var(--accent);
+  background: var(--ms);
 }
 
 /* Quiet, hairline scrollbar */
@@ -88,7 +90,7 @@ li {
 a:focus-visible,
 button:focus-visible,
 input:focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--ms);
   outline-offset: 2px;
   border-radius: var(--radius-sm);
 }
@@ -216,7 +218,7 @@ strong {
   color: var(--dark);
 }
 
-/* ── Links: olive, quiet underline, copper on hover ────── */
+/* ── Links: olive at rest, Microsoft blue on hover ─────── */
 a {
   color: var(--accent);
   font-weight: 500;
@@ -225,7 +227,7 @@ a {
   text-decoration-color: color-mix(in srgb, var(--accent) 35%, transparent);
   transition: color 0.15s var(--ease), text-decoration-color 0.15s var(--ease);
   &:hover {
-    color: var(--accent-2);
+    color: var(--ms);
     text-decoration-color: currentColor;
   }
 }
@@ -712,7 +714,7 @@ footer {
       color: var(--darkgray);
       text-decoration: none;
       &:hover {
-        color: var(--accent);
+        color: var(--ms);
       }
     }
   }
@@ -873,10 +875,10 @@ pre > .expand-button {
   }
 
   &:hover {
-    border-color: var(--accent-2);
+    border-color: var(--ms);
 
     & > svg {
-      fill: var(--accent-2);
+      fill: var(--ms);
     }
   }
 }
