@@ -22,11 +22,11 @@ flowchart LR
   API[API<br/>structured calls]
   CLI[CLI<br/>compact commands]
   DSL[DSL<br/>domain rules]
-  GOV[Governed execution<br/>permissions and logging]:::accent
-  INTENT --> GUI --> GOV
-  INTENT --> API --> GOV
-  INTENT --> CLI --> GOV
-  INTENT --> DSL --> GOV
+  GOVERNED_EXECUTION[Governed execution<br/>permissions and logging]:::accent
+  INTENT --> GUI --> GOVERNED_EXECUTION
+  INTENT --> API --> GOVERNED_EXECUTION
+  INTENT --> CLI --> GOVERNED_EXECUTION
+  INTENT --> DSL --> GOVERNED_EXECUTION
 ```
 
 **It does not replace the GUI; it sits above it.** Enterprise users still need dashboards to see state at a glance, bulk-editing tools, visual workflow builders, approval screens, and audit views. Some tasks are inherently spatial or need a human eye on a hundred rows at once; you don't want those narrated through a conversation. And for anything ambiguous or irreversible, the agent should drop the user back down to the explicit surface to confirm.

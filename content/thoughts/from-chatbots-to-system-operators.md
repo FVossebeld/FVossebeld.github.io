@@ -64,7 +64,7 @@ Stack those shifts up and you get a progression. Each step doesn't replace the l
 ```mermaid
 flowchart TD
   accTitle: How agents evolve from chatbots into governed system operators
-  accDescr: A six-stage progression: chatbot, copilot, system operator, workspace operator, scoped specialist, and governed learning system.
+  accDescr: A six-stage progression: Chatbot, Copilot, System operator, Workspace operator, Scoped specialist, and Governed learning system.
 
   classDef accent fill:#8a6f4d,stroke:#6b5740,color:#f7f3ea,rx:6,ry:6
 

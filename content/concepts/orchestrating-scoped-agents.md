@@ -16,7 +16,7 @@ flowchart TD
   accDescr: An orchestrator owns the process and routes work to specialist agents, while each specialist mutates only one enterprise system.
   classDef orchestrator fill:#8a6f4d,stroke:#6b5740,color:#f7f3ea,rx:6,ry:6
   classDef specialist fill:#53665a,stroke:#3f4f45,color:#f7f3ea,rx:6,ry:6
-  U[Cross-system user intent] --> O[Process-scoped orchestrator<br/>plans, routes, tracks]:::orchestrator
+  USER_INTENT[Cross-system user intent] --> O[Process-scoped orchestrator<br/>plans, routes, tracks]:::orchestrator
   O --> S1[Salesforce specialist<br/>system scope: CRM]:::specialist
   O --> S2[SAP specialist<br/>system scope: ERP]:::specialist
   O --> S3[ServiceNow specialist<br/>system scope: ITSM]:::specialist

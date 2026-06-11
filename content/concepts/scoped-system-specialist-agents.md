@@ -19,11 +19,11 @@ flowchart LR
   accTitle: Agent governance loop
   accDescr: A scoped specialist turns intent into action through approval, tracing, and evaluation, then uses the result to improve the next intent.
   classDef accent fill:#53665a,stroke:#3f4f45,color:#f7f3ea,rx:6,ry:6
-  I[Intent] --> A[Approval gate]
-  A --> C[Action]
-  C --> T[Trace]
-  T --> E[Evaluation]:::accent
-  E --> I
+  INTENT[Intent] --> APPROVAL[Approval gate]
+  APPROVAL --> ACTION[Action]
+  ACTION --> TRACE[Trace]
+  TRACE --> EVALUATION[Evaluation]:::accent
+  EVALUATION --> INTENT
 ```
 
 **The caveat that matters:** scope solves governability but creates fragmentation. Real workflows cross systems (a renewal touches CRM, billing, legal, email, calendar, and support tickets), so a wall of narrow agents that can't coordinate is as useless as one broad agent is dangerous. The missing layer is [[orchestrating-scoped-agents|orchestration]]: broad intent, narrow execution. A conversational orchestrator understands the cross-system goal and routes the work; the scoped specialists still do every actual mutation inside their own boundaries. And the hardest of those boundaries is [[federated-memory-for-enterprise-agents|memory]]: what a specialist is allowed to learn and carry.
