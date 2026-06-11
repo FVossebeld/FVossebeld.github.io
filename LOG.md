@@ -1,3 +1,5 @@
+## [2026-06-11] lint | Moved `human-tools-not-machine-protocols` from `concepts/` to `thoughts/`. The page threads CLI, JSON, and browser-use concepts into a broader argument; that's a thought, not a concept.
+
 ## [2026-06-11] init | Scaffolded the garden (Quartz v4, homepage, About, How-this-works, first thought, AGENTS.md schema).
 
 ## [2026-06-11] design | Reskinned the site as quiet frontier editorial (warm paper palette, Literata/Source Sans 3, restrained accents); rewrote homepage as masthead + start-here index.
