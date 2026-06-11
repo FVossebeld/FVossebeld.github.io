@@ -28,7 +28,7 @@ I keep coming back to the same question: as language models start interacting wi
   <li>
     <a href="concepts/">
       <span class="index-title">Concept notes</span>
-      <span class="index-desc">The cluster underneath that theory: action languages, agent workspaces, scoped specialists, federated memory. I take each one apart on its own page.</span>
+      <span class="index-desc">The cluster underneath that theory: action languages, agent workspaces, scoped specialists, orchestration, and federated memory. I take each one apart on its own page.</span>
     </a>
   </li>
   <li>
