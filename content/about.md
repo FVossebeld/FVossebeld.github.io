@@ -42,7 +42,7 @@ My background is in computer science and data science, and the thread running th
     <span style="position:absolute;left:calc(-1.6rem - 8px);top:.2rem;width:13px;height:13px;border-radius:50%;background:var(--secondary);border:2px solid var(--light);"></span>
     <div style="font-size:.76rem;text-transform:uppercase;letter-spacing:.05em;color:var(--secondary);font-weight:700;">2025</div>
     <div style="font-weight:700;color:var(--dark);">Microsoft internship → ISWC 2025, Nara</div>
-    <div style="color:var(--gray);font-size:.92rem;">The thesis grew out of a Microsoft Netherlands internship. I presented <a href="https://arxiv.org/abs/2511.11770" style="color:var(--secondary);">Learning to Refine</a> at the RAGE-KG workshop — 49.7% on LC-QuAD 2.0, up 17.5 points on the prior iterative baseline.</div>
+    <div style="color:var(--gray);font-size:.92rem;">The thesis grew out of a Microsoft Netherlands internship. I presented <a href="https://arxiv.org/abs/2511.11770" style="color:var(--secondary);">Learning to Refine</a> at the RAGE-KG workshop: 49.7% on LC-QuAD 2.0, up 17.5 points on the prior iterative baseline.</div>
   </div>
   <div style="position:relative;">
     <span style="position:absolute;left:calc(-1.6rem - 8px);top:.2rem;width:13px;height:13px;border-radius:50%;background:var(--tertiary);border:2px solid var(--light);"></span>
@@ -59,11 +59,11 @@ This is a notebook, not a brand. Three kinds of thing end up here:
 <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin:1.5rem 0;font-family:var(--bodyFont);">
   <div style="background:var(--lightgray);border-left:5px solid var(--secondary);border-radius:8px;padding:.9rem 1.1rem;">
     <div style="font-weight:700;color:var(--secondary);margin-bottom:.35rem;">Essays</div>
-    <div style="color:var(--darkgray);font-size:.92rem;line-height:1.5;">The longer arguments — like the case that AI is shifting from interface to infrastructure.</div>
+    <div style="color:var(--darkgray);font-size:.92rem;line-height:1.5;">The longer arguments, like the case that AI is shifting from interface to infrastructure.</div>
   </div>
   <div style="background:var(--lightgray);border-left:5px solid var(--tertiary);border-radius:8px;padding:.9rem 1.1rem;">
     <div style="font-weight:700;color:var(--tertiary);margin-bottom:.35rem;">Technical sketches</div>
-    <div style="color:var(--darkgray);font-size:.92rem;line-height:1.5;">One diagram, one idea: retrieval beyond vector search, federated memory, approval flows — the architectures I keep redrawing.</div>
+    <div style="color:var(--darkgray);font-size:.92rem;line-height:1.5;">One diagram, one idea: retrieval beyond vector search, federated memory, approval flows. The architectures I keep redrawing.</div>
   </div>
   <div style="background:var(--lightgray);border-left:5px solid var(--gray);border-radius:8px;padding:.9rem 1.1rem;">
     <div style="font-weight:700;color:var(--dark);margin-bottom:.35rem;">Field notes</div>
@@ -71,7 +71,7 @@ This is a notebook, not a brand. Three kinds of thing end up here:
   </div>
 </div>
 
-The current spine is [[thoughts/from-chatbots-to-system-operators|From chatbots to system operators]]. Mostly the systems; sometimes the human parts of doing the work. If there's one bet under all of it, that's it — and the hard problems are the boring-sounding ones: trust, ownership, evaluation, scope.
+The current spine is [[thoughts/from-chatbots-to-system-operators|From chatbots to system operators]]. Mostly the systems; sometimes the human parts of doing the work. If there's one bet under all of it, that's it. The hard problems are the boring-sounding ones: trust, ownership, evaluation, scope.
 
 ## Find me elsewhere
 

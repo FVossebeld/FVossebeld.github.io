@@ -47,7 +47,7 @@ A blog is a stream. A wiki **compounds**: pages get revised as my thinking chang
 
 ## Who's in the loop
 
-I am. 🧑‍✈️ I curate the sources, ask the questions, and approve edits (every change is a git commit, like Wikipedia's edit history). The AI does the bookkeeping no human enjoys: summarizing, filing, and keeping links consistent.
+I am. I curate the sources, ask the questions, and approve edits (every change is a git commit, like Wikipedia's edit history). The AI does the bookkeeping no human enjoys: summarizing, filing, and keeping links consistent.
 
 ## It's all open
 
