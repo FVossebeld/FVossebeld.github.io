@@ -9,8 +9,8 @@ It's built on the idea of a [living wiki as agent memory](https://gist.github.co
 - **Renderer:** [Quartz v4](https://quartz.jzhao.xyz/) (static-site generator for digital gardens).
 - **Content:** plain Markdown in [`content/`](./content).
 - **Hosting:** GitHub Pages, auto-deployed by [`.github/workflows/deploy.yml`](./.github/workflows/deploy.yml) on every push to `main`.
-- **Agent schema:** [`AGENTS.md`](./AGENTS.md) tells AI assistants how to maintain the wiki.
-- **Anti-slop pipeline:** [`.github/AGENTIC-PIPELINE.md`](./.github/AGENTIC-PIPELINE.md) — custom Copilot agents (`style-editor`, `slop-verifier`) and an automated content-quality PR review, all enforcing [`.github/CONTENT-QUALITY.md`](./.github/CONTENT-QUALITY.md).
+- **Agent schema:** [`AGENTS.md`](./AGENTS.md) tells AI assistants how to maintain the wiki, and how the instructions / agents / skills layers fit together.
+- **Anti-slop pipeline:** [`.github/AGENTIC-PIPELINE.md`](./.github/AGENTIC-PIPELINE.md) — custom Copilot agents (`style-editor`, `slop-verifier`, `wiki-librarian`), portable skills (`wiki-ingest`, `wiki-query`, `wiki-lint`), and an automated content-quality PR review, all enforcing [`.github/CONTENT-QUALITY.md`](./.github/CONTENT-QUALITY.md).
 
 ## Repository layout
 
@@ -23,6 +23,11 @@ content/        # the published wiki (Markdown → website)
   assets/       # images (put your profile photo here as profile.jpg)
 raw/            # immutable source material the AI reads (not published)
 wiki/           # optional private synthesis (not published)
+.github/
+  agents/       # personas: style-editor, slop-verifier, wiki-librarian
+  skills/       # wiki operations: wiki-ingest, wiki-query, wiki-lint
+  instructions/ # always-on voice/style rules for content/
+  workflows/    # deploy + automated content-quality & wiki-lint checks
 AGENTS.md       # schema: how the AI maintains the wiki
 LOG.md          # append-only changelog
 quartz/         # the Quartz renderer (rarely touched)

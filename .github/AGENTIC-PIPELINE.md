@@ -77,20 +77,43 @@ See the gh-aw docs for engines, auth, and safety model: <https://github.github.c
 ## Layer 3 — Wiki maintenance (the "amazing wiki" brain)
 
 The anti-slop layers above keep individual pages *good*; this layer keeps the *whole wiki*
-healthy and interlinked, implementing the **Ingest** and **Lint** operations from the
-[Karpathy LLM-wiki pattern](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f).
+healthy and interlinked, implementing the **Ingest**, **Query**, and **Lint** operations
+from the [Karpathy LLM-wiki pattern](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f).
 
-| File | What it does |
-|---|---|
-| [`.github/agents/wiki-librarian.agent.md`](./agents/wiki-librarian.agent.md) | Interactive **Ingest** agent: turns a `raw/` source into content pages, wires up `[[wikilinks]]`, updates `content/index.md` and `LOG.md`, and opens a PR. You drive it from the agent picker. |
-| [`.github/workflows/wiki-lint.md`](./workflows/wiki-lint.md) | Automated **Lint** pass (compiled). Runs weekly (and on demand via *Actions → Wiki lint → Run workflow*). Maps the link graph and opens **one issue** listing broken links, orphan pages, **links that should be made**, undocumented concepts, stale/contradictory claims, and frontmatter gaps. Read-only — it only files an issue. |
+The three operations are implemented as **Agent Skills** (portable across the Copilot CLI,
+VS Code, and cloud agents), with a thin agent as the conversational front door and a
+scheduled workflow for the automated lint:
 
-This is the part that answers "check later if links need to be made": `wiki-lint` does
-exactly that on a schedule, and `wiki-librarian` acts on it (or you do, by hand). Both
-keep the human as the merge gate — lint only opens an issue, the librarian only opens PRs.
+| File | Kind | What it does |
+|---|---|---|
+| [`.github/skills/wiki-ingest/SKILL.md`](./skills/wiki-ingest/SKILL.md) | Skill | **Ingest**: turns a `raw/` source into content pages, wires up `[[wikilinks]]`, updates `content/index.md` and `LOG.md`, opens a PR. |
+| [`.github/skills/wiki-query/SKILL.md`](./skills/wiki-query/SKILL.md) | Skill | **Query**: answers a question from the wiki with citations, and offers to file good answers back as new pages so explorations compound. |
+| [`.github/skills/wiki-lint/SKILL.md`](./skills/wiki-lint/SKILL.md) | Skill | **Lint** (interactive): maps the link graph and reports — or, on request, fixes via a PR — broken/missing links, orphans, undocumented concepts, stale claims. |
+| [`.github/agents/wiki-librarian.agent.md`](./agents/wiki-librarian.agent.md) | Agent | Thin persona / front door: understands what Floris wants and routes to the three skills, keeping him in the loop. |
+| [`.github/workflows/wiki-lint.md`](./workflows/wiki-lint.md) | Workflow | Automated **Lint** pass (compiled). Runs weekly (and on demand via *Actions → Wiki lint → Run workflow*). Read-only — opens **one issue** with a prioritised checklist. |
 
-`wiki-lint` authenticates the same way as Layer 2 — via `copilot-requests: write` in its
-frontmatter (the Actions token), so it needs **no secret** either.
+This is the part that answers "check later if links need to be made": the `wiki-lint`
+workflow does exactly that on a schedule, the `wiki-lint` skill does the deeper interactive
+version, and `wiki-librarian` (or you) acts on it. Both keep the human as the merge gate —
+the workflow only opens an issue, the skills only open PRs.
+
+`wiki-lint` (the workflow) authenticates the same way as Layer 2 — via `copilot-requests: write`
+in its frontmatter (the Actions token), so it needs **no secret** either.
+
+### Why skills, not just agents?
+
+A quick map of the three mechanisms, because they're easy to confuse:
+
+- **Instructions** (`copilot-instructions.md`, `instructions/*.instructions.md`) — always-on
+  *standards*. Text only. Always loaded (or by glob).
+- **Agents** (`agents/*.agent.md`) — *personas* with their own tools/instructions. Loaded
+  when you switch to them.
+- **Skills** (`skills/<name>/SKILL.md`) — *reusable procedures*. Open standard, portable
+  across CLI / VS Code / cloud, loaded on demand.
+
+The Karpathy operations are repeatable procedures, so they're skills. The reviewer and
+editor roles are personas, so they're agents. The charter and voice are standards, so
+they're instructions. See [`AGENTS.md`](../AGENTS.md) for the same breakdown in a table.
 
 ## Why this design
 
