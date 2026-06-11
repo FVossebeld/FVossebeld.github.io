@@ -117,6 +117,23 @@
     color: var(--gray);
     font-size: 0.8rem;
     font-style: italic;
+    animation: ga-pulse 1.4s ease-in-out infinite;
+  }
+
+  @keyframes ga-pulse {
+    0%,
+    100% {
+      opacity: 0.45;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+
+  .ga-error {
+    align-self: flex-start;
+    color: var(--gray);
+    font-size: 0.8rem;
   }
 
   .ga-issue {

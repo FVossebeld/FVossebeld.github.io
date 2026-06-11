@@ -33,7 +33,12 @@ function setupGardenAgent() {
   const input = root.querySelector<HTMLInputElement>(".ga-input")!
   const send = root.querySelector<HTMLButtonElement>(".ga-send")!
 
-  const agent = new HttpAgent({ url: endpoint })
+  // HttpAgent invokes its `fetch` as a method, so a bare native fetch throws
+  // "Illegal invocation" in the browser — bind it to window.
+  const agent = new HttpAgent({
+    url: endpoint,
+    fetch: window.fetch.bind(window),
+  })
 
   const scrollDown = () => (log.scrollTop = log.scrollHeight)
 
@@ -80,12 +85,29 @@ function setupGardenAgent() {
     send.disabled = true
     input.disabled = true
 
-    const status = addMessage("ga-status", "Thinking…")
+    let status: HTMLElement | null = addMessage("ga-status", "Thinking…")
+    const setStatus = (t: string) => {
+      if (status) status.textContent = t
+    }
+    const clearStatus = () => {
+      status?.remove()
+      status = null
+    }
+
     const bubbles: Record<string, HTMLElement> = {}
     const issueArgs: Record<string, string> = {}
     let issueCallId = ""
 
-    const clearStatus = () => status.remove()
+    // Create the assistant bubble lazily, on first content, so messages that
+    // only carry a tool call never leave an empty bubble behind.
+    const ensureBubble = (id: string): HTMLElement => {
+      if (!bubbles[id]) {
+        clearStatus()
+        bubbles[id] = addMessage("ga-assistant", "")
+        bubbles[id].dataset.raw = ""
+      }
+      return bubbles[id]
+    }
 
     try {
       await agent.runAgent(
@@ -93,11 +115,11 @@ function setupGardenAgent() {
         {
           onToolCallStartEvent({ event }) {
             if (event.toolCallName === "search_garden") {
-              status.textContent = "Searching the garden…"
+              setStatus("Searching the garden…")
             } else if (event.toolCallName === "draft_github_issue") {
               issueCallId = event.toolCallId
               issueArgs[event.toolCallId] = ""
-              status.textContent = "Drafting an issue…"
+              setStatus("Drafting an issue…")
             }
           },
           onToolCallArgsEvent({ event }) {
@@ -107,37 +129,32 @@ function setupGardenAgent() {
           },
           onToolCallEndEvent({ event }) {
             if (event.toolCallId === issueCallId) {
-              clearStatus()
               try {
                 const args = JSON.parse(issueArgs[event.toolCallId] || "{}")
+                clearStatus()
                 renderIssueCard(args.title ?? "Untitled", args.body ?? "")
               } catch {
                 /* malformed args → skip the card, the text answer still lands */
               }
             }
           },
-          onTextMessageStartEvent({ event }) {
-            clearStatus()
-            bubbles[event.messageId] = addMessage("ga-assistant", "")
-            bubbles[event.messageId].dataset.raw = ""
-          },
           onTextMessageContentEvent({ event }) {
-            const el = bubbles[event.messageId]
-            if (!el) return
+            const el = ensureBubble(event.messageId)
             el.dataset.raw = (el.dataset.raw ?? "") + event.delta
             el.innerHTML = renderMarkdown(el.dataset.raw)
             scrollDown()
           },
           onRunErrorEvent() {
             clearStatus()
-            addMessage("ga-status", "Something went wrong reaching the agent. Try again.")
+            addMessage("ga-error", "Something went wrong reaching the agent. Try again.")
           },
         },
       )
     } catch {
       clearStatus()
-      addMessage("ga-status", "Something went wrong reaching the agent. Try again.")
+      addMessage("ga-error", "Something went wrong reaching the agent. Try again.")
     } finally {
+      clearStatus()
       send.disabled = false
       input.disabled = false
       input.focus()
