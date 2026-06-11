@@ -1,6 +1,28 @@
 import { PageLayout, SharedLayout } from "./quartz/cfg"
 import * as Component from "./quartz/components"
 
+// Sidebar menu. Order follows the site's reading order: essays first, then
+// concept notes, with standalone meta pages (About, How this works) below.
+// Folders open by default so the small garden is browsable at a glance.
+// The sort runs in the browser (serialized via toString), so it must stay
+// self-contained: no references to anything outside the function body.
+const explorer = Component.Explorer({
+  folderDefaultState: "open",
+  sortFn: (a, b) => {
+    const order = ["thoughts", "concepts"]
+    const ra = order.indexOf(a.slugSegment)
+    const rb = order.indexOf(b.slugSegment)
+    const wa = ra === -1 ? order.length : ra
+    const wb = rb === -1 ? order.length : rb
+    if (wa !== wb) return wa - wb
+    if (a.isFolder !== b.isFolder) return a.isFolder ? -1 : 1
+    return a.displayName.localeCompare(b.displayName, undefined, {
+      numeric: true,
+      sensitivity: "base",
+    })
+  },
+})
+
 // components shared across all pages
 export const sharedPageComponents: SharedLayout = {
   head: Component.Head(),
@@ -58,7 +80,7 @@ export const defaultContentPageLayout: PageLayout = {
         { Component: Component.ReaderMode() },
       ],
     }),
-    Component.Explorer(),
+    explorer,
   ],
   right: [
     Component.Graph(),
@@ -82,7 +104,7 @@ export const defaultListPageLayout: PageLayout = {
         { Component: Component.Darkmode() },
       ],
     }),
-    Component.Explorer(),
+    explorer,
   ],
   right: [],
 }
