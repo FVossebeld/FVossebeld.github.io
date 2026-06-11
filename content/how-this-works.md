@@ -7,7 +7,7 @@ This site is built on a simple but powerful idea: **a living wiki that an AI hel
 
 ## The three layers
 
-The garden is built in three layers — and the difference between them is _who's allowed to touch what_.
+The garden is built in three layers, and the difference between them is _who's allowed to touch what_.
 
 <figure class="layers" role="group" aria-labelledby="layers-fig-title" aria-describedby="layers-fig-desc">
   <p id="layers-fig-title" class="sr-only">The three layers and who may edit each</p>
@@ -15,36 +15,36 @@ The garden is built in three layers — and the difference between them is _who'
   <ol class="layer-list">
     <li>
       <span class="layer-name">Raw sources</span>
-      <span class="layer-desc">Articles, notes &amp; ideas I drop in — immutable inputs.</span>
+      <span class="layer-desc">Articles, notes &amp; ideas I drop in: immutable inputs.</span>
       <span class="layer-perm">AI reads only</span>
     </li>
     <li>
       <span class="layer-name">The wiki</span>
-      <span class="layer-desc">The interlinked pages you're reading — written &amp; cross-linked by the AI.</span>
+      <span class="layer-desc">The interlinked pages you're reading, written &amp; cross-linked by the AI.</span>
       <span class="layer-perm">AI drafts · I approve</span>
     </li>
     <li>
       <span class="layer-name">The schema</span>
-      <span class="layer-desc"><code>AGENTS.md</code> — <em>how</em> the AI maintains the wiki: conventions, linking, logging.</span>
+      <span class="layer-desc"><code>AGENTS.md</code>: <em>how</em> the AI maintains the wiki: conventions, linking, logging.</span>
       <span class="layer-perm">Governs the AI</span>
     </li>
   </ol>
-  <figcaption>Three layers, three permission levels — the schema governs how the AI turns raw sources into the wiki.</figcaption>
+  <figcaption>Three layers, three permission levels: the schema governs how the AI turns raw sources into the wiki.</figcaption>
 </figure>
 
 ## Why it's different from a normal blog
 
-A blog is a stream. A wiki **compounds**: pages get revised as my thinking changes, contradictions get flagged, and connections between ideas become as valuable as the ideas themselves. Nothing is re-derived from scratch — the knowledge is kept current.
+A blog is a stream. A wiki **compounds**: pages get revised as my thinking changes, contradictions get flagged, and connections between ideas become as valuable as the ideas themselves. Nothing is re-derived from scratch; the knowledge is kept current.
 
 ## Who's in the loop
 
-I am. 🧑‍✈️ I curate the sources, ask the questions, and approve edits (every change is a git commit, like Wikipedia's edit history). The AI does the bookkeeping no human enjoys — summarizing, filing, and keeping links consistent.
+I am. 🧑‍✈️ I curate the sources, ask the questions, and approve edits (every change is a git commit, like Wikipedia's edit history). The AI does the bookkeeping no human enjoys: summarizing, filing, and keeping links consistent.
 
 ## It's all open
 
 - The content and the renderer ([Quartz](https://quartz.jzhao.xyz/)) live in **one public repo**: [FVossebeld/FVossebeld.github.io](https://github.com/FVossebeld/FVossebeld.github.io).
 - Every page has a full version history.
-- Anyone can propose an edit via pull request — I merge what I agree with.
+- Anyone can propose an edit via pull request; I merge what I agree with.
 
 ## How a page gets published
 
