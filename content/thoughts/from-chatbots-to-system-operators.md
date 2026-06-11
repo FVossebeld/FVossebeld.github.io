@@ -7,19 +7,19 @@ tags:
 
 Why do so many enterprise AI products still feel like a chatbot parked *next to* the software, rather than something that can actually operate it? From where I sit, most of what enterprises run today is still chat, search, summarization, personal productivity, and customer-service bots: a conversation layer sitting on top of documents. Useful, but it leaves the systems of record untouched. The bigger prize is the thing almost nobody has shipped safely yet: AI that can *change the state* of a business system (move the deal, file the ticket, route the approval) without a human driving every click.
 
-That turns out to be a different problem than making the model smarter. It's a question about the *environment* the model operates in. I keep watching the same shift happen across the tools I use and the systems I help build, and I want to write down the pattern while it's still in motion. My short version: **LLM agents are turning from chat partners into operators of systems, and the interesting work is moving with them, out of the model and into the interface, the scope, and the memory around it.**
+That turns out to be a different problem than making the model smarter. It's a question about the *environment* the model operates in. I keep watching the same shift happen across the tools I use and the systems I help build, and I want to write down the pattern while it's still in motion. My short version: **LLM agents are turning from chat partners into operators of systems, and the interesting work is moving with them, out of the model and into the environment around it.**
 
 This is a working theory, not a finished one. It's an index essay: I name the pattern here and pull each thread apart on its own [concept page](../concepts/). Expect both to change as I do.
 
 ## Chat was the demo
 
-It started with chat. You typed, the model replied. The whole interface was a transcript, and the model's only power was to produce more text. That was the right first move (it made the capability legible to everyone at once), but a transcript is sealed off from anything that isn't language. You can ask it to draft the email; you can't ask it to send the email, check whether the customer already replied, and update the CRM. Chat made LLMs *accessible*. It didn't make them *operational*.
+It started with chat. You typed, the model replied. The whole interface was a transcript, and the model's only power was to produce more text. That was the right first move (it made the capability legible to everyone at once), but a transcript is sealed off from anything that isn't language. You can ask it to draft the email; you can't ask it to send the email, check whether the customer already replied, and update the CRM. Chat made LLMs *accessible*. Operational is the different, harder thing.
 
 ## Tool calling gave the model hands, on the wrong layer
 
 Then we gave it tools, and the standard way was JSON tool calling: the model emits a structured request, some glue code runs it, a result comes back. The instinct was right: agents need to *act*. But I think we reached for the wrong layer, and we reached for it because it was convenient: JSON was already everywhere and models could already produce it.
 
-[[json-as-transport-not-cognition|JSON is the right *transport* layer and probably the wrong *cognitive/action* layer]]. It's how machines hand structured data to each other: stable, parseable, language-neutral, easy to validate. It belongs lower in the stack. As the layer the model *thinks and acts in*, it carries no sense of doing: no sequencing, no composition, no "if that failed, try this." Every call is a flat object the model fills in blind, then waits for a result whose shape it couldn't see coming. We bolted the model's hands onto a serialization format because it was convenient.
+[[json-as-transport-not-cognition|JSON is the right *transport* layer and probably the wrong *cognitive/action* layer]]. It's how machines hand structured data to each other: stable, parseable, language-neutral, easy to validate. It belongs lower in the stack. As the layer the model *thinks and acts in*, it carries no sense of doing: no sequencing, no "if that failed, try this." Every call is a flat object the model fills in blind, then waits for a result whose shape it couldn't see coming. We bolted the model's hands onto a serialization format because it was convenient.
 
 Compare the same action two ways. The JSON tool call:
 
@@ -47,11 +47,7 @@ The honest counterpoint: a shell is *dangerous* exactly because it's powerful. A
 
 ## The model and the environment co-evolve
 
-I used to phrase this as "the recent capability jump is the environment, not the model." That's too strong, and technically-minded readers are right to push back on it. The better claim is that the two **co-evolve**, and the product is the *coupling* between them:
-
-- Weak models need rigid schemas and narrow, hand-held tool calls.
-- Stronger models (better at planning, long-context reasoning, tool use, and recovering from their own mistakes) can operate in messier, more open-ended environments.
-- Better environments turn that capability into durable work instead of a clever transcript.
+I used to phrase this as "the recent capability jump is the environment, not the model." That's too strong, and technically-minded readers are right to push back on it. The better claim is that the two **co-evolve**, and the product is the *coupling* between them. A weak model needs rigid schemas and narrow, hand-held tool calls. A stronger model (better at planning, long-context reasoning, and recovering from its own mistakes) can operate in messier, more open-ended environments, and better environments turn that capability into durable work instead of a clever transcript.
 
 So when someone tells me a new model "feels much more capable," my first guess is that *both* moved: the weights got better at reasoning and recovery, and someone finally gave them [[agent-workspaces|a place to stand]]: files, a shell, durable memory, state that survives the turn. The model could do more of this than we let it; it now has somewhere to do it. Capability lives in the coupling, not in either half alone.
 
@@ -122,6 +118,6 @@ The lesson worth keeping and the detail worth protecting arrive together; the wh
 
 Put it together and the through-line is simple: we're giving language models the action languages, environments, scopes, orchestration, and memory that humans already use to operate systems. Chat was the demo. The system operator is the product.
 
-My bet on where the value lands: the next generation of enterprise GenAI won't be won by the chatbot with the best personality. It'll be won by systems that can safely turn intent into action: scoped agents that understand one system deeply, act through governed interfaces, coordinate under an orchestrator, remember within the right boundaries, and convert experience into reusable skills without leaking private context. The capability is mostly here. The unsolved part is governed learning: letting these things get better from experience without betraying the boundaries that make them safe to deploy at all.
+My bet on where the value lands: the next generation of enterprise GenAI is won by systems that can safely turn intent into action: scoped agents that understand one system deeply, act through governed interfaces, coordinate under an orchestrator, remember within the right boundaries, and convert experience into reusable skills without leaking private context. The capability is mostly here. The unsolved part is governed learning: letting these things get better from experience without betraying the boundaries that make them safe to deploy at all.
 
 The concept pages linked above are where I take each thread apart. They're the rest of this argument.

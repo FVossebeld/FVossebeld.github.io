@@ -3,7 +3,7 @@ title: How this site works
 description: The living-wiki / agent-memory idea behind this digital garden.
 ---
 
-This site is built on a simple but powerful idea: **a living wiki that an AI helps maintain, but that I edit and control.** It's inspired by [Andrej Karpathy's "LLM Wiki" pattern](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f) and the way [digital gardens](https://quartz.jzhao.xyz/) work.
+This site is a living wiki: I drop in sources and write the arguments; an AI handles cross-referencing, filing, and keeping links current. Every edit still goes through me. It takes its cues from [Andrej Karpathy's work on LLM-assisted wikis](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f) and the [digital-garden](https://quartz.jzhao.xyz/) tradition.
 
 ## The three layers
 
@@ -43,11 +43,11 @@ The garden is built in three layers, and the difference between them is *who's a
 
 ## Why it's different from a normal blog
 
-A blog is a stream. A wiki **compounds**: pages get revised as my thinking changes, contradictions get flagged, and connections between ideas become as valuable as the ideas themselves. Nothing is re-derived from scratch; the knowledge is kept current.
+A blog is a stream. A wiki **compounds**: pages get revised as my thinking changes, and the links between ideas accumulate into something a stream never builds. Nothing is re-derived from scratch.
 
 ## Who's in the loop
 
-I am. I curate the sources, ask the questions, and approve edits (every change is a git commit, like Wikipedia's edit history). The AI does the bookkeeping no human enjoys: summarizing, filing, and keeping links consistent.
+I am. I curate the sources and approve every edit (every change is a git commit, like Wikipedia's edit history). The AI does the bookkeeping no human enjoys: filing and keeping links consistent.
 
 ## It's all open
 
