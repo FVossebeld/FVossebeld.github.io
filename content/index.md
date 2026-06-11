@@ -2,17 +2,42 @@
 title: Floris Vossebeld
 ---
 
-Welcome to my **digital garden** — a living, version-controlled wiki where I think out loud and keep notes that grow over time. It's part blog, part second brain.
+<div class="masthead">
 
-Unlike a regular blog, this isn't just a stream of dated posts. Pages here are interlinked and get revised as my thinking evolves. I curate and edit everything; an AI agent helps with the tedious cross-referencing and upkeep (the [[how-this-works|how this works]] page explains the setup).
+<p class="masthead-lede">Field notes on enterprise AI, agents, systems, and the way software changes organizations.</p>
 
-> [!info] Everything here is open
-> The entire site — content *and* code — lives in one public repository: [github.com/FVossebeld/FVossebeld.github.io](https://github.com/FVossebeld/FVossebeld.github.io). Browse it, fork it, or open a pull request to suggest an edit.
+<nav class="masthead-nav">
+  <a href="about">About</a>
+  <a href="how-this-works">How this works</a>
+  <a href="thoughts/welcome">Notes</a>
+  <a href="https://github.com/FVossebeld/FVossebeld.github.io">Source</a>
+</nav>
+
+</div>
+
+I keep coming back to the same question: as language models start interacting with tools, memory, users, and real enterprise constraints, what does the work around them actually look like? This site is where I think it through in the open. Less a personal brand, more a notebook that happens to be public.
 
 ## Start here
 
-- [[about|About me]] — who I am and what I work on
-- [[how-this-works|How this site works]] — the living-wiki / agent-memory idea behind it
-- [[thoughts/welcome|Thoughts]] — my notes and ideas
+<ul class="index-list">
+  <li>
+    <a href="about">
+      <span class="index-title">About</span>
+      <span class="index-desc">Who I am, what I work on, and why this site exists.</span>
+    </a>
+  </li>
+  <li>
+    <a href="how-this-works">
+      <span class="index-title">How this works</span>
+      <span class="index-desc">The living wiki idea: version controlled, interlinked, edited as my thinking moves.</span>
+    </a>
+  </li>
+  <li>
+    <a href="thoughts/welcome">
+      <span class="index-title">Notes</span>
+      <span class="index-desc">Shorter, rawer thoughts. The first entries in the field log.</span>
+    </a>
+  </li>
+</ul>
 
-Use the search (top-left) or the graph (right) to explore. Pages link to each other, so just start following threads.
+<p class="colophon">Everything here, content and code, lives in one public repository: <a href="https://github.com/FVossebeld/FVossebeld.github.io">github.com/FVossebeld/FVossebeld.github.io</a>. Search is top left, the graph is on the right. Pages link to each other, so follow the threads.</p>

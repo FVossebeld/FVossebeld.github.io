@@ -27,8 +27,12 @@ I am. 🧑‍✈️ I curate the sources, ask the questions, and approve edits (
 
 ## How a page gets published
 
-```
-write/update a .md file  →  (AI helps on a branch)  →  I review & merge  →  GitHub Action builds  →  site is live
+```mermaid
+flowchart LR
+  A[Write or update<br/>a markdown file] --> B[AI drafts<br/>on a branch]
+  B --> C[I review<br/>and merge]
+  C --> D[GitHub Action<br/>builds the site]
+  D --> E[Site is live]
 ```
 
-No database, no admin panel — just markdown in git.
+No database, no admin panel: just markdown in git.
