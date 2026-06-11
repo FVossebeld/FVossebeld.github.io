@@ -30,21 +30,40 @@ a [GitHub Agentic Workflow](https://github.com/github/gh-aw). On every PR that t
 `content/**`, a read-only agent reads the diff, applies the quality charter, and posts a
 verdict comment — an automatic anti-slop reviewer on every change.
 
-It's committed as **source** (`.md`). GitHub Actions ignores it until you compile it into
-a runnable workflow. To activate:
+It's committed as **source** (`.md`) **and compiled** (`.lock.yml` — the runnable Actions
+workflow). The only thing left to make it run is the AI engine credential:
 
-1. Install the extension and compile (generates `content-quality-review.lock.yml`):
+1. Add the engine secret. This workflow uses `engine: copilot`, which runs the GitHub
+   Copilot CLI in Actions and requires a repo secret named **`COPILOT_GITHUB_TOKEN`** (a
+   token belonging to an account with a Copilot subscription):
    ```bash
-   gh extension install github/gh-aw
-   gh aw compile content-quality-review
-   git add .github/workflows/content-quality-review.lock.yml && git commit -m "Compile content review workflow" && git push
+   gh secret set COPILOT_GITHUB_TOKEN --repo FVossebeld/FVossebeld.github.io
    ```
-2. Give it an AI engine to run with. This workflow uses `engine: copilot`, so enable
-   **Copilot coding agent** for the repo (Settings → Copilot) or follow gh-aw's engine
-   setup for Claude/Codex/Gemini and add the corresponding repo secret.
+2. If you ever edit the `.md`, recompile so the `.lock.yml` stays in sync:
+   ```bash
+   gh aw compile content-quality-review   # or: gh aw compile (all)
+   git add .github/workflows/*.lock.yml && git commit -m "Recompile workflows" && git push
+   ```
 3. Open a test PR that edits a file under `content/` and confirm the verdict comment appears.
 
 See the gh-aw docs for engines, secrets, and safety model: <https://github.github.com/gh-aw/>.
+
+## Layer 3 — Wiki maintenance (the "amazing wiki" brain)
+
+The anti-slop layers above keep individual pages *good*; this layer keeps the *whole wiki*
+healthy and interlinked, implementing the **Ingest** and **Lint** operations from the
+[Karpathy LLM-wiki pattern](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f).
+
+| File | What it does |
+|---|---|
+| [`.github/agents/wiki-librarian.agent.md`](./agents/wiki-librarian.agent.md) | Interactive **Ingest** agent: turns a `raw/` source into content pages, wires up `[[wikilinks]]`, updates `content/index.md` and `LOG.md`, and opens a PR. You drive it from the agent picker. |
+| [`.github/workflows/wiki-lint.md`](./workflows/wiki-lint.md) | Automated **Lint** pass (compiled). Runs weekly (and on demand via *Actions → Wiki lint → Run workflow*). Maps the link graph and opens **one issue** listing broken links, orphan pages, **links that should be made**, undocumented concepts, stale/contradictory claims, and frontmatter gaps. Read-only — it only files an issue. |
+
+This is the part that answers "check later if links need to be made": `wiki-lint` does
+exactly that on a schedule, and `wiki-librarian` acts on it (or you do, by hand). Both
+keep the human as the merge gate — lint only opens an issue, the librarian only opens PRs.
+
+`wiki-lint` also needs the `COPILOT_GITHUB_TOKEN` secret (same as Layer 2) to run.
 
 ## Why this design
 

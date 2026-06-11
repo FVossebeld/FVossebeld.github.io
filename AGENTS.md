@@ -32,7 +32,10 @@ When a new source lands in `raw/`:
 When asked a question: search the wiki, read the relevant pages, and answer with links to sources. If the answer is valuable, offer to file it back as a new page so the exploration compounds.
 
 ### Lint (health check)
-Periodically scan for: contradictions between pages, stale claims, orphan pages with no inbound links, important concepts lacking their own page, and missing cross-references. Report findings; let the human decide.
+Periodically scan for: contradictions between pages, stale claims, orphan pages with no inbound links, important concepts lacking their own page, and missing cross-references. Report findings; let the human decide. This runs **automatically every week** via the [`wiki-lint`](.github/workflows/wiki-lint.md) workflow, which opens an issue with a checklist. The [`wiki-librarian`](.github/agents/wiki-librarian.agent.md) agent can run a deeper, conversational version on request and act on the findings via a PR.
+
+## index.md
+`content/index.md` is the navigable **catalog / homepage** — every significant page should be reachable from it (the "Start here" list plus topic sections). Update it whenever you add or rename a page so nothing becomes an orphan.
 
 ## LOG.md
 Append-only, chronological record. Each entry starts with a consistent prefix so it's greppable:
