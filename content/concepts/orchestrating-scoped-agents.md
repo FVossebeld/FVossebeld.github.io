@@ -10,6 +10,21 @@ tags:
 
 So you need a coordination layer, and the shape I keep landing on is **broad intent, narrow execution**: a conversational orchestrator holds the messy human goal and decides who does what; each scoped specialist performs the actual mutation, but only inside its own system and permissions. Breadth lives in the *understanding*; narrowness lives in the *doing*. The orchestrator can reason about a goal spanning six systems while holding write access to none of them.
 
+```mermaid
+flowchart TD
+  accTitle: System-scoped specialists coordinated by a process-scoped orchestrator
+  accDescr: An orchestrator owns the process and routes work to specialist agents, while each specialist mutates only one enterprise system.
+  classDef orchestrator fill:#8a6f4d,stroke:#6b5740,color:#f7f3ea,rx:6,ry:6
+  classDef specialist fill:#53665a,stroke:#3f4f45,color:#f7f3ea,rx:6,ry:6
+  USER_INTENT[Cross-system user intent] --> O[Process-scoped orchestrator<br/>plans, routes, tracks]:::orchestrator
+  O --> S1[Salesforce specialist<br/>system scope: CRM]:::specialist
+  O --> S2[SAP specialist<br/>system scope: ERP]:::specialist
+  O --> S3[ServiceNow specialist<br/>system scope: ITSM]:::specialist
+  S1 --> C[(CRM)]
+  S2 --> E[(ERP)]
+  S3 --> I[(ITSM)]
+```
+
 That separation is the easy part to state. The work is in three problems it creates.
 
 **Context handoff without over-sharing.** To brief the billing specialist, the orchestrator has to pass *some* context, but not the whole conversation, which may carry detail billing has no business seeing. Each handoff is a place a boundary can leak, so the orchestrator has to pass the minimum a specialist needs and no more. This is the [[federated-memory-for-enterprise-agents|federated-memory problem]] showing up at runtime instead of in storage: even between cooperating agents, what's *relevant* to share isn't the same as what's *allowed* to cross.

@@ -63,16 +63,16 @@ Stack those shifts up and you get a progression. Each step doesn't replace the l
 
 ```mermaid
 flowchart TD
-  accTitle: How agents evolve from chatbots into governed system operators
-  accDescr: A progression in six stages: chatbot, then JSON tool caller, then CLI and code operator, then workspace agent, then scoped enterprise system specialist, and finally a governed learning system.
+  accTitle: Six-stage evolution from chatbots to governed system operators
+  accDescr: A six-stage progression: Chatbot, Copilot, System operator, Workspace operator, Scoped specialist, and Governed learning system.
 
   classDef accent fill:#8a6f4d,stroke:#6b5740,color:#f7f3ea,rx:6,ry:6
 
-  A[Chatbot<br/>text in, text out] --> B[JSON tool caller<br/>structured requests]
-  B --> C[CLI / code operator<br/>action = execution]
-  C --> D[Workspace agent<br/>files, shell, memory, state]
+  A[Chatbot<br/>text in, text out] --> B[Copilot<br/>suggests and prepares structured actions]
+  B --> C[System operator<br/>CLI and code execution]
+  C --> D[Workspace operator<br/>files, shell, memory, state]
   D --> E[Scoped system specialist<br/>one system, bounded blast radius]
-  E --> F[Governed learning system<br/>federated memory + promotion]:::accent
+  E --> F[Governed learning system<br/>federated memory and promotion]:::accent
 ```
 
 ## The useful enterprise shape is scoped, not omniscient
@@ -106,6 +106,10 @@ flowchart TD
   A --> SYS[(Enterprise systems<br/>of record)]
   POL[Policy layer<br/>identity · permissions · audit]:::wrap
   MEM[Memory layer<br/>scoped · federated]:::wrap
+  POL -.enforces.-> O
+  POL -.enforces.-> S
+  MEM -.supplies context.-> O
+  MEM -.stores outcomes.-> S
 ```
 
 The policy layer (identity, permissions, tenant boundaries, approvals, logging) and a verification layer of dry runs, human approval, and rollback aren't optional add-ons. In a regulated enterprise they're the reason the thing is allowed to run at all.

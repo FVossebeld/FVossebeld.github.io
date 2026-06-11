@@ -1,4 +1,4 @@
-# Pattern library — copy-paste infographics & diagrams
+# Pattern library - copy-paste infographics & diagrams
 
 A curated set of **verified** recipes for this site. Every snippet here has been rendered
 through Quartz and checked in both light and dark mode, so quality is repeatable instead
@@ -11,7 +11,7 @@ first; this file is what you reach for once you've decided to draw something.
 
 ---
 
-## ⚠️ The one HTML rule that breaks everything
+## The one HTML rule that breaks everything
 
 Quartz runs pages through a Markdown parser before the HTML reaches the browser. Inside a
 raw HTML block:
@@ -19,7 +19,7 @@ raw HTML block:
 - **No blank lines.** A blank line ends the HTML block; whatever follows is parsed as
   Markdown again.
 - **Never indent an inner line by 4+ spaces.** A blank line followed by a 4-space-indented
-  line is read as an **indented code block** — your `<div>`s render as literal grey code.
+  line is read as an **indented code block** - your `<div>`s render as literal grey code.
 
 So: keep multi-element HTML blocks **gap-free**, and indent inner lines by **2 spaces max**
 (or not at all). The grid-based patterns below (swimlane especially) are deliberately
@@ -50,10 +50,102 @@ reflows on mobile.
 | **"At a glance" facts** | HTML | [Spec list](#spec-list) |
 | **Relative magnitudes / a mix** | HTML | [Meter bars](#meter-bars) |
 | **A line worth pausing on** | HTML | [Pull quote](#pull-quote) |
+| **Enterprise-agent recurring motifs** | Mermaid | [Signature system motifs](#signature-system-motifs-reuse-first) |
 
 Rule of thumb: **relational → Mermaid; quantitative or editorial layout → HTML.** A garden
-page should *vary its texture* — a wall of flat prose tires the reader as much as a wall of
+page should *vary its texture* - a wall of flat prose tires the reader as much as a wall of
 boxes. But every visual still has to clarify, not decorate.
+
+---
+
+# Signature system motifs (reuse first)
+
+These are the recurring visuals for this garden's core thesis. Reuse these when they fit so
+readers see one coherent visual language across pages.
+
+## Capability ladder (chatbot → copilot → system operator)
+
+Use this as a high-level shorthand. The long-form essay expands it into six stages.
+
+````markdown
+```mermaid
+flowchart LR
+  accTitle: Capability ladder from chatbot to system operator
+  accDescr: Capability moves from chatbot text responses to copilot assistance and then to governed system operation.
+  classDef copilot fill:#53665a,stroke:#3f4f45,color:#f7f3ea,rx:6,ry:6
+  classDef operator fill:#8a6f4d,stroke:#6b5740,color:#f7f3ea,rx:6,ry:6
+  A[Chatbot<br/>text responses] --> B[Copilot<br/>prepares and suggests actions]:::copilot
+  B --> C[System operator<br/>executes approved changes]:::operator
+```
+````
+
+## Coordination boundary (process-scoped orchestrator vs system-scoped specialists)
+
+````markdown
+```mermaid
+flowchart TD
+  accTitle: Process-scoped orchestration with system-scoped execution
+  accDescr: An orchestrator manages cross-system process flow while specialists mutate only their own systems.
+  classDef orchestrator fill:#8a6f4d,stroke:#6b5740,color:#f7f3ea,rx:6,ry:6
+  classDef specialist fill:#53665a,stroke:#3f4f45,color:#f7f3ea,rx:6,ry:6
+  I[Cross-system intent] --> O[Process-scoped orchestrator]:::orchestrator
+  O --> S1[Salesforce specialist<br/>system scope: CRM]:::specialist
+  O --> S2[SAP specialist<br/>system scope: ERP]:::specialist
+  O --> S3[ServiceNow specialist<br/>system scope: ITSM]:::specialist
+```
+````
+
+## Memory stack (enterprise layers)
+
+````markdown
+```mermaid
+flowchart TD
+  accTitle: Enterprise memory layers
+  accDescr: Memory broadens from thread to reusable skill, with stricter governance at wider layers.
+  classDef narrow fill:#53665a,stroke:#3f4f45,color:#f7f3ea,rx:6,ry:6
+  classDef wide fill:#8a6f4d,stroke:#6b5740,color:#f7f3ea,rx:6,ry:6
+  T[Thread]:::narrow --> U[User]
+  U --> C[Customer or project]
+  C --> O[Team or organization]:::wide
+  O --> P[Procedural playbook]
+  P --> S[Reusable skill]:::wide
+```
+````
+
+## Action surface map (GUI / API / CLI / DSL)
+
+````markdown
+```mermaid
+flowchart LR
+  accTitle: Action surfaces converging on governed execution
+  accDescr: Intent can route through GUI, API, CLI, and DSL surfaces into one governed action path.
+  classDef accent fill:#8a6f4d,stroke:#6b5740,color:#f7f3ea,rx:6,ry:6
+  I[Intent] --> GUI[GUI]
+  I --> API[API]
+  I --> CLI[CLI]
+  I --> DSL[DSL]
+  GUI --> G[Governed execution]:::accent
+  API --> G
+  CLI --> G
+  DSL --> G
+```
+````
+
+## Governance loop (intent → approval → action → trace → evaluation)
+
+````markdown
+```mermaid
+flowchart LR
+  accTitle: Agent governance loop
+  accDescr: Actions run through approval and traceability, then feed evaluation for the next cycle.
+  classDef accent fill:#53665a,stroke:#3f4f45,color:#f7f3ea,rx:6,ry:6
+  I[Intent] --> A[Approval]
+  A --> C[Action]
+  C --> T[Trace]
+  T --> E[Evaluation]:::accent
+  E --> I
+```
+````
 
 ---
 
@@ -180,7 +272,7 @@ gitGraph
 ```
 ````
 
-> **⚠️ Avoid Mermaid `timeline` and `mindmap` here.** Their auto colour scales fight this
+> **Avoid Mermaid `timeline` and `mindmap` here.** Their auto colour scales fight this
 > palette and render low-contrast (dark text on dark fills), and the `%%{init: theme}%%`
 > fix is banned (§4 of DIAGRAMS.md). For a **chronology** use the HTML
 > [vertical timeline](#vertical-timeline) below; for a **hierarchy / idea map** use a
@@ -217,7 +309,7 @@ Headline numbers in a reflowing grid. Accent at most one card.
 ## Vertical timeline
 
 A chronology with dots on a rail. The dot uses `left:calc(-1.6rem - 8px)` to sit on the
-border; alternate sage/amber dots if you like. **This is the chronology pattern** — prefer
+border; alternate sage/amber dots if you like. **This is the chronology pattern** - prefer
 it over Mermaid `timeline`.
 
 ```html
@@ -271,7 +363,7 @@ An ordered how-to. Reflows to a column on mobile.
 
 Who does what, across stages. A CSS grid: first column = lane labels, header row = stages,
 accent cells = the action in that lane/stage; empty cells are dashed placeholders.
-**Kept flattened (no indentation, no blank lines)** — this is the pattern most likely to
+**Kept flattened (no indentation, no blank lines)** - this is the pattern most likely to
 break the code-block trap. `overflow-x:auto` + `min-width` let it scroll on mobile.
 
 ```html
@@ -390,7 +482,7 @@ Break up a long passage with a line worth pausing on. Uses the header font and a
 ```html
 <blockquote style="margin:1.5rem 0;padding:.6rem 0 .6rem 1.4rem;border-left:4px solid var(--tertiary);font-family:var(--headerFont);font-size:1.3rem;line-height:1.4;color:var(--dark);font-style:italic;">
   A blog is a stream. A wiki compounds.
-  <footer style="margin-top:.5rem;font-family:var(--bodyFont);font-size:.85rem;font-style:normal;color:var(--gray);">— how this site works</footer>
+  <footer style="margin-top:.5rem;font-family:var(--bodyFont);font-size:.85rem;font-style:normal;color:var(--gray);">- how this site works</footer>
 </blockquote>
 ```
 
@@ -401,9 +493,9 @@ Break up a long passage with a line worth pausing on. Uses the header font and a
 Quick pass (full checklist in [`DIAGRAMS.md`](../../DIAGRAMS.md) §6–7):
 
 - [ ] HTML block has **no blank lines** and **no 4-space-indented** inner lines.
-- [ ] Every colour is a `var(--…)` token or a brand accent — nothing hardcoded to one mode.
+- [ ] Every colour is a `var(--…)` token or a brand accent - nothing hardcoded to one mode.
 - [ ] SVG fills use `style="fill:var(--…)"`, not `fill="var(--…)"`.
 - [ ] It reflows at ~760px (grids `auto-fit`, wide blocks `overflow-x:auto` + `min-width`).
 - [ ] Mermaid has `accTitle`/`accDescr`; HTML/SVG has a caption or `<figcaption>`/`<desc>`.
 - [ ] You skipped Mermaid `timeline`/`mindmap` in favour of the HTML timeline / `flowchart TD`.
-- [ ] It **renders** — `npx quartz build --serve` and look, in light *and* dark.
+- [ ] It **renders** - `npx quartz build --serve` and look, in light *and* dark.

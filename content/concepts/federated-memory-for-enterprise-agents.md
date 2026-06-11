@@ -23,6 +23,19 @@ The reason it's hard is that the valuable lesson and the sensitive detail arrive
 
 Each layer up is a wider audience. The work is keeping a memory at the lowest layer that's still useful, and only moving it up deliberately.
 
+```mermaid
+flowchart TD
+  accTitle: Memory layers in enterprise AI
+  accDescr: Memory widens from thread to organization and skills, with risk increasing as audience scope widens.
+  classDef narrow fill:#53665a,stroke:#3f4f45,color:#f7f3ea,rx:6,ry:6
+  classDef wide fill:#8a6f4d,stroke:#6b5740,color:#f7f3ea,rx:6,ry:6
+  T[Thread memory<br/>single conversation]:::narrow --> U[User memory<br/>one person]
+  U --> C[Customer or project memory<br/>one account]
+  C --> O[Team or organization memory<br/>shared context]:::wide
+  O --> P[Procedural memory<br/>sanitized playbooks]
+  P --> S[Reusable skills<br/>portable execution patterns]:::wide
+```
+
 ## The threat model
 
 The leak is rarely dramatic. It's mundane: a "helpful" lesson retrieved in tenant B that quietly encodes a fact only true in tenant A, like a customer name in an example, an internal field, a deal size, a credential pattern, the *existence* of a project that's confidential. Retrieve by similarity across a shared store and the model will happily surface exactly the cross-boundary detail you never authorised, because it's relevant. Relevance is not permission.
