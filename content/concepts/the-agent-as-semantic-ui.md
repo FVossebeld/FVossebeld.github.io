@@ -15,7 +15,7 @@ This is not the same thing as a chatbot embedded in the corner of an app. A bolt
 ```mermaid
 flowchart LR
   accTitle: Action surfaces from intent to execution
-  accDescr: The semantic interface can express intent through GUI, API, CLI, and DSL surfaces that all route into the same governed system actions.
+  accDescr: Intent routes through GUI, API, CLI, and DSL action surfaces into one governed execution path.
   classDef accent fill:#8a6f4d,stroke:#6b5740,color:#f7f3ea,rx:6,ry:6
   INTENT[Intent<br/>natural language]
   GUI[GUI<br/>forms and dashboards]

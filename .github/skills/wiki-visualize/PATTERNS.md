@@ -68,7 +68,7 @@ readers see one coherent visual language across pages.
 ```mermaid
 flowchart LR
   accTitle: Capability ladder from chatbot to system operator
-  accDescr: AI moves from text responses to assisted actions and then to governed system operation.
+  accDescr: Capability moves from chatbot text responses to copilot assistance and then to governed system operation.
   classDef copilot fill:#53665a,stroke:#3f4f45,color:#f7f3ea,rx:6,ry:6
   classDef operator fill:#8a6f4d,stroke:#6b5740,color:#f7f3ea,rx:6,ry:6
   A[Chatbot<br/>text responses] --> B[Copilot<br/>prepares and suggests actions]:::copilot
