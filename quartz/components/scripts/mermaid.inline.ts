@@ -151,6 +151,41 @@ function normalizeMermaidPalette(input: string): string {
   return normalized
 }
 
+// Mermaid's hand-drawn look renders node fills as rough.js hachure strokes with no
+// solid backing, so a node styled with a dark fill + light text (the brand-accent
+// pattern in DIAGRAMS.md) ends up as light text floating over the page background -
+// illegible. Reinstate a solid fill behind each node, reusing the sketchy outline's
+// geometry and the hachure's colour, so the hand-drawn edge survives but the text
+// regains contrast. Runs after every render, including dark-mode re-renders.
+function applySolidNodeFills(scope: ParentNode) {
+  const roughNodes = scope.querySelectorAll("g.rough-node")
+  roughNodes.forEach((node) => {
+    const container =
+      (node.querySelector('[class*="label-container"]') as SVGGElement | null) ?? node
+    if (container.querySelector(":scope > path.rough-solid-bg")) return
+
+    const paths = Array.from(container.querySelectorAll(":scope > path")) as SVGPathElement[]
+    if (paths.length < 2) return
+
+    const byLength = [...paths].sort(
+      (a, b) => (a.getAttribute("d")?.length ?? 0) - (b.getAttribute("d")?.length ?? 0),
+    )
+    // Largest path = the hachure fill (its stroke carries the intended fill colour);
+    // second-largest = the outermost outline, whose geometry we reuse as a solid backing.
+    const fillSource = byLength[byLength.length - 1]
+    const outline = byLength[byLength.length - 2]
+    const fillColor = fillSource.getAttribute("stroke")
+    if (!fillColor || fillColor === "none") return
+
+    const background = outline.cloneNode(true) as SVGPathElement
+    background.setAttribute("class", "rough-solid-bg")
+    background.setAttribute("fill", fillColor)
+    background.setAttribute("stroke", "none")
+    background.removeAttribute("style")
+    container.insertBefore(background, container.firstChild)
+  })
+}
+
 const cssVars = [
   "--secondary",
   "--tertiary",
@@ -229,6 +264,7 @@ document.addEventListener("nav", async () => {
     })
 
     await mermaid.run({ nodes })
+    applySolidNodeFills(center)
   }
 
   await renderMermaid()
