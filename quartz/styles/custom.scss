@@ -18,6 +18,8 @@
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
   --accent: var(--secondary); /* olive */
   --accent-2: var(--tertiary); /* copper */
+  --ms: oklch(0.55 0.14 250); /* a muted Microsoft blue, for interaction */
+  --uiFont: "Segoe UI Variable Text", "Segoe UI", system-ui, var(--bodyFont); /* Fluent chrome; editorial serif stays on content */
   --leadFont: var(--headerFont);
   --step--1: clamp(0.84rem, 0.81rem + 0.12vw, 0.9rem);
   --step-0: clamp(1.02rem, 0.98rem + 0.18vw, 1.1rem);
@@ -32,6 +34,7 @@
 
 :root[saved-theme="dark"] {
   --sand: oklch(0.215 0.011 80);
+  --ms: oklch(0.74 0.12 248);
 }
 
 /* ── Page surface ───────────────────────────────────────── */
@@ -56,7 +59,7 @@ li {
 
 /* Restrained text selection + highlight */
 ::selection {
-  background: color-mix(in srgb, var(--accent) 22%, transparent);
+  background: color-mix(in srgb, var(--ms) 22%, transparent);
   color: var(--dark);
 }
 .text-highlight {
@@ -66,7 +69,7 @@ li {
 
 .navigation-progress {
   height: 2px;
-  background: var(--accent);
+  background: var(--ms);
 }
 
 /* Quiet, hairline scrollbar */
@@ -88,9 +91,10 @@ li {
 a:focus-visible,
 button:focus-visible,
 input:focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--ms);
   outline-offset: 2px;
   border-radius: var(--radius-sm);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--ms) 16%, transparent);
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -216,7 +220,7 @@ strong {
   color: var(--dark);
 }
 
-/* ── Links: olive, quiet underline, copper on hover ────── */
+/* ── Links: olive at rest, Microsoft blue on hover ─────── */
 a {
   color: var(--accent);
   font-weight: 500;
@@ -225,7 +229,7 @@ a {
   text-decoration-color: color-mix(in srgb, var(--accent) 35%, transparent);
   transition: color 0.15s var(--ease), text-decoration-color 0.15s var(--ease);
   &:hover {
-    color: var(--accent-2);
+    color: var(--ms);
     text-decoration-color: currentColor;
   }
 }
@@ -279,7 +283,7 @@ a.internal {
     color: var(--dark);
   }
   & a:hover {
-    color: var(--accent);
+    color: var(--ms);
   }
 }
 
@@ -297,14 +301,15 @@ a.internal {
   transition: border-color 0.15s var(--ease), background 0.15s var(--ease);
   & p {
     color: var(--gray);
+    font-family: var(--uiFont);
     font-weight: 400;
   }
   & svg {
     color: var(--gray);
   }
   &:hover {
-    border-color: color-mix(in srgb, var(--accent) 45%, var(--rule));
-    background: color-mix(in srgb, var(--accent) 4%, var(--light));
+    border-color: color-mix(in srgb, var(--ms) 50%, var(--rule));
+    background: color-mix(in srgb, var(--ms) 5%, var(--light));
   }
 }
 
@@ -327,7 +332,7 @@ a.internal {
     stroke: var(--darkgray);
   }
   &:hover {
-    border-color: color-mix(in srgb, var(--accent) 45%, var(--rule));
+    border-color: color-mix(in srgb, var(--ms) 50%, var(--rule));
   }
 }
 .readermode svg {
@@ -337,26 +342,29 @@ a.internal {
 /* Explorer: quiet list, olive active state */
 button.desktop-explorer h2,
 button.mobile-explorer h2 {
-  font-family: var(--headerFont);
+  font-family: var(--uiFont);
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   letter-spacing: 0;
 }
 .explorer-content {
   & ul li > a {
     display: block;
-    padding: 0.15rem 0.4rem;
+    padding: 0.22rem 0.5rem;
     border-radius: var(--radius-sm);
-    font-size: 0.92rem;
-    transition: color 0.15s var(--ease), opacity 0.15s var(--ease);
+    font-family: var(--uiFont);
+    font-size: 0.9rem;
+    transition: color 0.15s var(--ease), background 0.15s var(--ease), opacity 0.15s var(--ease);
     &:hover {
       opacity: 1;
-      color: var(--accent);
+      color: var(--ms);
+      background: color-mix(in srgb, var(--ms) 6%, transparent);
     }
     &.active {
-      color: var(--accent);
+      color: var(--ms);
       opacity: 1;
       font-weight: 600;
+      background: color-mix(in srgb, var(--ms) 10%, transparent);
     }
   }
   .folder-outer > ul {
@@ -365,7 +373,7 @@ button.mobile-explorer h2 {
 }
 .folder-container div > a,
 .folder-container div > button span {
-  font-family: var(--headerFont);
+  font-family: var(--uiFont);
   color: var(--darkgray);
   font-weight: 600;
 }
@@ -378,6 +386,7 @@ button.mobile-explorer h2 {
    ═══════════════════════════════════════════════════════════ */
 .breadcrumb-container {
   padding: 0.2rem 0 0.45rem;
+  font-family: var(--uiFont);
   font-size: var(--step--1);
   line-height: 1.45;
   font-feature-settings: "kern" 1, "liga" 1;
@@ -386,13 +395,14 @@ button.mobile-explorer h2 {
     font-weight: 400;
     text-decoration: none;
     &:hover {
-      color: var(--accent);
+      color: var(--ms);
     }
   }
 }
 
 .content-meta {
   color: var(--gray);
+  font-family: var(--uiFont);
   font-size: var(--step--1);
   font-style: normal;
   line-height: 1.45;
@@ -591,16 +601,18 @@ hr {
 .graph h3,
 .toc h3,
 .backlinks h3 {
-  font-family: var(--headerFont);
+  font-family: var(--uiFont);
   font-optical-sizing: auto;
-  font-size: 0.98rem;
-  font-weight: 620;
-  letter-spacing: -0.006em;
+  font-size: 0.92rem;
+  font-weight: 600;
+  letter-spacing: 0;
   line-height: 1.25;
-  color: var(--darkgray);
+  text-transform: uppercase;
+  color: var(--gray);
 }
 
 .toc-content {
+  font-family: var(--uiFont);
   font-size: var(--step--1);
   line-height: 1.45;
 
@@ -611,17 +623,18 @@ hr {
     padding-left: 0.7rem;
     transition: color 0.15s var(--ease), border-color 0.15s var(--ease);
     &:hover {
-      color: var(--accent);
+      color: var(--ms);
     }
     &.in-view {
-      border-color: var(--accent);
-      color: var(--accent);
+      border-color: var(--ms);
+      color: var(--ms);
       opacity: 1;
     }
   }
 }
 
 .backlinks .backlink {
+  font-family: var(--uiFont);
   text-decoration: none;
   & .small {
     color: var(--gray);
@@ -649,8 +662,8 @@ hr {
   border: 1px solid transparent;
   &:hover,
   &.focus {
-    background: color-mix(in srgb, var(--accent) 7%, var(--light)) !important;
-    border-color: color-mix(in srgb, var(--accent) 25%, transparent);
+    background: color-mix(in srgb, var(--ms) 8%, var(--light)) !important;
+    border-color: color-mix(in srgb, var(--ms) 28%, transparent);
   }
 }
 
@@ -712,7 +725,7 @@ footer {
       color: var(--darkgray);
       text-decoration: none;
       &:hover {
-        color: var(--accent);
+        color: var(--ms);
       }
     }
   }
@@ -873,10 +886,10 @@ pre > .expand-button {
   }
 
   &:hover {
-    border-color: var(--accent-2);
+    border-color: var(--ms);
 
     & > svg {
-      fill: var(--accent-2);
+      fill: var(--ms);
     }
   }
 }
