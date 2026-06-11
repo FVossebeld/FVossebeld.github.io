@@ -34,10 +34,15 @@ It's committed as **source** (`.md`) **and compiled** (`.lock.yml` — the runna
 workflow). The only thing left to make it run is the AI engine credential:
 
 1. Add the engine secret. This workflow uses `engine: copilot`, which runs the GitHub
-   Copilot CLI in Actions and requires a repo secret named **`COPILOT_GITHUB_TOKEN`** (a
-   token belonging to an account with a Copilot subscription):
+   Copilot CLI in Actions and requires a repo secret named **`COPILOT_GITHUB_TOKEN`**.
+   It **must be a fine-grained personal access token** (`github_pat_…`) from an account
+   with a Copilot subscription — **OAuth tokens (`gho_…`) and classic tokens are rejected**
+   by the engine. Create one at
+   <https://github.com/settings/personal-access-tokens/new> (a token with no extra repo
+   scopes is fine; it just needs to belong to a Copilot-enabled account), then:
    ```bash
    gh secret set COPILOT_GITHUB_TOKEN --repo FVossebeld/FVossebeld.github.io
+   # paste the github_pat_… value when prompted
    ```
 2. If you ever edit the `.md`, recompile so the `.lock.yml` stays in sync:
    ```bash
