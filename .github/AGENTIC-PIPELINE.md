@@ -23,7 +23,7 @@ one. They appear automatically once these files are merged to the default branch
 **Typical loop:** capture a rough thought → ask `style-editor` to shape it on a branch →
 run `slop-verifier` → paste its verdict in the PR → you review and merge.
 
-## Layer 2 — Automated PR gate (one-time setup to activate)
+## Layer 2 — Automated PR gate (active)
 
 [`.github/workflows/content-quality-review.md`](./workflows/content-quality-review.md) is
 a [GitHub Agentic Workflow](https://github.com/github/gh-aw). On every PR that touches
@@ -31,27 +31,48 @@ a [GitHub Agentic Workflow](https://github.com/github/gh-aw). On every PR that t
 verdict comment — an automatic anti-slop reviewer on every change.
 
 It's committed as **source** (`.md`) **and compiled** (`.lock.yml` — the runnable Actions
-workflow). The only thing left to make it run is the AI engine credential:
+workflow), and it's **already active** — no secret required.
 
-1. Add the engine secret. This workflow uses `engine: copilot`, which runs the GitHub
-   Copilot CLI in Actions and requires a repo secret named **`COPILOT_GITHUB_TOKEN`**.
-   It **must be a fine-grained personal access token** (`github_pat_…`) from an account
-   with a Copilot subscription — **OAuth tokens (`gho_…`) and classic tokens are rejected**
-   by the engine. Create one at
-   <https://github.com/settings/personal-access-tokens/new> (a token with no extra repo
-   scopes is fine; it just needs to belong to a Copilot-enabled account), then:
-   ```bash
-   gh secret set COPILOT_GITHUB_TOKEN --repo FVossebeld/FVossebeld.github.io
-   # paste the github_pat_… value when prompted
-   ```
-2. If you ever edit the `.md`, recompile so the `.lock.yml` stays in sync:
-   ```bash
-   gh aw compile content-quality-review   # or: gh aw compile (all)
-   git add .github/workflows/*.lock.yml && git commit -m "Recompile workflows" && git push
-   ```
-3. Open a test PR that edits a file under `content/` and confirm the verdict comment appears.
+### How it authenticates (the `copilot-requests` approach)
 
-See the gh-aw docs for engines, secrets, and safety model: <https://github.github.com/gh-aw/>.
+This workflow uses `engine: copilot` (the GitHub Copilot CLI inside Actions). Instead of a
+personal access token, it authenticates with the **per-run GitHub Actions token** by
+declaring this in the workflow frontmatter:
+
+```yaml
+permissions:
+  contents: read
+  copilot-requests: write   # ← lets the Copilot engine bill inference to the repo's Copilot access
+```
+
+When `copilot-requests: write` is present, `gh aw compile` wires the engine to
+`COPILOT_GITHUB_TOKEN: ${{ github.token }}` automatically — **no `COPILOT_GITHUB_TOKEN`
+repo secret is needed**, and any secret you do set is ignored. This is the recommended path
+(gh-aw auth reference) and it works on a **personal** repo, not just org repos — verified
+green in [run 27351167354](https://github.com/FVossebeld/FVossebeld.github.io/actions/runs/27351167354).
+It requires a recent gh-aw version (v0.62.5 did **not** support it; v0.79.x does — re-run
+`gh aw compile` after upgrading the extension with `gh extension upgrade gh-aw`).
+
+To keep things in sync after editing any `.md` workflow:
+```bash
+gh aw compile                # recompile all workflows
+git add .github/workflows/*.lock.yml .github/aw && git commit -m "Recompile workflows" && git push
+```
+Then open a test PR that edits a file under `content/` and confirm the verdict comment appears.
+
+### Fallback: PAT secret (only if `copilot-requests` is unavailable)
+
+If you're pinned to an old gh-aw version that lacks `copilot-requests`, you can instead set a
+repo secret named **`COPILOT_GITHUB_TOKEN`** to a **fine-grained PAT** (`github_pat_…`) from a
+Copilot-enabled account. The token needs the account-level **"Copilot Requests"** permission
+(`read`) — a plain token *without* it passes gh-aw's format check but is rejected by the
+Copilot CLI at startup with `No authentication information found`, which is the failure this
+repo hit before switching to the permission-based path. OAuth (`gho_…`) and classic tokens are
+rejected outright. Pre-filled create link:
+<https://github.com/settings/personal-access-tokens/new?name=COPILOT_GITHUB_TOKEN&description=gh-aw+Copilot+engine&user_copilot_requests=read>
+then `gh secret set COPILOT_GITHUB_TOKEN --repo FVossebeld/FVossebeld.github.io`.
+
+See the gh-aw docs for engines, auth, and safety model: <https://github.github.com/gh-aw/>.
 
 ## Layer 3 — Wiki maintenance (the "amazing wiki" brain)
 
@@ -68,7 +89,8 @@ This is the part that answers "check later if links need to be made": `wiki-lint
 exactly that on a schedule, and `wiki-librarian` acts on it (or you do, by hand). Both
 keep the human as the merge gate — lint only opens an issue, the librarian only opens PRs.
 
-`wiki-lint` also needs the `COPILOT_GITHUB_TOKEN` secret (same as Layer 2) to run.
+`wiki-lint` authenticates the same way as Layer 2 — via `copilot-requests: write` in its
+frontmatter (the Actions token), so it needs **no secret** either.
 
 ## Why this design
 
