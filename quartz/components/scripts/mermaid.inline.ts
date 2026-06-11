@@ -134,6 +134,8 @@ const legacyMermaidPalette: Array<[RegExp, string]> = [
   [/#8a6f4d/gi, "#35629a"],
   [/#53665a/gi, "#2c5285"],
   [/#6b5740/gi, "#244c80"],
+  // Older pages contain a few near-duplicate stroke hexes from manual edits/typos over time.
+  // Keep all known variants here so historical diagrams render in the current blue palette.
   [/#3f4f45/gi, "#1f3f6a"],
   [/#3f4e45/gi, "#1f3f6a"],
   [/#3d4d43/gi, "#1f3f6a"],
@@ -176,7 +178,7 @@ document.addEventListener("nav", async () => {
 
   const textMapping: WeakMap<HTMLElement, string> = new WeakMap()
   for (const node of nodes) {
-    textMapping.set(node, normalizeMermaidPalette(node.innerText))
+    textMapping.set(node, normalizeMermaidPalette(node.textContent ?? ""))
   }
 
   async function renderMermaid() {
@@ -185,7 +187,7 @@ document.addEventListener("nav", async () => {
       node.removeAttribute("data-processed")
       const oldText = textMapping.get(node)
       if (oldText) {
-        node.innerHTML = oldText
+        node.textContent = oldText
       }
     }
 
