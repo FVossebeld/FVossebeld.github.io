@@ -1,6 +1,6 @@
 ---
 title: CLI as a compressed action language
-description: The command line isn't just shorter than JSON tool calls — it's closer to execution. Powerful, composable, and dangerous enough to need governing.
+description: The command line isn't just shorter than JSON tool calls; it's closer to execution. Powerful, composable, and dangerous enough to need governing.
 tags:
   - agentic-ai
   - tool-calling
@@ -14,7 +14,7 @@ Being shorter is the least interesting thing about it. What matters is that it's
 - **Composition.** Pipes, redirects, and exit codes let the model chain and branch steps without a round-trip through orchestration code. `find … | xargs grep … | sort | uniq -c` is four actions and a data flow in one line.
 - **Familiarity.** The model has read millions of shell sessions. The action space is one it already inhabits, not a bespoke schema it has to be taught per tool.
 
-Code is the next abstraction past the shell. A short script can hold a loop, a condition, and error handling that a pipeline can't, and the CLI shades into it continuously — which is why coding agents that work through a terminal feel less like chatbots calling functions and more like an engineer operating a system.
+Code is the next abstraction past the shell. A short script can hold a loop, a condition, and error handling that a pipeline can't, and the CLI shades into it continuously, which is why coding agents that work through a terminal feel less like chatbots calling functions and more like an engineer operating a system.
 
 **The part the enthusiasm skips:** a shell is dangerous precisely because it's powerful. The same generality that lets an agent compose four steps also lets it `rm -rf` the wrong directory, leak a secret into a log, or build a chain of side effects nobody can reconstruct afterward. "Closer to execution" cuts both ways. A CLI-driven agent is only safe inside a real harness: a sandbox, scoped and least-privilege permissions, a recorded and reviewable command history, dry-run-then-confirm on anything destructive. The action language being expressive is a feature; it's also exactly why it can't run ungoverned.
 

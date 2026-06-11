@@ -6,11 +6,11 @@ tags:
   - tool-calling
 ---
 
-JSON tool calling was the obvious next step after chat. We reached for it because it was already everywhere and models could already produce it — a deployment convenience, not a design decision. Then it quietly became the default mental model for what "an agent doing something" *is*: emit an object, get an object back.
+JSON tool calling was the obvious next step after chat. We reached for it because it was already everywhere and models could already produce it: a deployment convenience, not a design decision. Then it quietly became the default mental model for what "an agent doing something" *is*: emit an object, get an object back.
 
 The distinction I care about is **transport versus cognition**. JSON is excellent transport. It's stable, parseable, language-neutral, easy to validate against a schema, and every API already speaks it. None of that is in dispute, and I'm not arguing it should go away. The claim is narrower: JSON belongs *lower in the stack* than we put it. It's a fine way for one machine to hand structured data to another; it's a poor layer for the model to think and act *in*.
 
-Why poor? Because it carries no notion of doing. There's no sequencing, no composition, no "if this failed, try that." Each action is a flat object the model fills in blind, then waits for a result whose shape it couldn't see in advance. Watch a person operate a system and they don't write JSON — they type a command, read the output, and pipe it into the next thing. The action language and the feedback loop are the same medium. JSON tool calling splits them: the model emits a request in one language and reads results in another, with all the orchestration logic living outside the model in glue code nobody enjoys writing.
+Why poor? Because it carries no notion of doing. There's no sequencing, no composition, no "if this failed, try that." Each action is a flat object the model fills in blind, then waits for a result whose shape it couldn't see in advance. Watch a person operate a system and they don't write JSON; they type a command, read the output, and pipe it into the next thing. The action language and the feedback loop are the same medium. JSON tool calling splits them: the model emits a request in one language and reads results in another, with all the orchestration logic living outside the model in glue code nobody enjoys writing.
 
 The same action, both ways. JSON:
 
@@ -32,6 +32,6 @@ The CLI equivalent:
 grep -rn "OPENAI_API_KEY" .
 ```
 
-The shell version isn't just shorter. It's the thing that *runs*, and its output comes back through the same channel it went out on — so it composes. The JSON version is a description of an action handed to someone else to perform.
+The shell version isn't just shorter. It's the thing that *runs*, and its output comes back through the same channel it went out on, so it composes. The JSON version is a description of an action handed to someone else to perform.
 
-**The strongest counterargument:** constrained JSON is *reliable*. A tight schema is easy to validate, hard to inject into, trivial to log, and forces the model into a small, auditable action space — which in a regulated system is a feature, not a limitation. That's real, and it's exactly why JSON should stay as the wire format underneath. The open question isn't "JSON or not" — it's whether the layer the model *reasons in* should be the same flat schema, or something with a sense of execution sitting on top of it. My current bet is the latter: keep JSON as transport, and let [[cli-as-compressed-action-language|the command line (and code) be the action language]] above it.
+**The strongest counterargument:** constrained JSON is *reliable*. A tight schema is easy to validate, hard to inject into, trivial to log, and forces the model into a small, auditable action space, which in a regulated system is a feature, not a limitation. That's real, and it's exactly why JSON should stay as the wire format underneath. The open question isn't "JSON or not"; it's whether the layer the model *reasons in* should be the same flat schema, or something with a sense of execution sitting on top of it. My current bet is the latter: keep JSON as transport, and let [[cli-as-compressed-action-language|the command line (and code) be the action language]] above it.

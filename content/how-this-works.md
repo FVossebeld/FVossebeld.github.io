@@ -7,7 +7,7 @@ This site is built on a simple but powerful idea: **a living wiki that an AI hel
 
 ## The three layers
 
-The garden is built in three layers — and the difference between them is *who's allowed to touch what*.
+The garden is built in three layers, and the difference between them is *who's allowed to touch what*.
 
 <figure role="group" aria-labelledby="layers-fig-title" aria-describedby="layers-fig-desc" style="margin:1.6rem 0;font-family:var(--bodyFont);">
   <p id="layers-fig-title" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);">The three layers and who may edit each</p>
@@ -17,7 +17,7 @@ The garden is built in three layers — and the difference between them is *who'
       <span aria-hidden="true" style="font-size:1.4rem;line-height:1;flex:none;">📥</span>
       <span style="flex:1;min-width:0;">
         <span style="display:block;font-weight:700;color:var(--dark);">Raw sources</span>
-        <span style="display:block;font-size:.9rem;color:var(--gray);">Articles, notes &amp; ideas I drop in — immutable inputs.</span>
+        <span style="display:block;font-size:.9rem;color:var(--gray);">Articles, notes &amp; ideas I drop in: immutable inputs.</span>
       </span>
       <span style="flex:none;font-size:.72rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--light);background:var(--tertiary);border-radius:999px;padding:.25rem .6rem;">AI reads only</span>
     </div>
@@ -25,7 +25,7 @@ The garden is built in three layers — and the difference between them is *who'
       <span aria-hidden="true" style="font-size:1.4rem;line-height:1;flex:none;">🌳</span>
       <span style="flex:1;min-width:0;">
         <span style="display:block;font-weight:700;color:var(--dark);">The wiki</span>
-        <span style="display:block;font-size:.9rem;color:var(--gray);">The interlinked pages you're reading — written &amp; cross-linked by the AI.</span>
+        <span style="display:block;font-size:.9rem;color:var(--gray);">The interlinked pages you're reading, written &amp; cross-linked by the AI.</span>
       </span>
       <span style="flex:none;font-size:.72rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--light);background:var(--secondary);border-radius:999px;padding:.25rem .6rem;">AI drafts · I approve</span>
     </div>
@@ -33,27 +33,27 @@ The garden is built in three layers — and the difference between them is *who'
       <span aria-hidden="true" style="font-size:1.4rem;line-height:1;flex:none;">📐</span>
       <span style="flex:1;min-width:0;">
         <span style="display:block;font-weight:700;color:var(--dark);">The schema</span>
-        <span style="display:block;font-size:.9rem;color:var(--gray);"><code>AGENTS.md</code> — <em>how</em> the AI maintains the wiki: conventions, linking, logging.</span>
+        <span style="display:block;font-size:.9rem;color:var(--gray);"><code>AGENTS.md</code>: <em>how</em> the AI maintains the wiki: conventions, linking, logging.</span>
       </span>
       <span style="flex:none;font-size:.72rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--darkgray);background:var(--light);border:1px solid var(--gray);border-radius:999px;padding:.25rem .6rem;">Governs the AI</span>
     </div>
   </div>
-  <figcaption style="text-align:center;color:var(--gray);font-size:.85em;margin-top:.7rem;">Three layers, three permission levels — the schema governs how the AI turns raw sources into the wiki.</figcaption>
+  <figcaption style="text-align:center;color:var(--gray);font-size:.85em;margin-top:.7rem;">Three layers, three permission levels: the schema governs how the AI turns raw sources into the wiki.</figcaption>
 </figure>
 
 ## Why it's different from a normal blog
 
-A blog is a stream. A wiki **compounds**: pages get revised as my thinking changes, contradictions get flagged, and connections between ideas become as valuable as the ideas themselves. Nothing is re-derived from scratch — the knowledge is kept current.
+A blog is a stream. A wiki **compounds**: pages get revised as my thinking changes, contradictions get flagged, and connections between ideas become as valuable as the ideas themselves. Nothing is re-derived from scratch; the knowledge is kept current.
 
 ## Who's in the loop
 
-I am. 🧑‍✈️ I curate the sources, ask the questions, and approve edits (every change is a git commit, like Wikipedia's edit history). The AI does the bookkeeping no human enjoys — summarizing, filing, and keeping links consistent.
+I am. 🧑‍✈️ I curate the sources, ask the questions, and approve edits (every change is a git commit, like Wikipedia's edit history). The AI does the bookkeeping no human enjoys: summarizing, filing, and keeping links consistent.
 
 ## It's all open
 
 - The content and the renderer ([Quartz](https://quartz.jzhao.xyz/)) live in **one public repo**: [FVossebeld/FVossebeld.github.io](https://github.com/FVossebeld/FVossebeld.github.io).
 - Every page has a full version history.
-- Anyone can propose an edit via pull request — I merge what I agree with.
+- Anyone can propose an edit via pull request; I merge what I agree with.
 
 ## How a page gets published
 
