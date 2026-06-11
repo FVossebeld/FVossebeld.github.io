@@ -69,3 +69,4 @@ Append-only, chronological record. Each entry starts with a consistent prefix so
 - Filenames: lowercase, kebab-case (e.g. `agent-memory.md`).
 - Frontmatter: `title` (required), `description`, `tags`, optional `draft`.
 - Public pages go in `content/`. Anything not meant for the public stays in `wiki/` or `raw/`.
+- Two content folders, split by what a page *does*: `concepts/` for atomic, single-subject notes (a *noun*, linked from many places) and `thoughts/` for syntheses, arguments, and field notes (a *take*, with a thesis and an arc). The full rule and its edge cases live in [`.github/instructions/content.instructions.md`](.github/instructions/content.instructions.md).
