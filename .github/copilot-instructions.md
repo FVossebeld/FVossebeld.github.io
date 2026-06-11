@@ -26,12 +26,23 @@ sounds like Floris.
   its verdict in the PR description. Drafts scoring below 80 stay `draft: true`.
 - See [`AGENTS.md`](../AGENTS.md) for the full wiki-maintenance schema (ingest / query / lint).
 
-## Specialized agents
+## Specialized agents and skills
+
+**Agents** (personas, in [`.github/agents/`](./agents/) — pick from the agent picker):
 
 - **`style-editor`** — rewrites a rough draft into Floris's voice. Use it to *improve*.
 - **`slop-verifier`** — strict auditor. Use it to *gate*. Its verdict decides publish.
+- **`wiki-librarian`** — the thin conversational front door; routes to the skills below.
 
-(Definitions in [`.github/agents/`](./agents/).)
+**Skills** (the repeatable wiki operations, in [`.github/skills/`](./skills/) — load on
+demand or invoke by name):
+
+- **`wiki-ingest`** — file a `raw/` source into `content/` pages, wire up links, open a PR.
+- **`wiki-query`** — answer a question from the wiki with citations; file good answers back.
+- **`wiki-lint`** — health-check the link graph (broken/missing links, orphans, stale claims).
+
+Rule of thumb: a *standard* is an instruction, a *role* is an agent, a repeatable
+*procedure* is a skill. See [`AGENTS.md`](../AGENTS.md) for the full breakdown.
 
 ## Technical notes (rarely relevant — this repo is mostly prose)
 
