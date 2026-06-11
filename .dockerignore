@@ -1,0 +1,16 @@
+# Docker build context is the repo root (see azure.yaml); keep the image lean
+# and the upload fast by excluding everything the agent doesn't need.
+.git
+**/.venv
+**/node_modules
+**/__pycache__
+public
+.quartz-cache
+quartz
+widget
+infra
+scripts
+wiki
+raw
+.github
+*.md

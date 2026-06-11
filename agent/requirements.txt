@@ -1,0 +1,9 @@
+# Garden agent runtime — Microsoft Agent Framework over AG-UI, model in Azure AI Foundry.
+# Pinned to the agent-framework 1.8.1 line; ag-ui is still a release candidate.
+agent-framework-core==1.8.1
+agent-framework-foundry==1.8.1
+agent-framework-ag-ui==1.0.0rc4
+azure-identity
+aiohttp
+fastapi
+uvicorn[standard]

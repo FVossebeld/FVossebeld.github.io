@@ -1,0 +1,14 @@
+# Azure Developer CLI (azd) — provisions infra/ and deploys the agent container.
+# `azd up` builds agent/Dockerfile (context = repo root so content/ is in scope),
+# pushes to ACR, and rolls out the Container App. The same flow runs in CI via OIDC.
+name: garden-agent
+metadata:
+  template: garden-agent@1.0.0
+services:
+  agent:
+    project: ./agent
+    language: python
+    host: containerapp
+    docker:
+      path: ./Dockerfile
+      context: ../
