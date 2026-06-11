@@ -4,10 +4,14 @@ import * as Component from "./quartz/components"
 // Sidebar menu. Order follows the site's reading order: essays first, then
 // concept notes, with standalone meta pages (About, How this works) below.
 // Folders open by default so the small garden is browsable at a glance.
+// useSavedState is off so the open default always wins: this garden is small
+// enough that the menu should act as a fixed map, and it also avoids a stale
+// collapsed state lingering in returning visitors' localStorage.
 // The sort runs in the browser (serialized via toString), so it must stay
 // self-contained: no references to anything outside the function body.
 const explorer = Component.Explorer({
   folderDefaultState: "open",
+  useSavedState: false,
   sortFn: (a, b) => {
     const order = ["thoughts", "concepts"]
     const ra = order.indexOf(a.slugSegment)
