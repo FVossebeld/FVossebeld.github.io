@@ -42,6 +42,19 @@ def draft_github_issue(title: str, body: str, labels: str = ISSUE_LABEL) -> str:
     return f"Drafted an issue titled '{title}'. The visitor reviews and posts it from the card."
 
 
+def navigate_garden(slug: str) -> str:
+    """Take the visitor to a garden page by setting it as the active page.
+
+    The widget performs the in-app navigation when it sees this call, so this
+    only confirms the destination (or reports an unknown slug) back to the model.
+    Pass the slug exactly as it appears in the page list, e.g. ``concepts/agent-memory``.
+    """
+    page = garden.find_page(slug)
+    if page is None:
+        return f"No page with slug '{slug}' exists in the garden; don't claim you navigated there."
+    return f"Navigating the visitor to '{page.title}' (/{page.slug})."
+
+
 SYSTEM_PROMPT = f"""\
 You are the assistant for Floris Vossebeld's digital garden, a public wiki of his
 notes. These are the pages:
@@ -55,6 +68,11 @@ notes. These are the pages:
 - When the visitor wants to file a thought, idea, correction, or bug as a GitHub
   issue, call `draft_github_issue` with a crisp title and a short markdown body.
   Don't claim you posted it; the card lets them review and post it themselves.
+- When the visitor asks to be taken to a page, or actually showing a page is the
+  point of your answer, call `navigate_garden` with that page's slug — the path
+  in parentheses above, without the leading slash (e.g. `concepts/agent-memory`).
+  Say where you're taking them. Don't navigate on every answer; when they only
+  asked a question, a citation link is enough.
 """
 
 
@@ -71,7 +89,7 @@ agent = Agent(
     SYSTEM_PROMPT,
     name="garden-agent",
     description="Answers from Floris Vossebeld's digital garden and drafts GitHub issues.",
-    tools=[search_garden, draft_github_issue],
+    tools=[search_garden, draft_github_issue, navigate_garden],
 )
 
 app = FastAPI(title="Garden agent (AG-UI)")

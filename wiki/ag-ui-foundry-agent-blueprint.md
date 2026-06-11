@@ -20,13 +20,13 @@ It showcases two things end to end:
 Everything lives in this one repo. The static Pages build stays untouched.
 
 > **This note records the as-built system.** It diverges from the first plan in three ways,
-> all in the direction of *less*: retrieval is **in-process**, not Foundry IQ; the widget is
+> all in the direction of _less_: retrieval is **in-process**, not Foundry IQ; the widget is
 > built directly on **`@ag-ui/client`**, not CopilotKit; the container **scales to zero**
 > instead of running an always-on floor. The "why" is in [Divergences](#divergences-from-the-first-plan).
 
 ## The hard constraints (these drove every decision)
 
-- **Cost-safe by construction.** Idle cost is ~zero and the spend *rate* is capped, so the
+- **Cost-safe by construction.** Idle cost is ~zero and the spend _rate_ is capped, so the
   worst case is a known, small number.
 - **The Pages build stays clean.** `deploy.yml` runs `npx quartz build` over `content/` and
   ships `public/`. The backend folders (`agent/`, `infra/`) are invisible to it.
@@ -69,9 +69,12 @@ flowchart LR
    pages and links back to them.
 4. If the visitor wants to file a thought, the agent calls `draft_github_issue`; the widget
    renders an **editable issue card** (title, body) — human-in-the-loop.
-5. On *Review & open*, the widget hands off to GitHub's prefilled
+5. On _Review & open_, the widget hands off to GitHub's prefilled
    `…/issues/new?title=…&body=…&labels=from-agent` URL. GitHub handles the login and the
    final submit, as the visitor. No token, no OAuth, no stored credential.
+6. If actually showing a page is the point — the visitor asks to be taken somewhere, or
+   the answer _is_ a page — the agent calls `navigate_garden` and the widget sets that page
+   as the active page (see [Agent-driven navigation](#agent-driven-navigation)).
 
 ## Grounding: in-process retrieval
 
@@ -101,6 +104,30 @@ GitHub itself, and there is nothing to leak.
 App + OAuth so the agent posts via the user's user-to-server token. More moving parts
 (server-side secret, token handling) — only worth it if the in-app finish matters.
 
+## Agent-driven navigation
+
+The agent can set another page as the **active page** — the visitor asks "take me to the
+agent-memory note" and the garden actually goes there. This reuses the exact pattern that
+draws the issue card, so there is one mental model for "the model decides, the frontend acts":
+
+- **Server-side tool, frontend action.** `navigate_garden(slug)` is a real tool in the
+  agent's `tools=[…]`, so the _model_ chooses to call it. It only validates the slug against
+  the baked catalog and echoes the destination back; it cannot move the browser itself. The
+  widget watches the AG-UI tool-call event stream (`onToolCallStart/Args/End`), parses the
+  slug, and performs the navigation. AG-UI has no built-in "navigate" event — frontend-defined
+  behaviour on top of a tool call is how you get one, and the frontend stays in control (it
+  ignores same-page targets and malformed slugs).
+- **Navigate via Quartz's SPA router, not `location`.** A hard location change would tear down
+  the chat island. The widget calls `window.spaNavigate(url)` so Quartz morphs the page in
+  place.
+- **The conversation survives the morph.** Quartz morphs `document.body` positionally on SPA
+  nav, which wipes the live chat log (micromorph's `data-persist` doesn't protect a running
+  subtree here). So the widget snapshots the transcript, the editable issue-card fields, the
+  model context (`agent.messages`), and the open/closed state into `sessionStorage` — written
+  in a `window.addCleanup` hook that runs _after_ the new HTML is fetched but _before_ the
+  morph — and rehydrates on the next `nav` init. Listeners are wired through `addCleanup`
+  (the canonical island pattern) instead of a `data-wired` attribute, which the morph strips.
+
 ## Cost safety
 
 What's actually in place:
@@ -108,7 +135,7 @@ What's actually in place:
 - **Scale-to-zero.** The Container App is `minReplicas: 0`, so when no one is chatting it
   runs nothing and bills nothing (first request after idle cold-starts in ~10–30s).
 - **Rate ceiling.** The gpt-4o-mini deployment has a low TPM cap (capacity 20, GlobalStandard).
-  Pay-as-you-go can't exceed its TPM, so the spend *rate* is bounded no matter the load.
+  Pay-as-you-go can't exceed its TPM, so the spend _rate_ is bounded no matter the load.
 - **Pay-per-token model.** Free when idle; no provisioned-throughput floor.
 
 What is **not** built yet (honest gaps, all from the original plan):
@@ -174,13 +201,13 @@ when this work merges.
 
 ## Divergences from the first plan
 
-| First plan | As-built | Why |
-|---|---|---|
-| Foundry IQ + Azure AI Search + Blob indexing pipeline | In-process lexical retrieval over baked `content/` | Garden is tiny; lexical is instant and adds zero standing cost. No Search resource, no indexer. |
-| CopilotKit React widget, separate Vite toolchain, static bundle in `quartz/static/` | One Quartz component + one inline script on `@ag-ui/client`, bundled by Quartz | Far less code; no second toolchain; faithful to the AG-UI protocol. |
-| Always-on hosted agent (accept a small floor) | Container Apps `minReplicas: 0` | ~Zero idle cost; cold start is acceptable for a showcase. |
-| Turnstile + daily token cap + budget kill-switch | Only TPM cap + scale-to-zero | Rate is bounded; abuse protection and a hard dollar stop are deferred (see Cost safety). |
-| `index-content.yml` refreshes Blob on `content/**` | Knowledge baked at image build; refresh = redeploy | No Blob to refresh. Skeleton kept for a future Foundry IQ path. |
+| First plan                                                                          | As-built                                                                       | Why                                                                                             |
+| ----------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------- |
+| Foundry IQ + Azure AI Search + Blob indexing pipeline                               | In-process lexical retrieval over baked `content/`                             | Garden is tiny; lexical is instant and adds zero standing cost. No Search resource, no indexer. |
+| CopilotKit React widget, separate Vite toolchain, static bundle in `quartz/static/` | One Quartz component + one inline script on `@ag-ui/client`, bundled by Quartz | Far less code; no second toolchain; faithful to the AG-UI protocol.                             |
+| Always-on hosted agent (accept a small floor)                                       | Container Apps `minReplicas: 0`                                                | ~Zero idle cost; cold start is acceptable for a showcase.                                       |
+| Turnstile + daily token cap + budget kill-switch                                    | Only TPM cap + scale-to-zero                                                   | Rate is bounded; abuse protection and a hard dollar stop are deferred (see Cost safety).        |
+| `index-content.yml` refreshes Blob on `content/**`                                  | Knowledge baked at image build; refresh = redeploy                             | No Blob to refresh. Skeleton kept for a future Foundry IQ path.                                 |
 
 ## Open items
 

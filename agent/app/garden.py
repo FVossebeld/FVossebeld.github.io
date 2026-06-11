@@ -120,6 +120,16 @@ def catalog() -> str:
     return "\n".join(lines)
 
 
+def find_page(slug: str) -> Page | None:
+    """Resolve a published page by slug, tolerating leading/trailing slashes."""
+    target = slug.strip().strip("/")
+    pages, _ = _load()
+    for p in pages:
+        if p.slug == target:
+            return p
+    return None
+
+
 def search(query: str, k: int = 4) -> list[Chunk]:
     _, chunks = _load()
     q = set(_tokens(query))
