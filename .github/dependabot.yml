@@ -1,20 +1,22 @@
-version: 2
 updates:
-  - package-ecosystem: "npm"
-    directory: "/"
-    schedule:
-      interval: "weekly"
-    groups:
-      production-dependencies:
-        applies-to: "version-updates"
-        patterns:
-          - "*"
-  - package-ecosystem: "github-actions"
-    directory: "/"
-    schedule:
-      interval: "weekly"
-    groups:
-      ci-dependencies:
-        applies-to: "version-updates"
-        patterns:
-          - "*"
+- directory: /
+  groups:
+    production-dependencies:
+      applies-to: version-updates
+      patterns:
+      - "*"
+  package-ecosystem: npm
+  schedule:
+    interval: weekly
+- directory: /
+  groups:
+    ci-dependencies:
+      applies-to: version-updates
+      patterns:
+      - "*"
+  ignore:
+  - dependency-name: "github/gh-aw-actions" # Managed by gh aw compile. Version-locked to the gh-aw compiler; do not bump.
+  package-ecosystem: github-actions
+  schedule:
+    interval: weekly
+version: 2
