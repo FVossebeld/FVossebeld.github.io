@@ -500,6 +500,21 @@ video {
   border: 1px solid var(--rule);
 }
 
+/* Portrait: a duotone plate that emerges from the page, not a framed avatar.
+   Shadows map to ink, highlights to paper, so it settles into both themes. */
+.portrait {
+  margin: 0 0 var(--block-gap);
+}
+.portrait img {
+  width: clamp(120px, 13vw, 156px);
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  object-position: 50% 12%;
+  border: none;
+  border-radius: 50%;
+  background: none;
+}
+
 p > img + em,
 figcaption {
   display: block;

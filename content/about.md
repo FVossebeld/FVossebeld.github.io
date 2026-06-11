@@ -3,7 +3,11 @@ title: About me
 description: Who I am, what I work on, and why this site exists.
 ---
 
-![[assets/profile.jpg|A photo of Floris Vossebeld]]
+<div class="portrait">
+
+![[assets/profile.png|Floris Vossebeld]]
+
+</div>
 
 I'm Floris Vossebeld. I work on applied AI in regulated enterprises — mostly financial services — at Microsoft. The job sits in an awkward, interesting place: between the demo that impressed everyone in the room and the system that has to survive real data, permissions, latency, cost, and someone owning it on Monday.
 
