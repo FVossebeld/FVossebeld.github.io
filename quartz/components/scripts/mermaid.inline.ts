@@ -130,6 +130,27 @@ class DiagramPanZoom {
   }
 }
 
+const legacyMermaidPalette: Array<[RegExp, string]> = [
+  [/#8a6f4d/gi, "#35629a"],
+  [/#53665a/gi, "#2c5285"],
+  [/#6b5740/gi, "#244c80"],
+  // Older pages contain a few near-duplicate stroke hexes from manual edits/typos over time.
+  // Keep all known variants here so historical diagrams render in the current blue palette.
+  [/#3f4f45/gi, "#1f3f6a"],
+  [/#3f4e45/gi, "#1f3f6a"],
+  [/#3d4d43/gi, "#1f3f6a"],
+  [/#f7f3ea/gi, "#f7f8fa"],
+]
+
+function normalizeMermaidPalette(input: string): string {
+  let normalized = input
+  for (const [legacyHex, replacementHex] of legacyMermaidPalette) {
+    normalized = normalized.replace(legacyHex, replacementHex)
+  }
+
+  return normalized
+}
+
 const cssVars = [
   "--secondary",
   "--tertiary",
@@ -139,6 +160,7 @@ const cssVars = [
   "--highlight",
   "--dark",
   "--darkgray",
+  "--bodyFont",
   "--codeFont",
 ] as const
 
@@ -156,7 +178,7 @@ document.addEventListener("nav", async () => {
 
   const textMapping: WeakMap<HTMLElement, string> = new WeakMap()
   for (const node of nodes) {
-    textMapping.set(node, node.innerText)
+    textMapping.set(node, normalizeMermaidPalette(node.textContent ?? ""))
   }
 
   async function renderMermaid() {
@@ -165,7 +187,7 @@ document.addEventListener("nav", async () => {
       node.removeAttribute("data-processed")
       const oldText = textMapping.get(node)
       if (oldText) {
-        node.innerHTML = oldText
+        node.textContent = oldText
       }
     }
 
@@ -181,18 +203,28 @@ document.addEventListener("nav", async () => {
     mermaid.initialize({
       startOnLoad: false,
       securityLevel: "loose",
+      look: "handDrawn",
       theme: darkMode ? "dark" : "base",
+      flowchart: {
+        curve: "basis",
+        nodeSpacing: 38,
+        rankSpacing: 48,
+      },
+      sequence: {
+        actorMargin: 48,
+        boxMargin: 12,
+      },
       themeVariables: {
-        fontFamily: computedStyleMap["--codeFont"],
+        fontFamily: computedStyleMap["--bodyFont"],
         primaryColor: computedStyleMap["--lightgray"],
-        primaryTextColor: computedStyleMap["--darkgray"],
-        primaryBorderColor: computedStyleMap["--gray"],
+        primaryTextColor: computedStyleMap["--dark"],
+        primaryBorderColor: computedStyleMap["--secondary"],
         lineColor: computedStyleMap["--secondary"],
         secondaryColor: computedStyleMap["--secondary"],
         tertiaryColor: computedStyleMap["--tertiary"],
         clusterBkg: computedStyleMap["--light"],
         clusterBorder: computedStyleMap["--lightgray"],
-        edgeLabelBackground: computedStyleMap["--light"],
+        edgeLabelBackground: computedStyleMap["--highlight"],
       },
     })
 

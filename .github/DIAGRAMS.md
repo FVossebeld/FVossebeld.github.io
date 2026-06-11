@@ -5,7 +5,7 @@ chart, architecture sketch, or infographic. It is the visual sibling of
 [`CONTENT-QUALITY.md`](./CONTENT-QUALITY.md), and the same prime directive holds.
 
 **Prime directive: a visual must earn its place - and a wall of flat text is its own
-failure.** Add a visual when it makes something *faster to understand* than the prose
+failure.** Add a visual when it makes something _faster to understand_ than the prose
 alone (a structure, a flow, a comparison, a chronology, a set of stats), **or** when a long
 stretch of unbroken prose would tire the reader and a timeline, stepper, or stat strip
 would carry part of the load better. The two failure modes are equal and opposite: a
@@ -15,13 +15,13 @@ visual must still clarify - never decorate, never restate.
 
 This garden renders on **Quartz v4**, which gives us three techniques with **no extra
 build tooling** - Mermaid, inline HTML/CSS, and inline SVG. Everything below is tuned to
-what actually renders here, including this site's warm palette and automatic dark mode.
+what actually renders here, including this site's cool-ink palette and automatic dark mode.
 
 > **Don't draw from scratch.** [`skills/wiki-visualize/PATTERNS.md`](./skills/wiki-visualize/PATTERNS.md)
 > is a library of **verified, copy-paste** recipes (stat cards, timelines, steppers,
 > swimlanes, comparisons, meters, pull-quotes, plus the Mermaid set) - each one already
 > rendered and dark-mode-checked. Pick the closest pattern, swap in real content, re-verify.
-> This file is the *why*; PATTERNS.md is the *what to paste*.
+> This file is the _why_; PATTERNS.md is the _what to paste_.
 
 ---
 
@@ -72,11 +72,11 @@ These are defaults, not decoration. Use them only when they clarify the local ar
 
 Three native techniques, ranked by how often they're the right call.
 
-| Need | Use |
-|---|---|
-| Flow, architecture, sequence, state, hierarchy, ER/class, quadrant, git graph | **Mermaid** |
+| Need                                                                                   | Use                   |
+| -------------------------------------------------------------------------------------- | --------------------- |
+| Flow, architecture, sequence, state, hierarchy, ER/class, quadrant, git graph          | **Mermaid**           |
 | Stats, comparisons, **timelines**, steppers, swimlanes, pros/cons, meters, pull-quotes | **Inline HTML + CSS** |
-| A precise custom layout no diagram tool handles (≤ ~25 shapes) | **Inline SVG** |
+| A precise custom layout no diagram tool handles (≤ ~25 shapes)                         | **Inline SVG**        |
 
 Quick decision rules:
 
@@ -95,37 +95,38 @@ Quick decision rules:
 
 ## 3. This site's palette (use these, nothing else)
 
-The theme is warm and earthy. Colours come from CSS custom properties that **switch
+The theme is cool and ink-first. Colours come from CSS custom properties that **switch
 automatically between light and dark**. Use the variables, never invent new colours.
 
-| Token | Light | Dark | Role |
-|---|---|---|---|
-| `--light` | `#f7f3ea` | `#1b1a17` | page / node background |
-| `--lightgray` | `#e7e0d1` | `#322f29` | surfaces, borders, hr |
-| `--gray` | `#6f736d` | `#8c8a82` | muted text, metadata |
-| `--darkgray` | `#2b302c` | `#d8d3c7` | body text |
-| `--dark` | `#1f2421` | `#f2eee3` | headings |
-| `--secondary` | `#53665a` | `#9db0a0` | **sage** - primary accent |
-| `--tertiary` | `#8a6f4d` | `#c2a079` | **amber** - secondary accent |
+| Token         | Light     | Dark      | Role                            |
+| ------------- | --------- | --------- | ------------------------------- |
+| `--light`     | `#f7f8fa` | `#14171c` | page / node background          |
+| `--lightgray` | `#e3e6ec` | `#282d36` | surfaces, borders, hr           |
+| `--gray`      | `#5a626e` | `#8a929e` | muted text, metadata            |
+| `--darkgray`  | `#2b313b` | `#ccd2db` | body text                       |
+| `--dark`      | `#161a21` | `#eceff4` | headings                        |
+| `--secondary` | `#2c5285` | `#7ca7d9` | **ink blue** - primary accent   |
+| `--tertiary`  | `#35629a` | `#9ac2ec` | **sky blue** - secondary accent |
 
-Fonts: `--bodyFont` (Source Sans 3), `--headerFont` (Literata), `--codeFont` (Spline Sans Mono).
+Fonts: `--bodyFont` (Spectral), `--headerFont` (Spectral), `--codeFont` (Spline Sans Mono).
 
-**Two accents, used sparingly.** Sage and amber are mid-tones that stay legible on both
-the cream and the near-black background, so they're the safe choice for emphasis in any
+**Two accents, used sparingly.** Ink blue and sky blue are mid-tones that stay legible on both
+the paper and the near-black background, so they're the safe choice for emphasis in any
 technique. Don't reach past two accent colours per visual.
 
 ---
 
 ## 4. Mermaid: make it look good and stay dark-mode safe
 
-Quartz already themes Mermaid for us - at render time it injects this site's colours as
+Quartz themes Mermaid for us, and this repo also enables Mermaid's hand-drawn look by default.
+At render time it injects this site's colours as
 `themeVariables` and re-renders on every light/dark toggle (`securityLevel: "loose"`, so
 `<br/>` and rich labels work). That gives two rules:
 
 1. **Let the theme do the base styling.** An un-styled diagram already matches the site
    in both modes. Don't fight it.
-2. **Only `classDef`/`style` for emphasis**, and only with the **brand accents** (sage /
-   amber), which read on both backgrounds. Avoid pinning node fills to mode-specific
+2. **Only `classDef`/`style` for emphasis**, and only with the **brand accents** (ink blue /
+   sky blue), which read on both backgrounds. Avoid pinning node fills to mode-specific
    colours like `--light`/`--darkgray` - hardcoded hex in `classDef` does **not** switch
    when the reader flips dark mode, so a node forced to a light fill goes muddy at night.
 
@@ -134,7 +135,7 @@ flowchart LR
   accTitle: Request pipeline
   accDescr: A request passes an auth check, then hits business logic backed by a cache and database.
 
-  classDef accent fill:#8a6f4d,stroke:#6b5740,color:#f7f3ea,rx:6,ry:6
+  classDef accent fill:#35629a,stroke:#244c80,color:#f7f8fa,rx:6,ry:6
 
   REQ([Request]) --> AUTH{Auth?}
   AUTH -->|ok| BL[Business logic]:::accent
@@ -143,7 +144,7 @@ flowchart LR
   BL --> DB[(Postgres)]
 ```
 
-The amber fill + cream text on the accented node is legible in both themes; everything
+The blue fill + paper text on the accented node is legible in both themes; everything
 else inherits the site colours and adapts automatically.
 
 **Mermaid house rules:**
@@ -159,7 +160,7 @@ else inherits the site colours and adapts automatically.
   accessible label otherwise.
 - **Never** use `%%{init: {theme: "forest"}}%%` here - Quartz's injected variables bleed
   into the named theme and produce muddy, unpredictable colours. If you must tweak a
-  theme variable, target it precisely: `%%{init: {themeVariables: {edgeLabelBackground: "#e7e0d1"}}}%%`.
+  theme variable, target it precisely: `%%{init: {themeVariables: {edgeLabelBackground: "#e3e6ec"}}}%%`.
 - **Skip `timeline` and `mindmap`.** Their auto colour scales fight this palette and render
   low-contrast (dark-on-dark), and the `theme` fix above is banned. Verified alternatives:
   chronology → the HTML [vertical timeline](./skills/wiki-visualize/PATTERNS.md#vertical-timeline);
@@ -173,7 +174,7 @@ Quartz passes raw HTML/SVG straight through (`rehype-raw`, `allowDangerousHtml`)
 render. Three non-negotiables:
 
 **Inside an HTML block: no blank lines, no 4-space indents.** Pages run through a Markdown
-parser first. A blank line *ends* the HTML block; a blank line followed by a 4-space-
+parser first. A blank line _ends_ the HTML block; a blank line followed by a 4-space-
 indented line is parsed as an **indented code block**, so your `<div>`s render as literal
 grey code. Keep multi-element HTML gap-free and indent inner lines by **≤2 spaces**. This
 is the #1 reason a hand-written infographic "renders as code" - and why the
@@ -198,16 +199,36 @@ Accessible, responsive, dark-mode-safe SVG skeleton:
 
 ```html
 <figure role="group" aria-labelledby="fig-title">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 220" width="100%"
-       style="max-width:100%;height:auto;font-family:var(--bodyFont);"
-       role="img" aria-labelledby="fig-title fig-desc">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 640 220"
+    width="100%"
+    style="max-width:100%;height:auto;font-family:var(--bodyFont);"
+    role="img"
+    aria-labelledby="fig-title fig-desc"
+  >
     <title id="fig-title">Short title for screen readers</title>
     <desc id="fig-desc">One or two sentences describing the structure and flow.</desc>
     <style>
-      .box   { fill: var(--lightgray); stroke: var(--tertiary); stroke-width: 1.5; }
-      .accent{ fill: var(--secondary); stroke: none; }
-      .label { fill: var(--darkgray); font-size: 13px; text-anchor: middle; }
-      .inv   { fill: var(--light);    font-size: 13px; text-anchor: middle; }
+      .box {
+        fill: var(--lightgray);
+        stroke: var(--tertiary);
+        stroke-width: 1.5;
+      }
+      .accent {
+        fill: var(--secondary);
+        stroke: none;
+      }
+      .label {
+        fill: var(--darkgray);
+        font-size: 13px;
+        text-anchor: middle;
+      }
+      .inv {
+        fill: var(--light);
+        font-size: 13px;
+        text-anchor: middle;
+      }
     </style>
     <!-- shapes here -->
   </svg>
@@ -217,18 +238,35 @@ Accessible, responsive, dark-mode-safe SVG skeleton:
 </figure>
 ```
 
+If you want a cleaner "whiteboard sketch" look without hand-tuning every style, wrap visuals
+in `<figure class="sketch-board">...</figure>` and use the reusable sketch classes from
+`quartz/styles/custom.scss` (`.sketch-ink`, `.sketch-node`, `.sketch-node-accent`,
+`.sketch-label`). The pattern library has a ready copy-paste template.
+
 HTML infographics follow the same rules - `var(--...)` for all colours, `rem`/`%`/
 `clamp()` for sizes, `flex-wrap`/`grid auto-fit` so cards reflow on mobile. A stat-card grid:
 
 ```html
-<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem;margin:1.5rem 0;font-family:var(--bodyFont);">
-  <div style="background:var(--lightgray);border:1px solid var(--tertiary);border-radius:8px;padding:1.2rem 1rem;text-align:center;">
+<div
+  style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem;margin:1.5rem 0;font-family:var(--bodyFont);"
+>
+  <div
+    style="background:var(--lightgray);border:1px solid var(--tertiary);border-radius:8px;padding:1.2rem 1rem;text-align:center;"
+  >
     <div style="font-size:2rem;font-weight:700;color:var(--tertiary);line-height:1;">3</div>
-    <div style="font-size:.8rem;color:var(--gray);margin-top:.4rem;text-transform:uppercase;letter-spacing:.05em;">native techniques</div>
+    <div
+      style="font-size:.8rem;color:var(--gray);margin-top:.4rem;text-transform:uppercase;letter-spacing:.05em;"
+    >
+      native techniques
+    </div>
   </div>
   <div style="background:var(--secondary);border-radius:8px;padding:1.2rem 1rem;text-align:center;">
     <div style="font-size:2rem;font-weight:700;color:var(--light);line-height:1;">0</div>
-    <div style="font-size:.8rem;color:var(--lightgray);margin-top:.4rem;text-transform:uppercase;letter-spacing:.05em;">extra plugins</div>
+    <div
+      style="font-size:.8rem;color:var(--lightgray);margin-top:.4rem;text-transform:uppercase;letter-spacing:.05em;"
+    >
+      extra plugins
+    </div>
   </div>
 </div>
 ```
