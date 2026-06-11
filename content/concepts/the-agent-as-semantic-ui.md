@@ -17,7 +17,7 @@ flowchart LR
   accTitle: Action surfaces from intent to execution
   accDescr: Intent routes through GUI, API, CLI, and DSL action surfaces into one governed execution path.
   classDef accent fill:#8a6f4d,stroke:#6b5740,color:#f7f3ea,rx:6,ry:6
-  INTENT[Intent<br/>natural language]
+  INTENT[Intent]
   GUI[GUI<br/>forms and dashboards]
   API[API<br/>structured calls]
   CLI[CLI<br/>compact commands]

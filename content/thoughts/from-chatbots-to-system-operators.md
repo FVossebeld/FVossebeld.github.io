@@ -69,7 +69,7 @@ flowchart TD
   classDef accent fill:#8a6f4d,stroke:#6b5740,color:#f7f3ea,rx:6,ry:6
 
   A[Chatbot<br/>text in, text out] --> B[Copilot<br/>suggests and prepares actions]
-  B --> C[System operator<br/>CLI and code execution]
+  B --> C[Execution operator<br/>CLI and code execution]
   C --> D[Workspace operator<br/>files, shell, memory, state]
   D --> E[Scoped system specialist<br/>one system, bounded blast radius]
   E --> F[Governed learning system<br/>federated memory and promotion]:::accent

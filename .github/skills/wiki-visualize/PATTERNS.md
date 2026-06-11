@@ -64,6 +64,8 @@ readers see one coherent visual language across pages.
 
 ## Capability ladder (chatbot → copilot → system operator)
 
+Use this as a high-level shorthand. The long-form essay expands it into six stages.
+
 ````markdown
 ```mermaid
 flowchart LR

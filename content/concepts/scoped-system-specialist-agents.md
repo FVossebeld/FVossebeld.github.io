@@ -19,7 +19,7 @@ flowchart LR
   accTitle: Agent governance loop
   accDescr: A scoped specialist turns intent into action through approval, tracing, and evaluation, then uses the result to improve the next intent.
   classDef accent fill:#53665a,stroke:#3f4f45,color:#f7f3ea,rx:6,ry:6
-  INTENT[Intent] --> APPROVAL[Approval gate]
+  INTENT[Intent] --> APPROVAL[Approval]
   APPROVAL --> ACTION[Action]
   ACTION --> TRACE[Trace]
   TRACE --> EVALUATION[Evaluation]:::accent
