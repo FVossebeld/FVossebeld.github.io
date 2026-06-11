@@ -7,38 +7,29 @@ This site is built on a simple but powerful idea: **a living wiki that an AI hel
 
 ## The three layers
 
-The garden is built in three layers, and the difference between them is *who's allowed to touch what*.
+The garden is built in three layers, and the difference between them is _who's allowed to touch what_.
 
-<figure role="group" aria-labelledby="layers-fig-title" aria-describedby="layers-fig-desc" style="margin:1.6rem 0;font-family:var(--bodyFont);">
-  <p id="layers-fig-title" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);">The three layers and who may edit each</p>
-  <p id="layers-fig-desc" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);">Raw sources are read-only inputs the AI may read but never change. The wiki is the published product, drafted by the AI and approved by me. The schema is the rulebook that governs how the AI maintains the wiki.</p>
-  <div style="display:flex;flex-direction:column;gap:.55rem;">
-    <div style="display:flex;align-items:center;gap:1rem;background:var(--lightgray);border-left:5px solid var(--tertiary);border-radius:8px;padding:.9rem 1.1rem;">
-      <span aria-hidden="true" style="font-size:1.4rem;line-height:1;flex:none;">📥</span>
-      <span style="flex:1;min-width:0;">
-        <span style="display:block;font-weight:700;color:var(--dark);">Raw sources</span>
-        <span style="display:block;font-size:.9rem;color:var(--gray);">Articles, notes &amp; ideas I drop in: immutable inputs.</span>
-      </span>
-      <span style="flex:none;font-size:.72rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--light);background:var(--tertiary);border-radius:999px;padding:.25rem .6rem;">AI reads only</span>
-    </div>
-    <div style="display:flex;align-items:center;gap:1rem;background:var(--lightgray);border-left:5px solid var(--secondary);border-radius:8px;padding:.9rem 1.1rem;">
-      <span aria-hidden="true" style="font-size:1.4rem;line-height:1;flex:none;">🌳</span>
-      <span style="flex:1;min-width:0;">
-        <span style="display:block;font-weight:700;color:var(--dark);">The wiki</span>
-        <span style="display:block;font-size:.9rem;color:var(--gray);">The interlinked pages you're reading, written &amp; cross-linked by the AI.</span>
-      </span>
-      <span style="flex:none;font-size:.72rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--light);background:var(--secondary);border-radius:999px;padding:.25rem .6rem;">AI drafts · I approve</span>
-    </div>
-    <div style="display:flex;align-items:center;gap:1rem;background:var(--lightgray);border-left:5px solid var(--gray);border-radius:8px;padding:.9rem 1.1rem;">
-      <span aria-hidden="true" style="font-size:1.4rem;line-height:1;flex:none;">📐</span>
-      <span style="flex:1;min-width:0;">
-        <span style="display:block;font-weight:700;color:var(--dark);">The schema</span>
-        <span style="display:block;font-size:.9rem;color:var(--gray);"><code>AGENTS.md</code>: <em>how</em> the AI maintains the wiki: conventions, linking, logging.</span>
-      </span>
-      <span style="flex:none;font-size:.72rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--darkgray);background:var(--light);border:1px solid var(--gray);border-radius:999px;padding:.25rem .6rem;">Governs the AI</span>
-    </div>
-  </div>
-  <figcaption style="text-align:center;color:var(--gray);font-size:.85em;margin-top:.7rem;">Three layers, three permission levels: the schema governs how the AI turns raw sources into the wiki.</figcaption>
+<figure class="layers" role="group" aria-labelledby="layers-fig-title" aria-describedby="layers-fig-desc">
+  <p id="layers-fig-title" class="sr-only">The three layers and who may edit each</p>
+  <p id="layers-fig-desc" class="sr-only">Raw sources are read-only inputs the AI may read but never change. The wiki is the published product, drafted by the AI and approved by me. The schema is the rulebook that governs how the AI maintains the wiki.</p>
+  <ol class="layer-list">
+    <li>
+      <span class="layer-name">Raw sources</span>
+      <span class="layer-desc">Articles, notes &amp; ideas I drop in: immutable inputs.</span>
+      <span class="layer-perm">AI reads only</span>
+    </li>
+    <li>
+      <span class="layer-name">The wiki</span>
+      <span class="layer-desc">The interlinked pages you're reading, written &amp; cross-linked by the AI.</span>
+      <span class="layer-perm">AI drafts · I approve</span>
+    </li>
+    <li>
+      <span class="layer-name">The schema</span>
+      <span class="layer-desc"><code>AGENTS.md</code>: <em>how</em> the AI maintains the wiki: conventions, linking, logging.</span>
+      <span class="layer-perm">Governs the AI</span>
+    </li>
+  </ol>
+  <figcaption>Three layers, three permission levels: the schema governs how the AI turns raw sources into the wiki.</figcaption>
 </figure>
 
 ## Why it's different from a normal blog
