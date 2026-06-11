@@ -19,6 +19,11 @@ export const sharedPageComponents: SharedLayout = {
       }),
       condition: (page) => page.fileData.slug === "index",
     }),
+    Component.GardenAgent({
+      endpoint: "https://ca-gtjqxftcetisc.mangosand-dc7dc8b1.eastus2.azurecontainerapps.io/",
+      repo: "FVossebeld/FVossebeld.github.io",
+      label: "from-agent",
+    }),
   ],
   footer: Component.Footer({
     links: {
