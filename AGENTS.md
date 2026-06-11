@@ -2,7 +2,7 @@
 
 This file tells an AI agent (Claude Code, Codex, Copilot CLI, etc.) **how** to help maintain this digital garden. It is the "schema" layer of the [Karpathy LLM-wiki pattern](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f). The human (Floris) is the editor-in-chief and approves every change; the agent does the bookkeeping.
 
-> **Quality bar:** all published prose must clear [`.github/CONTENT-QUALITY.md`](.github/CONTENT-QUALITY.md) — no AI slop. The full AI pipeline (style-editor + slop-verifier agents, automated PR review) is documented in [`.github/AGENTIC-PIPELINE.md`](.github/AGENTIC-PIPELINE.md).
+> **Quality bar:** all published prose must clear [`.github/CONTENT-QUALITY.md`](.github/CONTENT-QUALITY.md) — no AI slop, and any **visual** must clear [`.github/DIAGRAMS.md`](.github/DIAGRAMS.md) (a diagram earns its place or it doesn't ship). The full AI pipeline (style-editor + slop-verifier agents, automated PR review) is documented in [`.github/AGENTIC-PIPELINE.md`](.github/AGENTIC-PIPELINE.md).
 
 ## How the AI system is organized (instructions vs agents vs skills)
 
@@ -12,7 +12,7 @@ This repo uses three distinct GitHub-native AI mechanisms. They are not intercha
 |---|---|---|---|---|
 | **Instructions** | Always-on standards & guidelines (text only) | [`.github/copilot-instructions.md`](.github/copilot-instructions.md), [`.github/instructions/*.instructions.md`](.github/instructions/) | Always, or by file glob | The repo charter (roles, no-slop, flow) and the content voice rules |
 | **Agents** | A *persona* with its own instructions, tool access, and (optionally) model | [`.github/agents/*.agent.md`](.github/agents/) | When you switch to it in the agent picker | Personas & gates: `style-editor`, `slop-verifier`, and the thin `wiki-librarian` front door |
-| **Skills** | A *reusable procedure* (instructions + optional scripts/resources), portable across Copilot CLI, VS Code, and cloud agents | [`.github/skills/<name>/SKILL.md`](.github/skills/) | On-demand when relevant, or invoked by name | The three wiki operations: `wiki-ingest`, `wiki-query`, `wiki-lint` |
+| **Skills** | A *reusable procedure* (instructions + optional scripts/resources), portable across Copilot CLI, VS Code, and cloud agents | [`.github/skills/<name>/SKILL.md`](.github/skills/) | On-demand when relevant, or invoked by name | The wiki operations: `wiki-ingest`, `wiki-query`, `wiki-lint`, and `wiki-visualize` |
 
 Rule of thumb: **a standard is an instruction, a role is an agent, a repeatable multi-step procedure is a skill.** The Karpathy operations (Ingest / Query / Lint) are procedures, so they live as skills; the librarian is a persona that routes to them.
 
@@ -49,6 +49,9 @@ When asked a question: search the wiki, read the relevant pages, and answer with
 Periodically scan for: contradictions between pages, stale claims, orphan pages with no inbound links, important concepts lacking their own page, and missing cross-references. Report findings; let the human decide. This also runs **automatically every week** via the [`wiki-lint`](.github/workflows/wiki-lint.md) workflow (read-only — opens an issue with a checklist). The `wiki-lint` skill is the deeper, conversational version that can also act on findings via a PR.
 
 The interactive [`wiki-librarian`](.github/agents/wiki-librarian.agent.md) agent is the conversational front door that routes to these three skills and keeps the human in the loop.
+
+### Visualize → [`wiki-visualize`](.github/skills/wiki-visualize/SKILL.md) skill
+When a page (new or existing) has structure, flow, a comparison, or stats that prose handles awkwardly, consider a visual. This is **opt-in and judicious**: the default is no diagram, and nothing is embedded without Floris's say-so. `wiki-ingest` calls it at its "consider a visual" step. The technique palette (Mermaid, inline HTML/CSS, inline SVG — all Quartz-native) and the styling/dark-mode/accessibility rules live in [`.github/DIAGRAMS.md`](.github/DIAGRAMS.md).
 
 ## index.md
 `content/index.md` is the navigable **catalog / homepage** — every significant page should be reachable from it (the "Start here" list plus topic sections). Update it whenever you add or rename a page so nothing becomes an orphan.
