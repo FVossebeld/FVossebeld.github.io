@@ -1,3 +1,5 @@
+## [2026-06-11] ingest | Wove Mukul Singh's "MCP Is Not Enough: Why Code DSLs Will Replace JSON Tool Calling" into the tool-calling concept cluster. Added an MCP-grounded paragraph to `concepts/json-as-transport-not-cognition` (MCP is the JSON-RPC layer; multi-step chains are death by round trips; code execution batches them while JSON stays underneath as transport) and a linked sentence to `concepts/cli-as-compressed-action-language` (code is where tool-calling protocols are drifting). Cited the article plus Anthropic's code-execution-with-MCP and Cloudflare's code-mode. TODO(floris): file the raw archived copy under `raw/` and pull in the article's specific benchmark numbers once verified.
+
 ## [2026-06-11] lint | Moved `human-tools-not-machine-protocols` from `concepts/` to `thoughts/`. The page threads CLI, JSON, and browser-use concepts into a broader argument; that's a thought, not a concept.
 
 ## [2026-06-11] init | Scaffolded the garden (Quartz v4, homepage, About, How-this-works, first thought, AGENTS.md schema).
