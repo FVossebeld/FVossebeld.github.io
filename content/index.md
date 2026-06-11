@@ -38,6 +38,12 @@ I keep coming back to the same question: as language models start interacting wi
       <span class="index-desc">Shorter, rawer thoughts. The first entries in the field log.</span>
     </a>
   </li>
+  <li>
+    <a href="thoughts/from-chatbots-to-system-operators">
+      <span class="index-title">From chatbots to system operators</span>
+      <span class="index-desc">A working theory on how LLM agents are turning into scoped operators of real systems — and the concept notes it links out to.</span>
+    </a>
+  </li>
 </ul>
 
 <p class="colophon">Everything here, content and code, lives in one public repository: <a href="https://github.com/FVossebeld/FVossebeld.github.io">github.com/FVossebeld/FVossebeld.github.io</a>. Search is top left, the graph is on the right. Pages link to each other, so follow the threads.</p>
