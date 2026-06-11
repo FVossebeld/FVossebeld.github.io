@@ -18,6 +18,12 @@ param modelVersion string = '2024-07-18'
 @description('Model capacity in thousands of tokens per minute (the cost ceiling).')
 param modelCapacity int = 20
 
+@description('Comma-separated browser origins allowed to call the agent (CORS).')
+param allowedOrigins string = 'https://vossebeld.dev,https://www.vossebeld.dev,https://fvossebeld.github.io'
+
+@description('Public site origin used to build citation URLs.')
+param siteBaseUrl string = 'https://vossebeld.dev'
+
 var tags = { 'azd-env-name': environmentName }
 var resourceToken = toLower(uniqueString(subscription().id, environmentName, location))
 
@@ -37,6 +43,8 @@ module resources 'resources.bicep' = {
     modelName: modelName
     modelVersion: modelVersion
     modelCapacity: modelCapacity
+    allowedOrigins: allowedOrigins
+    siteBaseUrl: siteBaseUrl
   }
 }
 

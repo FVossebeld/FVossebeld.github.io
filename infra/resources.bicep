@@ -11,6 +11,12 @@ param modelName string
 param modelVersion string
 param modelCapacity int
 
+@description('Comma-separated browser origins allowed to call the agent (CORS).')
+param allowedOrigins string
+
+@description('Public site origin used to build citation URLs.')
+param siteBaseUrl string
+
 // Cognitive Services User — data-plane role the agent needs to call the model.
 var cognitiveServicesUserRoleId = 'a97b65f3-24c7-4388-baec-2e87135dc908'
 // AcrPull — lets the Container App pull its image from the registry.
@@ -171,6 +177,8 @@ resource containerApp 'Microsoft.App/containerApps@2024-03-01' = {
             { name: 'FOUNDRY_MODEL', value: modelName }
             { name: 'AZURE_CLIENT_ID', value: identity.properties.clientId }
             { name: 'APPLICATIONINSIGHTS_CONNECTION_STRING', value: appInsights.properties.ConnectionString }
+            { name: 'GARDEN_ALLOWED_ORIGINS', value: allowedOrigins }
+            { name: 'GARDEN_SITE_BASE_URL', value: siteBaseUrl }
           ]
         }
       ]
