@@ -1,0 +1,46 @@
+name: Deploy Agent (Azure)
+
+# Deploys the Foundry hosted agent (agent/ + infra/) with the Azure Developer CLI.
+# Auth is GitHub OIDC federated to an Entra app registration — no stored secrets.
+# Manual by default; also runs when the agent or its infra changes on main.
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "agent/**"
+      - "infra/**"
+      - "azure.yaml"
+      - ".github/workflows/agent-deploy.yml"
+
+permissions:
+  contents: read
+  id-token: write # request the GitHub OIDC token; no client secret is stored
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      AZURE_CLIENT_ID: ${{ vars.AZURE_CLIENT_ID }}
+      AZURE_TENANT_ID: ${{ vars.AZURE_TENANT_ID }}
+      AZURE_SUBSCRIPTION_ID: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+      AZURE_ENV_NAME: ${{ vars.AZURE_ENV_NAME }}
+      AZURE_LOCATION: ${{ vars.AZURE_LOCATION }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install the Azure Developer CLI
+        uses: Azure/setup-azd@v2
+
+      - name: Sign in to Azure (OIDC, no secret)
+        run: |
+          azd auth login \
+            --client-id "$AZURE_CLIENT_ID" \
+            --federated-credential-provider github \
+            --tenant-id "$AZURE_TENANT_ID"
+
+      - name: Provision infrastructure
+        run: azd provision --no-prompt
+
+      - name: Deploy the agent
+        run: azd deploy --no-prompt

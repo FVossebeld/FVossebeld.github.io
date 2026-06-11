@@ -7,3 +7,10 @@ node_modules/
 .DS_Store
 *.log
 .vscode/
+
+# azd local environment state (no secrets in repo)
+.azure/
+
+# compiled Bicep
+infra/*.json
+!infra/main.parameters.json

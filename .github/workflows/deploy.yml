@@ -4,6 +4,14 @@ on:
   push:
     branches:
       - main
+    # Backend subprojects don't affect the published site. Editing them alone
+    # should not trigger a Pages rebuild. (The widget only changes the site when
+    # its built bundle lands under quartz/static/, which is not ignored.)
+    paths-ignore:
+      - "agent/**"
+      - "widget/**"
+      - "infra/**"
+      - "scripts/**"
   workflow_dispatch:
 
 permissions:
