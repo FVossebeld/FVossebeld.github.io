@@ -23,6 +23,44 @@ Write as **Floris**, in the first person. The target voice is:
 > (favorite words, banned words, sentence habits, sample paragraphs you love), the
 > better every agent will match it.
 
+## Thoughts vs concepts (what goes where)
+
+Two folders under `content/`, split by what a page *does*, not by how long or how
+finished it is.
+
+- **`concepts/` is a noun.** One subject, taken apart on its own page, written to be
+  linked from many places ("JSON is transport, not cognition", "federated memory"). A
+  concept can be opinionated, and it can have internal structure (a multi-step mechanism
+  is still one concept). It stays about its one subject: you sharpen it over time, you
+  don't repurpose it. Other pages point *at* it.
+- **`thoughts/` is a take.** Your synthesis at a point in time: an argument that threads
+  several concepts together ("from chatbots to system operators"), or a more human field
+  note (what a project or a demo taught you). It has a thesis and an arc, and it's
+  provisional: when your view shifts a lot, the thought gets reworked or superseded.
+
+Both kinds are living documents and both get revised. The difference is **scope and
+role, not permanence.** A concept evolves by getting sharper about its one subject; a
+thought evolves by re-drawing the connections.
+
+The test when you're unsure:
+
+- Would several different essays naturally link to this page? → **concept**.
+- Does it only make sense as "here's how I'm connecting things right now", or is it a
+  personal reflection? → **thought**.
+
+Watch the edges:
+
+- An opinion does not make a page a thought. Concepts take sides too.
+- Internal sequence inside a page does not make it a thought. Spanning several
+  *independent* subjects does.
+- The same material can go either way. A page that *defines* "scoped agents" is a
+  concept; a page that *argues* "omniscient agents are a trap" is a thought. File by what
+  the page is doing, not by its topic.
+
+When one source could seed both, the usual shape is a single thought that names the
+pattern and links out to the concept pages it leans on (the system-operators essay and
+the `concepts/` cluster under it are the worked example).
+
 ## Mechanics
 
 - `title` frontmatter is required. Add `description` and `tags` when useful.

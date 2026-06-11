@@ -34,6 +34,9 @@ he approves.
 2. **Discuss takeaways briefly.** Confirm with Floris what's worth keeping. He owns "what
    matters"; you own the filing.
 3. **File it into `content/`.** Create or update the relevant page(s):
+   - Pick the right folder: `concepts/` for an atomic, single-subject note, `thoughts/`
+     for a synthesis, an argument, or a field note. The rule and its edge cases live in
+     [`.github/instructions/content.instructions.md`](../../instructions/content.instructions.md).
    - One summary/topic page per distinct subject. Update existing pages instead of
      duplicating.
    - Frontmatter: `title` (required), `description`, `tags`, `date`, and `draft: true`
