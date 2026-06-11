@@ -5,7 +5,21 @@ import * as Component from "./quartz/components"
 export const sharedPageComponents: SharedLayout = {
   head: Component.Head(),
   header: [],
-  afterBody: [],
+  afterBody: [
+    Component.ConditionalRender({
+      component: Component.RecentNotes({
+        title: "Latest",
+        limit: 8,
+        showTags: true,
+        filter: (f) => {
+          const slug = f.slug ?? ""
+          const isNote = slug.startsWith("thoughts/") || slug.startsWith("concepts/")
+          return isNote && !slug.endsWith("/index")
+        },
+      }),
+      condition: (page) => page.fileData.slug === "index",
+    }),
+  ],
   footer: Component.Footer({
     links: {
       GitHub: "https://github.com/FVossebeld/FVossebeld.github.io",
