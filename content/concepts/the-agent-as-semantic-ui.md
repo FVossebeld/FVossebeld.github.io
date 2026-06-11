@@ -1,6 +1,6 @@
 ---
 title: The agent as semantic UI
-description: The agent as a natural-language interface over enterprise software: translating intent into governed actions, sitting above the GUI rather than replacing it.
+description: "The agent as a natural-language interface over enterprise software: translating intent into governed actions, sitting above the GUI rather than replacing it."
 tags:
   - agentic-ai
   - enterprise

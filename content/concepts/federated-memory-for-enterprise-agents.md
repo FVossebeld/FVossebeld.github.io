@@ -1,6 +1,6 @@
 ---
 title: Federated memory for enterprise agents
-description: Letting agents learn from experience without leaking across users, teams, projects, or customers: a taxonomy, a threat model, and the metadata every memory needs.
+description: "Letting agents learn from experience without leaking across users, teams, projects, or customers: a taxonomy, a threat model, and the metadata every memory needs."
 tags:
   - agentic-ai
   - enterprise
