@@ -1,0 +1,9 @@
+# Quartz build + dependencies
+public/
+node_modules/
+.quartz-cache/
+
+# OS / editor noise
+.DS_Store
+*.log
+.vscode/
