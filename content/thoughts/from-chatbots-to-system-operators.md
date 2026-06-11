@@ -11,16 +11,6 @@ That turns out to be a different problem than making the model smarter. It's a q
 
 This is a working theory, not a finished one. It's an index essay: I name the pattern here and pull each thread apart on its own [concept page](../concepts/). Expect both to change as I do.
 
-```mermaid
-flowchart LR
-  accTitle: The shift from chatbot to copilot to system operator
-  accDescr: Enterprise AI evolves from chat-only assistants to copilots that suggest actions and then to governed system operators that execute approved changes.
-  classDef accent fill:#53665a,stroke:#3f4f45,color:#f7f3ea,rx:6,ry:6
-  classDef outcome fill:#8a6f4d,stroke:#6b5740,color:#f7f3ea,rx:6,ry:6
-  A[Chatbot<br/>answers in text] --> B[Copilot<br/>suggests and prepares actions]:::accent
-  B --> C[System operator<br/>executes governed changes]:::outcome
-```
-
 ## Chat was the demo
 
 It started with chat. You typed, the model replied. The whole interface was a transcript, and the model's only power was to produce more text. That was the right first move (it made the capability legible to everyone at once), but a transcript is sealed off from anything that isn't language. You can ask it to draft the email; you can't ask it to send the email, check whether the customer already replied, and update the CRM. Chat made LLMs _accessible_. It didn't make them _operational_.
@@ -74,15 +64,15 @@ Stack those shifts up and you get a progression. Each step doesn't replace the l
 ```mermaid
 flowchart TD
   accTitle: How agents evolve from chatbots into governed system operators
-  accDescr: A progression in six stages: chatbot, then JSON tool caller, then CLI and code operator, then workspace agent, then scoped enterprise system specialist, and finally a governed learning system.
+  accDescr: A progression in six stages, from chatbot to copilot to system operator and then into scoped governed enterprise execution.
 
   classDef accent fill:#8a6f4d,stroke:#6b5740,color:#f7f3ea,rx:6,ry:6
 
-  A[Chatbot<br/>text in, text out] --> B[JSON tool caller<br/>structured requests]
-  B --> C[CLI / code operator<br/>action = execution]
-  C --> D[Workspace agent<br/>files, shell, memory, state]
+  A[Chatbot<br/>text in, text out] --> B[Copilot<br/>suggests and prepares actions]
+  B --> C[System operator<br/>CLI and code execution]
+  C --> D[Workspace operator<br/>files, shell, memory, state]
   D --> E[Scoped system specialist<br/>one system, bounded blast radius]
-  E --> F[Governed learning system<br/>federated memory + promotion]:::accent
+  E --> F[Governed learning system<br/>federated memory and promotion]:::accent
 ```
 
 ## The useful enterprise shape is scoped, not omniscient
@@ -116,6 +106,10 @@ flowchart TD
   A --> SYS[(Enterprise systems<br/>of record)]
   POL[Policy layer<br/>identity · permissions · audit]:::wrap
   MEM[Memory layer<br/>scoped · federated]:::wrap
+  POL -.enforces.-> O
+  POL -.enforces.-> S
+  MEM -.supplies context.-> O
+  MEM -.stores outcomes.-> S
 ```
 
 The policy layer (identity, permissions, tenant boundaries, approvals, logging) and a verification layer of dry runs, human approval, and rollback aren't optional add-ons. In a regulated enterprise they're the reason the thing is allowed to run at all.

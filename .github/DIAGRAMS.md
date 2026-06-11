@@ -1,25 +1,25 @@
-# Visual quality bar — diagrams & infographics
+# Visual quality bar - diagrams & infographics
 
 This is the single source of truth for adding a **visual** to a page: a diagram,
 chart, architecture sketch, or infographic. It is the visual sibling of
 [`CONTENT-QUALITY.md`](./CONTENT-QUALITY.md), and the same prime directive holds.
 
-**Prime directive: a visual must earn its place — and a wall of flat text is its own
+**Prime directive: a visual must earn its place - and a wall of flat text is its own
 failure.** Add a visual when it makes something *faster to understand* than the prose
 alone (a structure, a flow, a comparison, a chronology, a set of stats), **or** when a long
 stretch of unbroken prose would tire the reader and a timeline, stepper, or stat strip
 would carry part of the load better. The two failure modes are equal and opposite: a
 picture that just restates the text is slop with extra steps; a page that's nothing but
 grey paragraphs is a missed chance to make the idea land. Vary the texture, but every
-visual must still clarify — never decorate, never restate.
+visual must still clarify - never decorate, never restate.
 
 This garden renders on **Quartz v4**, which gives us three techniques with **no extra
-build tooling** — Mermaid, inline HTML/CSS, and inline SVG. Everything below is tuned to
+build tooling** - Mermaid, inline HTML/CSS, and inline SVG. Everything below is tuned to
 what actually renders here, including this site's warm palette and automatic dark mode.
 
 > **Don't draw from scratch.** [`skills/wiki-visualize/PATTERNS.md`](./skills/wiki-visualize/PATTERNS.md)
 > is a library of **verified, copy-paste** recipes (stat cards, timelines, steppers,
-> swimlanes, comparisons, meters, pull-quotes, plus the Mermaid set) — each one already
+> swimlanes, comparisons, meters, pull-quotes, plus the Mermaid set) - each one already
 > rendered and dark-mode-checked. Pick the closest pattern, swap in real content, re-verify.
 > This file is the *why*; PATTERNS.md is the *what to paste*.
 
@@ -29,11 +29,11 @@ what actually renders here, including this site's warm palette and automatic dar
 
 **Reach for a visual when the content is inherently:**
 
-- **A flow or process** — steps, pipelines, request paths, state changes → Mermaid `flowchart` / `sequenceDiagram` / `stateDiagram-v2`.
-- **A structure or architecture** — services, components, how parts connect → Mermaid `flowchart` with subgraphs, or inline SVG.
-- **A hierarchy or map of ideas** → Mermaid `flowchart TD` (not `mindmap` — see §4).
-- **A comparison or set of stats** — numbers, before/after, feature grids → inline HTML/CSS infographic (stat cards, comparison cards, meter bars, spec list).
-- **A chronology** → the HTML **vertical timeline** (not Mermaid `timeline` — see §4).
+- **A flow or process** - steps, pipelines, request paths, state changes → Mermaid `flowchart` / `sequenceDiagram` / `stateDiagram-v2`.
+- **A structure or architecture** - services, components, how parts connect → Mermaid `flowchart` with subgraphs, or inline SVG.
+- **A hierarchy or map of ideas** → Mermaid `flowchart TD` (not `mindmap` - see §4).
+- **A comparison or set of stats** - numbers, before/after, feature grids → inline HTML/CSS infographic (stat cards, comparison cards, meter bars, spec list).
+- **A chronology** → the HTML **vertical timeline** (not Mermaid `timeline` - see §4).
 - **An ordered how-to** → HTML **numbered stepper**.
 - **Who does what, across stages** → HTML **swimlane**.
 - **Trade-offs** → HTML **pros & cons**; **a line worth pausing on** → HTML **pull quote**.
@@ -85,11 +85,11 @@ Quick decision rules:
 - **Tabular/quantitative data → HTML/CSS.** When you're fighting Mermaid to make it look
   like a grid of numbers, stop and write a small HTML card grid instead.
 - **Bespoke layout → SVG.** Only when the visual is genuinely custom and Mermaid can't
-  express it. Higher token cost, higher error rate — keep it small.
+  express it. Higher token cost, higher error rate - keep it small.
 
 > **D2 (optional, manual):** for a showcase-quality architecture diagram, you can author
 > [D2](https://d2lang.com) and render it to SVG yourself (`d2 in.d2 out.svg`), then embed
-> the SVG. Beautiful output, but it's a manual build step — not for routine pages.
+> the SVG. Beautiful output, but it's a manual build step - not for routine pages.
 
 ---
 
@@ -105,8 +105,8 @@ automatically between light and dark**. Use the variables, never invent new colo
 | `--gray` | `#6f736d` | `#8c8a82` | muted text, metadata |
 | `--darkgray` | `#2b302c` | `#d8d3c7` | body text |
 | `--dark` | `#1f2421` | `#f2eee3` | headings |
-| `--secondary` | `#53665a` | `#9db0a0` | **sage** — primary accent |
-| `--tertiary` | `#8a6f4d` | `#c2a079` | **amber** — secondary accent |
+| `--secondary` | `#53665a` | `#9db0a0` | **sage** - primary accent |
+| `--tertiary` | `#8a6f4d` | `#c2a079` | **amber** - secondary accent |
 
 Fonts: `--bodyFont` (Source Sans 3), `--headerFont` (Literata), `--codeFont` (Spline Sans Mono).
 
@@ -118,7 +118,7 @@ technique. Don't reach past two accent colours per visual.
 
 ## 4. Mermaid: make it look good and stay dark-mode safe
 
-Quartz already themes Mermaid for us — at render time it injects this site's colours as
+Quartz already themes Mermaid for us - at render time it injects this site's colours as
 `themeVariables` and re-renders on every light/dark toggle (`securityLevel: "loose"`, so
 `<br/>` and rich labels work). That gives two rules:
 
@@ -126,7 +126,7 @@ Quartz already themes Mermaid for us — at render time it injects this site's c
    in both modes. Don't fight it.
 2. **Only `classDef`/`style` for emphasis**, and only with the **brand accents** (sage /
    amber), which read on both backgrounds. Avoid pinning node fills to mode-specific
-   colours like `--light`/`--darkgray` — hardcoded hex in `classDef` does **not** switch
+   colours like `--light`/`--darkgray` - hardcoded hex in `classDef` does **not** switch
    when the reader flips dark mode, so a node forced to a light fill goes muddy at night.
 
 ```mermaid
@@ -151,13 +151,13 @@ else inherits the site colours and adapts automatically.
 - **Keep it small.** Max ~8 nodes per diagram/subgraph (Miller's 7±2). More than that →
   split into focused diagrams or group with `subgraph`.
 - **Direction:** `LR` for processes/pipelines, `TD` for hierarchies/trees. On mobile the
-  content column is ~760px — wide `LR` diagrams with many nodes overflow; prefer `TD`.
+  content column is ~760px - wide `LR` diagrams with many nodes overflow; prefer `TD`.
 - **Label edges** with 1–3 words ("valid token", "on failure"). Never a full sentence.
 - **One shape per role:** `[box]` process, `{diamond}` decision, `[(cylinder)]` store,
   `([stadium])` endpoint. Be consistent.
-- **Always add `accTitle` + `accDescr`** (first lines) — Quartz's Mermaid output has no
+- **Always add `accTitle` + `accDescr`** (first lines) - Quartz's Mermaid output has no
   accessible label otherwise.
-- **Never** use `%%{init: {theme: "forest"}}%%` here — Quartz's injected variables bleed
+- **Never** use `%%{init: {theme: "forest"}}%%` here - Quartz's injected variables bleed
   into the named theme and produce muddy, unpredictable colours. If you must tweak a
   theme variable, target it precisely: `%%{init: {themeVariables: {edgeLabelBackground: "#e7e0d1"}}}%%`.
 - **Skip `timeline` and `mindmap`.** Their auto colour scales fight this palette and render
@@ -176,11 +176,11 @@ render. Three non-negotiables:
 parser first. A blank line *ends* the HTML block; a blank line followed by a 4-space-
 indented line is parsed as an **indented code block**, so your `<div>`s render as literal
 grey code. Keep multi-element HTML gap-free and indent inner lines by **≤2 spaces**. This
-is the #1 reason a hand-written infographic "renders as code" — and why the
+is the #1 reason a hand-written infographic "renders as code" - and why the
 [`PATTERNS.md`](./skills/wiki-visualize/PATTERNS.md) recipes (the swimlane especially) are
 deliberately flattened. When in doubt, copy a verified recipe instead of free-handing it.
 
-**Use CSS variables for every colour — but only inside `style`, not bare attributes.**
+**Use CSS variables for every colour - but only inside `style`, not bare attributes.**
 `fill="var(--tertiary)"` silently fails; it must be `style="fill:var(--tertiary)"` (or a
 `<style>` block with classes). This is the single most common SVG mistake here.
 
@@ -192,7 +192,7 @@ deliberately flattened. When in doubt, copy a verified recipe instead of free-ha
 ```
 
 **Make it responsive.** Always `viewBox` + `width="100%"`, never a fixed pixel `width`/
-`height` — otherwise it overflows on mobile.
+`height` - otherwise it overflows on mobile.
 
 Accessible, responsive, dark-mode-safe SVG skeleton:
 
@@ -217,7 +217,7 @@ Accessible, responsive, dark-mode-safe SVG skeleton:
 </figure>
 ```
 
-HTML infographics follow the same rules — `var(--...)` for all colours, `rem`/`%`/
+HTML infographics follow the same rules - `var(--...)` for all colours, `rem`/`%`/
 `clamp()` for sizes, `flex-wrap`/`grid auto-fit` so cards reflow on mobile. A stat-card grid:
 
 ```html
@@ -247,7 +247,7 @@ LLMs break diagrams in predictable ways. Before committing a visual, run this pa
 - [ ] `classDef` is declared **before** it's used with `:::name`.
 - [ ] Flowchart/state transitions use `-->`, not `->` (that's sequence-only).
 - [ ] HTML blocks have **no blank lines** and **no 4-space-indented** inner lines (else they render as a grey code block).
-- [ ] Chronology uses the HTML vertical timeline, hierarchy uses `flowchart TD` — not Mermaid `timeline`/`mindmap`.
+- [ ] Chronology uses the HTML vertical timeline, hierarchy uses `flowchart TD` - not Mermaid `timeline`/`mindmap`.
 - [ ] SVG colours use `style="fill:var(--…)"`, **not** `fill="var(--…)"`.
 - [ ] SVG has `viewBox` + `width="100%"`; no fixed pixel width.
 - [ ] `accTitle`/`accDescr` (Mermaid) or `<title>`/`<desc>` (SVG) are present.
@@ -262,7 +262,7 @@ and look at the page. Mermaid syntax errors fail silently into an ugly block.
 
 - **Describe it.** `accTitle`/`accDescr` for Mermaid; `<title>` + `<desc>` for SVG; a
   `<figcaption>` or a `> [!abstract]` callout under the figure for everyone else.
-- **Dark mode.** Colours come from `var(--...)` or the two brand accents — nothing
+- **Dark mode.** Colours come from `var(--...)` or the two brand accents - nothing
   hardcoded that only works on one background.
 - **Mobile.** Responsive sizing (`viewBox`+`width:100%`, reflowing card grids); prefer
   `TD` for tall content.
@@ -272,4 +272,4 @@ and look at the page. Mermaid syntax errors fail silently into an ugly block.
 ---
 
 When auditing a visual, the same verdict logic as [`CONTENT-QUALITY.md`](./CONTENT-QUALITY.md)
-applies: if it doesn't make the idea faster to grasp, it's a REVISE — cut it or fix it.
+applies: if it doesn't make the idea faster to grasp, it's a REVISE - cut it or fix it.

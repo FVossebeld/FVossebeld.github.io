@@ -1,4 +1,4 @@
-# Pattern library — copy-paste infographics & diagrams
+# Pattern library - copy-paste infographics & diagrams
 
 A curated set of **verified** recipes for this site. Every snippet here has been rendered
 through Quartz and checked in both light and dark mode, so quality is repeatable instead
@@ -11,7 +11,7 @@ first; this file is what you reach for once you've decided to draw something.
 
 ---
 
-## ⚠️ The one HTML rule that breaks everything
+## The one HTML rule that breaks everything
 
 Quartz runs pages through a Markdown parser before the HTML reaches the browser. Inside a
 raw HTML block:
@@ -19,7 +19,7 @@ raw HTML block:
 - **No blank lines.** A blank line ends the HTML block; whatever follows is parsed as
   Markdown again.
 - **Never indent an inner line by 4+ spaces.** A blank line followed by a 4-space-indented
-  line is read as an **indented code block** — your `<div>`s render as literal grey code.
+  line is read as an **indented code block** - your `<div>`s render as literal grey code.
 
 So: keep multi-element HTML blocks **gap-free**, and indent inner lines by **2 spaces max**
 (or not at all). The grid-based patterns below (swimlane especially) are deliberately
@@ -52,7 +52,7 @@ reflows on mobile.
 | **A line worth pausing on** | HTML | [Pull quote](#pull-quote) |
 
 Rule of thumb: **relational → Mermaid; quantitative or editorial layout → HTML.** A garden
-page should *vary its texture* — a wall of flat prose tires the reader as much as a wall of
+page should *vary its texture* - a wall of flat prose tires the reader as much as a wall of
 boxes. But every visual still has to clarify, not decorate.
 
 ---
@@ -269,7 +269,7 @@ gitGraph
 ```
 ````
 
-> **⚠️ Avoid Mermaid `timeline` and `mindmap` here.** Their auto colour scales fight this
+> **Avoid Mermaid `timeline` and `mindmap` here.** Their auto colour scales fight this
 > palette and render low-contrast (dark text on dark fills), and the `%%{init: theme}%%`
 > fix is banned (§4 of DIAGRAMS.md). For a **chronology** use the HTML
 > [vertical timeline](#vertical-timeline) below; for a **hierarchy / idea map** use a
@@ -306,7 +306,7 @@ Headline numbers in a reflowing grid. Accent at most one card.
 ## Vertical timeline
 
 A chronology with dots on a rail. The dot uses `left:calc(-1.6rem - 8px)` to sit on the
-border; alternate sage/amber dots if you like. **This is the chronology pattern** — prefer
+border; alternate sage/amber dots if you like. **This is the chronology pattern** - prefer
 it over Mermaid `timeline`.
 
 ```html
@@ -360,7 +360,7 @@ An ordered how-to. Reflows to a column on mobile.
 
 Who does what, across stages. A CSS grid: first column = lane labels, header row = stages,
 accent cells = the action in that lane/stage; empty cells are dashed placeholders.
-**Kept flattened (no indentation, no blank lines)** — this is the pattern most likely to
+**Kept flattened (no indentation, no blank lines)** - this is the pattern most likely to
 break the code-block trap. `overflow-x:auto` + `min-width` let it scroll on mobile.
 
 ```html
@@ -479,7 +479,7 @@ Break up a long passage with a line worth pausing on. Uses the header font and a
 ```html
 <blockquote style="margin:1.5rem 0;padding:.6rem 0 .6rem 1.4rem;border-left:4px solid var(--tertiary);font-family:var(--headerFont);font-size:1.3rem;line-height:1.4;color:var(--dark);font-style:italic;">
   A blog is a stream. A wiki compounds.
-  <footer style="margin-top:.5rem;font-family:var(--bodyFont);font-size:.85rem;font-style:normal;color:var(--gray);">— how this site works</footer>
+  <footer style="margin-top:.5rem;font-family:var(--bodyFont);font-size:.85rem;font-style:normal;color:var(--gray);">- how this site works</footer>
 </blockquote>
 ```
 
@@ -490,9 +490,9 @@ Break up a long passage with a line worth pausing on. Uses the header font and a
 Quick pass (full checklist in [`DIAGRAMS.md`](../../DIAGRAMS.md) §6–7):
 
 - [ ] HTML block has **no blank lines** and **no 4-space-indented** inner lines.
-- [ ] Every colour is a `var(--…)` token or a brand accent — nothing hardcoded to one mode.
+- [ ] Every colour is a `var(--…)` token or a brand accent - nothing hardcoded to one mode.
 - [ ] SVG fills use `style="fill:var(--…)"`, not `fill="var(--…)"`.
 - [ ] It reflows at ~760px (grids `auto-fit`, wide blocks `overflow-x:auto` + `min-width`).
 - [ ] Mermaid has `accTitle`/`accDescr`; HTML/SVG has a caption or `<figcaption>`/`<desc>`.
 - [ ] You skipped Mermaid `timeline`/`mindmap` in favour of the HTML timeline / `flowchart TD`.
-- [ ] It **renders** — `npx quartz build --serve` and look, in light *and* dark.
+- [ ] It **renders** - `npx quartz build --serve` and look, in light *and* dark.
