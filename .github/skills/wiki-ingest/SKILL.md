@@ -44,12 +44,14 @@ he approves.
    page, in both directions. Be generous but only link genuinely related things.
 5. **Update the catalog.** Add or refresh the page's entry in `content/index.md` — a link
    plus a one-line summary, under the right section — so nothing becomes an orphan.
-6. **Consider a visual (opt-in).** Ask whether a diagram or infographic would make any
-   part of the page *faster to understand* — a flow, structure, comparison, or set of
-   stats. Usually the answer is no; prose is the default. If yes, propose it to Floris in
-   one line (technique + what it clarifies) and, once he agrees, hand off to the
-   **`wiki-visualize`** skill / [`.github/DIAGRAMS.md`](../../DIAGRAMS.md) to draft and
-   verify it. Never embed a visual without asking first.
+6. **Consider a visual.** Ask whether a diagram or infographic would make any part of the
+   page *faster to understand* — or whether a long stretch of prose would land better
+   broken up by a timeline, stepper, comparison, or stat strip. Reach for the right one
+   when it does real work (the [`wiki-visualize`](../wiki-visualize/SKILL.md) skill and its
+   [`PATTERNS.md`](../wiki-visualize/PATTERNS.md) library have verified recipes); skip it
+   when prose already carries the idea. Propose it to Floris in one line (technique + what
+   it clarifies), and once he agrees, hand off to **`wiki-visualize`** /
+   [`.github/DIAGRAMS.md`](../../DIAGRAMS.md) to draft and verify. Never embed without asking.
 7. **Log it.** Append one line to `LOG.md` with the greppable prefix:
    `## [YYYY-MM-DD] ingest | <short description>`.
 8. **Self-check, then open a PR.** Before opening, run the draft past the bar yourself (or

@@ -13,13 +13,19 @@ description: >
 
 Turn a page's structure, flow, or numbers into a clear visual — without adding slop.
 Read [`.github/DIAGRAMS.md`](../../DIAGRAMS.md) first; it is the visual quality bar and
-the schema this skill follows. Floris approves every embed.
+the schema this skill follows. Then pull the actual recipe from
+[`PATTERNS.md`](./PATTERNS.md) — a library of verified, copy-paste, dark-mode-checked
+snippets. **Pick the closest pattern and customize it; don't free-hand layout.** Floris
+approves every embed.
 
 ## Hard rules
 
-- **A visual must earn its place.** The default is no diagram. Add one only when it makes
-  something faster to understand than the prose alone. If you can't say in one sentence
-  what it clarifies, don't add it. (See [`DIAGRAMS.md`](../../DIAGRAMS.md) §1.)
+- **A visual must earn its place — and so does a wall of flat text.** Add a visual when it
+  makes something faster to understand *or* when it paces a long stretch of prose better
+  than another paragraph would. Don't add one that just restates the text, and don't add
+  one you can't justify in a sentence. (See [`DIAGRAMS.md`](../../DIAGRAMS.md) §1.)
+- **Start from a verified recipe.** Reach for the closest pattern in [`PATTERNS.md`](./PATTERNS.md)
+  and adapt it. Free-handing HTML is how the code-block trap and dark-mode bugs creep in.
 - **Quartz-native only.** Use Mermaid, inline HTML/CSS, or inline SVG — no new plugins,
   no `<script>`, no external CSS frameworks.
 - **Site palette, dark-mode safe.** Colours come from the CSS variables / two brand
@@ -34,16 +40,22 @@ the schema this skill follows. Floris approves every embed.
 ## Steps
 
 1. **Decide if it's worth it.** Look at the page. Is there a flow, structure, hierarchy,
-   chronology, comparison, or set of stats that prose handles awkwardly? If not, stop and
-   say so — recommending *no* visual is a valid, good outcome here.
+   chronology, comparison, or set of stats that prose handles awkwardly — or a long grey
+   stretch a timeline / stepper / stat strip would pace better? If genuinely nothing fits,
+   say so; recommending *no* visual is a valid outcome. But on a long page, actively hunt
+   for the one or two spots where a visual would do real work.
 2. **Pick the technique and type.** Use the decision table in [`DIAGRAMS.md`](../../DIAGRAMS.md)
-   §2: relational → Mermaid; tabular/quantitative → HTML/CSS; bespoke layout → SVG. Name
-   the specific Mermaid type (flowchart, sequence, timeline, quadrant, …) and *why*.
+   §2 and the index in [`PATTERNS.md`](./PATTERNS.md): relational → Mermaid; quantitative or
+   editorial layout → HTML; bespoke → SVG. Name the specific pattern (stat cards, vertical
+   timeline, swimlane, flowchart, …) and *why*. Steer chronology → HTML timeline and
+   hierarchy → `flowchart TD` (Mermaid `timeline`/`mindmap` render low-contrast here).
 3. **Propose it to Floris.** One line: the technique, the type, and the single thing it
    clarifies. Wait for a yes before writing it into the page.
-4. **Draft it small.** Keep node counts sane (≤ ~8), label edges in 1–3 words, group with
-   subgraphs before things sprawl. Add `accTitle`/`accDescr` (Mermaid) or `<title>`/
-   `<desc>` + `<figcaption>` (SVG/HTML).
+4. **Draft it from a recipe.** Copy the closest [`PATTERNS.md`](./PATTERNS.md) snippet and
+   swap in the page's real content. Keep node counts sane (≤ ~8), label edges in 1–3 words,
+   group with subgraphs before things sprawl. Add `accTitle`/`accDescr` (Mermaid) or
+   `<title>`/`<desc>` + `<figcaption>` (SVG/HTML). For HTML, keep the block gap-free with
+   ≤2-space indentation — a blank line or 4-space indent turns it into a grey code block.
 5. **Style to the palette.** Let Mermaid inherit the site theme; use `classDef` only to
    accent key nodes with sage/amber. For SVG/HTML use `style="…:var(--…)"` (never bare
    `fill="var(--…)"`) and responsive sizing (`viewBox`+`width:100%`, reflowing grids).

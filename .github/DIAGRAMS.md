@@ -4,14 +4,24 @@ This is the single source of truth for adding a **visual** to a page: a diagram,
 chart, architecture sketch, or infographic. It is the visual sibling of
 [`CONTENT-QUALITY.md`](./CONTENT-QUALITY.md), and the same prime directive holds.
 
-**Prime directive: a visual must earn its place.** The default is no diagram. Add one
-only when it makes something *faster to understand* than the prose alone — a structure,
-a flow, a comparison, a hierarchy. A picture that just restates the text is slop with
-extra steps. When in doubt, leave it out.
+**Prime directive: a visual must earn its place — and a wall of flat text is its own
+failure.** Add a visual when it makes something *faster to understand* than the prose
+alone (a structure, a flow, a comparison, a chronology, a set of stats), **or** when a long
+stretch of unbroken prose would tire the reader and a timeline, stepper, or stat strip
+would carry part of the load better. The two failure modes are equal and opposite: a
+picture that just restates the text is slop with extra steps; a page that's nothing but
+grey paragraphs is a missed chance to make the idea land. Vary the texture, but every
+visual must still clarify — never decorate, never restate.
 
 This garden renders on **Quartz v4**, which gives us three techniques with **no extra
 build tooling** — Mermaid, inline HTML/CSS, and inline SVG. Everything below is tuned to
 what actually renders here, including this site's warm palette and automatic dark mode.
+
+> **Don't draw from scratch.** [`skills/wiki-visualize/PATTERNS.md`](./skills/wiki-visualize/PATTERNS.md)
+> is a library of **verified, copy-paste** recipes (stat cards, timelines, steppers,
+> swimlanes, comparisons, meters, pull-quotes, plus the Mermaid set) — each one already
+> rendered and dark-mode-checked. Pick the closest pattern, swap in real content, re-verify.
+> This file is the *why*; PATTERNS.md is the *what to paste*.
 
 ---
 
@@ -20,19 +30,27 @@ what actually renders here, including this site's warm palette and automatic dar
 **Reach for a visual when the content is inherently:**
 
 - **A flow or process** — steps, pipelines, request paths, state changes → Mermaid `flowchart` / `sequenceDiagram` / `stateDiagram-v2`.
-- **A structure or architecture** — services, components, how parts connect → Mermaid `flowchart` with subgraphs, or `architecture`, or inline SVG.
-- **A hierarchy or map of ideas** → Mermaid `mindmap` or a `flowchart TD`.
-- **A comparison or set of stats** — numbers, before/after, feature grids → inline HTML/CSS infographic (often clearer than a Mermaid diagram).
-- **A chronology** → Mermaid `timeline`.
+- **A structure or architecture** — services, components, how parts connect → Mermaid `flowchart` with subgraphs, or inline SVG.
+- **A hierarchy or map of ideas** → Mermaid `flowchart TD` (not `mindmap` — see §4).
+- **A comparison or set of stats** — numbers, before/after, feature grids → inline HTML/CSS infographic (stat cards, comparison cards, meter bars, spec list).
+- **A chronology** → the HTML **vertical timeline** (not Mermaid `timeline` — see §4).
+- **An ordered how-to** → HTML **numbered stepper**.
+- **Who does what, across stages** → HTML **swimlane**.
+- **Trade-offs** → HTML **pros & cons**; **a line worth pausing on** → HTML **pull quote**.
 - **A 2×2 / prioritization** → Mermaid `quadrantChart`.
+
+Most of these have a ready recipe in [`PATTERNS.md`](./skills/wiki-visualize/PATTERNS.md).
 
 **Don't add a visual when:**
 
 - The prose is already clear and linear. Three sentences beat a three-box flowchart.
-- You'd be drawing a glorified bullet list. Use a list.
+- You'd be drawing a glorified bullet list with no added structure. Use a list.
 - It's decorative. No "hero" diagrams that say nothing.
 - The data is a plain table → use a Markdown table.
 - You can't describe what it clarifies in one sentence. If you can't, it doesn't.
+
+The bar is "does it clarify or pace the page?", not "is the page allowed to have one?".
+On a long page, actively look for the one or two spots where a visual would do real work.
 
 ---
 
@@ -42,8 +60,8 @@ Three native techniques, ranked by how often they're the right call.
 
 | Need | Use |
 |---|---|
-| Flow, architecture, sequence, state, hierarchy, timeline, ER/class, quadrant | **Mermaid** |
-| Stats, comparisons, feature/step cards, callouts | **Inline HTML + CSS** |
+| Flow, architecture, sequence, state, hierarchy, ER/class, quadrant, git graph | **Mermaid** |
+| Stats, comparisons, **timelines**, steppers, swimlanes, pros/cons, meters, pull-quotes | **Inline HTML + CSS** |
 | A precise custom layout no diagram tool handles (≤ ~25 shapes) | **Inline SVG** |
 
 Quick decision rules:
@@ -128,13 +146,25 @@ else inherits the site colours and adapts automatically.
 - **Never** use `%%{init: {theme: "forest"}}%%` here — Quartz's injected variables bleed
   into the named theme and produce muddy, unpredictable colours. If you must tweak a
   theme variable, target it precisely: `%%{init: {themeVariables: {edgeLabelBackground: "#e7e0d1"}}}%%`.
+- **Skip `timeline` and `mindmap`.** Their auto colour scales fight this palette and render
+  low-contrast (dark-on-dark), and the `theme` fix above is banned. Verified alternatives:
+  chronology → the HTML [vertical timeline](./skills/wiki-visualize/PATTERNS.md#vertical-timeline);
+  hierarchy / idea map → `flowchart TD`. Both look better here.
 
 ---
 
 ## 5. Inline SVG & HTML: the dark-mode-safe way
 
 Quartz passes raw HTML/SVG straight through (`rehype-raw`, `allowDangerousHtml`), so both
-render. Two non-negotiables:
+render. Three non-negotiables:
+
+**Inside an HTML block: no blank lines, no 4-space indents.** Pages run through a Markdown
+parser first. A blank line *ends* the HTML block; a blank line followed by a 4-space-
+indented line is parsed as an **indented code block**, so your `<div>`s render as literal
+grey code. Keep multi-element HTML gap-free and indent inner lines by **≤2 spaces**. This
+is the #1 reason a hand-written infographic "renders as code" — and why the
+[`PATTERNS.md`](./skills/wiki-visualize/PATTERNS.md) recipes (the swimlane especially) are
+deliberately flattened. When in doubt, copy a verified recipe instead of free-handing it.
 
 **Use CSS variables for every colour — but only inside `style`, not bare attributes.**
 `fill="var(--tertiary)"` silently fails; it must be `style="fill:var(--tertiary)"` (or a
@@ -202,7 +232,8 @@ LLMs break diagrams in predictable ways. Before committing a visual, run this pa
 - [ ] Labels with `()`, `:`, `/` or other specials are **quoted**: `A["User (admin)"]`.
 - [ ] `classDef` is declared **before** it's used with `:::name`.
 - [ ] Flowchart/state transitions use `-->`, not `->` (that's sequence-only).
-- [ ] `mindmap`/`timeline` indentation is consistent (spaces, not mixed tabs).
+- [ ] HTML blocks have **no blank lines** and **no 4-space-indented** inner lines (else they render as a grey code block).
+- [ ] Chronology uses the HTML vertical timeline, hierarchy uses `flowchart TD` — not Mermaid `timeline`/`mindmap`.
 - [ ] SVG colours use `style="fill:var(--…)"`, **not** `fill="var(--…)"`.
 - [ ] SVG has `viewBox` + `width="100%"`; no fixed pixel width.
 - [ ] `accTitle`/`accDescr` (Mermaid) or `<title>`/`<desc>` (SVG) are present.
