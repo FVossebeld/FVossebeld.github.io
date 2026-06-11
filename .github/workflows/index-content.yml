@@ -1,0 +1,22 @@
+name: Index Content to Knowledge Base
+
+# Phase 1 skeleton. Wired up in Phase 3.
+# Manual-only for now. Phase 3 enables the push trigger:
+#   push:
+#     branches: [main]
+#     paths: ["content/**"]
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write # Azure OIDC for Blob upload
+
+jobs:
+  index:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Placeholder
+        run: |
+          echo "index-content is a Phase 1 skeleton; no upload happens yet."
+          echo "Phase 3 will: export content/ markdown -> Azure Blob -> Foundry IQ re-indexes."

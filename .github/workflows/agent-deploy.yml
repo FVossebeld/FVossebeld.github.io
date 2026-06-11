@@ -1,0 +1,19 @@
+name: Deploy Agent (Azure)
+
+# Phase 1 skeleton. Wired up in Phase 5 (azd up via Azure OIDC).
+# Manual-only for now so it never runs unattended.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write # Azure OIDC (federated credential), no stored secret
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Placeholder
+        run: |
+          echo "agent-deploy is a Phase 1 skeleton; no Azure action is taken yet."
+          echo "Phase 5 will: azure/login (OIDC) -> azd up -> deploy agent/ + infra/."
