@@ -89,6 +89,7 @@ scheduled workflow for the automated lint:
 | [`.github/skills/wiki-ingest/SKILL.md`](./skills/wiki-ingest/SKILL.md) | Skill | **Ingest**: turns a `raw/` source into content pages, wires up `[[wikilinks]]`, updates `content/index.md` and `LOG.md`, opens a PR. |
 | [`.github/skills/wiki-query/SKILL.md`](./skills/wiki-query/SKILL.md) | Skill | **Query**: answers a question from the wiki with citations, and offers to file good answers back as new pages so explorations compound. |
 | [`.github/skills/wiki-lint/SKILL.md`](./skills/wiki-lint/SKILL.md) | Skill | **Lint** (interactive): maps the link graph and reports — or, on request, fixes via a PR — broken/missing links, orphans, undocumented concepts, stale claims. |
+| [`.github/skills/wiki-visualize/SKILL.md`](./skills/wiki-visualize/SKILL.md) | Skill | **Visualize**: adds a diagram/infographic to a page when it earns its place (opt-in, human-approved). Quartz-native techniques + styling rules live in [`.github/DIAGRAMS.md`](./DIAGRAMS.md). Called by `wiki-ingest`. |
 | [`.github/agents/wiki-librarian.agent.md`](./agents/wiki-librarian.agent.md) | Agent | Thin persona / front door: understands what Floris wants and routes to the three skills, keeping him in the loop. |
 | [`.github/workflows/wiki-lint.md`](./workflows/wiki-lint.md) | Workflow | Automated **Lint** pass (compiled). Runs weekly (and on demand via *Actions → Wiki lint → Run workflow*). Read-only — opens **one issue** with a prioritised checklist. |
 

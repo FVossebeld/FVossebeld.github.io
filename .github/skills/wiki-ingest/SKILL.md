@@ -44,15 +44,22 @@ he approves.
    page, in both directions. Be generous but only link genuinely related things.
 5. **Update the catalog.** Add or refresh the page's entry in `content/index.md` — a link
    plus a one-line summary, under the right section — so nothing becomes an orphan.
-6. **Log it.** Append one line to `LOG.md` with the greppable prefix:
+6. **Consider a visual (opt-in).** Ask whether a diagram or infographic would make any
+   part of the page *faster to understand* — a flow, structure, comparison, or set of
+   stats. Usually the answer is no; prose is the default. If yes, propose it to Floris in
+   one line (technique + what it clarifies) and, once he agrees, hand off to the
+   **`wiki-visualize`** skill / [`.github/DIAGRAMS.md`](../../DIAGRAMS.md) to draft and
+   verify it. Never embed a visual without asking first.
+7. **Log it.** Append one line to `LOG.md` with the greppable prefix:
    `## [YYYY-MM-DD] ingest | <short description>`.
-7. **Self-check, then open a PR.** Before opening, run the draft past the bar yourself (or
+8. **Self-check, then open a PR.** Before opening, run the draft past the bar yourself (or
    suggest the `slop-verifier` agent). Open a PR summarising what you filed, which pages
    changed, and any `TODO(floris)` markers. The `content-quality-review` workflow scores
    it; iterate until it passes, then Floris merges.
 
 ## When to hand off
 
+- To add a diagram or infographic that earns its place: the **`wiki-visualize`** skill.
 - To polish rough prose into Floris's voice: the **`style-editor`** agent.
 - To gate a draft before merge: the **`slop-verifier`** agent (publishable bar is score ≥ 80).
 - To health-check the whole wiki afterwards: the **`wiki-lint`** skill.

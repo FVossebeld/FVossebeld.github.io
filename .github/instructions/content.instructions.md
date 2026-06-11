@@ -29,6 +29,9 @@ Write as **Floris**, in the first person. The target voice is:
 - Link related pages with `[[wiki-links]]`. Prefer linking to inventing a new term twice.
 - Keep headings sentence-case. Don't decorate headings with emoji.
 - Cite sources for factual claims (link, or reference a file in `raw/`).
+- Add a **visual** only when it makes an idea faster to grasp than prose — never as
+  decoration. When it does, follow [`../DIAGRAMS.md`](../DIAGRAMS.md) (the visual quality
+  bar) or invoke the `wiki-visualize` skill. Default to no diagram.
 
 ## Definition of done for a content PR
 

@@ -17,6 +17,11 @@ Read that file before writing or editing anything under `content/`. In short: no
 tics, no fabrication, no vagueness, no padding; concrete, opinionated, human prose that
 sounds like Floris.
 
+The same "earn your place" rule covers **visuals**: a diagram or infographic is only
+worth adding when it makes an idea faster to grasp than prose. When one does,
+[`.github/DIAGRAMS.md`](./DIAGRAMS.md) is the visual quality bar (Quartz-native
+techniques, the site palette, dark-mode safety). Default to no diagram.
+
 ## How work flows
 
 - Never push to `main`. Make changes on a branch and open a pull request for review.
@@ -40,6 +45,7 @@ demand or invoke by name):
 - **`wiki-ingest`** — file a `raw/` source into `content/` pages, wire up links, open a PR.
 - **`wiki-query`** — answer a question from the wiki with citations; file good answers back.
 - **`wiki-lint`** — health-check the link graph (broken/missing links, orphans, stale claims).
+- **`wiki-visualize`** — add a diagram/infographic to a page when it earns its place (see [`DIAGRAMS.md`](./DIAGRAMS.md)).
 
 Rule of thumb: a *standard* is an instruction, a *role* is an agent, a repeatable
 *procedure* is a skill. See [`AGENTS.md`](../AGENTS.md) for the full breakdown.
