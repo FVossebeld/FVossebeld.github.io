@@ -63,12 +63,12 @@ Stack those shifts up and you get a progression. Each step doesn't replace the l
 
 ```mermaid
 flowchart TD
-  accTitle: How agents evolve from chatbots into governed system operators
+  accTitle: Six-stage evolution from chatbots to governed system operators
   accDescr: A six-stage progression: Chatbot, Copilot, System operator, Workspace operator, Scoped specialist, and Governed learning system.
 
   classDef accent fill:#8a6f4d,stroke:#6b5740,color:#f7f3ea,rx:6,ry:6
 
-  A[Chatbot<br/>text in, text out] --> B[Copilot<br/>suggests and prepares actions]
+  A[Chatbot<br/>text in, text out] --> B[Copilot<br/>suggests and prepares structured actions]
   B --> C[System operator<br/>CLI and code execution]
   C --> D[Workspace operator<br/>files, shell, memory, state]
   D --> E[Scoped system specialist<br/>one system, bounded blast radius]

@@ -50,6 +50,7 @@ reflows on mobile.
 | **"At a glance" facts** | HTML | [Spec list](#spec-list) |
 | **Relative magnitudes / a mix** | HTML | [Meter bars](#meter-bars) |
 | **A line worth pausing on** | HTML | [Pull quote](#pull-quote) |
+| **Enterprise-agent recurring motifs** | Mermaid | [Signature system motifs](#signature-system-motifs-reuse-first) |
 
 Rule of thumb: **relational → Mermaid; quantitative or editorial layout → HTML.** A garden
 page should *vary its texture* - a wall of flat prose tires the reader as much as a wall of

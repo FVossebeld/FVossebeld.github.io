@@ -58,11 +58,11 @@ When a page needs a visual and one of these fits, prefer the same recurring moti
 feels coherent across pages. Reuse the matching snippet from
 [`PATTERNS.md`](./skills/wiki-visualize/PATTERNS.md), then adapt labels to the page's facts.
 
-1. **Capability ladder**: chatbot → copilot → system operator.
-2. **Coordination boundary**: process-scoped orchestrator vs system-scoped specialists.
-3. **Memory stack**: thread/user/customer/team/procedural/skill layers.
-4. **Action surface map**: GUI, API, CLI, DSL converging on governed execution.
-5. **Governance loop**: intent → approval → action → trace → evaluation.
+1. **Capability ladder** (showing AI evolution): chatbot → copilot → system operator.
+2. **Coordination boundary** (showing who coordinates vs who mutates): process-scoped orchestrator vs system-scoped specialists.
+3. **Memory stack** (showing boundary widening): thread/user/customer/team/procedural/skill layers.
+4. **Action surface map** (showing intent-to-execution interfaces): GUI, API, CLI, DSL converging on governed execution.
+5. **Governance loop** (showing safe operation cycle): intent → approval → action → trace → evaluation.
 
 These are defaults, not decoration. Use them only when they clarify the local argument.
 
