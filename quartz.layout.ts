@@ -45,6 +45,17 @@ export const sharedPageComponents: SharedLayout = {
       }),
       condition: (page) => page.fileData.slug === "index",
     }),
+    // "Connections" foot: backlinks + the local graph, demoted out of the
+    // reading view so they appear once the essay is read, not alongside it.
+    // Off on the homepage, which carries its own "Latest" list above.
+    Component.ConditionalRender({
+      component: Component.Backlinks(),
+      condition: (page) => page.fileData.slug !== "index",
+    }),
+    Component.ConditionalRender({
+      component: Component.Graph(),
+      condition: (page) => page.fileData.slug !== "index",
+    }),
     Component.GardenAgent({
       endpoint: "https://ca-gtjqxftcetisc.mangosand-dc7dc8b1.eastus2.azurecontainerapps.io/",
       repo: "FVossebeld/FVossebeld.github.io",
@@ -89,13 +100,16 @@ export const defaultContentPageLayout: PageLayout = {
         { Component: Component.ReaderMode() },
       ],
     }),
-    explorer,
+    Component.SiteNav({
+      links: {
+        Thoughts: "/thoughts/",
+        Concepts: "/concepts/",
+        About: "/about",
+        "How this works": "/how-this-works",
+      },
+    }),
   ],
-  right: [
-    Component.Graph(),
-    Component.DesktopOnly(Component.TableOfContents()),
-    Component.Backlinks(),
-  ],
+  right: [Component.DesktopOnly(Component.TableOfContents())],
 }
 
 // components for pages that display lists of pages  (e.g. tags or folders)
