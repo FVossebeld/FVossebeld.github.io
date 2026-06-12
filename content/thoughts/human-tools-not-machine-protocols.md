@@ -1,5 +1,7 @@
 ---
 title: Agents reach for human tools, not machine protocols
+status: seed
+type: claim
 description: When we give models the ability to act, the interfaces that stick are the ones humans built for humans, not the ones machines built to talk to each other.
 tags:
   - agentic-ai
