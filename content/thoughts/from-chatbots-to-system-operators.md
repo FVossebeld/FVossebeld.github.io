@@ -1,5 +1,7 @@
 ---
 title: From chatbots to system operators
+status: working-theory
+type: essay
 description: A working theory about how LLM agents are evolving from chat partners into governed operators of real systems, and the architecture and memory problems that come with it.
 tags:
   - agentic-ai

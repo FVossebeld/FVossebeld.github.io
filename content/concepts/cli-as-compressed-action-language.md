@@ -1,5 +1,7 @@
 ---
 title: CLI as a compressed action language
+status: refined
+type: concept
 description: The command line isn't just shorter than JSON tool calls; it's closer to execution. Powerful, composable, and dangerous enough to need governing.
 tags:
   - agentic-ai

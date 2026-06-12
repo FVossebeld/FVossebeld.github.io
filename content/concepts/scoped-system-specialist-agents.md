@@ -1,5 +1,7 @@
 ---
 title: Scoped system-specialist agents
+status: working-theory
+type: concept
 description: Why enterprise agents should be scoped to one system rather than one broad autonomous operator, and why scope alone isn't enough.
 tags:
   - agentic-ai

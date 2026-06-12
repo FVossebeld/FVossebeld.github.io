@@ -1,5 +1,7 @@
 ---
 title: The agent as semantic UI
+status: working-theory
+type: concept
 description: "The agent as a natural-language interface over enterprise software: translating intent into governed actions, sitting above the GUI rather than replacing it."
 tags:
   - agentic-ai

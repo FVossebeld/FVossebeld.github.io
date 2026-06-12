@@ -1,5 +1,7 @@
 ---
 title: The memory promotion pipeline
+status: working-theory
+type: concept
 description: How raw agent experience should move through abstraction and review before it becomes shared knowledge, with a worked example and its failure modes.
 tags:
   - agentic-ai
