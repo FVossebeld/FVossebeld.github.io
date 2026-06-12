@@ -12,9 +12,7 @@ const config: QuartzConfig = {
     pageTitleSuffix: " · digital garden",
     enableSPA: true,
     enablePopovers: true,
-    analytics: {
-      provider: null,
-    },
+    analytics: null,
     locale: "en-US",
     baseUrl: "fvossebeld.github.io",
     ignorePatterns: ["private", "templates", ".obsidian"],
