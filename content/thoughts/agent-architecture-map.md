@@ -20,7 +20,7 @@ My current view: the architecture gets safer when orchestration and write access
 - [[mcp]]
 - [[tool-calling]]
 - [[tool-schema]]
-- [[agent-workspaces|agent workspace]]
+- [[agent-workspaces|agent workspaces]]
 - [[workspace-state]]
 - [[context-window]]
 - [[scoped-agent]]

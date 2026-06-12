@@ -39,13 +39,13 @@ I keep coming back to the same question: as language models start interacting wi
   </li>
   <li>
     <a href="concepts/">
-      <span class="index-title">Concept nodes</span>
+      <span class="index-title">Concept notes</span>
       <span class="index-desc">Reusable concept pages, including draft placeholders for concrete nodes like MCP, tool schema, approval gate, rollback, and workspace state.</span>
     </a>
   </li>
   <li>
     <a href="thoughts/why-write-access-is-hard-in-regulated-environments">
-      <span class="index-title">Field-note draft</span>
+      <span class="index-title">Write access in regulated environments (draft)</span>
       <span class="index-desc">A draft field-note slot for practical write-access failures in regulated environments.</span>
     </a>
   </li>
