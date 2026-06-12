@@ -177,9 +177,28 @@ function applySolidNodeFills(scope: ParentNode) {
     const fillColor = fillSource.getAttribute("stroke")
     if (!fillColor || fillColor === "none") return
 
+    const outlineData = outline.getAttribute("d")
+    if (!outlineData) return
+
+    // rough.js draws the border as several open sub-strokes (one "M" per edge, drawn
+    // twice for the sketchy look) and never closes them. Filling that path as-is only
+    // paints thin slivers along the edges, leaving the interior transparent - so a
+    // light-text node still floats over the page background. Stitch the sub-strokes
+    // into a single closed path (every moveto after the first becomes a lineto, then
+    // "Z") so the fill actually covers the shape's interior, whatever its outline.
+    let seenMove = false
+    const closedData =
+      outlineData.replace(/M/g, () => {
+        if (seenMove) return "L"
+        seenMove = true
+        return "M"
+      }) + " Z"
+
     const background = outline.cloneNode(true) as SVGPathElement
     background.setAttribute("class", "rough-solid-bg")
+    background.setAttribute("d", closedData)
     background.setAttribute("fill", fillColor)
+    background.setAttribute("fill-rule", "nonzero")
     background.setAttribute("stroke", "none")
     background.removeAttribute("style")
     container.insertBefore(background, container.firstChild)

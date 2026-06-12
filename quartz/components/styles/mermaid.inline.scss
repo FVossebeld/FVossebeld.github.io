@@ -1,3 +1,13 @@
+// Mermaid wraps node label text in a <p> inside .nodeLabel. Quartz's prose styles
+// colour that <p> with --darkgray, which overrides the per-node text colour Mermaid
+// sets on .nodeLabel (e.g. the light colour a dark-fill accent node needs). The result
+// is dark text on a dark fill - unreadable. Force the inner text to inherit the label's
+// own colour so default nodes stay dark and accent/sage nodes get their light text.
+.nodeLabel p,
+.nodeLabel p * {
+  color: inherit !important;
+}
+
 .expand-button {
   position: absolute;
   display: flex;
