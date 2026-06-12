@@ -82,6 +82,8 @@ flowchart LR
 does lexical (term-overlap) ranking. The container bakes `content/` to `/app/knowledge` at
 build time, so the agent's knowledge is a snapshot of the published garden. The system prompt
 embeds a catalog of page titles so the model knows what exists before it searches.
+`search_garden` returns the top few matches, each trimmed to a citation-sized snippet, so a
+turn's tool output stays small even when the matched section is long.
 
 Why not Foundry IQ / Azure AI Search (the first plan)? The garden is ~a dozen pages. Lexical
 search over that is instant, good enough, and adds **zero standing cost** and zero extra
@@ -123,7 +125,7 @@ draws the issue card, so there is one mental model for "the model decides, the f
 - **The conversation survives the morph.** Quartz morphs `document.body` positionally on SPA
   nav, which wipes the live chat log (micromorph's `data-persist` doesn't protect a running
   subtree here). So the widget snapshots the transcript, the editable issue-card fields, the
-  model context (`agent.messages`), and the open/closed state into `sessionStorage` — written
+  model context (`agent.messages`, capped to the most recent turns), and the open/closed state into `sessionStorage` — written
   in a `window.addCleanup` hook that runs _after_ the new HTML is fetched but _before_ the
   morph — and rehydrates on the next `nav` init. Listeners are wired through `addCleanup`
   (the canonical island pattern) instead of a `data-wired` attribute, which the morph strips.
@@ -136,6 +138,13 @@ What's actually in place:
   runs nothing and bills nothing (first request after idle cold-starts in ~10–30s).
 - **Rate ceiling.** The gpt-4o-mini deployment has a low TPM cap (capacity 20, GlobalStandard).
   Pay-as-you-go can't exceed its TPM, so the spend _rate_ is bounded no matter the load.
+- **Bounded per-turn cost.** The widget is stateless and replays the whole conversation each
+  turn, so without a guard the per-turn token count climbs until it trips that TPM cap and the
+  run errors out after a handful of messages. The agent applies native Agent Framework
+  compaction (a `TokenBudgetComposedStrategy` that drops all but the latest tool-call group,
+  keeps the recent turns, and holds the history under a token budget while preserving the
+  system prompt), so every turn stays small and the chat keeps running however long it gets.
+  The widget also caps the history it replays to the last ~20 messages.
 - **Pay-per-token model.** Free when idle; no provisioned-throughput floor.
 
 What is **not** built yet (honest gaps, all from the original plan):

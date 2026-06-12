@@ -130,7 +130,7 @@ def find_page(slug: str) -> Page | None:
     return None
 
 
-def search(query: str, k: int = 4) -> list[Chunk]:
+def search(query: str, k: int = 3) -> list[Chunk]:
     _, chunks = _load()
     q = set(_tokens(query))
     if not q or not chunks:
