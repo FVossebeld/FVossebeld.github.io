@@ -57,4 +57,4 @@ I keep coming back to the same question: as language models start interacting wi
   </li>
 </ul>
 
-<p class="colophon">Everything here, content and code, lives in one public repository: <a href="https://github.com/FVossebeld/FVossebeld.github.io">github.com/FVossebeld/FVossebeld.github.io</a>. Search is top left, the graph is on the right. Pages link to each other, so follow the threads.</p>
+<p class="colophon">Everything here, content and code, lives in one public repository: <a href="https://github.com/FVossebeld/FVossebeld.github.io">github.com/FVossebeld/FVossebeld.github.io</a>. Search is top left, and each page's connections (its backlinks and a small graph) sit at the foot. Pages link to each other, so follow the threads.</p>

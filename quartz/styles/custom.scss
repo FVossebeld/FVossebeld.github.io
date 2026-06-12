@@ -38,7 +38,7 @@
   --step-4: clamp(2.25rem, 1.7rem + 2.4vw, 3.25rem);
 
   /* Measure + rhythm */
-  --measure: 64ch;
+  --measure: 68ch;
   --gutter: 12rem; /* sidenote gutter, used on wide screens only */
   --block-gap: clamp(1.25rem, 1.05rem + 0.8vw, 1.85rem);
   --section-gap: clamp(2.3rem, 1.85rem + 1.8vw, 3.6rem);
@@ -114,8 +114,6 @@ h6 {
 }
 
 article {
-  counter-reset: secnum;
-
   & > h1 {
     font-size: var(--step-3);
     font-weight: 700;
@@ -128,22 +126,6 @@ article {
     font-size: var(--step-2);
     margin-top: var(--section-gap);
     margin-bottom: var(--block-gap);
-    padding-bottom: 0.4rem;
-    border-bottom: 1px solid var(--rule);
-    counter-increment: secnum;
-  }
-
-  /* Numbered sections — the working-paper signal */
-  & > h2::before,
-  & section > h2::before {
-    content: counter(secnum, decimal-leading-zero);
-    font-family: var(--monoFont);
-    font-weight: 500;
-    font-size: 0.52em;
-    letter-spacing: 0.04em;
-    color: var(--accent);
-    margin-right: 0.85em;
-    vertical-align: 0.32em;
   }
 
   & h3 {
@@ -172,17 +154,6 @@ article {
   }
 }
 
-/* Don't number list pages, the homepage, or the footnotes apparatus */
-body[data-slug="index"] article > h2,
-.popover article > h2 {
-  border-bottom: none;
-}
-body[data-slug="index"] article > h2::before,
-.footnotes h2::before,
-.popover article h2::before {
-  content: none;
-}
-
 /* Page title (rendered by ArticleTitle as a sibling before <article>) */
 .article-title {
   font-family: var(--headerFont);
@@ -198,6 +169,30 @@ body[data-slug="index"] .article-title {
   line-height: 1.05;
   letter-spacing: -0.02em;
   margin-bottom: 1rem;
+}
+
+/* -----------------------------------------------------------------------------
+   Reading column — one centered plane between quiet rails (OpenAI-blog calm).
+   The center grid cell is wide; cap its blocks at the measure and center them
+   so the header, prose, the Connections foot, and the site footer share one
+   column. The side rails (search + nav on the left, a faint TOC on the right)
+   frame the reading without competing with it.
+   ----------------------------------------------------------------------------- */
+.center > .page-header,
+.center > article,
+.center > hr,
+.center > .page-footer {
+  max-width: var(--measure);
+  margin-inline: auto;
+}
+
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+article p {
+  text-wrap: pretty;
 }
 
 /* -----------------------------------------------------------------------------
@@ -781,6 +776,52 @@ button#explorer-end,
   color: var(--muted);
 }
 
+/* Curated left-rail nav (SiteNav) — the persistent map on reading pages.
+   A short, quiet list; the current section is inked, the rest recede. */
+.site-nav {
+  font-family: var(--uiFont);
+  width: 100%;
+  margin-top: 0.4rem;
+}
+.site-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+.site-nav a {
+  color: var(--ink-soft);
+  font-size: var(--step-0);
+  transition: color 0.12s var(--ease);
+  &:hover {
+    color: var(--accent);
+  }
+}
+.site-nav a.active {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* On mobile the left rail is a top strip; let the nav wrap onto its own row
+   as a centered horizontal list so reading pages keep their wayfinding. */
+@media all and ($mobile) {
+  #quartz-body .sidebar.left {
+    flex-wrap: wrap;
+    row-gap: 1rem;
+  }
+  .site-nav {
+    margin-top: 0;
+  }
+  .site-nav ul {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.4rem 1.4rem;
+  }
+}
+
 /* =============================================================================
    Page header — breadcrumbs, meta, tags
    ============================================================================= */
@@ -841,7 +882,9 @@ a.tag-link,
 }
 
 /* =============================================================================
-   Right sidebar — graph, TOC, backlinks
+   Right sidebar — a whisper-quiet table of contents for in-essay wayfinding.
+   Graph and backlinks have moved to the Connections foot below the essay.
+   The shared label styling still covers all three wherever they render.
    ============================================================================= */
 .right {
   font-family: var(--uiFont);
@@ -890,6 +933,23 @@ a.tag-link,
 }
 
 /* =============================================================================
+   Connections foot — backlinks + the local graph, after the essay.
+   Demoted out of the reading view so they answer "where does this connect?"
+   once you've read, instead of competing while you read. Two-up on wide
+   screens, stacked when narrow. Scales as the garden grows.
+   ============================================================================= */
+body:not([data-slug="index"]) .page-footer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+  gap: var(--block-gap) clamp(1.5rem, 1rem + 2vw, 3rem);
+  align-items: start;
+  margin-top: var(--block-gap);
+}
+body:not([data-slug="index"]) .page-footer .graph .graph-outer {
+  height: 15rem;
+}
+
+/* =============================================================================
    Search modal
    ============================================================================= */
 .search-container {
@@ -930,6 +990,10 @@ footer {
   border-top: 1px solid var(--rule);
   margin-top: var(--section-gap);
   padding-top: 1.2rem;
+  & > ul {
+    max-width: var(--measure);
+    margin-inline: auto;
+  }
   & a {
     color: var(--muted);
     text-decoration: underline;
