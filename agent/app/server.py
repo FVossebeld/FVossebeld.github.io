@@ -13,7 +13,13 @@ from __future__ import annotations
 
 import os
 
-from agent_framework import Agent
+from agent_framework import (
+    Agent,
+    CharacterEstimatorTokenizer,
+    SelectiveToolCallCompactionStrategy,
+    SlidingWindowStrategy,
+    TokenBudgetComposedStrategy,
+)
 from agent_framework.foundry import FoundryChatClient
 from agent_framework_ag_ui import add_agent_framework_fastapi_endpoint
 from azure.identity import DefaultAzureCredential
@@ -24,13 +30,23 @@ from . import garden
 
 ISSUE_LABEL = os.environ.get("GARDEN_ISSUE_LABEL", "from-agent")
 
+# Cap each retrieved passage so a single search can't dominate the turn's tokens.
+SNIPPET_CHARS = 600
+
+
+def _snippet(text: str) -> str:
+    """Trim a passage to a citation-sized snippet, breaking on a word boundary."""
+    if len(text) <= SNIPPET_CHARS:
+        return text
+    return text[:SNIPPET_CHARS].rsplit(" ", 1)[0] + "…"
+
 
 def search_garden(query: str) -> str:
     """Search Floris's digital garden and return matching passages with their page URLs."""
     hits = garden.search(query)
     if not hits:
         return "No matching pages found in the garden."
-    return "\n\n".join(f"## {h.title} - {h.heading}\n{h.url}\n{h.text}" for h in hits)
+    return "\n\n".join(f"## {h.title} - {h.heading}\n{h.url}\n{_snippet(h.text)}" for h in hits)
 
 
 def draft_github_issue(title: str, body: str, labels: str = ISSUE_LABEL) -> str:
@@ -84,12 +100,29 @@ def _origins() -> list[str]:
     return [o.strip() for o in raw.split(",") if o.strip()]
 
 
+# The AG-UI widget is stateless: it replays the whole conversation on every turn.
+# Left unbounded, the per-turn token count climbs until it trips the model's
+# tokens-per-minute ceiling, and the run errors out after a handful of messages.
+# Compaction keeps each turn small natively — drop all but the latest tool-call
+# group (the bulky search results), keep only the last few turns, and stay under
+# a token budget — while preserving the system prompt. The model always has the
+# recent thread and never blows the budget, so the agent just keeps running.
+_COMPACTION = TokenBudgetComposedStrategy(
+    token_budget=4000,
+    tokenizer=CharacterEstimatorTokenizer(),
+    strategies=[
+        SelectiveToolCallCompactionStrategy(keep_last_tool_call_groups=1),
+        SlidingWindowStrategy(keep_last_groups=4, preserve_system=True),
+    ],
+)
+
 agent = Agent(
     FoundryChatClient(credential=DefaultAzureCredential()),
     SYSTEM_PROMPT,
     name="garden-agent",
     description="Answers from Floris Vossebeld's digital garden and drafts GitHub issues.",
     tools=[search_garden, draft_github_issue, navigate_garden],
+    compaction_strategy=_COMPACTION,
 )
 
 app = FastAPI(title="Garden agent (AG-UI)")

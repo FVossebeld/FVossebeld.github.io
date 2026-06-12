@@ -68,6 +68,17 @@ function setupGardenAgent() {
     agent.messages.push(...savedMessages)
   }
 
+  // The stateless agent gets the whole history replayed every turn, so cap the
+  // model-facing context to the most recent messages. The visible transcript
+  // (LOG_KEY) is untouched, and the server repairs any tool-call/result split at
+  // the trim boundary — this just keeps each request small and bounded.
+  const MAX_REPLAY_MESSAGES = 20
+  const trimHistory = () => {
+    const overflow = agent.messages.length - MAX_REPLAY_MESSAGES
+    if (overflow > 0) agent.messages.splice(0, overflow)
+  }
+  trimHistory()
+
   const scrollDown = () => (log.scrollTop = log.scrollHeight)
 
   const addMessage = (cls: string, html: string): HTMLElement => {
@@ -267,6 +278,7 @@ function setupGardenAgent() {
       addMessage("ga-error", "Something went wrong reaching the agent. Try again.")
     } finally {
       clearStatus()
+      trimHistory()
       send.disabled = false
       input.disabled = false
       input.focus()
