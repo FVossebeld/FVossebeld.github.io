@@ -20,15 +20,33 @@ I keep coming back to the same question: as language models start interacting wi
 
 <ul class="index-list">
   <li>
+    <a href="thoughts/agent-architecture-map">
+      <span class="index-title">Agent architecture map</span>
+      <span class="index-desc">Map for concrete architecture nodes: MCP, tool calling, permission boundaries, traces, orchestration, and state.</span>
+    </a>
+  </li>
+  <li>
+    <a href="thoughts/enterprise-ai-map">
+      <span class="index-title">Enterprise AI map</span>
+      <span class="index-desc">Map for governance, write access, systems of record, and approval boundaries.</span>
+    </a>
+  </li>
+  <li>
     <a href="thoughts/from-chatbots-to-system-operators">
       <span class="index-title">From chatbots to system operators</span>
-      <span class="index-desc">My working theory: LLM agents are turning into scoped operators of real systems. Start with the essay, then follow it into the concept notes.</span>
+      <span class="index-desc">Working-theory essay: LLM agents are turning into scoped operators of real systems.</span>
     </a>
   </li>
   <li>
     <a href="concepts/">
-      <span class="index-title">Concept notes</span>
-      <span class="index-desc">The cluster underneath that theory: action languages, agent workspaces, scoped specialists, orchestration, and federated memory. I take each one apart on its own page.</span>
+      <span class="index-title">Concept nodes</span>
+      <span class="index-desc">Reusable concept pages, including draft placeholders for concrete nodes like MCP, tool schema, approval gate, rollback, and workspace state.</span>
+    </a>
+  </li>
+  <li>
+    <a href="thoughts/why-write-access-is-hard-in-regulated-environments">
+      <span class="index-title">Field-note draft</span>
+      <span class="index-desc">A draft field-note slot for practical write-access failures in regulated environments.</span>
     </a>
   </li>
   <li>

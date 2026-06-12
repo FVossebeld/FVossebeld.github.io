@@ -1,5 +1,7 @@
 ---
 title: JSON is transport, not cognition
+status: working-theory
+type: concept
 description: Why JSON works as the wire format for tool calls but not as the layer an agent thinks and acts in.
 tags:
   - agentic-ai

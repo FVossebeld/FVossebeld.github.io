@@ -1,5 +1,7 @@
 ---
 title: Orchestrating scoped agents
+status: working-theory
+type: concept
 description: Scoping an agent to one system makes it safe but leaves it unable to finish cross-system work. The fix is broad intent, narrow execution, and the hard parts are handoff, ownership, and rollback.
 tags:
   - agentic-ai

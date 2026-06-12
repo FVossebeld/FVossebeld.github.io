@@ -1,5 +1,7 @@
 ---
 title: Agent workspaces
+status: refined
+type: concept
 description: Agents are moving from stateless chat into persistent environments with files, memory, tools, and state, and capability lives in the coupling between model and environment.
 tags:
   - agentic-ai
