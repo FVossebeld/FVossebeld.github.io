@@ -11,18 +11,44 @@ tags:
 
 Raw experience shouldn't become shared knowledge automatically. It should be *promoted* through stages, losing specificity and gaining trust at each step. Each arrow below is a gate, a checkpoint a piece of knowledge has to clear before it earns a wider audience, not a default it slides through.
 
-```mermaid
-flowchart LR
-  accTitle: The memory promotion pipeline
-  accDescr: Knowledge moves through five stages: raw episode, private memory, sanitized lesson, approved playbook, and reusable skill. Each arrow is a gate that strips identifying detail and adds review. Most episodes never leave the first stage.
-
-  classDef accent fill:#8a6f4d,stroke:#6b5740,color:#f7f3ea,rx:6,ry:6
-
-  E[Raw episode<br/>full private detail] -->|stays local| P[Private memory<br/>scoped to user/tenant]
-  P -->|strip identifiers| L[Sanitized lesson<br/>generalised insight]
-  L -->|human sign-off| K[Approved playbook<br/>reviewed + provenance]
-  K -->|compress to procedure| S[Reusable skill<br/>shareable by default]:::accent
-```
+<figure class="sketch-board" role="group" aria-labelledby="promo-title">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 660 150" width="100%" role="img" aria-labelledby="promo-title promo-desc">
+<title id="promo-title">The memory promotion pipeline</title>
+<desc id="promo-desc">Five stages left to right: raw episode, private memory, sanitized lesson, approved playbook, and reusable skill. Each arrow is a gate. Most episodes never leave the first stage.</desc>
+<style>
+.prm-tip{fill:var(--secondary);stroke:none}
+.prm-fwd{stroke:var(--secondary);stroke-width:1.5;fill:none}
+.prm-h{fill:var(--darkgray);font-family:var(--bodyFont);font-size:11px;font-weight:600;text-anchor:middle}
+.prm-s{fill:var(--gray);font-family:var(--bodyFont);font-size:9px;text-anchor:middle}
+.prm-ha{fill:var(--light);font-family:var(--bodyFont);font-size:11px;font-weight:600;text-anchor:middle}
+.prm-sa{fill:var(--light);font-family:var(--bodyFont);font-size:9px;opacity:.8;text-anchor:middle}
+</style>
+<rect class="sketch-node" rx="9" x="24" y="50" width="100" height="50"/>
+<text class="prm-h" x="74" y="69">Raw episode</text>
+<text class="prm-s" x="74" y="83">private detail</text>
+<line class="prm-fwd" x1="124" y1="75" x2="143" y2="75"/>
+<polygon class="prm-tip" points="143,71 143,79 152,75"/>
+<rect class="sketch-node" rx="9" x="152" y="50" width="100" height="50"/>
+<text class="prm-h" x="202" y="69">Private memory</text>
+<text class="prm-s" x="202" y="83">user or tenant</text>
+<line class="prm-fwd" x1="252" y1="75" x2="271" y2="75"/>
+<polygon class="prm-tip" points="271,71 271,79 280,75"/>
+<rect class="sketch-node" rx="9" x="280" y="50" width="100" height="50"/>
+<text class="prm-h" x="330" y="69">Sanitized lesson</text>
+<text class="prm-s" x="330" y="83">generalised</text>
+<line class="prm-fwd" x1="380" y1="75" x2="399" y2="75"/>
+<polygon class="prm-tip" points="399,71 399,79 408,75"/>
+<rect class="sketch-node" rx="9" x="408" y="50" width="100" height="50"/>
+<text class="prm-h" x="458" y="69">Approved playbook</text>
+<text class="prm-s" x="458" y="83">reviewed</text>
+<line class="prm-fwd" x1="508" y1="75" x2="527" y2="75"/>
+<polygon class="prm-tip" points="527,71 527,79 536,75"/>
+<rect class="sketch-node-accent" rx="9" x="536" y="50" width="100" height="50"/>
+<text class="prm-ha" x="586" y="69">Reusable skill</text>
+<text class="prm-sa" x="586" y="83">shareable</text>
+</svg>
+<figcaption>Each arrow is a gate that strips specificity and adds review. Most episodes never leave the first stage.</figcaption>
+</figure>
 
 1. **Raw episode**: what actually happened this session, with all its private detail. Stays local.
 2. **Private memory**: a durable note scoped to one user or tenant. Still sensitive.

@@ -63,19 +63,55 @@ So when someone tells me a new model "feels much more capable," my first guess i
 
 Stack those shifts up and you get a progression. Each step doesn't replace the last so much as wrap it in more environment and more governance.
 
-```mermaid
-flowchart TD
-  accTitle: Six-stage evolution from chatbots to governed system operators
-  accDescr: A six-stage progression: Chatbot, Copilot, System operator, Workspace operator, Scoped specialist, and Governed learning system.
-
-  classDef accent fill:#8a6f4d,stroke:#6b5740,color:#f7f3ea,rx:6,ry:6
-
-  A[Chatbot<br/>text in, text out] --> B[Copilot<br/>suggests and prepares structured actions]
-  B --> C[System operator<br/>CLI and code execution]
-  C --> D[Workspace operator<br/>files, shell, memory, state]
-  D --> E[Scoped system specialist<br/>one system, bounded blast radius]
-  E --> F[Governed learning system<br/>federated memory and promotion]:::accent
-```
+<figure class="sketch-board" role="group" aria-labelledby="evl-title">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 580 450" width="100%" role="img" aria-labelledby="evl-title evl-desc">
+<title id="evl-title">Six-stage evolution from chatbot to governed system operator</title>
+<desc id="evl-desc">Six stages stacked vertically: chatbot, copilot, system operator, workspace operator, scoped system specialist, and governed learning system.</desc>
+<style>
+.evl-r{stroke:var(--lightgray);stroke-width:2;fill:none}
+.evl-d{fill:var(--lightgray);stroke:var(--secondary);stroke-width:1.5}
+.evl-da{fill:var(--secondary);stroke:var(--secondary);stroke-width:1.5}
+.evl-n{fill:var(--gray);font-family:var(--bodyFont);font-size:11px;text-anchor:middle;dominant-baseline:central}
+.evl-na{fill:var(--light);font-family:var(--bodyFont);font-size:11px;text-anchor:middle;dominant-baseline:central}
+.evl-h{fill:var(--darkgray);font-family:var(--bodyFont);font-size:13px;font-weight:600}
+.evl-s{fill:var(--gray);font-family:var(--bodyFont);font-size:11px}
+.evl-ha{fill:var(--light);font-family:var(--bodyFont);font-size:13px;font-weight:600}
+.evl-sa{fill:var(--light);font-family:var(--bodyFont);font-size:11px;opacity:.8}
+</style>
+<line class="evl-r" x1="35" y1="50" x2="35" y2="400"/>
+<rect class="sketch-node" rx="9" x="60" y="26" width="500" height="48"/>
+<circle class="evl-d" cx="35" cy="50" r="13"/>
+<text class="evl-n" x="35" y="50">1</text>
+<text class="evl-h" x="78" y="44">Chatbot</text>
+<text class="evl-s" x="78" y="60">text in, text out</text>
+<rect class="sketch-node" rx="9" x="60" y="96" width="500" height="48"/>
+<circle class="evl-d" cx="35" cy="120" r="13"/>
+<text class="evl-n" x="35" y="120">2</text>
+<text class="evl-h" x="78" y="114">Copilot</text>
+<text class="evl-s" x="78" y="130">suggests and prepares structured actions</text>
+<rect class="sketch-node" rx="9" x="60" y="166" width="500" height="48"/>
+<circle class="evl-d" cx="35" cy="190" r="13"/>
+<text class="evl-n" x="35" y="190">3</text>
+<text class="evl-h" x="78" y="184">System operator</text>
+<text class="evl-s" x="78" y="200">CLI and code execution</text>
+<rect class="sketch-node" rx="9" x="60" y="236" width="500" height="48"/>
+<circle class="evl-d" cx="35" cy="260" r="13"/>
+<text class="evl-n" x="35" y="260">4</text>
+<text class="evl-h" x="78" y="254">Workspace operator</text>
+<text class="evl-s" x="78" y="270">files, shell, memory, state</text>
+<rect class="sketch-node" rx="9" x="60" y="306" width="500" height="48"/>
+<circle class="evl-d" cx="35" cy="330" r="13"/>
+<text class="evl-n" x="35" y="330">5</text>
+<text class="evl-h" x="78" y="324">Scoped system specialist</text>
+<text class="evl-s" x="78" y="340">one system, bounded blast radius</text>
+<rect class="sketch-node-accent" rx="9" x="60" y="376" width="500" height="48"/>
+<circle class="evl-da" cx="35" cy="400" r="13"/>
+<text class="evl-na" x="35" y="400">6</text>
+<text class="evl-ha" x="78" y="394">Governed learning system</text>
+<text class="evl-sa" x="78" y="410">federated memory and promotion</text>
+</svg>
+<figcaption>Six-stage progression: from a chat transcript to a governed operator that learns.</figcaption>
+</figure>
 
 ## The useful enterprise shape is scoped, not omniscient
 
@@ -95,24 +131,67 @@ The missing layer is [[orchestrating-scoped-agents|orchestration]], and the patt
 
 That gives a rough architecture, less a finished blueprint than the boxes I keep redrawing:
 
-```mermaid
-flowchart TD
-  accTitle: A layered architecture for governed enterprise agents
-  accDescr: Human intent flows into an orchestrator, which routes to scoped system-specialist agents, which act through an action layer of APIs and connectors onto enterprise systems. A policy layer and a memory layer wrap the whole stack.
-
-  classDef wrap fill:#53665a,stroke:#3f4e45,color:#f7f3ea,rx:6,ry:6
-
-  H[Human intent<br/>natural language] --> O[Orchestrator<br/>routes, clarifies, coordinates]
-  O --> S[Scoped system specialists<br/>Salesforce · SAP · ServiceNow]
-  S --> A[Action layer<br/>APIs · MCP · connectors · code]
-  A --> SYS[(Enterprise systems<br/>of record)]
-  POL[Policy layer<br/>identity · permissions · audit]:::wrap
-  MEM[Memory layer<br/>scoped · federated]:::wrap
-  POL -.enforces.-> O
-  POL -.enforces.-> S
-  MEM -.supplies context.-> O
-  MEM -.stores outcomes.-> S
-```
+<figure class="sketch-board" role="group" aria-labelledby="arch-title">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 430" width="100%" role="img" aria-labelledby="arch-title arch-desc">
+<title id="arch-title">Layered architecture for governed enterprise agents</title>
+<desc id="arch-desc">Human intent flows into an orchestrator, which routes to scoped specialists, through an action layer, and into enterprise systems. A policy layer and a memory layer wrap the orchestrator and specialists on both sides.</desc>
+<style>
+.arch-flow{stroke:var(--secondary);stroke-width:1.5;fill:none}
+.arch-dash{stroke:var(--tertiary);stroke-width:1.2;fill:none;stroke-dasharray:5 3}
+.arch-tip{fill:var(--secondary);stroke:none}
+.arch-dtip{fill:var(--tertiary);stroke:none}
+.arch-h{fill:var(--darkgray);font-family:var(--bodyFont);font-size:13px;font-weight:600;text-anchor:middle}
+.arch-s{fill:var(--gray);font-family:var(--bodyFont);font-size:11px;text-anchor:middle}
+.arch-ph{fill:var(--tertiary);font-family:var(--bodyFont);font-size:12px;font-weight:600;text-anchor:middle}
+.arch-ps{fill:var(--gray);font-family:var(--bodyFont);font-size:10px;text-anchor:middle}
+.arch-el{fill:var(--gray);font-family:var(--bodyFont);font-size:10px;text-anchor:middle}
+</style>
+<rect style="fill:color-mix(in srgb,var(--tertiary) 10%,var(--lightgray));stroke:var(--tertiary);stroke-width:1;stroke-dasharray:6 3" rx="8" x="20" y="98" width="150" height="138"/>
+<text class="arch-ph" x="95" y="152">Policy layer</text>
+<text class="arch-ps" x="95" y="167">identity · permissions</text>
+<text class="arch-ps" x="95" y="180">audit</text>
+<rect style="fill:color-mix(in srgb,var(--tertiary) 10%,var(--lightgray));stroke:var(--tertiary);stroke-width:1;stroke-dasharray:6 3" rx="8" x="510" y="98" width="150" height="138"/>
+<text class="arch-ph" x="585" y="152">Memory layer</text>
+<text class="arch-ps" x="585" y="167">scoped</text>
+<text class="arch-ps" x="585" y="180">federated</text>
+<rect class="sketch-node" rx="9" x="240" y="20" width="200" height="48"/>
+<text class="arch-h" x="340" y="40">Human intent</text>
+<text class="arch-s" x="340" y="56">natural language</text>
+<rect class="sketch-node" rx="9" x="240" y="102" width="200" height="48"/>
+<text class="arch-h" x="340" y="122">Orchestrator</text>
+<text class="arch-s" x="340" y="138">routes, clarifies, coordinates</text>
+<rect class="sketch-node" rx="9" x="240" y="184" width="200" height="48"/>
+<text class="arch-h" x="340" y="204">Scoped specialists</text>
+<text class="arch-s" x="340" y="220">Salesforce · SAP · ServiceNow</text>
+<rect class="sketch-node" rx="9" x="240" y="266" width="200" height="48"/>
+<text class="arch-h" x="340" y="286">Action layer</text>
+<text class="arch-s" x="340" y="302">APIs · MCP · connectors · code</text>
+<rect style="fill:color-mix(in srgb,var(--lightgray) 55%,var(--light));stroke:var(--gray);stroke-width:1" rx="20" x="240" y="348" width="200" height="48"/>
+<text class="arch-h" x="340" y="368">Enterprise systems</text>
+<text class="arch-s" x="340" y="384">of record</text>
+<line class="arch-flow" x1="340" y1="68" x2="340" y2="94"/>
+<polygon class="arch-tip" points="336,94 344,94 340,102"/>
+<line class="arch-flow" x1="340" y1="150" x2="340" y2="176"/>
+<polygon class="arch-tip" points="336,176 344,176 340,184"/>
+<line class="arch-flow" x1="340" y1="232" x2="340" y2="258"/>
+<polygon class="arch-tip" points="336,258 344,258 340,266"/>
+<line class="arch-flow" x1="340" y1="314" x2="340" y2="340"/>
+<polygon class="arch-tip" points="336,340 344,340 340,348"/>
+<line class="arch-dash" x1="170" y1="126" x2="232" y2="126"/>
+<polygon class="arch-dtip" points="232,122 232,130 240,126"/>
+<text class="arch-el" x="205" y="119">enforces</text>
+<line class="arch-dash" x1="170" y1="208" x2="232" y2="208"/>
+<polygon class="arch-dtip" points="232,204 232,212 240,208"/>
+<text class="arch-el" x="205" y="201">enforces</text>
+<line class="arch-dash" x1="510" y1="126" x2="448" y2="126"/>
+<polygon class="arch-dtip" points="448,122 448,130 440,126"/>
+<text class="arch-el" x="475" y="119">context</text>
+<line class="arch-dash" x1="510" y1="208" x2="448" y2="208"/>
+<polygon class="arch-dtip" points="448,204 448,212 440,208"/>
+<text class="arch-el" x="475" y="201">outcomes</text>
+</svg>
+<figcaption>Broad intent, narrow execution: the orchestrator routes; specialists mutate; policy and memory wrap the whole stack.</figcaption>
+</figure>
 
 The policy layer (identity, permissions, tenant boundaries, approvals, logging) and a verification layer of dry runs, human approval, and rollback aren't optional add-ons. In a regulated enterprise they're the reason the thing is allowed to run at all.
 
