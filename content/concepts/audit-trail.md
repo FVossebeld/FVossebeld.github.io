@@ -2,12 +2,16 @@
 title: Audit trail
 status: working-theory
 type: concept
-description: The durable record of what an agent actually changed in real systems, distinct from a run-level trace, and why write access makes it non-negotiable.
+description: The durable record of what an agent changed in a system of record (action, actor, time, object, authority), distinct from the agent-trace reasoning log.
 tags:
   - agentic-ai
   - governance
 ---
 
-An audit trail is the durable record of what was actually changed in real systems: who or what did it, when, to which record, and on whose say-so. It's the after-the-fact half of governance, the part compliance reads. Don't confuse it with an [[agent-trace]], which is the fine-grained log of a single run, what the agent saw, thought, and called. The trace explains the agent's reasoning and is mostly for debugging; the trail proves what happened to the business.
+An audit trail is the governance ledger: which actor changed which object, what the action was, when, and under whose authority. The system of record keeps the data; the trail keeps the receipts. Compliance reads the trail. Engineers almost never do, until something breaks.
 
-Once an agent has [[write-access]], the trail is what makes the write defensible. A person who files a change leaves a name attached to it, and an agent has to leave at least as much. In a regulated system, "the agent decided" is not an acceptable answer, so the trail has to carry the intent, the [[approval-gate|approval]], and the result in a form a human can reconstruct later. It's the least glamorous node in the governance cluster and the first one a security team will ask about.
+Distinct from an [[agent-trace]]. The trace is the reasoning log: what the model saw, thought, and called during a run. You debug the trace. You audit the trail. One explains the thinking; the other proves the outcome to people who weren't in the room.
+
+Once an agent has [[write-access]], the trail is what makes that write defensible. A person who changes a record leaves a name attached. An agent has to leave at least as much: the action, the [[approval-gate|approval]] that authorized it, and the result, all in a form a human can reconstruct six months later without reopening the model. "The agent decided" is not an acceptable answer in a regulated system. The trail is the acceptable answer.
+
+Least glamorous piece of the governance cluster. First thing a security team asks for.
