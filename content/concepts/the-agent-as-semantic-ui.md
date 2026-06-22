@@ -49,6 +49,6 @@ This is not the same thing as a chatbot embedded in the corner of an app. The di
 <figcaption>Both surfaces hit the same governed path. The semantic UI just starts closer to what you meant.</figcaption>
 </figure>
 
-**It does not replace the GUI; it sits above it.** Enterprise users still need dashboards for state-at-a-glance, bulk-editing grids, visual workflow builders, approval screens, and audit views. Some tasks are spatial: you want a hundred rows in front of you, not narrated through a conversation. And for anything ambiguous or irreversible, the agent should drop the user back into the explicit surface to confirm.
+It does not replace the GUI; it sits above it. Enterprise users still need dashboards for state-at-a-glance, bulk-editing grids, visual workflow builders, approval screens, and audit views. Some tasks are spatial: you want a hundred rows in front of you, not narrated through a conversation. And for anything ambiguous or irreversible, the agent should drop the user back into the explicit surface to confirm.
 
 Two things keep this honest. It has to be [[scoped-system-specialist-agents|scoped to a system]] so the translation is reliable and bounded. And every action has to be permissioned, logged, and reversible, because a natural-language layer that can *mutate a system of record* is exactly as dangerous as it is useful. One misread sentence, a thousand changed records. When the goal spans several systems, the semantic surface is fronted by an [[orchestrating-scoped-agents|orchestrator]] that fans the work out to the right specialists.
