@@ -21,9 +21,7 @@ Raw experience shouldn't become shared knowledge automatically. It should be *pr
 .pp-gate{fill:var(--secondary);font-family:var(--bodyFont);font-size:14px;font-style:italic}
 .pp-arrow{stroke:var(--secondary);stroke-width:1.6;fill:none}
 .pp-tip{fill:var(--secondary);stroke:none}
-.pp-axis{stroke:var(--lightgray);stroke-width:1}
 </style>
-<line class="pp-axis" x1="186" y1="8" x2="186" y2="412"/>
 <text class="pp-name" x="172" y="32">Raw episode</text>
 <text class="pp-sub" x="172" y="48">private detail</text>
 <rect class="sketch-node" x="186" y="14" width="332" height="40"/>
