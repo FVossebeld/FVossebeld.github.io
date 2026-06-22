@@ -12,4 +12,4 @@ An agent trace is the fine-grained record of a single run: what the agent saw, w
 
 Keep it distinct from the [[audit-trail]]. The trace is about the agent's reasoning and is mostly for debugging and observability; the trail is about what changed in real systems and is for compliance. One explains the thinking, the other proves the outcome.
 
-The part I find most interesting is that the trace is also feedstock. The same record that helps you debug is what a memory loop learns from: feed traces into a consolidation pass and the agent can carry forward what worked and what didn't. That's the bridge from observability into the [[memory-promotion-pipeline]], and it's why I treat traces as more than a log to grep when something breaks.
+The part I find most interesting is that the trace is also feedstock. The same record that helps you debug is what a memory loop learns from: feed traces into a [[memory-promotion-pipeline|consolidation pass]] and the agent can carry forward what worked and what didn't. That's the bridge from observability into memory, and it's why I treat traces as more than a log to grep when something breaks.

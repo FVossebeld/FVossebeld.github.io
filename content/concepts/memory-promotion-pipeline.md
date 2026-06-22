@@ -58,6 +58,12 @@ Raw experience shouldn't become shared knowledge automatically. It should be *pr
 
 Most episodes never leave the first stage, and that's the point. Promotion is exactly where abstraction and human review happen, which is exactly where leaks and bad lessons get caught. Skip the checkpoints and you've rebuilt the leaky shared store from [[federated-memory-for-enterprise-agents]].
 
+## What actually does the climbing
+
+The ladder describes the stages; it doesn't say what moves a lesson up one. For the early, unsupervised steps, the answer is increasingly a consolidation pass: a job that runs after a session goes quiet, reads the raw [[agent-trace|traces]] plus whatever's already in memory, and rewrites the store with duplicates merged, contradictions resolved, and stale entries retired. Anthropic ships this as a feature literally called [Dreams](https://platform.claude.com/docs/en/managed-agents/dreams); the [Azure SRE agent](https://learn.microsoft.com/en-us/azure/sre-agent/memory) does the same thing about thirty minutes after a thread goes idle.
+
+The detail I care about is where it stops. Dreams never edits the input store; it produces a candidate the agent's owner can review and discard. That's the same boundary as the ladder: the machine can dedupe, generalize, and retire on its own, but the step from sanitized lesson to approved playbook is still a human gate. Consolidation automates the climb right up to that line and no further. Treat it as auto-promotion past the gate and you've rebuilt the leaky shared store, just with extra steps.
+
 ## A worked example
 
 Watch one fact climb the ladder:
