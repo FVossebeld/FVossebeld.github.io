@@ -2,12 +2,12 @@
 title: Process orchestrator
 status: refined
 type: concept
-description: The layer that understands a cross-system goal and routes the work to scoped agents, without doing the mutations itself.
+description: The coordination layer that holds a cross-system goal and routes work to scoped specialists, holding write access to none of the target systems.
 tags:
   - agentic-ai
   - architecture
 ---
 
-A process orchestrator is the layer that holds a broad, cross-system goal and routes the work to the [[scoped-agent|scoped agents]] that execute it. Broad intent, narrow execution: the orchestrator understands that a renewal touches CRM, billing, and legal, but it doesn't do those mutations itself. The specialists do, each inside its own boundary.
+A process orchestrator is the coordination layer that holds a cross-system goal and routes work to the [[scoped-agent|scoped agents]] that execute it. It understands that a renewal touches CRM, billing, and legal. It holds [[write-access]] to none of them. The specialists mutate; the orchestrator sequences, tracks, and decides what moves next.
 
-The reason this layer has to exist (a wall of narrow agents that can't coordinate is as useless as one broad agent is dangerous) is the argument in [[orchestrating-scoped-agents]]. This node is just the name for the routing layer.
+Why this layer has to exist, and the three hard problems it creates (context handoff, transaction ownership, [[rollback]]), is the argument in [[orchestrating-scoped-agents]].
