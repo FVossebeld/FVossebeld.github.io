@@ -11,7 +11,7 @@ This repo uses three distinct GitHub-native AI mechanisms. They are not intercha
 | Mechanism | What it is | Where it lives | Loads | Used here for |
 |---|---|---|---|---|
 | **Instructions** | Always-on standards & guidelines (text only) | [`.github/copilot-instructions.md`](.github/copilot-instructions.md), [`.github/instructions/*.instructions.md`](.github/instructions/) | Always, or by file glob | The repo charter (roles, no-slop, flow) and the content voice rules |
-| **Agents** | A *persona* with its own instructions, tool access, and (optionally) model | [`.github/agents/*.agent.md`](.github/agents/) | When you switch to it in the agent picker | Personas & gates: `style-editor`, `slop-verifier`, and the thin `wiki-librarian` front door |
+| **Agents** | A *persona* with its own instructions, tool access, and (optionally) model | [`.github/agents/*.agent.md`](.github/agents/) | When you switch to it in the agent picker | Personas & gates: `style-editor`, `slop-verifier`, `figure-spec-checker`, and the thin `wiki-librarian` front door |
 | **Skills** | A *reusable procedure* (instructions + optional scripts/resources), portable across Copilot CLI, VS Code, and cloud agents | [`.github/skills/<name>/SKILL.md`](.github/skills/) | On-demand when relevant, or invoked by name | The wiki operations: `wiki-ingest`, `wiki-query`, `wiki-lint`, and `wiki-visualize` |
 
 Rule of thumb: **a standard is an instruction, a role is an agent, a repeatable multi-step procedure is a skill.** The Karpathy operations (Ingest / Query / Lint) are procedures, so they live as skills; the librarian is a persona that routes to them.
