@@ -1,18 +1,16 @@
 ---
 title: Interfaces map
-status: draft
-draft: true
+status: living
 type: map
-description: Draft map for action interfaces in agent systems.
+description: Navigation map for action interfaces in agent systems.
 tags:
   - agentic-ai
   - interfaces
   - map
-  - draft
 ---
 
 ## What this map covers
-A draft map of interfaces the model uses to act on real systems.
+A map of the interfaces the model uses to act on real systems.
 
 My current view: JSON should stay transport, while model-facing action should move toward richer workspace interaction.
 

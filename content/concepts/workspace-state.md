@@ -1,32 +1,13 @@
 ---
 title: Workspace state
-status: draft
-draft: true
+status: refined
 type: concept
-description: Draft placeholder for workspace state.
+description: The durable, mutable state an agent keeps in its own workspace, the scratch space where tentative thinking is allowed.
 tags:
   - agentic-ai
   - workspace
-  - concept
-  - draft
 ---
 
-## Definition
-TODO(floris): define this concept in one sentence from first principles.
+Workspace state is what an agent keeps in its own environment between steps: files, notes, scratch artifacts, a record of what it already tried. It's the durable memory of [[agent-workspaces|the workspace]], the thing that lets an agent recover from a failed step by looking at what actually happened instead of re-deriving it from the prompt.
 
-## Why it matters
-TODO(floris): explain why this changes architecture or governance decisions.
-
-## Example
-TODO(floris): add one concrete example from practice.
-
-## Where it breaks
-TODO(floris): name one failure mode or edge case.
-
-## Related concepts
-- [[agent-workspaces]]
-- [[context-window]]
-- [[agent-trace]]
-
-## My take
-TODO(floris): add the opinionated take in your own voice.
+The distinction I care about: the workspace is where tentative thinking belongs, the opposite pole of a [[system-of-record]], which only holds committed truth. An agent should be free to be messy and wrong in its workspace state, and disciplined about what it lets cross into the record. The fuller case for situated agents is in [[agent-workspaces]].

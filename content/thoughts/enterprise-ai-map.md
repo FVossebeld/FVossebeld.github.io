@@ -1,18 +1,16 @@
 ---
 title: Enterprise AI map
-status: draft
-draft: true
+status: living
 type: map
-description: Draft navigation map for enterprise AI themes in this wiki.
+description: Navigation map for enterprise AI themes in this wiki.
 tags:
   - agentic-ai
   - enterprise
   - map
-  - draft
 ---
 
 ## What this map covers
-A draft map for how I break down enterprise AI work into reusable concepts, claims, and field notes.
+A map of how I break down enterprise AI work into reusable concepts, claims, and field notes.
 
 My current view: enterprise AI starts to matter when agents can change system state under clear ownership boundaries.
 
