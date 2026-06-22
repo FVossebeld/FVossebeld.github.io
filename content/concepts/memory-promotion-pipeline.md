@@ -12,49 +12,50 @@ tags:
 Raw experience shouldn't become shared knowledge automatically. It should be *promoted* through stages, losing specificity and gaining trust at each step. Each arrow below is a gate, a checkpoint a piece of knowledge has to clear before it earns a wider audience, not a default it slides through.
 
 <figure class="sketch-board" role="group" aria-labelledby="promo-title">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 660 150" width="100%" role="img" aria-labelledby="promo-title promo-desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 420" width="100%" role="img" aria-labelledby="promo-title promo-desc">
 <title id="promo-title">The memory promotion pipeline</title>
-<desc id="promo-desc">Five stages left to right: raw episode, private memory, sanitized lesson, approved playbook, and reusable skill. Each arrow is a gate. Most episodes never leave the first stage.</desc>
+<desc id="promo-desc">Five stages drawn as a descending bar chart: raw episode, private memory, sanitized lesson, approved playbook, and reusable skill. Bar length shows how many episodes survive to each stage, so the bars shrink downward; most never leave the first stage. Between the stages sit four labelled gates: scope to one tenant, strip identifying detail, human review and provenance, and compress to a default.</desc>
 <style>
-.prm-tip{fill:var(--secondary);stroke:none}
-.prm-fwd{stroke:var(--secondary);stroke-width:1.5;fill:none}
-.prm-h{fill:var(--darkgray);font-family:var(--bodyFont);font-size:11px;font-weight:600;text-anchor:middle}
-.prm-s{fill:var(--gray);font-family:var(--bodyFont);font-size:9px;text-anchor:middle}
-.prm-ha{fill:var(--light);font-family:var(--bodyFont);font-size:11px;font-weight:600;text-anchor:middle}
-.prm-sa{fill:var(--light);font-family:var(--bodyFont);font-size:9px;opacity:.8;text-anchor:middle}
+.pp-name{fill:var(--darkgray);font-family:var(--bodyFont);font-size:14px;font-weight:600}
+.pp-sub{fill:var(--gray);font-family:var(--bodyFont);font-size:11px}
+.pp-gate{fill:var(--secondary);font-family:var(--bodyFont);font-size:11px;font-style:italic}
+.pp-arrow{stroke:var(--secondary);stroke-width:1.4;fill:none}
+.pp-tip{fill:var(--secondary);stroke:none}
+.pp-axis{stroke:var(--lightgray);stroke-width:1}
 </style>
-<rect class="sketch-node" rx="9" x="24" y="50" width="100" height="50"/>
-<text class="prm-h" x="74" y="69">Raw episode</text>
-<text class="prm-s" x="74" y="83">private detail</text>
-<line class="prm-fwd" x1="124" y1="75" x2="143" y2="75"/>
-<polygon class="prm-tip" points="143,71 143,79 152,75"/>
-<rect class="sketch-node" rx="9" x="152" y="50" width="100" height="50"/>
-<text class="prm-h" x="202" y="69">Private memory</text>
-<text class="prm-s" x="202" y="83">user or tenant</text>
-<line class="prm-fwd" x1="252" y1="75" x2="271" y2="75"/>
-<polygon class="prm-tip" points="271,71 271,79 280,75"/>
-<rect class="sketch-node" rx="9" x="280" y="50" width="100" height="50"/>
-<text class="prm-h" x="330" y="69">Sanitized lesson</text>
-<text class="prm-s" x="330" y="83">generalised</text>
-<line class="prm-fwd" x1="380" y1="75" x2="399" y2="75"/>
-<polygon class="prm-tip" points="399,71 399,79 408,75"/>
-<rect class="sketch-node" rx="9" x="408" y="50" width="100" height="50"/>
-<text class="prm-h" x="458" y="69">Approved playbook</text>
-<text class="prm-s" x="458" y="83">reviewed</text>
-<line class="prm-fwd" x1="508" y1="75" x2="527" y2="75"/>
-<polygon class="prm-tip" points="527,71 527,79 536,75"/>
-<rect class="sketch-node-accent" rx="9" x="536" y="50" width="100" height="50"/>
-<text class="prm-ha" x="586" y="69">Reusable skill</text>
-<text class="prm-sa" x="586" y="83">shareable</text>
+<line class="pp-axis" x1="248" y1="8" x2="248" y2="412"/>
+<text class="pp-name" x="14" y="31">Raw episode</text>
+<text class="pp-sub" x="14" y="46">private detail</text>
+<rect class="sketch-node" x="248" y="14" width="376" height="40"/>
+<line class="pp-arrow" x1="266" y1="58" x2="266" y2="92"/>
+<polygon class="pp-tip" points="262,92 270,92 266,99"/>
+<text class="pp-gate" x="282" y="82">scope to one tenant</text>
+<text class="pp-name" x="14" y="119">Private memory</text>
+<text class="pp-sub" x="14" y="134">user or tenant</text>
+<rect class="sketch-node" x="248" y="102" width="300" height="40"/>
+<line class="pp-arrow" x1="266" y1="146" x2="266" y2="180"/>
+<polygon class="pp-tip" points="262,180 270,180 266,187"/>
+<text class="pp-gate" x="282" y="170">strip identifying detail</text>
+<text class="pp-name" x="14" y="207">Sanitized lesson</text>
+<text class="pp-sub" x="14" y="222">generalised</text>
+<rect class="sketch-node" x="248" y="190" width="224" height="40"/>
+<line class="pp-arrow" x1="266" y1="234" x2="266" y2="268"/>
+<polygon class="pp-tip" points="262,268 270,268 266,275"/>
+<text class="pp-gate" x="282" y="258">human review + provenance</text>
+<text class="pp-name" x="14" y="295">Approved playbook</text>
+<text class="pp-sub" x="14" y="310">reviewed, signed off</text>
+<rect class="sketch-node" x="248" y="278" width="140" height="40"/>
+<line class="pp-arrow" x1="266" y1="322" x2="266" y2="356"/>
+<polygon class="pp-tip" points="262,356 270,356 266,363"/>
+<text class="pp-gate" x="282" y="346">compress to a default</text>
+<text class="pp-name" x="14" y="383">Reusable skill</text>
+<text class="pp-sub" x="14" y="398">shareable</text>
+<rect class="sketch-node-accent" x="248" y="366" width="76" height="40"/>
 </svg>
-<figcaption>Each arrow is a gate that strips specificity and adds review. Most episodes never leave the first stage.</figcaption>
+<figcaption>Bar length is how many episodes survive to each stage, so the funnel narrows downward. Each gate strips specificity and adds review; most never leave the first stage.</figcaption>
 </figure>
 
-1. **Raw episode**: what actually happened this session, with all its private detail. Stays local.
-2. **Private memory**: a durable note scoped to one user or tenant. Still sensitive.
-3. **Sanitized lesson**: the generalisable insight with identifying detail stripped out.
-4. **Approved playbook**: a sanitized lesson a human has signed off as correct and shareable, with provenance attached.
-5. **Reusable skill**: a playbook compressed into a procedure the agent reaches for by default.
+The climb is deliberate. A **raw episode** is what actually happened this session, private detail and all, and it stays local. Promote it and it becomes a **private memory**, a durable note still scoped to one user or tenant. Strip the identifying detail and you have a **sanitized lesson**, generalisable and carrying nobody's name. Once a human signs that off with provenance attached, it is an **approved playbook**. Compress the playbook into a procedure the agent reaches for by default, and it is a **reusable skill**.
 
 Most episodes never leave the first stage, and that's the point. Promotion is exactly where abstraction and human review happen, which is exactly where leaks and bad lessons get caught. Skip the checkpoints and you've rebuilt the leaky shared store from [[federated-memory-for-enterprise-agents]].
 
