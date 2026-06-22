@@ -14,7 +14,7 @@ Raw experience shouldn't become shared knowledge automatically. It gets *promote
 <figure class="sketch-board" role="group" aria-labelledby="promo-title">
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 660 150" width="100%" role="img" aria-labelledby="promo-title promo-desc">
 <title id="promo-title">The memory promotion pipeline</title>
-<desc id="promo-desc">Five stages left to right: raw episode, private memory, sanitized lesson, approved playbook, and reusable skill. Each arrow is a gate. Most episodes never leave the first stage.</desc>
+<desc id="promo-desc">Five stages left to right: raw episode, private memory, sanitized lesson, approved playbook, and reusable skill. Each arrow represents a gate that strips detail and adds review.</desc>
 <style>
 .prm-tip{fill:var(--secondary);stroke:none}
 .prm-fwd{stroke:var(--secondary);stroke-width:1.5;fill:none}
@@ -47,7 +47,7 @@ Raw experience shouldn't become shared knowledge automatically. It gets *promote
 <text class="prm-ha" x="586" y="69">Reusable skill</text>
 <text class="prm-sa" x="586" y="83">shareable</text>
 </svg>
-<figcaption>Each arrow is a gate that strips specificity and adds review. Most episodes never leave the first stage.</figcaption>
+<figcaption>Each arrow is a gate: it strips identifying detail and requires explicit sign-off before knowledge moves right.</figcaption>
 </figure>
 
 1. **Raw episode**: what actually happened this session, private detail and all. Stays local.
@@ -60,9 +60,9 @@ Most episodes never leave the first stage. That's the point. Promotion is where 
 
 ## What actually does the climbing
 
-The stages are the ladder; they don't say what moves a lesson up one. For the early, unsupervised steps the answer is increasingly a consolidation pass: a background job that fires after a session goes quiet, reads the raw [[agent-trace|traces]] plus whatever's already in memory, and rewrites the store. Duplicates merged, contradictions resolved, stale entries retired. Anthropic ships this as a feature literally called [Dreams](https://platform.claude.com/docs/en/managed-agents/dreams); the [Azure SRE agent](https://learn.microsoft.com/en-us/azure/sre-agent/memory) does the same thing about thirty minutes after a thread goes idle.
+The stages are the ladder; they don't say what moves a lesson up one. For the early, unsupervised steps the answer is increasingly a consolidation pass: a background job that fires after a session goes quiet, reads the raw [[agent-trace|traces]] plus whatever's already in memory, and rewrites the store. Duplicates merged, contradictions resolved, stale entries dropped. Anthropic ships this as a feature literally called [Dreams](https://platform.claude.com/docs/en/managed-agents/dreams); the [Azure SRE agent](https://learn.microsoft.com/en-us/azure/sre-agent/memory) does the same thing about thirty minutes after a thread goes idle.
 
-The detail I care about is where it stops. Dreams never edits the input store; it produces a candidate the agent's owner can review and discard. Same boundary as the ladder: the machine can dedupe, generalize, and retire on its own, but the step from sanitized lesson to approved playbook is still a human gate. Consolidation automates the climb right up to that line and no further. Treat it as auto-promotion past the gate and you've rebuilt the leaky shared store, just with extra steps.
+The detail I care about is where it stops. Dreams never edits the input store; it produces a candidate the agent's owner can review and discard. Same boundary as the ladder: the machine can dedupe and generalize on its own, but the step from sanitized lesson to approved playbook is still a human gate. Consolidation automates the climb right up to that line and no further. Treat it as auto-promotion past the gate and you've rebuilt the leaky shared store, just with extra steps.
 
 ## A worked example
 
