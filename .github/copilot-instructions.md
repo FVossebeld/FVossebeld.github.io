@@ -37,7 +37,8 @@ techniques, the site palette, dark-mode safety). Default to no diagram.
 **Agents** (personas, in [`.github/agents/`](./agents/), pick from the agent picker):
 
 - **`style-editor`**: rewrites a rough draft into Floris's voice. Use it to *improve*.
-- **`slop-verifier`**: strict auditor. Use it to *gate*. Its verdict decides publish.
+- **`slop-verifier`**: strict auditor of prose. Use it to *gate*. Its verdict decides publish.
+- **`figure-spec-checker`**: context-blind auditor of a figure/diagram brief. Use it to *gate a visual* before building — it cold-reads whether the instruction is interpretable (CLEAR), missing facts (MISSING INFO), or too vague to draw (VAGUE).
 - **`wiki-librarian`**: the thin conversational front door; routes to the skills below.
 
 **Skills** (the repeatable wiki operations, in [`.github/skills/`](./skills/), load on
