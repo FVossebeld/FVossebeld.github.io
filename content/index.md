@@ -40,13 +40,13 @@ I keep coming back to the same question: as language models start interacting wi
   <li>
     <a href="concepts/">
       <span class="index-title">Concept notes</span>
-      <span class="index-desc">Reusable concept pages, including draft placeholders for concrete nodes like MCP, tool schema, approval gate, rollback, and workspace state.</span>
+      <span class="index-desc">Reusable concept pages for concrete nodes like MCP, tool schema, approval gate, rollback, and workspace state.</span>
     </a>
   </li>
   <li>
     <a href="thoughts/why-write-access-is-hard-in-regulated-environments">
-      <span class="index-title">Write access in regulated environments (draft)</span>
-      <span class="index-desc">A draft field-note slot for practical write-access failures in regulated environments.</span>
+      <span class="index-title">Write access in regulated environments</span>
+      <span class="index-desc">Field note: the blocker isn't the regulator, it's that orgs don't know how yet and the APIs were never built as an agent's surface.</span>
     </a>
   </li>
   <li>

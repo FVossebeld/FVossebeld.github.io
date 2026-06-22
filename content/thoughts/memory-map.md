@@ -1,18 +1,16 @@
 ---
 title: Memory map
-status: draft
-draft: true
+status: living
 type: map
-description: Draft map for memory and state concepts.
+description: Navigation map for memory and state concepts.
 tags:
   - agentic-ai
   - memory
   - map
-  - draft
 ---
 
 ## What this map covers
-A draft map of memory and state nodes, split into concrete concepts.
+A map of the memory and state nodes, split into concrete concepts.
 
 My current view: memory design is mostly a boundary problem, not a retrieval problem.
 
