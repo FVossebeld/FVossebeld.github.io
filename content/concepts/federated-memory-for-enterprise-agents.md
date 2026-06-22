@@ -25,18 +25,43 @@ The reason it's hard is that the valuable lesson and the sensitive detail arrive
 
 Each layer up is a wider audience. The work is keeping a memory at the lowest layer that's still useful, and only moving it up deliberately.
 
-```mermaid
-flowchart TD
-  accTitle: Memory layers in enterprise AI
-  accDescr: Memory widens from thread to organization and skills, with risk increasing as audience scope widens.
-  classDef narrow fill:#53665a,stroke:#3f4f45,color:#f7f3ea,rx:6,ry:6
-  classDef wide fill:#8a6f4d,stroke:#6b5740,color:#f7f3ea,rx:6,ry:6
-  T[Thread memory<br/>single conversation]:::narrow --> U[User memory<br/>one person]
-  U --> C[Customer or project memory<br/>one account]
-  C --> O[Team or organization memory<br/>shared context]:::wide
-  O --> P[Procedural memory<br/>sanitized playbooks]
-  P --> S[Reusable skills<br/>portable execution patterns]:::wide
-```
+<figure class="sketch-board" role="group" aria-labelledby="mem-stack-title">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 580 365" width="100%" role="img" aria-labelledby="mem-stack-title mem-stack-desc">
+<title id="mem-stack-title">Memory layers in enterprise AI</title>
+<desc id="mem-stack-desc">Six memory tiers stacked vertically and widening from narrow to full width: thread, user, customer or project, team or organization, procedural, and reusable skills. Risk increases as audience scope widens.</desc>
+<style>
+.mst-tip{fill:var(--gray);stroke:none}
+.mst-h{fill:var(--darkgray);font-family:var(--bodyFont);font-size:12px;font-weight:600;text-anchor:middle}
+.mst-s{fill:var(--gray);font-family:var(--bodyFont);font-size:10px;text-anchor:middle}
+.mst-ha{fill:var(--light);font-family:var(--bodyFont);font-size:12px;font-weight:600;text-anchor:middle}
+.mst-sa{fill:var(--light);font-family:var(--bodyFont);font-size:10px;opacity:.8;text-anchor:middle}
+</style>
+<rect class="sketch-node" rx="9" x="210" y="15" width="160" height="44"/>
+<text class="mst-h" x="290" y="33">Thread memory</text>
+<text class="mst-s" x="290" y="48">single conversation</text>
+<polygon class="mst-tip" points="287,62 293,62 290,68"/>
+<rect class="sketch-node" rx="9" x="180" y="71" width="220" height="44"/>
+<text class="mst-h" x="290" y="89">User memory</text>
+<text class="mst-s" x="290" y="104">one person</text>
+<polygon class="mst-tip" points="287,118 293,118 290,124"/>
+<rect class="sketch-node" rx="9" x="140" y="127" width="300" height="44"/>
+<text class="mst-h" x="290" y="145">Customer or project memory</text>
+<text class="mst-s" x="290" y="160">one account</text>
+<polygon class="mst-tip" points="287,174 293,174 290,180"/>
+<rect class="sketch-node-accent" rx="9" x="100" y="183" width="380" height="44"/>
+<text class="mst-ha" x="290" y="201">Team or organization memory</text>
+<text class="mst-sa" x="290" y="216">shared context</text>
+<polygon class="mst-tip" points="287,230 293,230 290,236"/>
+<rect class="sketch-node" rx="9" x="50" y="239" width="480" height="44"/>
+<text class="mst-h" x="290" y="257">Procedural memory</text>
+<text class="mst-s" x="290" y="272">sanitized playbooks</text>
+<polygon class="mst-tip" points="287,286 293,286 290,292"/>
+<rect class="sketch-node-accent" rx="9" x="20" y="295" width="540" height="44"/>
+<text class="mst-ha" x="290" y="313">Reusable skills</text>
+<text class="mst-sa" x="290" y="328">portable execution patterns</text>
+</svg>
+<figcaption>Each tier up is a wider audience. The design question is keeping a memory at the lowest useful layer and only moving it up deliberately.</figcaption>
+</figure>
 
 ## The threat model
 

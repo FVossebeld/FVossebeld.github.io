@@ -48,12 +48,39 @@ I am. 🧑‍✈️ I curate the sources, ask the questions, and approve edits (
 
 ## How a page gets published
 
-```mermaid
-flowchart LR
-  A[Write or update<br/>a markdown file] --> B[AI drafts<br/>on a branch]
-  B --> C[I review<br/>and merge]
-  C --> D[GitHub Action<br/>builds the site]
-  D --> E[Site is live]
-```
-
-No database, no admin panel: just markdown in git.
+<figure class="sketch-board" role="group" aria-labelledby="pub-title">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 120" width="100%" role="img" aria-labelledby="pub-title pub-desc">
+<title id="pub-title">How a page gets published</title>
+<desc id="pub-desc">Five stages left to right: write markdown, AI drafts on a branch, review and merge, GitHub Action builds, and site is live.</desc>
+<style>
+.pub-tip{fill:var(--secondary);stroke:none}
+.pub-fwd{stroke:var(--secondary);stroke-width:1.5;fill:none}
+.pub-h{fill:var(--darkgray);font-family:var(--bodyFont);font-size:11px;font-weight:600;text-anchor:middle}
+.pub-s{fill:var(--gray);font-family:var(--bodyFont);font-size:10px;text-anchor:middle}
+.pub-ha{fill:var(--light);font-family:var(--bodyFont);font-size:11px;font-weight:600;text-anchor:middle}
+</style>
+<rect class="sketch-node" rx="9" x="14" y="36" width="100" height="48"/>
+<text class="pub-h" x="64" y="55">Write</text>
+<text class="pub-s" x="64" y="70">markdown</text>
+<line class="pub-fwd" x1="114" y1="60" x2="133" y2="60"/>
+<polygon class="pub-tip" points="133,56 133,64 142,60"/>
+<rect class="sketch-node" rx="9" x="142" y="36" width="100" height="48"/>
+<text class="pub-h" x="192" y="55">AI drafts</text>
+<text class="pub-s" x="192" y="70">on a branch</text>
+<line class="pub-fwd" x1="242" y1="60" x2="261" y2="60"/>
+<polygon class="pub-tip" points="261,56 261,64 270,60"/>
+<rect class="sketch-node" rx="9" x="270" y="36" width="100" height="48"/>
+<text class="pub-h" x="320" y="55">Review</text>
+<text class="pub-s" x="320" y="70">and merge</text>
+<line class="pub-fwd" x1="370" y1="60" x2="389" y2="60"/>
+<polygon class="pub-tip" points="389,56 389,64 398,60"/>
+<rect class="sketch-node" rx="9" x="398" y="36" width="100" height="48"/>
+<text class="pub-h" x="448" y="55">GitHub Action</text>
+<text class="pub-s" x="448" y="70">builds the site</text>
+<line class="pub-fwd" x1="498" y1="60" x2="517" y2="60"/>
+<polygon class="pub-tip" points="517,56 517,64 526,60"/>
+<rect class="sketch-node-accent" rx="9" x="526" y="36" width="100" height="48"/>
+<text class="pub-ha" x="576" y="60">Site is live</text>
+</svg>
+<figcaption>No database, no admin panel: just markdown in git.</figcaption>
+</figure>
