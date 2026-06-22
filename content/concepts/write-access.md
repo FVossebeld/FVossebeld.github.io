@@ -2,7 +2,7 @@
 title: Write access
 status: working-theory
 type: concept
-description: The sandbox-boundary crossing where an agent changes a system outside itself, hard for three stacked reasons: irreversibility, shared truth, accountability.
+description: "The sandbox-boundary crossing where an agent changes a system outside itself, hard for three stacked reasons: irreversibility, shared truth, accountability."
 tags:
   - agentic-ai
   - governance
