@@ -2,7 +2,7 @@
 title: Orchestrating scoped agents
 status: working-theory
 type: concept
-description: Scoping an agent to one system makes it safe but leaves it unable to finish cross-system work. The fix is broad intent, narrow execution, and the hard parts are handoff, ownership, and rollback.
+description: Scoping an agent to one system makes it safe but leaves it unable to finish cross-system work. The fix is broad intent, narrow execution, and the hard part is owning the half-finished state when a step fails.
 tags:
   - agentic-ai
   - enterprise
@@ -30,7 +30,7 @@ So you need a coordination layer, and the shape I keep landing on is **broad int
 <text class="orch-h" x="320" y="29">Cross-system user intent</text>
 <rect class="sketch-node-accent" rx="9" x="220" y="92" width="200" height="46"/>
 <text class="orch-ha" x="320" y="111">Process-scoped orchestrator</text>
-<text class="orch-sa" x="320" y="126">plans, routes, tracks</text>
+<text class="orch-sa" x="320" y="126">plans and routes</text>
 <rect class="sketch-node" rx="9" x="20" y="178" width="160" height="46"/>
 <text class="orch-h" x="100" y="197">Salesforce specialist</text>
 <text class="orch-s" x="100" y="212">system scope: CRM</text>
@@ -68,8 +68,8 @@ That separation is the easy part to state. The work is in three problems it crea
 
 **Context handoff without over-sharing.** To brief the billing specialist on a renewal, the orchestrator has to pass some context: the account, the contract value, the effective date. It should not pass the full conversation, which might carry a negotiation concession sales hasn't finalized, or a competitor name from the opportunity notes that billing has no business seeing. Each handoff is a boundary that can leak. The orchestrator passes the minimum a specialist needs, nothing more. This is the [[federated-memory-for-enterprise-agents|federated-memory problem]] showing up at runtime instead of in storage: even between cooperating agents, what's *relevant* to share isn't the same as what's *allowed* to cross.
 
-**Transaction ownership.** A renewal that updates the CRM, then billing, then files a contract is a distributed transaction with no shared database underneath. If billing succeeds and the contract step fails, who owns the half-finished state? Without an answer, you get five specialists each convinced their slice is done while the whole job is broken. The orchestrator is the only layer with visibility across all steps, so it carries the ledger: what committed, what didn't, what needs attention next.
+**Transaction ownership.** A renewal that updates the CRM, then billing, then files a contract is a distributed transaction with no shared database underneath. If billing succeeds and the contract step fails, who owns the half-finished state? Without an answer, you get five specialists each convinced their slice is done while the whole job is broken. The orchestrator is the only layer with visibility across all steps, so it carries the ledger: what committed and what didn't.
 
-**Clean [[rollback]].** Step three of five fails. You can't always undo steps one and two: the email is sent, the PO is approved. Rollback is rarely a literal reversal; it's compensation (issue a correction, flag the record, notify a human) and an honest report of partial completion. An orchestrator that pretends the whole thing either succeeded or didn't is lying about a state the enterprise will discover on its own.
+**Clean [[rollback]].** Step three of five fails. You can't always undo steps one and two: the email is sent, the PO is approved. Rollback is rarely a literal reversal; it's compensation (issue a correction, flag the record, notify a human, or just stop and say so) and an honest report of partial completion. An orchestrator that pretends the whole thing either succeeded or didn't is lying about a state the enterprise will discover on its own.
 
 None of these are solved, and I don't think they get solved inside the model. They're coordination problems, not inference problems. A wall of well-behaved specialists still doesn't add up to a working enterprise agent without something above them that owns the mess. The [[process-orchestrator|orchestrator]], not the model, is where the next hard engineering lives.
