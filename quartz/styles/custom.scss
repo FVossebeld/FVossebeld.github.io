@@ -175,13 +175,16 @@ body[data-slug="index"] .article-title {
    Reading column — one centered plane between quiet rails (OpenAI-blog calm).
    The center grid cell is wide; cap its blocks at the measure and center them
    so the header, prose, the Connections foot, and the site footer share one
-   column. The side rails (search + nav on the left, a faint TOC on the right)
-   frame the reading without competing with it.
+   column. The selector carries #quartz-body weight on purpose: base.scss pins
+   the page-header with `margin: $topSpacing 0 0 0` (which zeroes the inline
+   margins), so the override has to out-specify it to centre the header on the
+   same axis as the body. Without this the title and breadcrumb jog left of the
+   prose. The side rails (search + nav left, the TOC right) frame the reading.
    ----------------------------------------------------------------------------- */
-.center > .page-header,
-.center > article,
-.center > hr,
-.center > .page-footer {
+.page > #quartz-body .center > .page-header,
+.page > #quartz-body .center > article,
+.page > #quartz-body .center > hr,
+.page > #quartz-body .center > .page-footer {
   max-width: var(--measure);
   margin-inline: auto;
 }
@@ -335,7 +338,9 @@ article pre {
 }
 
 /* -----------------------------------------------------------------------------
-   Figures — figure-first, mono caption with a figure number
+   Figures. Figure-first, with a serif caption that reads as quiet aside.
+   The caption used to be mono, but mono now has one job (machine metadata:
+   breadcrumb, date, tags), so the caption returns to the serif body in italic.
    ----------------------------------------------------------------------------- */
 article img,
 article video {
@@ -351,7 +356,8 @@ article figure {
 
 article figcaption,
 article figure > figcaption {
-  font-family: var(--monoFont);
+  font-family: var(--bodyFont);
+  font-style: italic;
   font-size: var(--step--1);
   line-height: 1.5;
   color: var(--muted);
@@ -777,7 +783,8 @@ button#explorer-end,
 }
 
 /* Curated left-rail nav (SiteNav) — the persistent map on reading pages.
-   A short, quiet list; the current section is inked, the rest recede. */
+   A short, quiet list; the current section is inked and carries an accent tick
+   so it reads as "you are here", the rest recede until hovered. */
 .site-nav {
   font-family: var(--uiFont);
   width: 100%;
@@ -791,6 +798,9 @@ button#explorer-end,
   flex-direction: column;
   gap: 0.55rem;
 }
+.site-nav li {
+  position: relative;
+}
 .site-nav a {
   color: var(--ink-soft);
   font-size: var(--step-0);
@@ -802,6 +812,16 @@ button#explorer-end,
 .site-nav a.active {
   color: var(--ink);
   font-weight: 600;
+}
+.site-nav a.active::before {
+  content: "";
+  position: absolute;
+  left: -0.9rem;
+  top: 0.18em;
+  bottom: 0.18em;
+  width: 2px;
+  border-radius: 1px;
+  background: var(--accent);
 }
 
 /* On mobile the left rail folds into a compact masthead at the top of the page.
@@ -963,7 +983,8 @@ a.tag-link,
 .backlinks {
   & > h3,
   & .graph-title,
-  & .toc-title {
+  & .toc-title,
+  & .toc-header h3 {
     font-family: var(--monoFont);
     font-size: 0.78rem;
     font-weight: 500;
@@ -973,18 +994,26 @@ a.tag-link,
   }
 }
 
+/* The TOC must earn its column, so it has to be legible. base toc.scss washes
+   the links to opacity:.35 (too pale for wayfinding); lift that and ink them.
+   in-view is toggled on the <a> by toc.inline, so target a.in-view, not li.
+   The selector carries .right + .toc weight to win over `ul.toc-content.overflow
+   > li > a` without reaching for !important. */
 .toc-content {
   & ul li a {
     font-family: var(--uiFont);
-    color: var(--muted);
-    transition: color 0.12s var(--ease);
-    &:hover {
-      color: var(--accent);
-    }
   }
-  & ul li.in-view > a {
-    color: var(--ink);
-  }
+}
+.right .toc .toc-content li a {
+  opacity: 1;
+  color: var(--muted);
+  transition: color 0.12s var(--ease);
+}
+.right .toc .toc-content li a:hover {
+  color: var(--accent);
+}
+.right .toc .toc-content li a.in-view {
+  color: var(--ink);
 }
 
 .graph .graph-outer {
@@ -1188,4 +1217,31 @@ footer {
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* -----------------------------------------------------------------------------
+   Ask-the-garden pill. Present, not loud.
+   The default is a solid blue chip that competes with the page for a fourth
+   loud edge. Quiet it to a paper chip with a hairline and a soft shadow so it
+   reads as an affordance, not a banner; it inks up on hover. #quartz-root lifts
+   the specificity over the component default without !important. The panel
+   itself is unchanged. Uses semantic tokens, so dark mode follows.
+   ----------------------------------------------------------------------------- */
+#quartz-root .garden-agent .ga-launch {
+  padding: 0.5rem 0.9rem;
+  border: 1px solid var(--rule);
+  background-color: var(--paper);
+  color: var(--ink-soft);
+  font-family: var(--uiFont);
+  font-size: var(--step--1);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  transition:
+    color 0.12s var(--ease),
+    border-color 0.12s var(--ease),
+    background-color 0.12s var(--ease);
+}
+#quartz-root .garden-agent .ga-launch:hover {
+  background-color: var(--panel);
+  color: var(--ink);
+  border-color: var(--accent);
 }

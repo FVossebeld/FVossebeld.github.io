@@ -1,32 +1,13 @@
 ---
 title: Tool calling
-status: draft
-draft: true
+status: working-theory
 type: concept
-description: Draft placeholder for tool calling.
+description: The mechanism where a model emits a structured call against a schema, something else executes it, and a result comes back. The model chooses; it does not run.
 tags:
   - agentic-ai
   - interfaces
-  - concept
-  - draft
 ---
 
-## Definition
-TODO(floris): define this concept in one sentence from first principles.
+Tool calling is how a model goes from producing text to invoking a real function. The mechanism: the model emits a structured call (usually JSON conforming to a [[tool-schema]]), glue code outside the model validates and executes it, and the result comes back as context for the next turn. The model picks what to call. It never runs anything itself. That separation is the whole point, and on early models, strict schemas were what made it reliable enough to trust at all.
 
-## Why it matters
-TODO(floris): explain why this changes architecture or governance decisions.
-
-## Example
-TODO(floris): add one concrete example from practice.
-
-## Where it breaks
-TODO(floris): name one failure mode or edge case.
-
-## Related concepts
-- [[mcp]]
-- [[tool-schema]]
-- [[permission-boundary]]
-
-## My take
-TODO(floris): add the opinionated take in your own voice.
+I think the mechanism is right and the layer is wrong, which is the argument in [[json-as-transport-not-cognition]]. JSON is fine transport and an awkward surface to think in; a CLI or a small code surface gives a capable model the same reach in fewer tokens. Tool calling shouldn't disappear. It should drop underneath: validation, logging, and [[permission-boundary|policy]] stay in the plumbing, while a smaller surface sits in front of the model.

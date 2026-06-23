@@ -70,6 +70,10 @@ approves every embed.
 
 ## When to hand off
 
+- To gate a figure brief *before* building it: the **`figure-spec-checker`** agent. Hand it
+  only the instruction (no page, no context) and it cold-reads whether the figure is
+  interpretable (CLEAR), missing specific facts (MISSING INFO), or too vague to draw (VAGUE).
+  Useful at step 1–3 when the brief is non-trivial or you're unsure you've understood it.
 - To shape the surrounding prose into Floris's voice: the **`style-editor`** agent.
 - To gate the page (prose *and* whether the visual earns its place): the **`slop-verifier`** agent.
 - To file a whole new source into pages first: the **`wiki-ingest`** skill (which calls

@@ -1,32 +1,13 @@
 ---
 title: Tool schema
-status: draft
-draft: true
+status: working-theory
 type: concept
-description: Draft placeholder for tool schema.
+description: The contract that tells a model what a tool expects and what comes back. Underrated as infrastructure, overrated as an action language.
 tags:
   - agentic-ai
   - interfaces
-  - concept
-  - draft
 ---
 
-## Definition
-TODO(floris): define this concept in one sentence from first principles.
+A tool schema is the contract for a [[tool-calling|tool call]]: the named arguments, their types, which ones are required, what shape the result takes. It lets a runtime validate a call before running it, and constrained decoding against it is what kept early models from dropping keys or inventing fields.
 
-## Why it matters
-TODO(floris): explain why this changes architecture or governance decisions.
-
-## Example
-TODO(floris): add one concrete example from practice.
-
-## Where it breaks
-TODO(floris): name one failure mode or edge case.
-
-## Related concepts
-- [[tool-calling]]
-- [[mcp]]
-- [[permission-boundary]]
-
-## My take
-TODO(floris): add the opinionated take in your own voice.
+That validation still belongs in the stack. My doubt is about putting schemas in front of the model as its action language. A long catalog is a worse teaching interface than a compact surface like a shell, and it eats context whether or not the model needs it this turn. The fix is the same one [[tool-calling]] and [[json-as-transport-not-cognition]] land on: keep schemas underneath as the validation layer, don't make the model think in them.

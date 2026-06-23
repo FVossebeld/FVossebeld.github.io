@@ -1,18 +1,16 @@
 ---
 title: Agent architecture map
-status: draft
-draft: true
+status: living
 type: map
-description: Draft map of the concrete building blocks in agent architectures.
+description: Navigation map of the concrete building blocks in agent architectures.
 tags:
   - agentic-ai
   - architecture
   - map
-  - draft
 ---
 
 ## What this map covers
-A draft map of the concrete nodes I want to use when describing agent systems.
+A map of the concrete nodes I use when describing agent systems.
 
 My current view: the architecture gets safer when orchestration and write access are separated on purpose.
 

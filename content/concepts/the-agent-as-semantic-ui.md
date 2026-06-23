@@ -2,60 +2,53 @@
 title: The agent as semantic UI
 status: working-theory
 type: concept
-description: "The agent as a natural-language interface over enterprise software: translating intent into governed actions, sitting above the GUI rather than replacing it."
+description: "A semantic UI is a control surface that does the thing. A chatbot is a help surface that tells you where to do it. The distinction is load-bearing for enterprise agents."
 tags:
   - agentic-ai
   - enterprise
 ---
 
-Enterprise software has spent thirty years building forms. The agent is a different surface over the same system: you say what you want, it translates that into governed actions against the underlying APIs, and it reports back in your terms.
+Enterprise software is made of forms. Thirty years of them: dropdowns for status, text boxes for notes, bulk-select checkboxes, modal confirmations. The agent is a different surface over the same plumbing. You state what you want; it translates that into governed actions against the underlying APIs; it reports back in your terms.
 
-Call it a semantic UI. Typing doesn't replace clicking; what changes is the *level*. The interface now sits at **intent** rather than **fields**. "Move every stalled deal over 50k to the renewals team and flag the ones with no activity in the last month" is one sentence. In the GUI it's twenty minutes of filtering, selecting, and clicking. The agent collapses the distance between what you mean and what the system does.
+Call it a semantic UI. The interface moves from **fields** to **intent**. "Move every stalled deal over 50k to the renewals team and flag the ones with no activity in the last month" is one sentence. In the GUI it's twenty minutes of filtering, selecting, and clicking through confirmation dialogs. Both produce the same outcome: the same API calls, the same permission checks, the same audit log entries. One is just closer to what you meant.
 
-This is not the same thing as a chatbot embedded in the corner of an app. A bolted-on chatbot answers questions *about* the software; it points you at the screen where you'd do the thing. A semantic UI *does the thing*, by issuing the same governed operations the GUI would, against the same system of record. The chatbot is a help surface; the semantic UI is a control surface.
+This is not the same thing as a chatbot embedded in the corner of an app. The distinction is load-bearing. A bolted-on chatbot answers questions *about* the software: "you can reassign deals on the Pipeline tab, filter by last activity, then use Bulk Actions." It is a help surface. A semantic UI *does the thing*: it issues the same governed operations the GUI would, against the same [[system-of-record|system of record]], and the deals move. The chatbot points you at the screen. The semantic UI acts on the system.
 
 <figure class="sketch-board" role="group" aria-labelledby="actsf-title">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 580 215" width="100%" role="img" aria-labelledby="actsf-title actsf-desc">
-<title id="actsf-title">Action surfaces from intent to governed execution</title>
-<desc id="actsf-desc">Intent on the left fans out to four action surfaces: GUI, API, CLI, and DSL. All four converge on a single governed execution path on the right.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 580 190" width="100%" role="img" aria-labelledby="actsf-title actsf-desc">
+<title id="actsf-title">GUI and semantic UI as two surfaces over the same governed execution</title>
+<desc id="actsf-desc">User intent routes through either the traditional GUI (fields and clicks) or the semantic UI (natural language). Both paths converge on the same governed execution path.</desc>
 <style>
 .actsf-tip{fill:var(--secondary);stroke:none}
-.actsf-tipa{fill:var(--secondary);stroke:none}
 .actsf-flow{stroke:var(--secondary);stroke-width:1.2;fill:none}
 .actsf-h{fill:var(--darkgray);font-family:var(--bodyFont);font-size:12px;font-weight:600;text-anchor:middle;dominant-baseline:central}
 .actsf-ha{fill:var(--light);font-family:var(--bodyFont);font-size:12px;font-weight:600;text-anchor:middle;dominant-baseline:central}
 .actsf-s{fill:var(--gray);font-family:var(--bodyFont);font-size:10px;text-anchor:middle;dominant-baseline:central}
+.actsf-sa{fill:var(--light);font-family:var(--bodyFont);font-size:10px;text-anchor:middle;dominant-baseline:central;opacity:.8}
 </style>
-<rect class="sketch-node" rx="9" x="10" y="83" width="120" height="50"/>
-<text class="actsf-h" x="70" y="108">Intent</text>
-<rect class="sketch-node" rx="9" x="200" y="10" width="130" height="40"/>
-<text class="actsf-h" x="265" y="30">GUI</text>
-<rect class="sketch-node" rx="9" x="200" y="62" width="130" height="40"/>
-<text class="actsf-h" x="265" y="82">API</text>
-<rect class="sketch-node" rx="9" x="200" y="114" width="130" height="40"/>
-<text class="actsf-h" x="265" y="134">CLI</text>
-<rect class="sketch-node" rx="9" x="200" y="166" width="130" height="40"/>
-<text class="actsf-h" x="265" y="186">DSL</text>
-<rect class="sketch-node-accent" rx="9" x="450" y="83" width="120" height="50"/>
-<text class="actsf-ha" x="510" y="100">Governed</text>
-<text class="actsf-ha" x="510" y="116">execution</text>
-<line class="actsf-flow" x1="130" y1="108" x2="191" y2="30"/>
-<polygon class="actsf-tip" points="191,26 191,34 200,30"/>
-<line class="actsf-flow" x1="130" y1="108" x2="191" y2="82"/>
-<polygon class="actsf-tip" points="191,78 191,86 200,82"/>
-<line class="actsf-flow" x1="130" y1="108" x2="191" y2="134"/>
-<polygon class="actsf-tip" points="191,130 191,138 200,134"/>
-<line class="actsf-flow" x1="130" y1="108" x2="191" y2="186"/>
-<polygon class="actsf-tip" points="191,182 191,190 200,186"/>
-<line class="actsf-flow" x1="330" y1="30" x2="442" y2="108"/>
-<line class="actsf-flow" x1="330" y1="82" x2="442" y2="108"/>
-<line class="actsf-flow" x1="330" y1="134" x2="442" y2="108"/>
-<line class="actsf-flow" x1="330" y1="186" x2="442" y2="108"/>
-<polygon class="actsf-tipa" points="441,104 441,112 450,108"/>
+<rect class="sketch-node" rx="9" x="10" y="70" width="115" height="50"/>
+<text class="actsf-h" x="67" y="95">User intent</text>
+<rect class="sketch-node" rx="9" x="200" y="18" width="150" height="55"/>
+<text class="actsf-h" x="275" y="38">GUI</text>
+<text class="actsf-s" x="275" y="56">fields and clicks</text>
+<rect class="sketch-node-accent" rx="9" x="200" y="118" width="150" height="55"/>
+<text class="actsf-ha" x="275" y="138">Semantic UI</text>
+<text class="actsf-sa" x="275" y="156">natural language</text>
+<rect class="sketch-node" rx="9" x="430" y="55" width="140" height="80"/>
+<text class="actsf-h" x="500" y="83">Governed</text>
+<text class="actsf-h" x="500" y="99">execution</text>
+<text class="actsf-s" x="500" y="119">same APIs · same rules</text>
+<line class="actsf-flow" x1="125" y1="95" x2="191" y2="45"/>
+<polygon class="actsf-tip" points="191,41 191,49 200,45"/>
+<line class="actsf-flow" x1="125" y1="95" x2="191" y2="145"/>
+<polygon class="actsf-tip" points="191,141 191,149 200,145"/>
+<line class="actsf-flow" x1="350" y1="45" x2="421" y2="95"/>
+<line class="actsf-flow" x1="350" y1="145" x2="421" y2="95"/>
+<polygon class="actsf-tip" points="421,91 421,99 430,95"/>
 </svg>
-<figcaption>The same intent routes through whichever surface fits. All paths converge on the same governed, permissioned execution.</figcaption>
+<figcaption>Both surfaces hit the same governed path. The semantic UI just starts closer to what you meant.</figcaption>
 </figure>
 
-**It does not replace the GUI; it sits above it.** Enterprise users still need dashboards to see state at a glance, bulk-editing tools, visual workflow builders, approval screens, and audit views. Some tasks are inherently spatial or need a human eye on a hundred rows at once; you don't want those narrated through a conversation. And for anything ambiguous or irreversible, the agent should drop the user back down to the explicit surface to confirm.
+It does not replace the GUI; it sits above it. Enterprise users still need dashboards for state-at-a-glance, bulk-editing grids, visual workflow builders, approval screens, and audit views. Some tasks are spatial: you want a hundred rows in front of you, not narrated through a conversation. And for anything ambiguous or irreversible, the agent should drop the user back into the explicit surface to confirm.
 
-Two things keep this honest. It has to be [[scoped-system-specialist-agents|scoped to a system]] so the translation is reliable and bounded. And it has to be governed, with every action permissioned, logged, and reversible, because a natural-language layer that can *mutate a system of record* is exactly as dangerous as it is useful: the same sentence that saves twenty minutes can, misread, change a thousand records. When the goal spans several systems, the semantic surface is fronted by an [[orchestrating-scoped-agents|orchestrator]] that fans the work out to the right specialists.
+Two things keep this honest. It has to be [[scoped-system-specialist-agents|scoped to a system]] so the translation is reliable and bounded. And every action has to be permissioned, logged, and reversible, because a natural-language layer that can *mutate a system of record* is exactly as dangerous as it is useful. One misread sentence, a thousand changed records. When the goal spans several systems, the semantic surface is fronted by an [[orchestrating-scoped-agents|orchestrator]] that fans the work out to the right specialists.

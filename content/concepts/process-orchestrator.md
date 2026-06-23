@@ -1,32 +1,13 @@
 ---
 title: Process orchestrator
-status: draft
-draft: true
+status: refined
 type: concept
-description: Draft placeholder for process orchestrators.
+description: The coordination layer that holds a cross-system goal and routes work to scoped specialists. It holds write access to none of the target systems.
 tags:
   - agentic-ai
   - architecture
-  - concept
-  - draft
 ---
 
-## Definition
-TODO(floris): define this concept in one sentence from first principles.
+A process orchestrator is the coordination layer that holds a cross-system goal and routes work to the [[scoped-agent|scoped agents]] that execute it. It understands that a renewal touches CRM, billing, and legal. It holds [[write-access]] to none of them. The specialists mutate; the orchestrator sequences the work and decides what moves next.
 
-## Why it matters
-TODO(floris): explain why this changes architecture or governance decisions.
-
-## Example
-TODO(floris): add one concrete example from practice.
-
-## Where it breaks
-TODO(floris): name one failure mode or edge case.
-
-## Related concepts
-- [[orchestrating-scoped-agents]]
-- [[scoped-agent]]
-- [[rollback]]
-
-## My take
-TODO(floris): add the opinionated take in your own voice.
+Why this layer has to exist, and the three hard problems it creates (context handoff, transaction ownership, [[rollback]]), is the argument in [[orchestrating-scoped-agents]].

@@ -1,18 +1,16 @@
 ---
 title: Governance map
-status: draft
-draft: true
+status: living
 type: map
-description: Draft map for control and accountability in agent systems.
+description: Navigation map for control and accountability in agent systems.
 tags:
   - agentic-ai
   - governance
   - map
-  - draft
 ---
 
 ## What this map covers
-A draft map of the control mechanisms around agent actions.
+A map of the control mechanisms around agent actions.
 
 My current view: governance only works when permission boundaries, approvals, and rollback paths are explicit.
 
