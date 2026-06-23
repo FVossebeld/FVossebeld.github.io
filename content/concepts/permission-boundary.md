@@ -2,12 +2,16 @@
 title: Permission boundary
 status: working-theory
 type: concept
-description: The fence that decides what an agent may touch at all, set before it runs, and why we draw it too tight today.
+description: The static fence set before an agent runs, declaring what it may touch at all, and why the instinct to draw it narrow is the wrong safety move.
 tags:
   - agentic-ai
   - governance
 ---
 
-A permission boundary is the fence: what an agent is allowed to touch at all, decided before it runs. It's the static half of governance, and it's worth keeping separate from the two things it gets confused with. An [[approval-gate]] is a pause for sign-off on a specific action, decided in the moment. An [[audit-trail]] is the record you read afterwards. The boundary says where the agent can go, the gate says wait here, the trail says here's what happened.
+A permission boundary is the scope you draw before the agent starts. Not what it should do (that's the prompt), not whether a particular action needs sign-off (that's an [[approval-gate]]), not the record of what happened (that's an [[audit-trail]]). The boundary is earlier and blunter than both: the set of systems, objects, and operations the agent is physically able to reach. Everything outside is a wall, not a decision.
 
-My complaint is that we draw the fence too tight. The instinct with anything new is to box it in, so most agents today are allowed to read everything and change almost nothing. For where the models now are, that's the wrong default. We should let agents help more inside the systems we already run, and widen what they're permitted to do. The safety move isn't a narrow fence, it's a wider fence with an [[approval-gate]] on the actions that can hurt, and then relaxing the gate as the agent earns the trust.
+Concretely: a Salesforce-[[scoped-agent|scoped agent]] might have read/write on Opportunities and Tasks, read-only on Accounts, and zero access to Contacts or custom objects it doesn't need. That's the boundary. Whether it should actually move a deal to "Closed Won" without asking is the gate's job. What it changed, and on whose say-so, is the trail's job. Three primitives, three moments: boundary before, gate during, trail after.
+
+My complaint: we draw these fences too tight. The instinct with new technology is to confine it, so most enterprise agents today can read broadly but [[write-access|write almost nothing]]. That makes them expensive search bars. The model can find the stalled deal, explain why the validation rule fires, and draft the update, but it can't commit the change. You get the cost of running the agent and still pay the full cost of doing the work by hand.
+
+The safer default is a wider boundary with an [[approval-gate]] on the mutations that carry real risk. Let the agent read and write inside its scope. Put the gate on the actions that can hurt: a bulk data change, a customer-facing message, anything you can't [[rollback]]. Then relax the gate over time as the [[audit-trail]] shows it makes good decisions. You don't need to strangle the scope to stay safe. You need to instrument the space inside it.

@@ -60,7 +60,7 @@ Each layer up is a wider audience. The work is keeping a memory at the lowest la
 <text class="mst-ha" x="290" y="313">Reusable skills</text>
 <text class="mst-sa" x="290" y="328">portable execution patterns</text>
 </svg>
-<figcaption>Each tier up is a wider audience. The design question is keeping a memory at the lowest useful layer and only moving it up deliberately.</figcaption>
+<figcaption>Wider audience means higher risk. The accent tiers (team/org, skills) are where cross-boundary leaks most often originate.</figcaption>
 </figure>
 
 ## The threat model
@@ -71,6 +71,6 @@ The leak is rarely dramatic. It's mundane: a "helpful" lesson retrieved in tenan
 
 Two things. First, memory has to be **federated**: partitioned by boundary, with retrieval **conditioned on policy**, so the query carries who's asking and in what context, and the store only returns what that context is cleared to see. Relevance alone never decides retrieval; scope does, first.
 
-Second, every memory needs **metadata that makes the boundary enforceable**: scope, owner, provenance, sensitivity level, and expiration. Without provenance you can't audit a leak after the fact; without expiration you accumulate stale lessons nobody retired (retiring them is exactly the cleanup a [[memory-promotion-pipeline|consolidation pass]] automates); without a sensitivity tag you can't write a retrieval rule at all.
+Second, every memory needs **metadata that makes the boundary enforceable**: scope, owner, provenance, sensitivity level, and expiration. Without provenance you can't audit a leak after the fact. Without expiration you accumulate stale lessons nobody retired, which is exactly the cleanup a [[memory-promotion-pipeline|consolidation pass]] automates. Without a sensitivity tag you can't write a retrieval rule at all.
 
-The cleanest distinction to hold onto is between **private memory** (scoped, sensitive, stays put), **shared memory** (explicitly promoted, reviewed), and a **reusable skill** (a procedure with the anecdote stripped out). Moving between those tiers isn't automatic; it's the [[memory-promotion-pipeline|promotion pipeline]], where abstraction and review happen. This is a large part of why [[scoped-system-specialist-agents|scoped agents]] are easier to make trustworthy than broad ones: a narrow agent has fewer boundaries to leak across in the first place.
+In practice I think about three tiers: **private memory** (scoped, sensitive, stays put), **shared memory** (explicitly promoted, reviewed), and a **reusable skill** (a procedure with the anecdote stripped out). Moving between them isn't automatic; it's the [[memory-promotion-pipeline|promotion pipeline]], where abstraction and review happen. And this is why [[scoped-system-specialist-agents|scoped agents]] are easier to make trustworthy than broad ones: a narrow agent has fewer boundaries to leak across in the first place.

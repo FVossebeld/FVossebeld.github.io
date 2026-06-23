@@ -9,12 +9,12 @@ tags:
   - memory
 ---
 
-Raw experience shouldn't become shared knowledge automatically. It should be *promoted* through stages, losing specificity and gaining trust at each step. Each arrow below is a gate, a checkpoint a piece of knowledge has to clear before it earns a wider audience, not a default it slides through.
+Raw experience shouldn't become shared knowledge automatically. It gets *promoted* through stages, shedding specificity and gaining trust at each one. Each arrow below is a gate: knowledge clears it before it earns a wider audience, or it stays put.
 
 <figure class="sketch-board" role="group" aria-labelledby="promo-title">
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 660 150" width="100%" role="img" aria-labelledby="promo-title promo-desc">
 <title id="promo-title">The memory promotion pipeline</title>
-<desc id="promo-desc">Five stages left to right: raw episode, private memory, sanitized lesson, approved playbook, and reusable skill. Each arrow is a gate. Most episodes never leave the first stage.</desc>
+<desc id="promo-desc">Five stages left to right: raw episode, private memory, sanitized lesson, approved playbook, and reusable skill. Each arrow represents a gate that strips detail and adds review.</desc>
 <style>
 .prm-tip{fill:var(--secondary);stroke:none}
 .prm-fwd{stroke:var(--secondary);stroke-width:1.5;fill:none}
@@ -47,22 +47,22 @@ Raw experience shouldn't become shared knowledge automatically. It should be *pr
 <text class="prm-ha" x="586" y="69">Reusable skill</text>
 <text class="prm-sa" x="586" y="83">shareable</text>
 </svg>
-<figcaption>Each arrow is a gate that strips specificity and adds review. Most episodes never leave the first stage.</figcaption>
+<figcaption>Each arrow is a gate: it strips identifying detail and requires explicit sign-off before knowledge moves right.</figcaption>
 </figure>
 
-1. **Raw episode**: what actually happened this session, with all its private detail. Stays local.
+1. **Raw episode**: what actually happened this session, private detail and all. Stays local.
 2. **Private memory**: a durable note scoped to one user or tenant. Still sensitive.
-3. **Sanitized lesson**: the generalisable insight with identifying detail stripped out.
-4. **Approved playbook**: a sanitized lesson a human has signed off as correct and shareable, with provenance attached.
+3. **Sanitized lesson**: the generalisable insight, identifying detail stripped out.
+4. **Approved playbook**: a sanitized lesson a human has signed off as correct and shareable. Provenance attached.
 5. **Reusable skill**: a playbook compressed into a procedure the agent reaches for by default.
 
-Most episodes never leave the first stage, and that's the point. Promotion is exactly where abstraction and human review happen, which is exactly where leaks and bad lessons get caught. Skip the checkpoints and you've rebuilt the leaky shared store from [[federated-memory-for-enterprise-agents]].
+Most episodes never leave the first stage. That's the point. Promotion is where abstraction and human review happen, which is where leaks and bad lessons get caught. Skip the checkpoints and you've rebuilt the leaky shared store from [[federated-memory-for-enterprise-agents]].
 
 ## What actually does the climbing
 
-The ladder describes the stages; it doesn't say what moves a lesson up one. For the early, unsupervised steps, the answer is increasingly a consolidation pass: a job that runs after a session goes quiet, reads the raw [[agent-trace|traces]] plus whatever's already in memory, and rewrites the store with duplicates merged, contradictions resolved, and stale entries retired. Anthropic ships this as a feature literally called [Dreams](https://platform.claude.com/docs/en/managed-agents/dreams); the [Azure SRE agent](https://learn.microsoft.com/en-us/azure/sre-agent/memory) does the same thing about thirty minutes after a thread goes idle.
+The stages are the ladder; they don't say what moves a lesson up one. For the early, unsupervised steps the answer is increasingly a consolidation pass: a background job that fires after a session goes quiet, reads the raw [[agent-trace|traces]] plus whatever's already in memory, and rewrites the store. Duplicates merged, contradictions resolved, stale entries dropped. Anthropic ships this as a feature literally called [Dreams](https://platform.claude.com/docs/en/managed-agents/dreams); the [Azure SRE agent](https://learn.microsoft.com/en-us/azure/sre-agent/memory) does the same thing about thirty minutes after a thread goes idle.
 
-The detail I care about is where it stops. Dreams never edits the input store; it produces a candidate the agent's owner can review and discard. That's the same boundary as the ladder: the machine can dedupe, generalize, and retire on its own, but the step from sanitized lesson to approved playbook is still a human gate. Consolidation automates the climb right up to that line and no further. Treat it as auto-promotion past the gate and you've rebuilt the leaky shared store, just with extra steps.
+The detail I care about is where it stops. Dreams never edits the input store; it produces a candidate the agent's owner can review and discard. Same boundary as the ladder: the machine can dedupe and generalize on its own, but the step from sanitized lesson to approved playbook is still a human gate. Consolidation automates the climb right up to that line and no further. Treat it as auto-promotion past the gate and you've rebuilt the leaky shared store, just with extra steps.
 
 ## A worked example
 
@@ -72,15 +72,15 @@ Watch one fact climb the ladder:
 > **Sanitized lesson:** "In enterprise ERP integrations, validate custom field mappings before assuming an API failure."
 > **Reusable skill:** "When debugging an ERP integration failure, check authentication first, then field mappings, then validation rules, then downstream workflow triggers."
 
-Same knowledge, three boundaries. The raw episode names a customer and stays in their tenant. The lesson is true across customers and carries nobody's name. The skill is a procedure worth running by default, with the anecdote gone entirely. That's how learning happens without leaking.
+Same knowledge, three boundaries. The raw episode names a customer and stays in their tenant. The lesson is true across customers and carries nobody's name. The skill is a procedure worth running by default, the anecdote gone entirely. Learning without leaking.
 
 ## Failure modes worth naming
 
-The pipeline can fail in predictable ways, and each is a reason a gate has to be a real check and not a rubber stamp:
+Each gate exists because the pipeline fails in predictable ways:
 
-- **Over-generalisation**: promoting a one-off incident into a "rule" that's wrong most of the time.
+- **Over-generalisation**: a one-off incident promoted into a "rule" that's wrong most of the time.
 - **Hidden leakage**: identifying detail surviving sanitization (a customer name buried in an example, a field only one tenant has).
-- **Wrong lessons**: a confidently-stated playbook that was a coincidence, not a cause.
-- **Stale lessons**: knowledge that was true once and quietly went out of date because nothing expires it.
+- **Wrong lessons**: a confidently-stated playbook that was coincidence, not cause.
+- **Stale lessons**: knowledge that was true once and quietly expired because nothing retired it.
 
-This is also how a workspace's raw memory turns into durable capability over time (see [[agent-workspaces]]), and it's the mechanism that makes [[federated-memory-for-enterprise-agents|federated memory]] more than just a set of walls.
+This is how a workspace's raw memory turns into durable capability over time (see [[agent-workspaces]]), and it's what makes [[federated-memory-for-enterprise-agents|federated memory]] more than a set of walls.

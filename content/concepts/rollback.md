@@ -2,14 +2,16 @@
 title: Rollback
 status: working-theory
 type: concept
-description: Undoing an action after it's committed, why it mostly doesn't exist for real systems, and why that pushes the safety work before the action.
+description: The ability to undo a committed action. Reversibility is the real axis of risk, but most real-world writes are only partially reversible.
 tags:
   - agentic-ai
   - governance
 ---
 
-Rollback is the idea that you can undo an action after it's committed: revert the change, restore the prior state, pretend it didn't happen. In version control it's real. In most systems it isn't.
+Rollback means undoing a committed action: reverting the change, restoring the prior state. In `git` you get it for free. In a [[system-of-record]] you almost never do.
 
-That's the point I care about. You can't un-send the email, un-charge the card, or un-notify the customer who already saw the message. So leaning on rollback as the safety net is mostly a comfort, not a plan. For the narrow set of systems that genuinely support it, fine, use it. For everything else, treating "we can always roll it back" as the answer is how you get burned.
+I think reversibility is the real axis of risk in agentic systems, more than scope or frequency. A write you can undo is a write you can learn from cheaply. A write you cannot undo is a bet. Most architectures treat all writes equally. They shouldn't.
 
-Which is why the real work moves earlier. If you can't reliably undo, you check before you commit, not after. That puts the weight on the [[approval-gate]] and on double-checking what's about to happen, not on cleaning up afterwards. Rollback being mostly unavailable is one of the stacked reasons [[write-access]] is hard.
+The honest catch: most real-world writes are only *partially* reversible. You can delete the calendar invite, but the customer already saw it. You can void the invoice, but the vendor already booked the revenue. The system state rolls back; the human state does not. Partial reversibility is better than none, and it still isn't a license to skip the gate.
+
+That asymmetry is why the safety work moves before the action, not after it. If you cannot reliably undo, you check before you commit. The weight lands on the [[approval-gate]], on knowing what you're about to change and what it will cost if you're wrong. [[write-access|Write access]] is hard for several stacked reasons, and the fiction of easy rollback is one of them.

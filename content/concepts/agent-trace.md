@@ -2,14 +2,14 @@
 title: Agent trace
 status: working-theory
 type: concept
-description: The fine-grained record of a single agent run, what it's for, and why it's also the raw material a memory loop learns from.
+description: The step-by-step record of how an agent reached an action, and why it doubles as raw material for memory.
 tags:
   - agentic-ai
   - governance
 ---
 
-An agent trace is the fine-grained record of a single run: what the agent saw, what it reasoned, and which tools it called, in order. It's the thing you read to answer "why did it do that," and it's how you resume a session instead of starting cold.
+An agent trace is the step-by-step record of how an agent reached an action: the prompts it received, the tool calls it made, the intermediate results, the branch it picked at each fork. You read it when the agent did something wrong and you need to know why.
 
-Keep it distinct from the [[audit-trail]]. The trace is about the agent's reasoning and is mostly for debugging and observability; the trail is about what changed in real systems and is for compliance. One explains the thinking, the other proves the outcome.
+Keep it distinct from the [[audit-trail]]. The trace records the agent's internal path (what it saw, tried, chose). The trail records the effect on real systems (what changed, when, who approved it). You debug the trace. You audit the trail. They often share a run ID but serve different readers: the trace is for the builder, the trail is for compliance.
 
-The part I find most interesting is that the trace is also feedstock. The same record that helps you debug is what a memory loop learns from: feed traces into a [[memory-promotion-pipeline|consolidation pass]] and the agent can carry forward what worked and what didn't. That's the bridge from observability into memory, and it's why I treat traces as more than a log to grep when something breaks.
+What I keep coming back to is that the trace is also feedstock. The same record that helps me debug a bad tool call is what a [[memory-promotion-pipeline|consolidation pass]] reads when deciding what the agent should carry forward. That's why I don't treat traces as just a log to grep when something breaks. They're where observability and memory meet.
