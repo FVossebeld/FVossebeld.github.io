@@ -31,5 +31,10 @@ My current view: the architecture gets safer when orchestration and write access
 ## Field notes
 - [[why-write-access-is-hard-in-regulated-environments]]
 
+## See also
+- [[governance-map]]
+- [[interfaces-map]]
+- [[memory-map]]
+
 ## Open questions
 - Which concept links are still missing from the current cluster?
