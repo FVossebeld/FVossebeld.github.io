@@ -101,6 +101,26 @@ version, and `wiki-librarian` (or you) acts on it. Both keep the human as the me
 `wiki-lint` (the workflow) authenticates the same way as Layer 2, via `copilot-requests: write`
 in its frontmatter (the Actions token), so it needs **no secret** either.
 
+### Layer 3b, Periodic critical passes (the "is the whole garden any good?" brain)
+
+`wiki-lint` keeps the *link graph* healthy. Three more scheduled workflows keep the garden
+healthy as a body of *ideas* and as something a human enjoys reading. Each is read-only,
+authenticates via `copilot-requests: write` (no secret), and opens **one issue** with a
+ranked, human-checkable worklist, never a PR. They run on staggered monthly crons so they
+don't all land at once, and each also has a *Run workflow* button.
+
+| File | Runs | Lens | What it catches |
+|---|---|---|---|
+| [`.github/workflows/wiki-consolidate.md`](./workflows/wiki-consolidate.md) | 1st of month | **Structure** | Merge-drift: pages that should be **merged** (same subject, twice), **split** (one page, two subjects), or a buried concept **promoted** to its own `concepts/` page. Answers the "these should maybe be one page" itch. |
+| [`.github/workflows/wiki-critic.md`](./workflows/wiki-critic.md) | 8th of month | **Ideas** | Adversarial red-team: **contradictions** between pages, **unsupported claims** (no `raw/` grounding, no reasoning), and **coverage gaps** in an argument. Steelmans, then attacks. |
+| [`.github/workflows/wiki-readability.md`](./workflows/wiki-readability.md) | 15th of month | **Pedagogy** | Visual-learner pass: throat-clearing openings, walls of text, monotone pacing, and pages running several abstract ideas with **zero figures**. Proposes structure and hands briefs to `wiki-visualize` (never embeds visuals itself). Enforces the *both ways* prime directive in [`DIAGRAMS.md`](./DIAGRAMS.md). |
+
+The division of labour: `wiki-lint` asks "are related pages *linked*?", `wiki-consolidate`
+asks "should two pages be the *same page*?", `wiki-critic` asks "are the claims *true,
+supported, and complete*?", and `wiki-readability` asks "does this *read well and land
+fast*?" Four non-overlapping lenses; `content-quality-review` (Layer 2) still guards prose
+slop on every PR.
+
 ### Why skills, not just agents?
 
 A quick map of the three mechanisms, because they're easy to confuse:
