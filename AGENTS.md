@@ -50,6 +50,15 @@ Periodically scan for: contradictions between pages, stale claims, orphan pages 
 
 The interactive [`wiki-librarian`](.github/agents/wiki-librarian.agent.md) agent is the conversational front door that routes to these three skills and keeps the human in the loop.
 
+### Periodic critical passes (consolidate / critique / readability)
+`wiki-lint` keeps the link graph healthy; three more scheduled workflows keep the garden healthy as a body of ideas and as something a human enjoys reading. All read-only, all open **one issue** with a ranked worklist (never a PR), staggered across the month:
+
+- [`wiki-consolidate`](.github/workflows/wiki-consolidate.md) (1st) — **structure**: finds merge-drift and proposes which pages to **merge**, **split**, or **promote** to their own `concepts/` page. Asks "should two pages be the same page?" where lint only asks "are they linked?".
+- [`wiki-critic`](.github/workflows/wiki-critic.md) (8th) — **ideas**: an adversarial red-team for **contradictions**, **unsupported claims**, and **coverage gaps**. Steelmans each page, then objects.
+- [`wiki-readability`](.github/workflows/wiki-readability.md) (15th) — **pedagogy**: a visual-learner pass for throat-clearing openings, walls of text, monotone pacing, and pages with too few figures. Hands visual briefs to `wiki-visualize`; never embeds diagrams itself.
+
+See [`.github/AGENTIC-PIPELINE.md`](.github/AGENTIC-PIPELINE.md) (Layer 3b) for the full breakdown.
+
 ### Visualize → [`wiki-visualize`](.github/skills/wiki-visualize/SKILL.md) skill
 When a page (new or existing) has structure, flow, a comparison, or stats that prose handles awkwardly, consider a visual. This is **opt-in and judicious**: the default is no diagram, and nothing is embedded without Floris's say-so. `wiki-ingest` calls it at its "consider a visual" step. The technique palette (Mermaid, inline HTML/CSS, inline SVG — all Quartz-native) and the styling/dark-mode/accessibility rules live in [`.github/DIAGRAMS.md`](.github/DIAGRAMS.md).
 
