@@ -12,7 +12,7 @@ Rollback means undoing a committed action: reverting the change, restoring the p
 
 I think reversibility is the real axis of risk in agentic systems, more than scope or frequency. A write you can undo is a write you can learn from cheaply. A write you cannot undo is a bet. Most architectures treat all writes equally. They shouldn't.
 
-The honest catch: most real-world writes are only *partially* reversible. You can delete the calendar invite, but the customer already saw it. You can void the invoice, but the vendor already booked the revenue. The system state rolls back; the human state does not. Partial reversibility is better than none, and it still isn't a license to skip the gate.
+The honest catch: most real-world writes are only *partially* reversible. You can delete the calendar invite, but the customer already saw it. You can void the invoice, but the vendor already booked the revenue. The system state rolls back; the human state does not. And when the undo only goes part way, the [[audit-trail]] is the one record of what actually changed and what didn't. Partial reversibility is better than none, and it still isn't a license to skip the gate.
 
 <figure class="sketch-board" role="group" aria-labelledby="rb-title">
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 660 175" width="100%" role="img" aria-labelledby="rb-title rb-desc">

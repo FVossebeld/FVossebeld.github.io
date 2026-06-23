@@ -1,6 +1,8 @@
 ---
 title: How this site works
 description: The living-wiki / agent-memory idea behind this digital garden.
+tags:
+  - meta
 ---
 
 This site is built on a simple but powerful idea: **a living wiki that an AI helps maintain, but that I edit and control.** It's inspired by [Andrej Karpathy's "LLM Wiki" pattern](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f) and the way [digital gardens](https://quartz.jzhao.xyz/) work.

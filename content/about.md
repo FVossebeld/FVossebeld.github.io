@@ -1,6 +1,8 @@
 ---
 title: About me
 description: Who I am, what I work on, and why this site exists.
+tags:
+  - meta
 ---
 
 <div class="portrait">

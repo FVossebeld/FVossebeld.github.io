@@ -1,5 +1,6 @@
 ---
 title: Floris Vossebeld
+description: Field notes on enterprise AI, agents, systems, and the way software changes organizations.
 ---
 
 <div class="masthead">
@@ -29,6 +30,24 @@ I keep coming back to the same question: as language models start interacting wi
     <a href="thoughts/enterprise-ai-map">
       <span class="index-title">Enterprise AI map</span>
       <span class="index-desc">Map for governance, write access, systems of record, and approval boundaries.</span>
+    </a>
+  </li>
+  <li>
+    <a href="thoughts/governance-map">
+      <span class="index-title">Governance map</span>
+      <span class="index-desc">Map for control and accountability: permission boundaries, approvals, audit trails, and rollback.</span>
+    </a>
+  </li>
+  <li>
+    <a href="thoughts/interfaces-map">
+      <span class="index-title">Interfaces map</span>
+      <span class="index-desc">Map for the action interfaces a model uses: tool calling, tool schemas, MCP, and workspace state.</span>
+    </a>
+  </li>
+  <li>
+    <a href="thoughts/memory-map">
+      <span class="index-title">Memory map</span>
+      <span class="index-desc">Map for memory and state: federated memory, the promotion pipeline, workspace state, and traces.</span>
     </a>
   </li>
   <li>

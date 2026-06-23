@@ -8,7 +8,7 @@ tags:
   - governance
 ---
 
-An audit trail is the governance ledger: which actor changed which object, what the action was, when, and under whose authority. The system of record keeps the data; the trail keeps the receipts. Compliance reads the trail. Engineers almost never do, until something breaks.
+An audit trail is the governance ledger: which actor changed which object, what the action was, when, and under whose authority. The [[system-of-record|system of record]] keeps the data; the trail keeps the receipts. Compliance reads the trail. Engineers almost never do, until something breaks.
 
 Distinct from an [[agent-trace]]. The trace is the reasoning log: what the model saw, thought, and called during a run. You debug the trace. You audit the trail. One explains the thinking; the other proves the outcome to people who weren't in the room.
 

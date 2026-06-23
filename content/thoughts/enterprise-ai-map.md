@@ -27,5 +27,8 @@ My current view: enterprise AI starts to matter when agents can change system st
 ## Field notes
 - [[why-write-access-is-hard-in-regulated-environments]]
 
+## See also
+- [[governance-map]]
+
 ## Open questions
 - Which boundaries need a human approval gate by default?
