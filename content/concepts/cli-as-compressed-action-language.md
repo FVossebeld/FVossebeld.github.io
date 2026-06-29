@@ -16,7 +16,14 @@ Tokens are part of it: compact commands leave more of the context window for rea
 
 Code is the next step past the shell. A short script holds a loop, a conditional, and error handling that a pipeline cannot, and the CLI shades into it continuously. This is why coding agents that work through a terminal feel less like chatbots calling functions and more like an engineer operating a system. It is also where [[tool-calling]] is drifting: instead of one JSON call per step, let the model write code that batches the workflow and run it once. Mukul Singh makes the case against JSON-RPC tool calling directly;[^singh] the argument is the same one that puts [[json-as-transport-not-cognition|the command line a layer above JSON in the stack]].
 
-A shell is dangerous precisely because it is powerful. The same generality that lets an agent compose four steps also lets it `rm -rf` the wrong tree, pipe credentials into a log, or chain side effects nobody can trace afterward. "Closer to execution" cuts both ways. I do not think you can hand an agent a shell without a sandbox, scoped least-privilege permissions, a recorded command history a human can review, and dry-run-then-confirm on anything destructive. Without those walls you have given an intern a root shell and left the room.
+A shell is dangerous precisely because it is powerful. The same generality that lets an agent compose four steps also lets it `rm -rf` the wrong tree, pipe credentials into a log, or chain side effects nobody can trace afterward. "Closer to execution" cuts both ways. I do not think you can hand an agent a shell without:
+
+- a sandbox;
+- scoped least-privilege permissions;
+- a recorded command history a human can review;
+- dry-run-then-confirm on anything destructive.
+
+Without those walls you have given an intern a root shell and left the room.
 
 So the shell is the way *in*. It only pays off inside an [[agent-workspaces|environment that makes it durable]] and a governance layer that makes it safe. See [[json-as-transport-not-cognition]] for the layer it sits on top of.
 

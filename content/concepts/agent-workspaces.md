@@ -59,6 +59,13 @@ Once the environment is durable, behaviour changes. The agent can leave itself n
 
 I keep seeing the same structure. Copilot CLI works in a real checkout with a terminal and a test runner. Cursor gets the developer's directory and a shell. Claude Code gets a sandbox it can fork and roll back. The models underneath are from the same generation, give or take. The gap in useful output traces to the environment at least as much as to the weights.
 
-I want to be careful not to overstate that. The model still matters. But **model and environment co-evolve**. A weak model needs rigid schemas and narrow tool calls; you cannot hand it a shell. A stronger model (better at planning, better at recovering from its own mistakes) can operate a messier workspace, and the workspace is what turns that reasoning into durable work instead of a clever transcript. When a new release "feels much more capable," both usually moved at once: the weights got better at reasoning and recovery, and someone finally gave them a persistent environment to reason *in*. Capability is in the coupling.
+I want to be careful not to overstate that. The model still matters. But **model and environment co-evolve**. A weak model needs rigid schemas and narrow tool calls; you cannot hand it a shell. A stronger model (better at planning, better at recovering from its own mistakes) can operate a messier workspace, and the workspace is what turns that reasoning into durable work instead of a clever transcript. When a new release "feels much more capable," both usually moved at once: the weights got better at reasoning and recovery, and someone finally gave them a persistent environment to reason *in*.
+
+<blockquote style="margin:1.5rem 0;padding:.6rem 0 .6rem 1.4rem;border-left:4px solid var(--tertiary);font-family:var(--headerFont);font-size:1.3rem;line-height:1.4;color:var(--dark);font-style:italic;">
+  Capability is in the coupling.
+  <footer style="margin-top:.5rem;font-family:var(--bodyFont);font-size:.85rem;font-style:normal;color:var(--gray);">
+    - agent workspaces
+  </footer>
+</blockquote>
 
 Which is why [[cli-as-compressed-action-language|the shell]] matters as the way in, why the next questions are about [[scoped-system-specialist-agents|where you point the workspace]] and [[federated-memory-for-enterprise-agents|what it's allowed to remember]].
