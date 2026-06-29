@@ -14,20 +14,22 @@ Reading those systems is cheap and reversible by definition. Writing changes the
 
 It is hard for three reasons, and they stack.
 
-<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1rem;margin:1.25rem 0 1.5rem 0;font-family:var(--bodyFont);">
-  <div style="background:var(--lightgray);border:1px solid var(--tertiary);border-radius:10px;padding:1rem;">
-    <div style="font-weight:700;color:var(--dark);margin-bottom:.35rem;">Irreversible</div>
+<section aria-label="Why write access is hard" style="margin:1.25rem 0 1.5rem 0;">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1rem;font-family:var(--bodyFont);">
+  <article style="background:var(--lightgray);border:1px solid var(--tertiary);border-radius:10px;padding:1rem;">
+    <h3 style="font-size:1rem;font-weight:700;color:var(--dark);margin:0 0 .35rem 0;">Irreversible</h3>
     <div style="color:var(--gray);font-size:.92rem;">Email sent, card charged, prior state gone.</div>
-  </div>
-  <div style="background:var(--lightgray);border:1px solid var(--tertiary);border-radius:10px;padding:1rem;">
-    <div style="font-weight:700;color:var(--dark);margin-bottom:.35rem;">Shared truth</div>
+  </article>
+  <article style="background:var(--lightgray);border:1px solid var(--tertiary);border-radius:10px;padding:1rem;">
+    <h3 style="font-size:1rem;font-weight:700;color:var(--dark);margin:0 0 .35rem 0;">Shared truth</h3>
     <div style="color:var(--gray);font-size:.92rem;">A wrong write costs the organization a cleanup.</div>
-  </div>
-  <div style="background:var(--lightgray);border:1px solid var(--tertiary);border-radius:10px;padding:1rem;">
-    <div style="font-weight:700;color:var(--dark);margin-bottom:.35rem;">Accountability</div>
+  </article>
+  <article style="background:var(--lightgray);border:1px solid var(--tertiary);border-radius:10px;padding:1rem;">
+    <h3 style="font-size:1rem;font-weight:700;color:var(--dark);margin:0 0 .35rem 0;">Accountability</h3>
     <div style="color:var(--gray);font-size:.92rem;">The audit trail still expects a name.</div>
+  </article>
   </div>
-</div>
+</section>
 
 **Irreversibility.** The change is usually irreversible. [[Rollback]] is mostly a fiction outside version control. You cannot un-send the email, un-post the Slack announcement, or un-charge the card. Once downstream has consumed the event, the prior state is gone.
 
@@ -38,7 +40,7 @@ It is hard for three reasons, and they stack.
 <blockquote style="margin:1.5rem 0;padding:.6rem 0 .6rem 1.4rem;border-left:4px solid var(--tertiary);font-family:var(--headerFont);font-size:1.3rem;line-height:1.4;color:var(--dark);font-style:italic;">
   Retrieval can be agentic; the mutation usually shouldn't be.
   <footer style="margin-top:.5rem;font-family:var(--bodyFont);font-size:.85rem;font-style:normal;color:var(--gray);">
-    - write access
+    <cite>write access</cite>
   </footer>
 </blockquote>
 

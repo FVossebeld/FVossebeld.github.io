@@ -64,7 +64,7 @@ I want to be careful not to overstate that. The model still matters. But **model
 <blockquote style="margin:1.5rem 0;padding:.6rem 0 .6rem 1.4rem;border-left:4px solid var(--tertiary);font-family:var(--headerFont);font-size:1.3rem;line-height:1.4;color:var(--dark);font-style:italic;">
   Capability is in the coupling.
   <footer style="margin-top:.5rem;font-family:var(--bodyFont);font-size:.85rem;font-style:normal;color:var(--gray);">
-    - agent workspaces
+    <cite>agent workspaces</cite>
   </footer>
 </blockquote>
 
