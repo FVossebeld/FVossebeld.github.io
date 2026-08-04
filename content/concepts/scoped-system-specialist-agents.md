@@ -16,7 +16,7 @@ Scope also maps onto structures organisations already run. Your Salesforce admin
 
 A Salesforce specialist can inspect an opportunity, explain why a missing field is blocking the next stage, update the next step, log a meeting note, and, when a change is risky, stop and ask before committing. The same shape holds for a ServiceNow or SAP specialist (the [[thoughts/from-chatbots-to-system-operators|essay]] walks through both). In each case the agent stops being a chatbot bolted onto an app and becomes [[the-agent-as-semantic-ui|the interface to the system itself]].
 
-Scope on its own doesn't make an agent safe; it makes an agent *governable*. Those are different things. Governable means you can wrap a control loop around it, and the [[permission-boundary]] is only the precondition for the rest.
+Scope on its own doesn't make an agent safe; it makes an agent _governable_. Those are different things. Governable means you can wrap a control loop around it, and the [[permission-boundary]] is only the precondition for the rest.
 
 <figure class="sketch-board" role="group" aria-labelledby="gov-loop-title">
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 190" width="100%" role="img" aria-labelledby="gov-loop-title gov-loop-desc">
@@ -51,7 +51,7 @@ Scope on its own doesn't make an agent safe; it makes an agent *governable*. Tho
 <path class="gov-ret" d="M 622 90 L 636 90 L 636 162 L 4 162 L 4 90 L 10 90"/>
 <polygon class="gov-rtip" points="10,86 10,94 18,90"/>
 </svg>
-<figcaption>Each action is approved, traced, and evaluated before the next intent.</figcaption>
+<figcaption>Each action is approved, traced, and [[agent-evaluation|evaluated]] before the next intent.</figcaption>
 </figure>
 
 The governance loop works inside one system. Real workflows don't stay inside one system. A renewal touches CRM, billing, legal, email, calendar, and support tickets, so a wall of narrow agents that can't coordinate is as useless as one broad agent is dangerous. The missing layer is [[orchestrating-scoped-agents|orchestration]]: broad intent, narrow execution. A conversational orchestrator holds the cross-system goal and routes work to the specialists; each specialist still does every mutation inside its own boundary. And the hardest boundary to draw is [[federated-memory-for-enterprise-agents|memory]]: what a specialist is allowed to learn and carry forward.
