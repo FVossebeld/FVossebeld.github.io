@@ -1,6 +1,8 @@
 ---
 title: Floris Vossebeld
 description: Field notes on enterprise AI, agents, systems, and the way software changes organizations.
+tags:
+  - meta
 ---
 
 <div class="masthead">
