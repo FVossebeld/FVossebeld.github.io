@@ -57,6 +57,12 @@ I keep coming back to the same question: as language models start interacting wi
     </a>
   </li>
   <li>
+    <a href="thoughts/selective-agent-delegation">
+      <span class="index-title">Start with one agent, delegate by evidence</span>
+      <span class="index-desc">Working-theory essay: add agents when parallelism, context isolation, or independent review earns the coordination cost.</span>
+    </a>
+  </li>
+  <li>
     <a href="concepts/">
       <span class="index-title">Concept notes</span>
       <span class="index-desc">Reusable concept pages for concrete nodes like MCP, tool schema, approval gate, rollback, and workspace state.</span>
