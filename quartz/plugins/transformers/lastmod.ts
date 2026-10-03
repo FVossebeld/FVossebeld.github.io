@@ -42,7 +42,7 @@ function coerceDate(fp: string, d: any): Date {
 
 type MaybeDate = undefined | string | number
 
-export async function getFileCreatedDate(
+async function getFileCreatedDate(
   repositoryWorkdir: string,
   relativePath: string,
 ): Promise<number | undefined> {
