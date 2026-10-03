@@ -1,8 +1,11 @@
 import fs from "fs"
+import { execFile } from "child_process"
 import { Repository } from "@napi-rs/simple-git"
 import { QuartzTransformerPlugin } from "../types"
 import path from "path"
-import { styleText } from "util"
+import { promisify, styleText } from "util"
+
+const execFileAsync = promisify(execFile)
 
 export interface Options {
   priority: ("frontmatter" | "git" | "filesystem")[]
@@ -38,6 +41,24 @@ function coerceDate(fp: string, d: any): Date {
 }
 
 type MaybeDate = undefined | string | number
+
+export async function getFileCreatedDate(
+  repositoryWorkdir: string,
+  relativePath: string,
+): Promise<number | undefined> {
+  try {
+    const { stdout } = await execFileAsync(
+      "git",
+      ["log", "--follow", "--diff-filter=A", "--format=%cI", "-1", "--", relativePath],
+      { cwd: repositoryWorkdir },
+    )
+    const date = Date.parse(stdout.trim())
+    return Number.isNaN(date) ? undefined : date
+  } catch {
+    return undefined
+  }
+}
+
 export const CreatedModifiedDate: QuartzTransformerPlugin<Partial<Options>> = (userOpts) => {
   const opts = { ...defaultOptions, ...userOpts }
   return {
@@ -80,6 +101,7 @@ export const CreatedModifiedDate: QuartzTransformerPlugin<Partial<Options>> = (u
               } else if (source === "git" && repo) {
                 try {
                   const relativePath = path.relative(repositoryWorkdir, fullFp)
+                  created ||= await getFileCreatedDate(repositoryWorkdir, relativePath)
                   modified ||= await repo.getFileLatestModifiedDateAsync(relativePath)
                 } catch {
                   console.log(
