@@ -166,14 +166,17 @@ as if they were evidence for the garden's argument.
 
 ## Site changes, in order
 
-These are proposed stages, not shipped theme changes.
+The authoring procedure and opt-in plate styles are implemented. Public per-page
+adoption, narrow-screen repairs and any broader theme migration remain proposed work
+requiring Floris's approval.
 
 ### 1. Change authoring first
 
 Claim-first composition is now part of this skill and `DIAGRAMS.md`. The
 [editorial plate frame](../PATTERNS.md#editorial-plate-frame) is an original,
-native prototype requiring no global CSS. It uses current site tokens while the target
-palette remains a proposal.
+Quartz-native recipe requiring the shared `.editorial-plate` styles in
+`quartz/styles/custom.scss`. Its warm palette and dark-mode counterparts are implemented
+within that opt-in family; the root site palette and existing figures are unchanged.
 
 The first useful public candidate is the orchestration section in "From chatbots to
 system operators": show **coordinates** versus **changes state**, not merely component
