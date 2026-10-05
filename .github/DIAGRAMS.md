@@ -17,10 +17,13 @@ This garden renders on **Quartz v4**, which gives us three techniques with **no 
 build tooling** - Mermaid, inline HTML/CSS, and inline SVG. Everything below is tuned to
 what actually renders here, including this site's cool-ink palette and automatic dark mode.
 
-> **Don't draw from scratch.** [`skills/wiki-visualize/PATTERNS.md`](./skills/wiki-visualize/PATTERNS.md)
+> **Reuse scaffolding, not a forced layout.** [`skills/wiki-visualize/PATTERNS.md`](./skills/wiki-visualize/PATTERNS.md)
 > is a library of **verified, copy-paste** recipes (stat cards, timelines, steppers,
 > swimlanes, comparisons, meters, pull-quotes, plus the Mermaid set) - each one already
-> rendered and dark-mode-checked. Pick the closest pattern, swap in real content, re-verify.
+> rendered and dark-mode-checked. Pick a fitting pattern, swap in real content, re-verify.
+> When none exposes the argument well, use the
+> [editorial design procedure](./skills/wiki-visualize/references/EDITORIAL.md) to compose
+> a bespoke figure. A new composition is welcome; untested HTML and invented claims are not.
 > This file is the _why_; PATTERNS.md is the _what to paste_.
 
 ---
@@ -65,6 +68,23 @@ feels coherent across pages. Reuse the matching snippet from
 5. **Governance loop** (showing safe operation cycle): intent → approval → action → trace → evaluation.
 
 These are defaults, not decoration. Use them only when they clarify the local argument.
+Do not turn every new idea into the same ladder or row of boxes.
+
+### Editorial figures: claim, mechanism, interpretation
+
+The [editorial visual system](./skills/wiki-visualize/references/EDITORIAL.md) defines
+the direction Floris wants: warm paper, near-black rules, expressive serif claims,
+mono apparatus, sharp evidence panels and bespoke explanatory graphics. Design around
+the argument, not just around the available diagram syntax.
+
+- Give the figure one claim and a short, useful title.
+- Make geometry mean something: a boundary encodes scope, a shared axis encodes time,
+  a bar encodes magnitude. Equal cards are not a substitute for a relationship.
+- Use a quiet frame, mono apparatus, readable labels, and one accent for the focal point.
+- Include a reading key when needed and a sentence about what the reader should notice.
+- Keep evidence and caveats together. Mark illustrative timing as illustrative; distinguish
+  a working theory from a measured result. A qualitative idea does not need fake numbers.
+- Alternate prose and explanatory figures where the argument calls for it. No figure quota.
 
 ---
 
@@ -80,12 +100,14 @@ Three native techniques, ranked by how often they're the right call.
 
 Quick decision rules:
 
-- **Relational data → Mermaid.** It's native, theme-aware, LLMs know it well, and it
-  has a built-in pan/zoom popup. This is ~85% of cases.
+- **Simple relationships → Mermaid.** It's native, theme-aware, and has a built-in
+  pan/zoom popup. Choose it when automatic layout makes the relationship clear, not
+  because most diagrams used it before.
 - **Tabular/quantitative data → HTML/CSS.** When you're fighting Mermaid to make it look
   like a grid of numbers, stop and write a small HTML card grid instead.
-- **Bespoke layout → SVG.** Only when the visual is genuinely custom and Mermaid can't
-  express it. Higher token cost, higher error rate - keep it small.
+- **Bespoke layout → HTML or SVG.** Use reflowing HTML for labels and editorial
+  comparisons; SVG for shared axes, nested boundaries, and precise spatial relationships.
+  A hybrid can keep the geometry in SVG and the readable explanation in HTML.
 
 > **D2 (optional, manual):** for a showcase-quality architecture diagram, you can author
 > [D2](https://d2lang.com) and render it to SVG yourself (`d2 in.d2 out.svg`), then embed
@@ -113,6 +135,15 @@ Fonts: `--bodyFont` (Spectral), `--headerFont` (Spectral), `--codeFont` (Spline 
 **Two accents, used sparingly.** Ink blue and sky blue are mid-tones that stay legible on both
 the paper and the near-black background, so they're the safe choice for emphasis in any
 technique. Don't reach past two accent colours per visual.
+
+### Proposed editorial palette
+
+The [editorial specification](./skills/wiki-visualize/references/EDITORIAL.md#surface-and-colour)
+also records a warm-paper palette with semantic green, pink and blue accents.
+It is a concrete target for an approved opt-in plate theme, **not installed tokens**.
+Until that theme exists, published figures use the current tokens above. Private
+prototypes may demonstrate the target palette, clearly labelled as a proposal.
+Do not silently scatter hardcoded target colours through published Markdown.
 
 ---
 
@@ -302,8 +333,16 @@ and look at the page. Mermaid syntax errors fail silently into an ugly block.
   `<figcaption>` or a `> [!abstract]` callout under the figure for everyone else.
 - **Dark mode.** Colours come from `var(--...)` or the two brand accents - nothing
   hardcoded that only works on one background.
-- **Mobile.** Responsive sizing (`viewBox`+`width:100%`, reflowing card grids); prefer
-  `TD` for tall content.
+- **Mobile.** Responsive sizing alone is not sufficient. At 390px, essential labels
+  should remain at least 14 CSS px after SVG scaling: declared font size multiplied by
+  rendered width / viewBox width. Reflow HTML, simplify, or author a narrow composition
+  rather than shrinking an entire desktop drawing. Prefer `TD` for tall content.
+- **Contrast and zoom.** Target WCAG AA: 4.5:1 for normal text, 3:1 for large text and
+  meaningful graphical objects. Check both themes, 200% zoom, and no page-level horizontal
+  overflow. Colour never carries a distinction alone; use labels, borders, or patterns.
+- **Motion.** Static is the default. If motion reveals an actual mechanism, make it
+  optional, respect `prefers-reduced-motion`, and leave every claim legible without it.
+  Page embeds still cannot contain scripts.
 - **Graceful fallback.** The surrounding prose must still make sense if the visual fails
   to render. The diagram supports the text; it never carries it alone.
 
