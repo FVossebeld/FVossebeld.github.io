@@ -52,6 +52,14 @@ Use `npm test`, `npm run typecheck`, and `npm run build` before merging. These
 commands use the renderer in this checkout, including its local customizations,
 rather than downloading a different Quartz CLI through `npx`.
 
+`npm run check:site` checks the built HTML for missing or case-mismatched internal
+pages and assets. The PR validation workflow runs these checks before integration.
+
+The optional `templates/bootstrap-hosted-agent-pages` app has its own dependencies
+and TypeScript configuration. Run `npm ci` and `npm run build` in that folder to
+validate it separately. It is excluded from the garden's TypeScript project and
+does not replace this site's Pages deployment.
+
 ## License
 
 - **Code** (the Quartz setup and config): MIT — see [`LICENSE.txt`](./LICENSE.txt).
