@@ -9,12 +9,19 @@ permissions:
   contents: read
   copilot-requests: write
 strict: true
-engine: copilot
+engine:
+  id: copilot
+  model: gpt-5.4
 network:
   allowed: [defaults]
 tools:
   bash: ["grep", "ls", "find", "cat", "head", "tail", "wc", "sort", "uniq", "rg"]
 safe-outputs:
+  threat-detection:
+    engine:
+      id: copilot
+      model: gpt-5.4
+    continue-on-error: false
   create-issue:
     title-prefix: "[wiki-critic] "
     labels: [wiki-critic]

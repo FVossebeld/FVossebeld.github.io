@@ -26,7 +26,12 @@ There are two lint paths in this repo; this skill is the **interactive, deeper**
 
 Walk every `.md` under `content/` (ignore `content/assets/`). Map the link graph with
 `grep`/`rg`: wikilinks are `[[target]]` or `[[target|alias]]`; also count normal Markdown
-links between pages. Then check, in order of impact:
+links between pages, plus raw HTML anchors (including homepage navigation). Quartz
+tracks these anchors too. FolderPage generates routes such as `/concepts/` without a
+source `index.md`; do not call those broken just because that source is absent.
+Targets are case-sensitive on GitHub Pages. Ignore code-fence/comment examples and
+distinguish true zero-inbound orphans from pages that could use more contextual links.
+Check rendered output when source-only resolution is ambiguous. Then check, in order of impact:
 
 1. **Broken links** — `[[targets]]` or relative `.md` links pointing at a page that doesn't
    exist. List each with its source file.

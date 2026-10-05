@@ -20,10 +20,12 @@ My current view: JSON should stay transport, while model-facing action should mo
 - [[mcp]]
 - [[workspace-state]]
 - [[context-window]]
+- [[cli-as-compressed-action-language]]
 
 ## Important claims
 - [[json-as-transport-not-cognition|JSON is transport, not cognition]]
 - [[human-tools-not-machine-protocols|Agents reach for human tools, not machine protocols]]
+- [[the-agent-as-semantic-ui]]
 
 ## Field notes
 - [[why-write-access-is-hard-in-regulated-environments]]

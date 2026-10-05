@@ -9,13 +9,19 @@ permissions:
   contents: read
   copilot-requests: write
 strict: true
-engine: copilot
-model: gpt-5.4
+engine:
+  id: copilot
+  model: gpt-5.4
 network:
   allowed: [defaults]
 tools:
   bash: ["grep", "ls", "find", "cat", "head", "tail", "wc", "sort", "uniq", "rg"]
 safe-outputs:
+  threat-detection:
+    engine:
+      id: copilot
+      model: gpt-5.4
+    continue-on-error: false
   create-issue:
     title-prefix: "[wiki-lint] "
     labels: [wiki-lint]
@@ -36,7 +42,12 @@ This is the "Lint" operation from the Karpathy LLM-wiki pattern (see `AGENTS.md`
 
 Walk every `.md` file under `content/` (ignore `content/assets/`). Use `grep`/`rg` to map
 the link graph: wikilinks look like `[[target]]` or `[[target|alias]]`; also count normal
-Markdown links between pages. Then look for:
+Markdown links and raw HTML anchors between pages, including links from the homepage.
+Quartz's CrawlLinks processes HTML anchors too. FolderPage generates routes such as
+`/concepts/` without a source `index.md`; do not report these as broken solely because
+that file is absent. Targets are case-sensitive on GitHub Pages. Distinguish true
+zero-inbound orphans from pages that could use more contextual links. Ignore examples
+inside code fences and comments. Then look for:
 
 1. **Broken links** — `[[targets]]` (or relative `.md` links) that point to a page that
    does not exist. These render as dead links on the site. List each with its source file.

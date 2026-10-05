@@ -36,7 +36,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Build Quartz
-        run: npx quartz build
+        run: npm run build
+      - name: Check generated links
+        run: npm run check:site
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
