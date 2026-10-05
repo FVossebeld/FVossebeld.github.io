@@ -22,6 +22,11 @@
     &:hover {
       background-color: var(--tertiary);
     }
+
+    @media all and ($mobile) {
+      position: static;
+      margin: 1rem 0;
+    }
   }
 
   .ga-panel {
@@ -197,6 +202,7 @@
 
     .ga-input {
       flex: 1;
+      min-width: 0;
       padding: 0.5rem 0.7rem;
       border: 1px solid var(--lightgray);
       border-radius: 0.4rem;

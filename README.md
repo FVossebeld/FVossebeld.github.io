@@ -1,6 +1,6 @@
 # FVossebeld.github.io
 
-My personal **digital garden** — a living, version-controlled wiki where I keep public thoughts and ideas that grow over time. Live at **https://fvossebeld.github.io**.
+My personal **digital garden** — a living, version-controlled wiki where I keep public thoughts and ideas that grow over time. Live at **https://vossebeld.dev**.
 
 It's built on the idea of a [living wiki as agent memory](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f): I curate sources and edit; an AI agent helps with cross-referencing and upkeep. I stay in the loop and approve every change.
 
@@ -37,16 +37,28 @@ quartz/         # the Quartz renderer (rarely touched)
 
 1. Create a `.md` file under `content/` with a `title` in the frontmatter.
 2. Link to other pages with `[[wiki-links]]`.
-3. Commit and push to `main` — the site rebuilds automatically.
+3. Commit on a branch and open a pull request for review. After approval and merge, the site rebuilds automatically.
 4. Use `draft: true` in frontmatter to keep a page unpublished.
 
 ## Local preview
 
 ```bash
-npm i
-npx quartz build --serve
+npm ci
+npm run quartz -- build --serve
 # open http://localhost:8080
 ```
+
+Use `npm test`, `npm run typecheck`, and `npm run build` before merging. These
+commands use the renderer in this checkout, including its local customizations,
+rather than downloading a different Quartz CLI through `npx`.
+
+`npm run check:site` checks the built HTML for missing or case-mismatched internal
+pages and assets. The PR validation workflow runs these checks before integration.
+
+The optional `templates/bootstrap-hosted-agent-pages` app has its own dependencies
+and TypeScript configuration. Run `npm ci` and `npm run build` in that folder to
+validate it separately. It is excluded from the garden's TypeScript project and
+does not replace this site's Pages deployment.
 
 ## License
 

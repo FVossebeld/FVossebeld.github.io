@@ -20,6 +20,9 @@ My current view: enterprise AI starts to matter when agents can change system st
 - [[approval-gate]]
 - [[audit-trail]]
 - [[permission-boundary]]
+- [[scoped-system-specialist-agents]]
+- [[orchestrating-scoped-agents]]
+- [[the-agent-as-semantic-ui]]
 
 ## Important claims
 - [[human-tools-not-machine-protocols|Agents reach for human tools, not machine protocols]]
@@ -28,7 +31,10 @@ My current view: enterprise AI starts to matter when agents can change system st
 - [[why-write-access-is-hard-in-regulated-environments]]
 
 ## See also
+- [[agent-architecture-map]]
 - [[governance-map]]
+- [[interfaces-map]]
+- [[memory-map]]
 
 ## Open questions
 - Which boundaries need a human approval gate by default?

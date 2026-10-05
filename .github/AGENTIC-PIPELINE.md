@@ -61,6 +61,18 @@ git add .github/workflows/*.lock.yml .github/aw && git commit -m "Recompile work
 ```
 Then open a test PR that edits a file under `content/` and confirm the verdict comment appears.
 
+The checked-in workflows use gh-aw v0.79.4. Set the model under
+`engine: { id: copilot, model: gpt-5.4 }`, not a top-level `model` key.
+The threat detector has its own engine under `safe-outputs.threat-detection`;
+pin that model too and keep `continue-on-error: false`. A green main-agent job
+does not prove detection succeeded: inspect the detector logs and safe-output
+result. Keep generated `.lock.yml` files in sync with their sources; do not
+hand-edit model values or action pins in generated locks.
+
+Compilation can also emit an optional `agentics-maintenance.yml`. It is not
+deployed here: adding scheduled issue closure or cache cleanup is a separate
+automation decision, not part of recompiling the five existing workflows.
+
 ### Fallback: PAT secret (only if `copilot-requests` is unavailable)
 
 If you're pinned to an old gh-aw version that lacks `copilot-requests`, you can instead set a

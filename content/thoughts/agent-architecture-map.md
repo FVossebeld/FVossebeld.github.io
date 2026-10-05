@@ -24,6 +24,10 @@ My current view: the architecture gets safer when orchestration and write access
 - [[scoped-agent]]
 - [[process-orchestrator]]
 - [[agent-trace]]
+- [[agent-evaluation]]
+- [[observability]]
+- [[orchestrating-scoped-agents]]
+- [[scoped-system-specialist-agents]]
 
 ## Important claims
 - [[from-chatbots-to-system-operators|From chatbots to system operators]]
@@ -32,6 +36,7 @@ My current view: the architecture gets safer when orchestration and write access
 - [[why-write-access-is-hard-in-regulated-environments]]
 
 ## See also
+- [[enterprise-ai-map]]
 - [[governance-map]]
 - [[interfaces-map]]
 - [[memory-map]]
