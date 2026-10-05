@@ -21,6 +21,10 @@ Parallel work can cut elapsed time when the parts are genuinely independent. If 
 
 There is also a case for context isolation. A focused job can run without filling the main agent's window with material it does not need. Claude Code's [subagent documentation](https://code.claude.com/docs/en/sub-agents) describes sending exploration into its own context, or giving a focused task its own tools and instructions, then bringing back the useful result. Speed is not the only reason to delegate.
 
+Claude Code subagents are a harness feature for bounded delegation: the parent asks the harness to run focused work with its own context, tools, and instructions, then gets a result back. That is communication between agents in the ordinary sense. The parent still owns the decision to delegate and what happens after the result returns.
+
+I use “agent-to-agent communication” here for a different architectural question: do distinct agents exchange messages through an explicit interface as part of the system's control flow? An orchestrator can route that exchange, as in Anthropic's multi-agent research system, or agents can coordinate more directly. That example is orchestrator-worker, not peer-to-peer. A harness can run workers within a larger multi-agent system, so the categories can overlap. A subagent feature alone does not tell me whether the larger system has an agent-to-agent communication architecture.
+
 Review is a more delicate case. A separate agent can catch errors the producing agent is too close to notice, but only if the review is meaningfully independent and its findings are cheaper to resolve than the mistakes it catches.
 
 These boundaries are choices about coordination and permissions as much as about model calls. [[scoped-agent|A scoped agent]] makes sense when limiting what it can see or change is valuable in its own right. When work crosses those scopes, [[orchestrating-scoped-agents|an orchestrator]] may have to own handoffs and partial completion. That architecture solves a real problem, but it is not free.
