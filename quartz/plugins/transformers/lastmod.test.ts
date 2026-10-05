@@ -11,7 +11,7 @@ import type { Root } from "mdast"
 import type { BuildCtx } from "../../util/ctx"
 import type { FilePath } from "../../util/path"
 
-test("Git dates stay stable across unrelated commits", async () => {
+test("Git dates stay stable across unrelated commits", async (t) => {
   const repositoryWorkdir = await mkdtemp(path.join(os.tmpdir(), "quartz-lastmod-"))
   const git = (args: string[], date?: string) =>
     execFileSync("git", args, {
@@ -95,6 +95,27 @@ test("Git dates stay stable across unrelated commits", async () => {
     assert.equal(overrides.created.toISOString(), "2020-01-01T00:00:00.000Z")
     assert.equal(overrides.modified.toISOString(), "2021-01-01T00:00:00.000Z")
     assert.equal(overrides.published.toISOString(), "2022-01-01T00:00:00.000Z")
+
+    const warnings: string[] = []
+    t.mock.method(console, "warn", (message: string) => warnings.push(message))
+    t.mock.method(console, "log", (message: string) => warnings.push(message))
+    const untrackedPath = path.join(repositoryWorkdir, "content/untracked.md")
+    await writeFile(untrackedPath, "Not committed yet")
+    const before = Date.now()
+    const untrackedDates = await getDates(untrackedPath)
+    assert.ok(untrackedDates.created.getTime() >= before)
+    assert.ok(untrackedDates.modified.getTime() >= before)
+    assert.ok(untrackedDates.created.getTime() <= Date.now())
+    assert.ok(untrackedDates.modified.getTime() <= Date.now())
+    assert.equal(untrackedDates.published.getTime(), untrackedDates.created.getTime())
+    assert.ok(warnings.length > 0, "Missing history must have an explicit diagnostic")
+
+    warnings.length = 0
+    const invalidDates = await getDates(renamedPath, repositoryWorkdir, {
+      modified: "not-a-date",
+    })
+    assert.ok(invalidDates.modified.getTime() >= before)
+    assert.ok(warnings.some((message) => message.includes("invalid date")))
   } finally {
     await rm(repositoryWorkdir, { recursive: true, force: true, maxRetries: 5, retryDelay: 100 })
   }
