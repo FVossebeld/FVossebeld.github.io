@@ -5,7 +5,7 @@ tags:
   - meta
 ---
 
-This site is built on a simple but powerful idea: **a living wiki that an AI helps maintain, but that I edit and control.** It's inspired by [Andrej Karpathy's "LLM Wiki" pattern](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f) and the way [digital gardens](https://quartz.jzhao.xyz/) work.
+This site is built on a simple but powerful idea: **a living wiki that an AI helps maintain, but that I edit and control.** It's inspired by [Andrej Karpathy's "LLM Wiki" pattern](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f) and the way [digital gardens](https://quartz.jzhao.xyz/) work. [[thoughts/from-chatbots-to-system-operators|From chatbots to system operators]] is the current spine of the site.
 
 ## The three layers
 
@@ -40,7 +40,7 @@ A blog is a stream. A wiki **compounds**: pages get revised as my thinking chang
 
 ## Who's in the loop
 
-I am. 🧑‍✈️ I curate the sources, ask the questions, and approve edits (every change is a git commit, like Wikipedia's edit history). The AI does the bookkeeping no human enjoys: summarizing, filing, and keeping links consistent.
+I am. 🧑‍✈️ I [[about|curate the sources, ask the questions, and approve edits]] (every change is a git commit, like Wikipedia's edit history). The AI does the bookkeeping no human enjoys: summarizing, filing, and keeping links consistent.
 
 ## It's all open
 

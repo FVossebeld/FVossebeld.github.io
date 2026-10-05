@@ -193,7 +193,7 @@ That gives a rough architecture, less a finished blueprint than the boxes I keep
 <figcaption>Broad intent, narrow execution: the orchestrator routes; specialists mutate; policy and memory wrap the whole stack.</figcaption>
 </figure>
 
-The policy layer (identity, permissions, tenant boundaries, approvals, logging) and a verification layer of dry runs, human approval, and rollback aren't optional add-ons. In a regulated enterprise they're the reason the thing is allowed to run at all.
+The policy layer (identity, permissions, tenant boundaries, approvals, logging) and a verification layer of [[dry-run|dry runs]], human approval, and rollback aren't optional add-ons. In a regulated enterprise they're the reason the thing is allowed to run at all.
 
 ## The hard, unfinished part: memory
 
@@ -209,6 +209,6 @@ The lesson worth keeping and the detail worth protecting arrive together; the wh
 
 Put it together and the through-line is simple: we're giving language models the action languages, environments, scopes, orchestration, and memory that humans already use to operate systems. Chat was the demo. The system operator is the product.
 
-My bet on where the value lands: the next generation of enterprise GenAI won't be won by the chatbot with the best personality. It'll be won by systems that can safely turn intent into action: scoped agents that understand one system deeply, act through governed interfaces, coordinate under an orchestrator, remember within the right boundaries, and convert experience into reusable skills without leaking private context. The capability is mostly here. The unsolved part is governed learning: letting these things get better from experience without betraying the boundaries that make them safe to deploy at all.
+My bet on where the value lands: the next generation of enterprise GenAI won't be won by the chatbot with the best personality. It'll be won by systems that can safely turn intent into action: scoped agents that understand one system deeply, act through governed interfaces, coordinate under an orchestrator, remember within the right boundaries, and convert experience into reusable skills without leaking private context. The capability is mostly here. The unsolved part is governed learning and [[agent-evaluation|evaluation]]: letting these things get better from experience without betraying the boundaries that make them safe to deploy at all.
 
 The concept pages linked above are where I take each thread apart. They're the rest of this argument.
