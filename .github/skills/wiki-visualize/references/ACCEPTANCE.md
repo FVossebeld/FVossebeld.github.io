@@ -84,7 +84,14 @@ Use new output and screenshot directories per run. The script checks computed st
 DOM geometry; it does not replace opening the screenshots or testing native zoom and
 assistive technology.
 It rejects repository outputs and overlapping fixture/output/evidence paths before
-Quartz can clean an output directory. Three-tick schedule recipes also assert tick
+Quartz can clean an output directory. Paths resolve through canonical existing
+ancestors, retaining nonexistent suffixes; Windows comparisons ignore case. Junction
+and symlink aliases cannot make an overlapping output appear isolated. Do not change
+filesystem links or directories while verification runs.
+Run `node --test .github\skills\wiki-visualize\scripts\editorial-path-guards.test.mjs`
+for overlap, Windows case-variant and junction/symlink-alias regressions, including
+CLI rejection before a build starts.
+Three-tick schedule recipes also assert tick
 centres against the track's start, midpoint and end; generic readability checks alone
 cannot establish correct axis geometry.
 

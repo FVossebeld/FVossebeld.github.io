@@ -1,9 +1,10 @@
 import assert from "node:assert/strict"
 import { createServer } from "node:http"
 import { mkdir, readFile, writeFile } from "node:fs/promises"
-import { extname, join, parse, resolve, sep } from "node:path"
+import { extname, join, resolve, sep } from "node:path"
 import { spawnSync } from "node:child_process"
 import { pathToFileURL } from "node:url"
+import { guardPaths } from "./editorial-path-guards.mjs"
 
 const options = new Map()
 for (let index = 2; index < process.argv.length; index += 2) {
@@ -23,24 +24,12 @@ if (!playwrightModule) {
   throw new Error("Set PLAYWRIGHT_MODULE to an installed Playwright index.mjs module.")
 }
 
-const fixture = options.get("fixture")
-const output = options.get("output")
-const screenshots = options.get("screenshots")
-const repository = resolve(import.meta.dirname, "../../../..")
-const contains = (parent, child) => child === parent || child.startsWith(parent + sep)
-assert.notEqual(output, parse(output).root, "Output must not be a filesystem root.")
-assert(
-  !contains(output, repository) && !contains(repository, output),
-  "Use an isolated output directory outside the repository.",
-)
-assert(
-  !contains(output, fixture) && !contains(fixture, output),
-  "Fixture and output directories must not overlap: Quartz cleans the output.",
-)
-assert(
-  !contains(output, screenshots) && !contains(screenshots, output),
-  "Screenshots and output directories must not overlap.",
-)
+const { fixture, output, screenshots, repository } = await guardPaths({
+  fixture: options.get("fixture"),
+  output: options.get("output"),
+  screenshots: options.get("screenshots"),
+  repository: resolve(import.meta.dirname, "../../../.."),
+})
 const quartzCli = join(repository, "quartz", "bootstrap-cli.mjs")
 const { status, error } = spawnSync(
   process.execPath,
