@@ -21,6 +21,9 @@ My current view: governance only works when permission boundaries, approvals, an
 - [[rollback]]
 - [[write-access]]
 - [[process-orchestrator]]
+- [[agent-trace]]
+- [[agent-evaluation]]
+- [[observability]]
 
 ## Important claims
 - [[scoped-system-specialist-agents|Scoped system-specialist agents]]

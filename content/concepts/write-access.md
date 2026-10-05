@@ -14,7 +14,7 @@ Reading those systems is cheap and reversible by definition. Writing changes the
 
 It is hard for three reasons, and they stack.
 
-The change is usually irreversible. [[Rollback]] is mostly a fiction outside version control. You cannot un-send the email, un-post the Slack announcement, or un-charge the card. Once downstream has consumed the event, the prior state is gone.
+The change is usually irreversible. [[rollback|Rollback]] is mostly a fiction outside version control. You cannot un-send the email, un-post the Slack announcement, or un-charge the card. Once downstream has consumed the event, the prior state is gone.
 
 The target is shared truth. A [[system-of-record]] is not your copy; it is everyone's. A wrong write in your workspace costs you a retry. A wrong write to the record costs the organization a cleanup, and sometimes a customer conversation nobody wanted to have.
 

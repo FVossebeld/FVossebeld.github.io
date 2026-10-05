@@ -1,8 +1,11 @@
 import fs from "fs"
+import { execFile } from "child_process"
 import { Repository } from "@napi-rs/simple-git"
 import { QuartzTransformerPlugin } from "../types"
 import path from "path"
-import { styleText } from "util"
+import { promisify, styleText } from "util"
+
+const execFileAsync = promisify(execFile)
 
 export interface Options {
   priority: ("frontmatter" | "git" | "filesystem")[]
@@ -38,6 +41,25 @@ function coerceDate(fp: string, d: any): Date {
 }
 
 type MaybeDate = undefined | string | number
+
+async function getFileCreatedDate(
+  repositoryWorkdir: string,
+  relativePath: string,
+): Promise<number | undefined> {
+  try {
+    const { stdout } = await execFileAsync(
+      "git",
+      ["log", "--follow", "--diff-filter=A", "--format=%cI", "-1", "--", relativePath],
+      { cwd: repositoryWorkdir },
+    )
+    const date = Date.parse(stdout.trim())
+    return Number.isNaN(date) ? undefined : date
+  } catch (error) {
+    console.warn(`Warning: could not read creation history for ${relativePath}: ${String(error)}`)
+    return undefined
+  }
+}
+
 export const CreatedModifiedDate: QuartzTransformerPlugin<Partial<Options>> = (userOpts) => {
   const opts = { ...defaultOptions, ...userOpts }
   return {
@@ -50,7 +72,7 @@ export const CreatedModifiedDate: QuartzTransformerPlugin<Partial<Options>> = (u
           if (opts.priority.includes("git")) {
             try {
               repo = Repository.discover(ctx.argv.directory)
-              repositoryWorkdir = repo.workdir() ?? ctx.argv.directory
+              repositoryWorkdir = fs.realpathSync(repo.workdir() ?? ctx.argv.directory)
             } catch (e) {
               console.log(
                 styleText(
@@ -79,23 +101,32 @@ export const CreatedModifiedDate: QuartzTransformerPlugin<Partial<Options>> = (u
                 published ||= file.data.frontmatter.published as MaybeDate
               } else if (source === "git" && repo) {
                 try {
-                  const relativePath = path.relative(repositoryWorkdir, fullFp)
+                  const relativePath = path
+                    .relative(repositoryWorkdir, await fs.promises.realpath(fullFp))
+                    .split(path.sep)
+                    .join("/")
+                  created ||= await getFileCreatedDate(repositoryWorkdir, relativePath)
                   modified ||= await repo.getFileLatestModifiedDateAsync(relativePath)
-                } catch {
+                } catch (error) {
                   console.log(
                     styleText(
                       "yellow",
-                      `\nWarning: ${file.data.filePath!} isn't yet tracked by git, dates will be inaccurate`,
+                      `\nWarning: could not read Git dates for ${file.data.filePath!}: ${String(error)}`,
                     ),
                   )
                 }
               }
             }
 
+            if (created === undefined && modified === undefined) {
+              console.warn(`Warning: ${fp} has no date metadata or history; using the current time`)
+            }
+            const createdDate = coerceDate(fp, created ?? modified)
+            const modifiedDate = coerceDate(fp, modified ?? created)
             file.data.dates = {
-              created: coerceDate(fp, created),
-              modified: coerceDate(fp, modified),
-              published: coerceDate(fp, published),
+              created: createdDate,
+              modified: modifiedDate,
+              published: published === undefined ? createdDate : coerceDate(fp, published),
             }
           }
         },

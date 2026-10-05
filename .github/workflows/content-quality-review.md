@@ -11,14 +11,21 @@ permissions:
   pull-requests: read
   copilot-requests: write
 strict: true
-engine: copilot
+engine:
+  id: copilot
+  model: gpt-5.4
 network:
   allowed: [defaults, github]
 tools:
   github:
     mode: remote
-    toolsets: [default]
+    toolsets: [repos, pull_requests]
 safe-outputs:
+  threat-detection:
+    engine:
+      id: copilot
+      model: gpt-5.4
+    continue-on-error: false
   add-comment:
   add-labels:
     allowed: [needs-revision]
