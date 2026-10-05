@@ -3,7 +3,8 @@
 A curated set of **verified** recipes for this site. Every snippet here has been rendered
 through Quartz and checked in both light and dark mode, so quality is repeatable instead
 of free-handed. Workflow: **pick the closest pattern → swap in the page's real content →
-re-verify it renders.** Don't invent layout from scratch when one of these fits.
+re-verify it renders.** Reuse a fitting layout, not one that hides the argument.
+For bespoke figures, use the [editorial procedure](./references/EDITORIAL.md).
 
 This is the recipe layer. [`DIAGRAMS.md`](../../DIAGRAMS.md) is the _why_ (when a visual
 earns its place, the palette, the dark-mode rules, the reliability checklist). Read that
@@ -52,14 +53,65 @@ reflows on mobile.
 | **A line worth pausing on**           | HTML      | [Pull quote](#pull-quote)                                       |
 | **A cleaner custom sketch**           | SVG       | [Sketch board (inline SVG)](#sketch-board-inline-svg)           |
 | **Enterprise-agent recurring motifs** | Mermaid   | [Signature system motifs](#signature-system-motifs-reuse-first) |
+| **A claim with a visible boundary**   | HTML      | [Editorial evidence panel](#editorial-evidence-panel)           |
 
-Rule of thumb: **relational → Mermaid; quantitative or editorial layout → HTML.** A garden
+Rule of thumb: **simple relationships → Mermaid; reflowing editorial layout → HTML;
+precise geometry → SVG.** A garden
 page should _vary its texture_ - a wall of flat prose tires the reader as much as a wall of
 boxes. But every visual still has to clarify, not decorate.
 
 ---
 
-# Signature system motifs (reuse first)
+## Editorial evidence panel
+
+Use when the figure needs to make a distinction legible, not just name its parts.
+This original example draws on the garden's "From chatbots to system operators" essay:
+the orchestrator coordinates; a specialist can mutate only its own system. It is a
+conceptual boundary, not a benchmark or a claim about deployed software.
+
+The composition is **claim → boundary comparison → reading key → source**. Dashed and
+solid borders encode different responsibilities without relying on colour. The two
+panels stack on narrow screens; all labels stay in HTML instead of shrinking with SVG.
+No new site CSS, fonts, scripts, or plugins are required.
+
+Checked through Quartz on 2026-10-05 at 390, 720 and 1440 CSS px in both themes:
+the panels reflow, essential labels stay at least 14px, and the figure has no
+horizontal overflow. The warm target palette in the editorial guide is a separate
+proposal, not part of this recipe's verification.
+
+Change the figure ID when reusing it on the same page. Replace the claim, labels,
+source, and border semantics together; do not paste the example's facts into an
+unrelated page. Recheck after every adaptation.
+
+<!-- prettier-ignore -->
+```html
+<figure role="group" aria-labelledby="scope-demo-caption" style="border:1px solid var(--dark);background:var(--light);padding:0;margin:2rem 0;font-family:var(--uiFont);">
+<div style="display:inline-block;border-right:1px solid var(--dark);border-bottom:1px solid var(--dark);padding:.4rem .75rem;font-family:var(--codeFont);font-size:.875rem;color:var(--darkgray);letter-spacing:.03em;">ARCHITECTURE / EXECUTION SCOPE</div>
+<div style="padding:clamp(1rem,3vw,1.75rem);">
+<h3 style="font-family:var(--headerFont);font-size:clamp(1.35rem,3vw,1.8rem);line-height:1.2;margin:0 0 1.25rem;">Broad intent. Narrow execution.</h3>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,15rem),1fr));gap:1rem;">
+<section style="border:1px dashed var(--darkgray);padding:1rem;min-width:0;">
+<div style="font-family:var(--codeFont);font-size:.875rem;color:var(--darkgray);">COORDINATES</div>
+<h4 style="font-size:1.15rem;margin:.5rem 0 .75rem;">Orchestrator</h4>
+<p style="font-size:1rem;margin:0 0 1rem;">Understands the cross-system request and routes work to specialists.</p>
+<div style="border-top:1px dashed var(--darkgray);padding-top:.75rem;font-size:1rem;">No direct system mutations.</div>
+</section>
+<section style="border:1px solid var(--secondary);border-left:4px solid var(--secondary);padding:1rem;min-width:0;">
+<div style="font-family:var(--codeFont);font-size:.875rem;color:var(--darkgray);">CHANGES STATE</div>
+<h4 style="font-size:1.15rem;margin:.5rem 0 .75rem;">CRM specialist</h4>
+<p style="font-size:1rem;margin:0 0 1rem;">Executes CRM work within that system's permissions and approval rules.</p>
+<div style="border-top:1px solid var(--secondary);padding-top:.75rem;font-size:1rem;">Cannot mutate other systems.</div>
+</section>
+</div>
+<p style="font-size:1rem;margin:1.25rem 0 0;"><strong>How to read it.</strong> Dashed means coordination only. Solid means system-scoped execution, not unrestricted write access.</p>
+</div>
+<figcaption id="scope-demo-caption" style="margin:0;padding:1rem clamp(1rem,3vw,1.75rem);font-size:.875rem;font-style:normal;color:var(--darkgray);">Conceptual architecture. Source: <a href="https://fvossebeld.github.io/thoughts/from-chatbots-to-system-operators#the-orchestration-problem-broad-intent-narrow-execution">From chatbots to system operators</a>, the orchestration section.</figcaption>
+</figure>
+```
+
+---
+
+# Signature system motifs (reuse when they fit)
 
 These are the recurring visuals for this garden's core thesis. Reuse these when they fit so
 readers see one coherent visual language across pages.
