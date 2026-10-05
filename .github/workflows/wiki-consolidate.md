@@ -10,6 +10,7 @@ permissions:
   copilot-requests: write
 strict: true
 engine: copilot
+model: gpt-5.4
 network:
   allowed: [defaults]
 tools:
