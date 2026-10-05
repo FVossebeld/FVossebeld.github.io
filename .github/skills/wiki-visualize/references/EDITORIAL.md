@@ -30,11 +30,10 @@ Target palette for an opt-in editorial theme:
 | Speech / human signal    | `#ff6183`    | `#ff6183`   | Speech or human-response encoding                           |
 | Video / secondary signal | `#d9ebff`    | `#7ca7d9`   | Video or secondary channel encoding                         |
 
-These are **target values, not currently installed CSS tokens**. A theme implementation
-should expose semantic aliases such as `--plate-paper`, `--plate-ink`,
-`--plate-neutral`, `--plate-positive`, `--plate-speech`, and `--plate-video`.
-Existing published figures continue to use the current garden palette until the theme
-is approved and tested.
+These values are exposed as semantic `--plate-*` aliases by the opt-in
+`.editorial-plate` class in `quartz/styles/custom.scss`. They apply only inside figures
+using that class; the page palette and legacy sketch family are unchanged. This is not a
+site-wide theme migration.
 
 Do not use bright green or pink for small text on paper. Put ink labels beside the mark,
 or ink text inside a sufficiently large light accent fill. In dark mode, outline pale
@@ -135,9 +134,13 @@ Label illustrative timing as illustrative. Keep exceptions beside the headline.
 7. **Build natively.** HTML for reflowing labels and panels; SVG for precise geometry;
    Mermaid when automatic layout fits. A new composition is experimental until its
    actual Quartz output has been checked.
-8. **Inspect the result.** Both themes, 390/1440px, essential labels at least 14 CSS px,
-   200% zoom, contrast, clipping, unique IDs, logical reading order and static fallback.
-   See [`ACCEPTANCE.md`](./ACCEPTANCE.md).
+8. **Run the visual learning loop.** Build, inspect actual images, critique a concrete
+   misunderstanding, revise, then rebuild and recheck. Promote only source-safe lessons
+   supported by the comparison. See [`LEARNING-LOOP.md`](./LEARNING-LOOP.md).
+9. **Inspect the result.** Both themes, 390/1440px, essential labels at least 14 CSS px,
+   contrast, clipping, unique IDs, logical reading order and static fallback. Treat
+   native zoom and assistive technology as separate checks; see
+   [`ACCEPTANCE.md`](./ACCEPTANCE.md).
 
 ### Standalone brief
 
@@ -168,7 +171,7 @@ These are proposed stages, not shipped theme changes.
 ### 1. Change authoring first
 
 Claim-first composition is now part of this skill and `DIAGRAMS.md`. The
-[editorial evidence panel](../PATTERNS.md#editorial-evidence-panel) is an original,
+[editorial plate frame](../PATTERNS.md#editorial-plate-frame) is an original,
 native prototype requiring no global CSS. It uses current site tokens while the target
 palette remains a proposal.
 
@@ -188,11 +191,11 @@ Replace the ladder with HTML rows that preserve font size. For architecture, tes
 narrow vertical arrangement with policy/memory notes outside the geometry. Review each
 page; do not blindly restyle all `.sketch-board` instances.
 
-### 3. Add an opt-in editorial plate family
+### 3. Opt into the editorial plate family
 
-After a representative figure is approved, introduce shared classes and semantic
-colour aliases in `quartz/styles/custom.scss`: frame, identifier, claim, key, diagram,
-interpretation and source. Implement the target palette above, with tested dark
+The shared frame and semantic aliases are implemented in `quartz/styles/custom.scss`.
+Use the classes in [`PATTERNS.md`](../PATTERNS.md#editorial-plate-frame) for the tab,
+claim, apparatus, key, caveat, interpretation and source. The palette has tested dark
 counterparts. Keep the legacy sketch family for informal drawings.
 
 Make the identifier tab, sharp rules and typographic roles consistent across different

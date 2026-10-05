@@ -16,8 +16,10 @@ Turn a page's structure, flow, or numbers into a clear visual — without adding
 Read [`.github/DIAGRAMS.md`](../../DIAGRAMS.md) first; it is the visual quality bar and
 the schema this skill follows. Use [`PATTERNS.md`](./PATTERNS.md) for known recipes.
 For a visual reference study or a bespoke explanatory figure, read
-[`references/EDITORIAL.md`](./references/EDITORIAL.md). **Reuse the technical
-scaffolding, not a layout that distorts the idea.** Floris approves every embed.
+[`references/EDITORIAL.md`](./references/EDITORIAL.md) and the
+[`learning loop`](./references/LEARNING-LOOP.md) when testing or refining a composition.
+**Reuse the technical scaffolding, not a layout that distorts the idea.** Floris approves
+every embed.
 
 ## Hard rules
 
@@ -30,9 +32,9 @@ scaffolding, not a layout that distorts the idea.** Floris approves every embed.
   using the editorial procedure. New layouts must clear the same rendering checks.
 - **Quartz-native only.** Use Mermaid, inline HTML/CSS, or inline SVG — no new plugins,
   no `<script>`, no external CSS frameworks.
-- **Site palette, dark-mode safe.** Colours come from the CSS variables / two brand
-  accents in [`DIAGRAMS.md`](../../DIAGRAMS.md) §3–5. Never hardcode colours that only
-  work on one background.
+- **Theme-safe.** Use the current site variables for Mermaid and legacy figures. For
+  bespoke editorial figures, use the opt-in `.editorial-plate` family and its semantic
+  `--plate-*` tokens. Never hardcode a colour that only works on one background.
 - **Don't invent facts.** A diagram is a claim. Everything in it must trace to the page's
   sources, just like prose. No invented boxes, arrows, or numbers.
 - **Never push to `main`.** Work on a branch; Floris merges.
@@ -76,12 +78,17 @@ scaffolding, not a layout that distorts the idea.** Floris approves every embed.
    `fill="var(--…)"`) and responsive sizing (`viewBox`+`width:100%`, reflowing grids).
 6. **Self-check syntax.** Run the failure-mode checklist in [`DIAGRAMS.md`](../../DIAGRAMS.md)
    §6 (declared nodes, quoted labels, `classDef` before use, `-->` vs `->`, etc.).
-7. **Verify the actual output.** Build with `npx quartz build`; restore dependencies only
-   if missing. Inspect in **both light and dark** at 390px and 1440px, including actual
-   rendered SVG text sizes, clipping, contrast, and 200% zoom. Check motion with reduced
-   motion enabled; a static figure must carry the full argument. Mermaid syntax errors
-   fail silently. Record which checks ran; never call an unrendered recipe verified.
-8. **Embed with a caption and open/extend the PR.** Place the visual right after the prose
+7. **Run the visual learning loop.** Build through Quartz to an isolated output directory,
+   inspect rendered images, critique a specific reader misunderstanding, revise, then
+   rebuild and recheck. Promote only lessons demonstrated by before/after evidence; follow
+   [`LEARNING-LOOP.md`](./references/LEARNING-LOOP.md). An injected preview stylesheet is
+   prototype evidence, not proof of integrated site styling.
+8. **Verify the actual output.** Inspect both themes at 390px and 1440px, including
+   rendered SVG text sizes, clipping, contrast and page overflow. Check reduced motion; a
+   static figure must carry the full argument. Mermaid syntax errors fail silently.
+   Record which checks ran. Screenshot/reflow checks are not native zoom or
+   assistive-technology tests; claim those only if actually exercised.
+9. **Embed with a caption and open/extend the PR.** Place the visual right after the prose
    it supports, with a one-line caption or `> [!abstract]` description. If this is part of
    an ingest, fold it into that PR; otherwise open one summarising what you added and why.
 

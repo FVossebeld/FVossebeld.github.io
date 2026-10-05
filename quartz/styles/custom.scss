@@ -580,6 +580,143 @@ a[data-footnote-ref],
   font-size: 13px;
 }
 
+/* Editorial plates are opt-in figure components; the site palette is unchanged. */
+.editorial-plate,
+.editorial-plate * {
+  box-sizing: border-box;
+}
+
+.editorial-plate {
+  --plate-paper: #f7f4ef;
+  --plate-ink: #140206;
+  --plate-inset: #fbf9f6;
+  --plate-neutral: #e4ddd2;
+  --plate-positive: #00d22e;
+  --plate-speech: #ff6183;
+  --plate-video: #d9ebff;
+  width: min(100%, 56rem);
+  max-width: 100%;
+  margin: var(--block-gap) auto;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--plate-ink);
+  background: var(--plate-paper);
+  color: var(--plate-ink);
+  font-family: var(--uiFont);
+  font-size: 1rem;
+  line-height: 1.45;
+}
+
+:root[saved-theme="dark"] .editorial-plate {
+  --plate-paper: #140206;
+  --plate-ink: #f7f4ef;
+  --plate-inset: #21161a;
+  --plate-neutral: #463b40;
+  --plate-video: #7ca7d9;
+}
+
+.editorial-plate > .plate-tab {
+  display: inline-block;
+  max-width: 100%;
+  padding: 0.45rem 0.75rem;
+  border-right: 1px solid var(--plate-ink);
+  border-bottom: 1px solid var(--plate-ink);
+  color: var(--plate-ink);
+  font-family: var(--monoFont);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.editorial-plate > .plate-body {
+  padding: clamp(1rem, 3vw, 1.75rem);
+}
+
+.editorial-plate .plate-claim {
+  max-width: 26ch;
+  margin: 0 0 0.85rem;
+  color: var(--plate-ink);
+  font-family: var(--headerFont);
+  font-size: clamp(1.8rem, 4vw, 2.65rem);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.06;
+}
+
+.editorial-plate .plate-apparatus {
+  color: var(--plate-ink);
+  font-family: var(--monoFont);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.editorial-plate .plate-key {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem 1rem;
+  margin: 1rem 0;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--plate-ink);
+  color: var(--plate-ink);
+  font-size: 0.875rem;
+}
+
+.editorial-plate .plate-caveat {
+  margin: 0.5rem 0 1rem;
+  padding: 0.55rem 0.65rem;
+  border-left: 3px solid var(--plate-ink);
+  background: var(--plate-inset);
+  color: var(--plate-ink);
+  font-family: var(--monoFont);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.editorial-plate .plate-interpretation {
+  margin: 1rem 0 0;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--plate-ink);
+  color: var(--plate-ink);
+  font-weight: 600;
+}
+
+.editorial-plate > .plate-source {
+  display: block;
+  margin: 0;
+  padding: 0.9rem clamp(1rem, 3vw, 1.75rem);
+  border-top: 1px solid var(--plate-ink);
+  color: var(--plate-ink);
+  font-size: 0.875rem;
+  font-style: normal;
+  line-height: 1.5;
+}
+
+.editorial-plate .plate-accent--positive,
+.editorial-plate .plate-accent--speech,
+.editorial-plate .plate-accent--video {
+  border: 1px solid #140206;
+  color: #140206;
+}
+
+.editorial-plate .plate-accent--positive {
+  background: var(--plate-positive);
+}
+
+.editorial-plate .plate-accent--speech {
+  background: var(--plate-speech);
+}
+
+.editorial-plate .plate-accent--video {
+  background: var(--plate-video);
+}
+
+@media all and ($mobile) {
+  .editorial-plate > .plate-body {
+    padding: 1rem;
+  }
+}
+
 /* Ruled chronology (about page CV) — hairline rail with mono ink ticks */
 .timeline {
   list-style: none;
