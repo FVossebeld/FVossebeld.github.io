@@ -1,8 +1,8 @@
 # Pattern library - copy-paste infographics & diagrams
 
-A curated set of **verified** recipes for this site. Every snippet here has been rendered
-through Quartz and checked in both light and dark mode, so quality is repeatable instead
-of free-handed. Workflow: **pick the closest pattern → swap in the page's real content →
+A curated set of recipes for this site. The legacy patterns and integrated editorial
+specimens have been rendered through Quartz in both themes; new adapted snippets still
+need their own exact-output check. Workflow: **pick the closest pattern → swap in real content →
 re-verify it renders.** Reuse a fitting layout, not one that hides the argument.
 For bespoke figures, use the [editorial procedure](./references/EDITORIAL.md).
 
@@ -26,39 +26,417 @@ So: keep multi-element HTML blocks **gap-free**, and indent inner lines by **2 s
 (or not at all). The grid-based patterns below (swimlane especially) are deliberately
 flattened for this reason. When a visual mysteriously renders as a code block, this is why.
 
-Everything else: colours are always `var(--…)` or the two brand accents; use `style="…"`
-for SVG fills (bare `fill="var(--…)"` silently fails); size with `rem`/`%`/`auto-fit` so it
-reflows on mobile.
+Everything else: use current site colours or the scoped `--plate-*` aliases inside an
+`.editorial-plate`; use `style="…"` for SVG fills (bare `fill="var(--…)"` silently
+fails); size with `rem`/`%`/`auto-fit` so it reflows on mobile.
 
 ---
 
 ## How to choose
 
-| The content is…                       | Reach for | Pattern                                                         |
-| ------------------------------------- | --------- | --------------------------------------------------------------- |
-| A process / pipeline / request path   | Mermaid   | [Flowchart](#flowchart--pipeline)                               |
-| Services & how they connect           | Mermaid   | [Architecture w/ subgraphs](#architecture-with-subgraphs)       |
-| Actors exchanging messages over time  | Mermaid   | [Sequence](#sequence)                                           |
-| A lifecycle / status machine          | Mermaid   | [State](#state-machine)                                         |
-| A 2×2 / prioritization                | Mermaid   | [Quadrant](#quadrant--2×2)                                      |
-| Branch/merge / version history        | Mermaid   | [Git graph](#git-graph)                                         |
-| **Headline numbers**                  | HTML      | [Stat cards](#stat-cards)                                       |
-| **A chronology / "how we got here"**  | HTML      | [Vertical timeline](#vertical-timeline)                         |
-| **An ordered how-to (1-2-3)**         | HTML      | [Numbered stepper](#numbered-stepper)                           |
-| **Who does what, across stages**      | HTML      | [Swimlane](#swimlane)                                           |
-| **A vs B**                            | HTML      | [Comparison](#comparison-a-vs-b)                                |
-| **Trade-offs / keeps vs costs**       | HTML      | [Pros & cons](#pros--cons)                                      |
-| **"At a glance" facts**               | HTML      | [Spec list](#spec-list)                                         |
-| **Relative magnitudes / a mix**       | HTML      | [Meter bars](#meter-bars)                                       |
-| **A line worth pausing on**           | HTML      | [Pull quote](#pull-quote)                                       |
-| **A cleaner custom sketch**           | SVG       | [Sketch board (inline SVG)](#sketch-board-inline-svg)           |
-| **Enterprise-agent recurring motifs** | Mermaid   | [Signature system motifs](#signature-system-motifs-reuse-first) |
-| **A claim with a visible boundary**   | HTML      | [Editorial evidence panel](#editorial-evidence-panel)           |
+| The content is…                       | Reach for | Pattern                                                                 |
+| ------------------------------------- | --------- | ----------------------------------------------------------------------- |
+| A process / pipeline / request path   | Mermaid   | [Flowchart](#flowchart--pipeline)                                       |
+| Services & how they connect           | Mermaid   | [Architecture w/ subgraphs](#architecture-with-subgraphs)               |
+| Actors exchanging messages over time  | Mermaid   | [Sequence](#sequence)                                                   |
+| A lifecycle / status machine          | Mermaid   | [State](#state-machine)                                                 |
+| A 2×2 / prioritization                | Mermaid   | [Quadrant](#quadrant--2×2)                                              |
+| Branch/merge / version history        | Mermaid   | [Git graph](#git-graph)                                                 |
+| **Headline numbers**                  | HTML      | [Stat cards](#stat-cards)                                               |
+| **A chronology / "how we got here"**  | HTML      | [Vertical timeline](#vertical-timeline)                                 |
+| **An ordered how-to (1-2-3)**         | HTML      | [Numbered stepper](#numbered-stepper)                                   |
+| **Who does what, across stages**      | HTML      | [Swimlane](#swimlane)                                                   |
+| **A vs B**                            | HTML      | [Comparison](#comparison-a-vs-b)                                        |
+| **Trade-offs / keeps vs costs**       | HTML      | [Pros & cons](#pros--cons)                                              |
+| **"At a glance" facts**               | HTML      | [Spec list](#spec-list)                                                 |
+| **Relative magnitudes / a mix**       | HTML      | [Meter bars](#meter-bars)                                               |
+| **A line worth pausing on**           | HTML      | [Pull quote](#pull-quote)                                               |
+| **A cleaner custom sketch**           | SVG       | [Sketch board (inline SVG)](#sketch-board-inline-svg)                   |
+| **Enterprise-agent recurring motifs** | Mermaid   | [Signature system motifs](#signature-system-motifs-reuse-when-they-fit) |
+| **A claim with a visible boundary**   | HTML      | [Editorial plate frame](#editorial-plate-frame)                         |
+| **Separately bounded destinations**   | HTML      | [Authority handoffs](#authority-handoffs)                               |
+| **Sequence versus overlap**           | HTML      | [Illustrative schedule comparison](#illustrative-schedule-comparison)   |
 
 Rule of thumb: **simple relationships → Mermaid; reflowing editorial layout → HTML;
 precise geometry → SVG.** A garden
 page should _vary its texture_ - a wall of flat prose tires the reader as much as a wall of
 boxes. But every visual still has to clarify, not decorate.
+
+---
+
+## Editorial plate frame
+
+Use `.editorial-plate` for a bespoke, claim-led figure that benefits from warm paper,
+hairline ink, a serif claim and mono apparatus. The classes install a figure-scoped
+palette and frame in `quartz/styles/custom.scss`; the rest of the page and `.sketch-board`
+retain their existing styling. This is framing, not a diagram layout: supply geometry
+that expresses the source-backed relationship.
+
+The claim is the visible heading. Give the figure a unique `id` for `aria-labelledby`,
+and a real text description for `aria-describedby`; the figcaption stays visible and
+includes source, evidence status and relevant limits. Keep the native `<figure>` role;
+do not override it with `role="group"`. Palette is never the only distinction. Reflow
+HTML rows/lanes at narrow widths, preserve essential labels at 14px or larger, and keep
+caveats next to the encoding they qualify. Avoid fixed-width plates, numeric axes without
+source values, and order or size that suggests unsupported rank.
+
+```html
+<figure
+  id="reach-figure"
+  class="editorial-plate"
+  aria-labelledby="reach-title"
+  aria-describedby="reach-description"
+>
+  <div class="plate-tab">SCOPE / QUALITATIVE</div>
+  <div class="plate-body">
+    <h3 id="reach-title" class="plate-claim">Audience widens; promotion is deliberate.</h3>
+    <p id="reach-description">
+      Four equal rows show the source's qualitative order from a conversation to shared
+      organizational context. They are categories, not measured sizes or a required progression.
+    </p>
+    <p class="plate-apparatus">NARROWER → SHARED · QUALITATIVE</p>
+    <div class="plate-graphic">
+      <div class="scope-row"><strong>Thread</strong><span>Current conversation</span></div>
+      <div class="scope-row"><strong>Person</strong><span>One person's preferences</span></div>
+      <div class="scope-row"><strong>Engagement</strong><span>One project or customer</span></div>
+      <div class="scope-row"><strong>Organization</strong><span>Shared context</span></div>
+    </div>
+    <p class="plate-interpretation">
+      Keep a memory at the lowest useful scope; widening is not automatic.
+    </p>
+  </div>
+  <figcaption class="plate-source">
+    Qualitative relationship, not a measured scale. Source: replace with the page's exact source and
+    section.
+  </figcaption>
+</figure>
+```
+
+**Required layout CSS for this snippet** (keep it page-scoped unless repeated use earns a
+shared component):
+
+```css
+.scope-row {
+  display: grid;
+  grid-template-columns: minmax(8rem, 0.8fr) minmax(0, 1.5fr);
+  gap: 1rem;
+  padding: 0.8rem;
+  border-top: 1px solid var(--plate-ink);
+  background: var(--plate-inset);
+}
+.plate-graphic {
+  border-bottom: 1px solid var(--plate-ink);
+}
+@media (max-width: 600px) {
+  .scope-row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.25rem;
+  }
+}
+```
+
+Replace example names and explanations with source-backed categories; keep equal row
+widths only when width is not itself evidence. If order is meaningful, label the dimension
+beside the rows and say whether it is qualitative. On mobile, stack the text columns
+without shrinking type. Distinguish a second dimension structurally, such as with a
+heavier divider and its own heading, rather than appending it as another row. The
+composition was demonstrated by the memory-scope specimen; each adaptation still needs
+its own source and render check.
+
+For the full experiment process, including image-based critique and stopping conditions,
+follow [`references/LEARNING-LOOP.md`](./references/LEARNING-LOOP.md).
+
+---
+
+## Authority handoffs
+
+Use when one coordinator routes separate operations into independently bounded systems.
+Keep the coordinator distinct from the targets. Draw each handoff outside its
+destination, with the arrow meeting that destination's border; put one shared origin
+label above repeated targets instead of repeating boilerplate. Each target remains its
+own semantic section, and a shared permission note must retain the per-system boundary.
+Label inspection versus mutation in text, not color alone.
+
+```html
+<figure
+  id="handoff-figure"
+  class="editorial-plate"
+  aria-labelledby="handoff-title"
+  aria-describedby="handoff-description"
+>
+  <div class="plate-tab">AUTHORITY / HANDOFF</div>
+  <div class="plate-body">
+    <h3 id="handoff-title" class="plate-claim">One request, two bounded handoffs.</h3>
+    <p id="handoff-description">
+      The coordinator routes work; it does not change either system. Each operation is handed to a
+      specialist confined to its named system.
+    </p>
+    <section class="handoff-set" aria-labelledby="handoff-set-title">
+      <h4 id="handoff-set-title">
+        SEPARATE SYSTEM SCOPES <span>· routed by one coordinator</span>
+      </h4>
+      <div class="handoff-grid">
+        <div class="handoff-unit">
+          <span class="handoff-arrow" aria-hidden="true">HANDOFF ↓</span>
+          <section class="handoff-scope">
+            <h5>CRM</h5>
+            <p>Update opportunity</p>
+            <span class="plate-apparatus">MUTATION</span>
+          </section>
+        </div>
+        <div class="handoff-unit">
+          <span class="handoff-arrow" aria-hidden="true">HANDOFF ↓</span>
+          <section class="handoff-scope">
+            <h5>Support</h5>
+            <p>Check open issues</p>
+            <span class="plate-apparatus">INSPECTION</span>
+          </section>
+        </div>
+      </div>
+      <p class="handoff-permissions">
+        Each specialist remains within its own system's permissions and approval rules.
+      </p>
+    </section>
+  </div>
+  <figcaption class="plate-source">
+    Conceptual routing, not a deployed-system map. Replace with the source and exact scope limits.
+  </figcaption>
+</figure>
+```
+
+```css
+.handoff-set {
+  margin-top: 1rem;
+  padding-top: 0.9rem;
+  border-top: 2px dashed var(--plate-ink);
+}
+.handoff-set > h4 {
+  margin: 0 0 0.5rem;
+  color: var(--plate-ink);
+  font-family: var(--monoFont);
+  font-size: 0.875rem;
+}
+.handoff-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem 1rem;
+}
+.handoff-unit {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+}
+.handoff-arrow {
+  display: grid;
+  min-height: 1.7rem;
+  place-items: center;
+  color: var(--plate-ink);
+  font-family: var(--monoFont);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+.handoff-scope {
+  min-width: 0;
+  padding: 0.65rem 0.8rem;
+  border: 1px solid var(--plate-ink);
+  border-top-width: 3px;
+  background: var(--plate-inset);
+}
+.handoff-scope h5 {
+  margin: 0 0 0.45rem;
+  color: var(--plate-ink);
+  font-family: var(--headerFont);
+  font-size: 1.2rem;
+}
+.handoff-scope p,
+.handoff-permissions {
+  margin: 0.45rem 0;
+  color: var(--plate-ink);
+}
+.handoff-permissions {
+  padding-top: 0.6rem;
+  border-top: 1px solid var(--plate-ink);
+}
+@media (max-width: 600px) {
+  .handoff-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+```
+
+Use a two-by-two grid when four destinations will not fit comfortably in one row; stack
+one target per row on narrow screens without repeating the origin label. Keep each arrow
+adjacent to its own boundary and preserve the operation's destination in DOM reading
+order. Hide the arrow from assistive technology only when the figure description and
+section labels already state the handoff relationship.
+
+## Illustrative schedule comparison
+
+Use aligned lanes when the point is sequence versus overlap and source intervals are
+known. Put the limitation beside the axis: illustrative or abstract ticks are not elapsed
+time, latency or a performance result. A concurrent interval gets a labelled bracket
+aligned with its endpoints; color is not the concurrency cue.
+
+```html
+<figure
+  id="schedule-figure"
+  class="editorial-plate"
+  aria-labelledby="schedule-title"
+  aria-describedby="schedule-description"
+>
+  <div class="plate-tab">SCHEDULE / ILLUSTRATIVE</div>
+  <div class="plate-body">
+    <h3 id="schedule-title" class="plate-claim">Same work. Different schedule.</h3>
+    <p id="schedule-description">
+      Sequential: A occupies 0–2, then B 2–4. Overlapping: A and B both occupy 0–2. These abstract
+      positions do not measure elapsed time.
+    </p>
+    <p class="plate-caveat">Illustrative ticks · not elapsed time or a speedup measure</p>
+    <div class="schedule-panels">
+      <section class="schedule-panel" aria-labelledby="schedule-sequential">
+        <h4 id="schedule-sequential">SEQUENTIAL</h4>
+        <div class="schedule-axis" aria-hidden="true">
+          <span>0</span><span>2</span><span>4</span>
+        </div>
+        <div class="schedule-lane">
+          <span class="lane-name">A</span>
+          <div class="schedule-track" role="img" aria-label="Activity A, abstract positions 0 to 2">
+            <span class="schedule-fill schedule-fill--speech">A · 0–2</span><span></span>
+          </div>
+        </div>
+        <div class="schedule-lane">
+          <span class="lane-name">B</span>
+          <div class="schedule-track" role="img" aria-label="Activity B, abstract positions 2 to 4">
+            <span></span><span class="schedule-fill schedule-fill--video">B · 2–4</span>
+          </div>
+        </div>
+      </section>
+      <section class="schedule-panel" aria-labelledby="schedule-overlap">
+        <h4 id="schedule-overlap">OVERLAPPING</h4>
+        <div class="schedule-axis" aria-hidden="true">
+          <span>0</span><span>2</span><span>4</span>
+        </div>
+        <div class="schedule-lane">
+          <span class="lane-name">A</span>
+          <div class="schedule-track" role="img" aria-label="Activity A, abstract positions 0 to 2">
+            <span class="schedule-fill schedule-fill--speech">A · 0–2</span><span></span>
+          </div>
+        </div>
+        <div class="schedule-lane">
+          <span class="lane-name">B</span>
+          <div class="schedule-track" role="img" aria-label="Activity B, abstract positions 0 to 2">
+            <span class="schedule-fill schedule-fill--video">B · 0–2</span><span></span>
+          </div>
+        </div>
+        <div class="schedule-overlap">CONCURRENT INTERVAL</div>
+      </section>
+    </div>
+  </div>
+  <figcaption class="plate-source">
+    Synthetic teaching example, not measured latency or a product benchmark. Use only source-backed
+    intervals.
+  </figcaption>
+</figure>
+```
+
+```css
+.schedule-panels {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+.schedule-panel {
+  min-width: 0;
+  padding: 0.9rem;
+  border: 1px solid var(--plate-ink);
+  background: var(--plate-inset);
+}
+.schedule-panel h4 {
+  margin: 0 0 0.75rem;
+  color: var(--plate-ink);
+  font-family: var(--monoFont);
+  font-size: 0.875rem;
+}
+.schedule-axis,
+.schedule-lane {
+  display: grid;
+  grid-template-columns: 2rem minmax(0, 1fr);
+}
+.schedule-axis {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 2rem;
+  color: var(--plate-ink);
+  font-family: var(--monoFont);
+  font-size: 0.875rem;
+  text-align: center;
+}
+.schedule-axis > span:first-child {
+  transform: translateX(-50%);
+}
+.schedule-axis > span:last-child {
+  transform: translateX(50%);
+}
+.schedule-lane {
+  align-items: center;
+  border-top: 1px solid var(--plate-ink);
+}
+.lane-name {
+  color: var(--plate-ink);
+  font-family: var(--monoFont);
+  font-weight: 600;
+}
+.schedule-track {
+  display: grid;
+  min-width: 0;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  background: var(--plate-neutral);
+}
+.schedule-track > span {
+  min-width: 0;
+  min-height: 2.5rem;
+  border-left: 1px solid var(--plate-ink);
+}
+.schedule-fill {
+  display: grid;
+  place-items: center;
+  padding: 0.25rem;
+  border: 1px solid #140206 !important;
+  color: #140206;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-align: center;
+}
+.schedule-fill--speech {
+  background: var(--plate-speech);
+}
+.schedule-fill--video {
+  background: var(--plate-video);
+}
+.schedule-overlap {
+  width: calc((100% - 2rem) / 2);
+  margin-left: 2rem;
+  border: 2px solid var(--plate-ink);
+  border-bottom: 0;
+  color: var(--plate-ink);
+  font-family: var(--monoFont);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-align: center;
+}
+@media (max-width: 600px) {
+  .schedule-panels {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+```
+
+The supplied ticks are illustrative because the figure says so; replace both labels and
+cell arrangement when the source intervals differ. Keep one common scale across the
+comparison, expose text equivalents for each schedule, and align the bracket to the
+actual shared interval. At narrow widths, stack panels and hide only intermediate ticks
+that are not needed; remove their matching grid rules too. Do not claim speedup from
+shorter illustrative geometry.
 
 ---
 
@@ -85,7 +463,7 @@ unrelated page. Recheck after every adaptation.
 
 <!-- prettier-ignore -->
 ```html
-<figure role="group" aria-labelledby="scope-demo-caption" style="border:1px solid var(--dark);background:var(--light);padding:0;margin:2rem 0;font-family:var(--uiFont);">
+<figure aria-labelledby="scope-demo-caption" style="border:1px solid var(--dark);background:var(--light);padding:0;margin:2rem 0;font-family:var(--uiFont);">
 <div style="display:inline-block;border-right:1px solid var(--dark);border-bottom:1px solid var(--dark);padding:.4rem .75rem;font-family:var(--codeFont);font-size:.875rem;color:var(--darkgray);letter-spacing:.03em;">ARCHITECTURE / EXECUTION SCOPE</div>
 <div style="padding:clamp(1rem,3vw,1.75rem);">
 <h3 style="font-family:var(--headerFont);font-size:clamp(1.35rem,3vw,1.8rem);line-height:1.2;margin:0 0 1.25rem;">Broad intent. Narrow execution.</h3>

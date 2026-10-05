@@ -132,18 +132,22 @@ automatically between light and dark**. Use the variables, never invent new colo
 
 Fonts: `--bodyFont` (Spectral), `--headerFont` (Spectral), `--codeFont` (Spline Sans Mono).
 
-**Two accents, used sparingly.** Ink blue and sky blue are mid-tones that stay legible on both
-the paper and the near-black background, so they're the safe choice for emphasis in any
-technique. Don't reach past two accent colours per visual.
+For Mermaid and legacy figures, use the two blue accents sparingly. Bespoke figures may
+opt into the separate editorial plate palette by adding `class="editorial-plate"`; it does
+not recolour the page or other figures. The plate exposes semantic `--plate-*` aliases
+for paper, ink, inset, neutral, positive, speech and video marks. Use only colours needed
+by the argument. A vivid mark names a category; it does not imply success, danger or a
+measured result by itself.
 
-### Proposed editorial palette
+### Opt-in editorial plates
 
 The [editorial specification](./skills/wiki-visualize/references/EDITORIAL.md#surface-and-colour)
-also records a warm-paper palette with semantic green, pink and blue accents.
-It is a concrete target for an approved opt-in plate theme, **not installed tokens**.
-Until that theme exists, published figures use the current tokens above. Private
-prototypes may demonstrate the target palette, clearly labelled as a proposal.
-Do not silently scatter hardcoded target colours through published Markdown.
+defines a warm-paper palette with semantic green, pink and blue accents. The opt-in
+`.editorial-plate` family in `quartz/styles/custom.scss` installs these aliases only
+inside figures that use that class. Use the native classes in
+[`PATTERNS.md`](./skills/wiki-visualize/PATTERNS.md#editorial-plate-frame); do not copy
+the palette into page-wide rules or unrelated figures. It is not a site-wide theme
+migration.
 
 ---
 
@@ -274,8 +278,9 @@ in `<figure class="sketch-board">...</figure>` and use the reusable sketch class
 `quartz/styles/custom.scss` (`.sketch-ink`, `.sketch-node`, `.sketch-node-accent`,
 `.sketch-label`). The pattern library has a ready copy-paste template.
 
-HTML infographics follow the same rules - `var(--...)` for all colours, `rem`/`%`/
-`clamp()` for sizes, `flex-wrap`/`grid auto-fit` so cards reflow on mobile. A stat-card grid:
+HTML infographics follow the same rules - use site `var(--...)` colours or the
+figure-scoped `--plate-*` aliases inside `.editorial-plate`. Use `rem`/`%`/`clamp()`
+for sizes and `flex-wrap`/`grid auto-fit` so content reflows on mobile. A stat-card grid:
 
 ```html
 <div
@@ -320,6 +325,8 @@ LLMs break diagrams in predictable ways. Before committing a visual, run this pa
 - [ ] SVG colours use `style="fill:var(--…)"`, **not** `fill="var(--…)"`.
 - [ ] SVG has `viewBox` + `width="100%"`; no fixed pixel width.
 - [ ] `accTitle`/`accDescr` (Mermaid) or `<title>`/`<desc>` (SVG) are present.
+- [ ] Editorial plate classes are opt-in and scoped to the figure; legacy
+      `.sketch-board` and the rest of the page remain unchanged.
 - [ ] Node count is sane (≤ ~8); if not, split or group.
 
 **When practical, verify it renders** before opening the PR: `npx quartz build --serve`
