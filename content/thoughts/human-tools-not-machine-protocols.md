@@ -22,59 +22,13 @@ There is also a historical reason the machine protocols stuck. Part of it, from 
 
 There is a shape to how agents actually call tools, and it mirrors the hierarchy. The model does not talk to the world directly. It calls a small set of typed tools: `bash`, `edit`, `grep`, `view`, a handful more. Those are the ones closest to the model, invoked by structured tool calling with a schema the runtime validates. But `bash` is not one tool. It is a door into everything the shell can reach: `git`, `npm`, `curl`, `docker`, `python`, `jq`, and anything else on the PATH. One structured call fans out into thousands of possible actions.
 
-<figure class="sketch-board" role="group" aria-labelledby="tools-title">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 580 225" width="100%" role="img" aria-labelledby="tools-title tools-desc">
-<title id="tools-title">Tiered tool hierarchy</title>
-<desc id="tools-desc">A model calls a few structured tools at the top tier. One of those tools, bash, opens into a second tier of CLI commands including git, npm, curl, python, and any other command on the PATH.</desc>
-<style>
-.tls-tip{fill:var(--secondary);stroke:none}
-.tls-flow{stroke:var(--secondary);stroke-width:1.5;fill:none}
-.tls-h{fill:var(--darkgray);font-family:var(--bodyFont);font-size:12px;font-weight:600;text-anchor:middle;dominant-baseline:central}
-.tls-ha{fill:var(--light);font-family:var(--bodyFont);font-size:12px;font-weight:600;text-anchor:middle;dominant-baseline:central}
-.tls-cli{fill:var(--darkgray);font-family:var(--codeFont);font-size:11px;text-anchor:middle;dominant-baseline:central}
-.tls-lbl{fill:var(--gray);font-family:var(--bodyFont);font-size:10px;text-anchor:middle}
-</style>
-<rect class="sketch-node" rx="23" x="240" y="10" width="100" height="46"/>
-<text class="tls-h" x="290" y="33">Model</text>
-<rect class="sketch-node-accent" rx="9" x="45" y="90" width="100" height="40"/>
-<text class="tls-ha" x="95" y="110">bash</text>
-<rect class="sketch-node" rx="9" x="175" y="90" width="100" height="40"/>
-<text class="tls-h" x="225" y="110">edit</text>
-<rect class="sketch-node" rx="9" x="305" y="90" width="100" height="40"/>
-<text class="tls-h" x="355" y="110">grep</text>
-<rect class="sketch-node" rx="9" x="435" y="90" width="100" height="40"/>
-<text class="tls-h" x="485" y="110">view</text>
-<line class="tls-flow" x1="290" y1="56" x2="95" y2="82"/>
-<polygon class="tls-tip" points="91,82 99,82 95,90"/>
-<line class="tls-flow" x1="290" y1="56" x2="225" y2="82"/>
-<polygon class="tls-tip" points="221,82 229,82 225,90"/>
-<line class="tls-flow" x1="290" y1="56" x2="355" y2="82"/>
-<polygon class="tls-tip" points="351,82 359,82 355,90"/>
-<line class="tls-flow" x1="290" y1="56" x2="485" y2="82"/>
-<polygon class="tls-tip" points="481,82 489,82 485,90"/>
-<rect class="sketch-node" rx="6" x="26" y="157" width="84" height="36"/>
-<text class="tls-cli" x="68" y="175">git</text>
-<rect class="sketch-node" rx="6" x="122" y="157" width="84" height="36"/>
-<text class="tls-cli" x="164" y="175">npm</text>
-<rect class="sketch-node" rx="6" x="218" y="157" width="84" height="36"/>
-<text class="tls-cli" x="260" y="175">curl</text>
-<rect class="sketch-node" rx="6" x="314" y="157" width="84" height="36"/>
-<text class="tls-cli" x="356" y="175">python</text>
-<rect class="sketch-node" rx="6" x="410" y="157" width="144" height="36"/>
-<text class="tls-cli" x="482" y="175">…anything on PATH</text>
-<line class="tls-flow" x1="95" y1="130" x2="68" y2="149"/>
-<polygon class="tls-tip" points="64,149 72,149 68,157"/>
-<line class="tls-flow" x1="95" y1="130" x2="164" y2="149"/>
-<polygon class="tls-tip" points="160,149 168,149 164,157"/>
-<line class="tls-flow" x1="95" y1="130" x2="260" y2="149"/>
-<polygon class="tls-tip" points="256,149 264,149 260,157"/>
-<line class="tls-flow" x1="95" y1="130" x2="356" y2="149"/>
-<polygon class="tls-tip" points="352,149 360,149 356,157"/>
-<line class="tls-flow" x1="95" y1="130" x2="482" y2="149"/>
-<polygon class="tls-tip" points="478,149 486,149 482,157"/>
-<text class="tls-lbl" x="188" y="148">bash fans to every command on the PATH</text>
-</svg>
-<figcaption>The model calls a few typed tools. One of them, bash, is a door into everything the shell can reach.</figcaption>
+<figure class="editorial-plate" aria-labelledby="tools-title" aria-describedby="tools-caption">
+<div class="plate-tab">TOOLS / TWO TIERS</div>
+<div class="plate-body">
+<p class="plate-claim" id="tools-title">One typed call can open a toolbox.</p>
+<div class="plate-node "><strong>Model</strong></div><p class="plate-arrow">&#8595; typed tools</p><ul class="plate-chips"><li>bash</li><li>edit</li><li>grep</li><li>view</li></ul><div class="plate-route"><p class="plate-arrow">&#8595; bash only</p><div class="plate-scope"><strong class="plate-apparatus">BASH OPENS THE COMMAND LINE</strong><ul class="plate-chips"><li>git</li><li>npm</li><li>curl</li><li>python</li><li>anything on PATH</li></ul></div></div>
+</div>
+<figcaption class="plate-source" id="tools-caption">The model calls a few typed tools. One of them, bash, is a door into everything the shell can reach.</figcaption>
 </figure>
 
 So the tool surface is tiered. A few formal entry points at the top, validated by schema. Below that, the full Unix toolbox, accessed through the human interface of the command line. The model gets both: the safety of structured calls where the runtime can check arguments, and the expressiveness of a shell where it can compose arbitrary pipelines. The hierarchy is doing real work. It is not a leaky abstraction; it is the design.

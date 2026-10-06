@@ -11,46 +11,13 @@ tags:
 
 Raw experience shouldn't become shared knowledge automatically. It gets *promoted* through stages, shedding specificity and gaining trust at each one. Each arrow below is a gate: knowledge clears it before it earns a wider audience, or it stays put.
 
-<figure class="sketch-board" role="group" aria-labelledby="promo-title">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 532 420" width="100%" role="img" aria-labelledby="promo-title promo-desc">
-<title id="promo-title">The memory promotion pipeline</title>
-<desc id="promo-desc">Five stages drawn as a descending funnel: raw episode, private memory, sanitized lesson, approved playbook, and reusable skill. Each bar is shorter than the one above it because every gate rejects most of what reaches it. Between the stages sit four labelled gates: scope to one tenant, strip identifying detail, human review and provenance, and compress to a default.</desc>
-<style>
-.pp-name{fill:var(--darkgray);font-family:var(--bodyFont);font-size:17px;font-weight:600;text-anchor:end}
-.pp-sub{fill:var(--gray);font-family:var(--bodyFont);font-size:13px;text-anchor:end}
-.pp-gate{fill:var(--secondary);font-family:var(--bodyFont);font-size:14px;font-style:italic}
-.pp-arrow{stroke:var(--secondary);stroke-width:1.6;fill:none}
-.pp-tip{fill:var(--secondary);stroke:none}
-</style>
-<text class="pp-name" x="172" y="32">Raw episode</text>
-<text class="pp-sub" x="172" y="48">private detail</text>
-<rect class="sketch-node" x="186" y="14" width="332" height="40"/>
-<line class="pp-arrow" x1="204" y1="58" x2="204" y2="92"/>
-<polygon class="pp-tip" points="200,92 208,92 204,99"/>
-<text class="pp-gate" x="220" y="82">scope to one tenant</text>
-<text class="pp-name" x="172" y="120">Private memory</text>
-<text class="pp-sub" x="172" y="136">user or tenant</text>
-<rect class="sketch-node" x="186" y="102" width="266" height="40"/>
-<line class="pp-arrow" x1="204" y1="146" x2="204" y2="180"/>
-<polygon class="pp-tip" points="200,180 208,180 204,187"/>
-<text class="pp-gate" x="220" y="170">strip identifying detail</text>
-<text class="pp-name" x="172" y="208">Sanitized lesson</text>
-<text class="pp-sub" x="172" y="224">generalised</text>
-<rect class="sketch-node" x="186" y="190" width="198" height="40"/>
-<line class="pp-arrow" x1="204" y1="234" x2="204" y2="268"/>
-<polygon class="pp-tip" points="200,268 208,268 204,275"/>
-<text class="pp-gate" x="220" y="258">human review + provenance</text>
-<text class="pp-name" x="172" y="296">Approved playbook</text>
-<text class="pp-sub" x="172" y="312">reviewed, signed off</text>
-<rect class="sketch-node" x="186" y="278" width="118" height="40"/>
-<line class="pp-arrow" x1="204" y1="322" x2="204" y2="356"/>
-<polygon class="pp-tip" points="200,356 208,356 204,363"/>
-<text class="pp-gate" x="220" y="346">compress to a default</text>
-<text class="pp-name" x="172" y="384">Reusable skill</text>
-<text class="pp-sub" x="172" y="400">shareable</text>
-<rect class="sketch-node-accent" x="186" y="366" width="60" height="40"/>
-</svg>
-<figcaption>The funnel narrows because each gate rejects most of what reaches it, not because the bars count anything. Every step strips specificity and adds review; few episodes reach the bottom.</figcaption>
+<figure class="editorial-plate" aria-labelledby="promo-title" aria-describedby="promo-caption">
+<div class="plate-tab">MEMORY / PROMOTION GATES</div>
+<div class="plate-body">
+<p class="plate-claim" id="promo-title">Every promotion has a gate.</p>
+<ol class="plate-sequence"><li><div class="plate-node"><strong>Raw episode</strong><span>private detail</span></div><div class="plate-gate">&#8595; scope to one tenant</div></li><li><div class="plate-node"><strong>Private memory</strong><span>user or tenant</span></div><div class="plate-gate">&#8595; strip identifying detail</div></li><li><div class="plate-node"><strong>Sanitized lesson</strong><span>generalised</span></div><div class="plate-gate plate-accent--speech">&#8595; human review + provenance</div></li><li><div class="plate-node"><strong>Approved playbook</strong><span>reviewed, signed off</span></div><div class="plate-gate">&#8595; compress the playbook into a skill</div></li><li><div class="plate-node"><strong>Reusable skill</strong><span>shareable</span></div></li></ol><p class="plate-caveat">A blocked gate leaves the lesson at its current stage. No implied pass rate.</p>
+</div>
+<figcaption class="plate-source" id="promo-caption">Scope the episode, remove identifying detail, review the lesson, then compress the playbook into a skill. Most episodes stay local. Working promotion pipeline.</figcaption>
 </figure>
 
 The climb is deliberate. A **raw episode** is what actually happened this session, private detail and all, and it stays local. Promote it and it becomes a **private memory**, a durable note still scoped to one user or tenant. Strip the identifying detail and you have a **sanitized lesson**, generalisable and carrying nobody's name. Once a human signs that off with provenance attached, it is an **approved playbook**. Compress the playbook into a procedure the agent reaches for by default, and it is a **reusable skill**.
