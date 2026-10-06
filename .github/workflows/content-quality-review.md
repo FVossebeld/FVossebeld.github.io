@@ -50,8 +50,16 @@ comment, and you only ever suggest; the human stays the editor.
    bar and the voice.
 2. Use `gh` to read this pull request's changed files and diff under `content/`
    (e.g. `gh pr diff` for the current PR). Focus only on the prose that changed.
-3. If a claim looks like a fact, check whether it traces to a source in `raw/`. Flag
-   anything that looks fabricated.
+3. Check factual-looking claims against the charter's evidence policy: sources in `raw/`,
+   existing pages, and cited sources allowed by the content instructions. For claims
+   about this repository's behavior, inspect the cited repository files. Read the relevant
+   evidence and verify that it supports the specific claim; a citation or an existing
+   page is not automatic proof. Do not reject a supported claim solely because its source
+   is not archived in `raw/`. Distinguish clearly marked author opinion from factual
+   assertions; opinion framing does not excuse invented facts. Identify unsupported or
+   misattributed claims precisely, and state when a source could not be checked rather
+   than treating unavailable evidence as proof of fabrication. Preserve all fabrication
+   and misrepresentation penalties, including when proposing a rewrite.
 4. Apply the charter strictly. Walk the pre-scoring checklist in section 4 of the charter,
    every item, and show it in your comment. Check the prose against all sixteen tell-families
    (A to P): machine-sounding phrasing, inflated significance, "-ing" tails, vague
