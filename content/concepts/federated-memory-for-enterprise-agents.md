@@ -32,7 +32,7 @@ Each layer up is a wider audience. The work is keeping a memory at the lowest la
 <div class="memory-audiences"><span class="memory-direction">Wider audience</span><div class="memory-audience"><strong>Thread</strong><span>single conversation</span></div><div class="memory-audience"><strong>User</strong><span>one person</span></div><div class="memory-audience"><strong>Customer or project</strong><span>one account</span></div><div class="memory-audience"><strong>Team or organization</strong><span>shared context</span></div></div>
 <div class="memory-knowhow"><p class="plate-apparatus">A DIFFERENT DIMENSION / REUSABLE KNOW-HOW</p><div><strong>Procedural memory</strong><span>sanitized playbooks</span></div><div><strong>Reusable skills</strong><span>portable execution patterns</span></div></div>
 </div>
-<figcaption class="plate-source" id="mem-stack-caption">Wider sharing creates more opportunities for leakage. Keep memory at the lowest useful scope; promotion is deliberate and sharing requires review. Audience scope and reusable procedures are different dimensions. Working taxonomy, not a size scale.</figcaption>
+<figcaption class="plate-source" id="mem-stack-caption">I keep memory at the narrowest useful scope and review wider sharing. The rail orders audiences; reusable procedures sit on a separate dimension.</figcaption>
 </figure>
 
 ## The threat model

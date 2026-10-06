@@ -24,7 +24,7 @@ This is not the same thing as a chatbot embedded in the corner of an app. The di
 <div class="interface-join" aria-hidden="true"><i></i><i></i></div>
 <div class="interface-execution"><strong>Governed execution</strong><span>same APIs &middot; same permissions &middot; same audit log</span></div>
 </div>
-<figcaption class="plate-source" id="actsf-caption">Both surfaces hit the same governed path. The semantic UI starts closer to what you meant. Conceptual interface comparison; the GUI remains available.</figcaption>
+<figcaption class="plate-source" id="actsf-caption">In this design, GUI and semantic UI use the same execution path. You can start with fields or intent; the GUI remains available.</figcaption>
 </figure>
 
 It does not replace the GUI; it sits above it. Enterprise users still need dashboards for state-at-a-glance, bulk-editing grids, visual workflow builders, approval screens, and audit views. Some tasks are spatial: you want a hundred rows in front of you, not narrated through a conversation. And for anything ambiguous or irreversible, the agent should drop the user back into the explicit surface to confirm.

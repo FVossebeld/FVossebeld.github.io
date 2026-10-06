@@ -18,7 +18,7 @@ The garden is built in three layers, and the difference between them is _who's a
 <div class="garden-schema"><strong>The schema</strong><span><code>AGENTS.md</code>: conventions, linking, logging</span><span class="plate-apparatus">GOVERNS THE AI</span></div>
 <div class="garden-transformation"><div class="garden-source"><strong>Raw sources</strong><span>Articles, notes and ideas</span><span class="plate-apparatus">AI READS ONLY</span><span>immutable inputs</span></div><div class="garden-handoff"><span>AI drafts</span></div><div class="garden-wiki"><strong>The wiki</strong><span>Interlinked published pages</span><span class="plate-apparatus">I APPROVE</span></div></div>
 </div>
-<figcaption class="plate-source" id="layers-fig-caption">The schema governs the AI's raw-to-wiki work. Raw sources stay immutable; AI drafts the interlinked pages and I approve changes.</figcaption>
+<figcaption class="plate-source" id="layers-fig-caption">I set these editing rules in <a href="https://github.com/FVossebeld/FVossebeld.github.io/blob/main/AGENTS.md">AGENTS.md</a>: raw sources stay immutable, the AI drafts pages, and I approve changes.</figcaption>
 </figure>
 
 ## Why it's different from a normal blog
@@ -43,5 +43,5 @@ I am. 🧑‍✈️ I curate the sources, ask the questions, and approve edits (
 <p class="plate-claim" id="pub-title">Review comes before publication.</p>
 <ol class="publishing-rail"><li><strong>Write</strong><span>markdown</span></li><li><strong>AI drafts</strong><span>on a branch</span></li><li class="publishing-review"><strong>Review and merge</strong><span>human review</span></li><li><strong>GitHub Action</strong><span>builds the site</span></li><li><strong>Site is live</strong></li></ol>
 </div>
-<figcaption class="plate-source" id="pub-caption">Human review and merge separate branch drafts from the automated build. No database or admin panel: just markdown in git.</figcaption>
+<figcaption class="plate-source" id="pub-caption">I review the branch draft before merging it. The <a href="https://github.com/FVossebeld/FVossebeld.github.io/tree/main/.github/workflows">publishing workflow</a> then builds the Markdown pages and deploys the site.</figcaption>
 </figure>

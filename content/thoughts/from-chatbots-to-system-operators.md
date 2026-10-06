@@ -76,7 +76,7 @@ Stack those shifts up and you get a progression. Each step doesn't replace the l
 <li><strong>Governed learning system</strong><span>federated memory and promotion</span></li>
 </ol>
 </div>
-<figcaption class="plate-source" id="evl-caption">Each stage adds environment or governance. Working theory; stages can coexist. The offsets are schematic, not a capability scale.</figcaption>
+<figcaption class="plate-source" id="evl-caption">I group the progression by added environment and governance. Stages can coexist; the offsets distinguish them without measuring capability.</figcaption>
 </figure>
 
 ## The useful enterprise shape is scoped, not omniscient
@@ -112,7 +112,7 @@ That gives a rough architecture, less a finished blueprint than the boxes I keep
 </div>
 <div class="execution-legend"><p><strong>Policy:</strong> identity, permissions and audit for orchestrator and specialists.</p><p><strong>Memory:</strong> scoped, federated context for the orchestrator; outcome context for specialists.</p></div>
 </div>
-<figcaption class="plate-source" id="arch-caption">The orchestrator routes; specialists mutate; policy and memory constrain their work. Working architecture, not a deployed blueprint.</figcaption>
+<figcaption class="plate-source" id="arch-caption">The architecture I propose separates routing from mutation. Policy and memory reach both the orchestrator and the specialists.</figcaption>
 </figure>
 
 The policy layer (identity, permissions, tenant boundaries, approvals, logging) and a verification layer of dry runs, human approval, and rollback aren't optional add-ons. In a regulated enterprise they're the reason the thing is allowed to run at all.

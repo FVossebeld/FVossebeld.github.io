@@ -23,7 +23,7 @@ So you need a coordination layer, and the shape I keep landing on is **broad int
 <section class="routing-target"><strong>ServiceNow specialist</strong><span class="routing-mutation">ITSM</span></section>
 </div>
 </div>
-<figcaption class="plate-source" id="orch-caption">Each specialist mutates only its own system, within that system's permissions. Dashed: coordination only. Solid: system-scoped execution. Conceptual routing, not a distributed transaction guarantee.</figcaption>
+<figcaption class="plate-source" id="orch-caption">My proposed split: the orchestrator routes work; each specialist writes within one system's permissions. Dashed encloses coordination, solid encloses execution. Cross-system rollback still needs its own design.</figcaption>
 </figure>
 
 That separation is the easy part to state. The work is in three problems it creates.

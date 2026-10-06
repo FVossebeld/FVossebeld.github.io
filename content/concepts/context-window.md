@@ -22,7 +22,7 @@ The mistake I keep seeing: people wire a database or a document store to the age
 <p class="plate-claim" id="cw-nest-title">Access still needs selection.</p>
 <div class="context-region"><strong>Connected sources</strong><span>SharePoint, databases, document stores</span><div class="context-region"><strong>Retrievable</strong><span>what could be fetched</span><div class="context-selection"><span>selection</span></div><div class="context-window"><strong>In the window this turn</strong><span>what the model can attend to</span></div></div></div>
 </div>
-<figcaption class="plate-source" id="cw-nest-caption">Only what selection pulls into the window is present for reasoning this turn. Containment is schematic, not a token-count scale.</figcaption>
+<figcaption class="plate-source" id="cw-nest-caption">Selection brings retrieved material into this turn's context. The outlines show containment; their sizes carry no token counts.</figcaption>
 </figure>
 
 That's the whole reason [[memory-promotion-pipeline|memory promotion]] and [[federated-memory-for-enterprise-agents|federated memory]] exist as problems. They solve selection: surfacing the right thing at the right time into a finite space. A bigger window doesn't help if nothing good fills it.

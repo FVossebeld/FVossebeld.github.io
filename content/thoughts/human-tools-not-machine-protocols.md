@@ -30,7 +30,7 @@ There is a shape to how agents actually call tools, and it mirrors the hierarchy
 <div class="tools-entrypoints"><div class="tools-bash"><code>bash</code></div><div><code>edit</code></div><div><code>grep</code></div><div><code>view</code></div></div>
 <div class="tools-expansion"><span class="tools-branch-label">bash opens the command line</span><div class="tools-shelf"><code>git</code><code>npm</code><code>curl</code><code>python</code><span>anything on PATH</span></div></div>
 </div>
-<figcaption class="plate-source" id="tools-caption">The model calls a few typed tools. Only the bash branch opens the command line: git, npm, curl, python and anything on PATH. Conceptual tool hierarchy.</figcaption>
+<figcaption class="plate-source" id="tools-caption">In the tool surface described above, bash opens the command line. The other shown entry points stay separate; commands still depend on what the environment exposes.</figcaption>
 </figure>
 
 So the tool surface is tiered. A few formal entry points at the top, validated by schema. Below that, the full Unix toolbox, accessed through the human interface of the command line. The model gets both: the safety of structured calls where the runtime can check arguments, and the expressiveness of a shell where it can compose arbitrary pipelines. The hierarchy is doing real work. It is not a leaky abstraction; it is the design.
