@@ -17,7 +17,11 @@ Read [`DIAGRAMS.md`](../../../DIAGRAMS.md), [`EDITORIAL.md`](./EDITORIAL.md), an
    concrete problem remains, stop and use prose.
 3. **Compare different compositions.** Sketch two alternatives that change the argument's
    geometry, not merely its colors or card styling. Note what each arrangement could
-   falsely imply. Fix the claim and intended reading order before styling.
+   falsely imply. Fix the claim and intended reading order before styling. For a
+   collection revision, also compare the figures as a set: a shared frame can unify them,
+   but repeated inner geometry is a problem when it hides different relationships.
+   Use a text-masked contact sheet to compare structure if labels dominate the view.
+   There is no diversity quota, and no figure should be made different for decoration.
 4. **Make a standalone brief.** Include exact labels, marks, relationships, evidence
    status, source, desktop and narrow layouts, semantics, caption, limits and acceptance
    tests. For non-trivial bespoke work, cold-read the brief with `figure-spec-checker`;
@@ -29,20 +33,28 @@ Read [`DIAGRAMS.md`](../../../DIAGRAMS.md), [`EDITORIAL.md`](./EDITORIAL.md), an
    remaining composition-specific prototype styles.
 6. **Inspect images, then critique.** Open rendered screenshots at 390px and 1440px in
    light and dark. Look first at the whole plate: what is noticed, what is misread, where
-   the eye travels, and whether the visual says more than the prose. Record one specific
-   weakness and the visible evidence for it. Then check text size, contrast, strokes,
+   the eye travels, and whether the visual says more than the prose. For a set, inspect a
+   comparison sheet and the inner geometry without labels as well. Record specific
+   weaknesses and the image evidence for them. Then check text size, contrast, strokes,
    overflow, IDs, reading order, responsive geometry and reduced motion. Enlarge a crop
    only to examine details; the full composition still needs review.
-7. **Revise one coherent issue and re-render.** Keep earlier briefs and images. Record
-   what changed, what improved, what regressed and any tradeoff. Rebuild through Quartz
-   and reopen the final images; do not rely on stale screenshots or CSS assertions.
-8. **Promote only earned lessons.** A reusable rule needs a clear before/after observation
-   and evidence it generalizes beyond an incidental label or source fact. Add a native
-   Quartz snippet and exact semantics/mobility constraints for each new pattern. Keep
-   specimen-specific details out of general advice.
-9. **Keep approval separate.** A successful private experiment, skill edit, stylesheet
-   integration or screenshot is not approval to add the figure to a public page. The
-   author approves every public embed and broader shell change.
+7. **Keep two verdicts.** Record technical rendering results separately from art-direction
+   acceptance. Text size, contrast, accessibility references and overflow can all pass
+   while the graphic still reads as a boxed list, broken path, lost comparison or
+   unexplained enclosure. A visual critique must inspect the actual output, not only
+   CSS, DOM metrics or a build log.
+8. **Revise one coherent issue and re-render.** Keep earlier briefs and images. Record
+   what changed, what the before/after images show, what regressed and any tradeoff.
+   Rebuild through Quartz and reopen the final images; do not rely on stale screenshots
+   or CSS assertions. For collection-level work, reopen the final set, not just a sample.
+9. **Promote only earned lessons.** A reusable rule needs a clear before/after observation
+   and evidence it generalizes beyond an incidental label or source fact. Name the
+   relevant images or evidence record. Add a native Quartz starting structure and its
+   semantics/mobile constraints, not a rigid universal layout. Keep specimen-specific
+   details out of general advice.
+10. **Keep approval separate.** A successful private experiment, skill update, stylesheet
+    integration or screenshot is not approval to add a figure to a public page. The
+    author approves every public embed and broader shell change.
 
 ## Stop when
 
@@ -54,6 +66,9 @@ Read [`DIAGRAMS.md`](../../../DIAGRAMS.md), [`EDITORIAL.md`](./EDITORIAL.md), an
   static meaning.
 - The final image review finds no further change that is both material and source-
   supported. Record remaining low-impact tradeoffs rather than polishing indefinitely.
+- The independent visual review accepts the actual final images, including collection
+  variety when several figures were revised. A technical pass cannot substitute for
+  this art-direction decision.
 - Final artifacts, exact build/check commands, results, image paths and untested limits
   are recorded. Never describe screenshot review as native zoom or assistive-technology
   testing.

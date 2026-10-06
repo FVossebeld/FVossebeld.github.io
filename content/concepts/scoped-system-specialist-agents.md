@@ -18,13 +18,13 @@ A Salesforce specialist can inspect an opportunity, explain why a missing field 
 
 Scope on its own doesn't make an agent safe; it makes an agent *governable*. Those are different things. Governable means you can wrap a control loop around it, and the [[permission-boundary]] is only the precondition for the rest.
 
-<figure class="editorial-plate" aria-labelledby="gov-loop-title" aria-describedby="gov-loop-caption">
+<figure class="editorial-plate creative-figure feedback-figure" aria-labelledby="gov-loop-title" aria-describedby="gov-loop-caption">
 <div class="plate-tab">GOVERNANCE / FEEDBACK</div>
 <div class="plate-body">
 <p class="plate-claim" id="gov-loop-title">Evaluate before the next action.</p>
-<div class="plate-return"><ol class="plate-sequence"><li><div class="plate-node "><strong>Intent</strong></div></li><li><div class="plate-node "><strong>Approval</strong></div></li><li><div class="plate-node "><strong>Action</strong></div></li><li><div class="plate-node "><strong>Trace</strong></div></li><li><div class="plate-node "><strong>Evaluation</strong></div></li></ol><p class="plate-apparatus">&#8593; Evaluation feeds the next intent</p></div>
+<div class="feedback-loop"><span class="feedback-label">Feeds next intent</span><ol class="feedback-stages"><li><strong>Intent</strong></li><li><strong>Approval, when needed</strong></li><li><strong>Action</strong></li><li><strong>Trace</strong></li><li><strong>Evaluation</strong></li></ol></div>
 </div>
-<figcaption class="plate-source" id="gov-loop-caption">Each action is approved, traced, and evaluated before the next intent. Proposed control loop.</figcaption>
+<figcaption class="plate-source" id="gov-loop-caption">Proposed loop: approval, when needed, precedes action; trace and evaluation feed the next intent. It is a design, not a safety guarantee.</figcaption>
 </figure>
 
 The governance loop works inside one system. Real workflows don't stay inside one system. A renewal touches CRM, billing, legal, email, calendar, and support tickets, so a wall of narrow agents that can't coordinate is as useless as one broad agent is dangerous. The missing layer is [[orchestrating-scoped-agents|orchestration]]: broad intent, narrow execution. A conversational orchestrator holds the cross-system goal and routes work to the specialists; each specialist still does every mutation inside its own boundary. And the hardest boundary to draw is [[federated-memory-for-enterprise-agents|memory]]: what a specialist is allowed to learn and carry forward.

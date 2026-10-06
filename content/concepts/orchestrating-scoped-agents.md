@@ -12,19 +12,18 @@ tags:
 
 So you need a coordination layer, and the shape I keep landing on is **broad intent, narrow execution**: a conversational orchestrator holds the messy human goal and decides who does what; each scoped specialist performs the actual mutation, but only inside its own system and permissions. Breadth lives in the *understanding*; narrowness lives in the *doing*. The orchestrator can reason about a goal spanning six systems while holding write access to none of them.
 
-<figure class="editorial-plate" aria-labelledby="orch-title" aria-describedby="orch-caption">
+<figure class="editorial-plate creative-figure routing-figure" aria-labelledby="orch-title" aria-describedby="orch-caption">
 <div class="plate-tab">ORCHESTRATION / SYSTEM BOUNDARIES</div>
 <div class="plate-body">
 <p class="plate-claim" id="orch-title">Coordinate across systems. Write inside one.</p>
-<div class="plate-flow"><div class="plate-node"><strong>Cross-system user intent</strong></div><p class="plate-arrow">&#8595;</p><div class="plate-node plate-node--restricted"><strong>Process-scoped orchestrator</strong><span>plans and routes<br>No direct system writes</span></div></div>
-<div class="plate-grid plate-grid--three">
-<div class="plate-route"><p class="plate-arrow">&#8595; from orchestrator</p><div class="plate-scope"><div class="plate-flow"><div class="plate-node"><strong>Salesforce specialist</strong></div><p class="plate-arrow">&#8595;</p><div class="plate-node"><strong>CRM</strong></div></div></div></div>
-<div class="plate-route"><p class="plate-arrow">&#8595; from orchestrator</p><div class="plate-scope"><div class="plate-flow"><div class="plate-node"><strong>SAP specialist</strong></div><p class="plate-arrow">&#8595;</p><div class="plate-node"><strong>ERP</strong></div></div></div></div>
-<div class="plate-route"><p class="plate-arrow">&#8595; from orchestrator</p><div class="plate-scope"><div class="plate-flow"><div class="plate-node"><strong>ServiceNow specialist</strong></div><p class="plate-arrow">&#8595;</p><div class="plate-node"><strong>ITSM</strong></div></div></div></div>
+<div class="routing-origin"><p>Cross-system user intent</p><div class="routing-coordinator"><strong>Process-scoped orchestrator</strong><span>plans and routes</span><span>No direct system writes</span></div></div>
+<div class="routing-fanout">
+<section class="routing-target"><strong>Salesforce specialist</strong><span class="routing-mutation">CRM</span></section>
+<section class="routing-target"><strong>SAP specialist</strong><span class="routing-mutation">ERP</span></section>
+<section class="routing-target"><strong>ServiceNow specialist</strong><span class="routing-mutation">ITSM</span></section>
 </div>
-<p class="plate-key">Dashed: coordination only. Solid: system-scoped execution.</p>
 </div>
-<figcaption class="plate-source" id="orch-caption">Each mutation stays inside one system's boundary. Conceptual routing, not a distributed transaction guarantee.</figcaption>
+<figcaption class="plate-source" id="orch-caption">Each specialist mutates only its own system, within that system's permissions. Dashed: coordination only. Solid: system-scoped execution. Conceptual routing, not a distributed transaction guarantee.</figcaption>
 </figure>
 
 That separation is the easy part to state. The work is in three problems it creates.

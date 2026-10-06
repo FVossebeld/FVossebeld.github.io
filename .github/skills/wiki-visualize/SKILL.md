@@ -83,6 +83,14 @@ every embed.
    rebuild and recheck. Promote only lessons demonstrated by before/after evidence; follow
    [`LEARNING-LOOP.md`](./references/LEARNING-LOOP.md). An injected preview stylesheet is
    prototype evidence, not proof of integrated site styling.
+   Use the independent [`creative-director`](../../agents/creative-director.agent.md)
+   role for bespoke figures and collection-wide revisions. It reviews both message
+   fidelity and visual finish, including meaningful variety across the set. Give it
+   the source claim, brief, exact revision and actual images, not just the builder's
+   report. Resolve material REVISE findings and have it inspect the rebuilt images.
+   A technical pass does not override its rendered verdict. If the persona is not
+   yet selectable in the current runtime, a read-only reviewer must load that agent
+   file explicitly and follow its review contract.
 8. **Verify the actual output.** Inspect both themes at 390px and 1440px, including
    rendered SVG text sizes, clipping, contrast and page overflow. Check reduced motion; a
    static figure must carry the full argument. Mermaid syntax errors fail silently.
@@ -99,6 +107,10 @@ every embed.
   interpretable (CLEAR), missing specific facts (MISSING INFO), or too vague to draw (VAGUE).
   Useful at step 1–3 when the brief is non-trivial or you're unsure you've understood it.
 - To shape the surrounding prose into Floris's voice: the **`style-editor`** agent.
+- To direct and gate visual communication, finish and collection-level variety:
+  the **`creative-director`** agent. Concept direction precedes construction; rendered
+  approval requires actual desktop/mobile light/dark image inspection. This complements
+  the context-blind brief gate and the content gate, not a replacement for either.
 - To gate the page (prose _and_ whether the visual earns its place): the **`slop-verifier`** agent.
 - To file a whole new source into pages first: the **`wiki-ingest`** skill (which calls
   this skill at its "consider a visual" step).

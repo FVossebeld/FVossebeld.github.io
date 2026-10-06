@@ -21,8 +21,7 @@ A lot of AI looks convincing right up until it touches any of that. I spend my t
 
 My background is in computer science and data science, and the thread running through it is tool use, feedback loops, and systems that can correct themselves. That's the lens I brought to my master's thesis: using reinforcement learning to teach an agent to walk a knowledge graph, use tools, and recover from its own wrong turns instead of answering in one shot. It's still how I look at most things. The route here:
 
-<figure class="editorial-plate" aria-labelledby="background-title" aria-describedby="background-caption">
-<div class="plate-tab">BACKGROUND / CHRONOLOGY</div>
+<figure class="editorial-plate creative-figure chronology-figure" aria-labelledby="background-title" aria-describedby="background-caption">
 <div class="plate-body">
 <p class="plate-claim" id="background-title">The route here.</p>
 <ol class="timeline">

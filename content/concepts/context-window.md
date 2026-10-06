@@ -16,13 +16,13 @@ Think about how you work. You carry an enormous amount of implicit context into 
 
 The mistake I keep seeing: people wire a database or a document store to the agent and call it "context." It isn't. A connected source is plumbing, not cognition. The agent has *access*, the way you have access to your company's entire SharePoint. Access doesn't mean the right fact is present at the moment of reasoning. Until something selects the relevant slice and loads it into the window, the connection is inert. The model attends to what's literally there this turn. Nothing else exists for it.
 
-<figure class="editorial-plate" aria-labelledby="cw-nest-title" aria-describedby="cw-nest-caption">
+<figure class="editorial-plate creative-figure context-figure" aria-labelledby="cw-nest-title" aria-describedby="cw-nest-caption">
 <div class="plate-tab">CONTEXT / SELECTION</div>
 <div class="plate-body">
 <p class="plate-claim" id="cw-nest-title">Access still needs selection.</p>
-<div class="plate-nest"><strong>Connected sources</strong><span>SharePoint, databases, document stores</span><div class="plate-nest"><strong>Retrievable</strong><span>what could be fetched</span><p class="plate-arrow">&#8595; selection</p><div class="plate-nest plate-nest--selected"><strong>In the window this turn</strong><span>what the model can attend to</span></div></div></div><p class="plate-caveat">Containment is schematic, not a token-count scale.</p>
+<div class="context-region"><strong>Connected sources</strong><span>SharePoint, databases, document stores</span><div class="context-region"><strong>Retrievable</strong><span>what could be fetched</span><div class="context-selection"><span>selection</span></div><div class="context-window"><strong>In the window this turn</strong><span>what the model can attend to</span></div></div></div>
 </div>
-<figcaption class="plate-source" id="cw-nest-caption">Only what selection pulls into the window is present for reasoning this turn.</figcaption>
+<figcaption class="plate-source" id="cw-nest-caption">Only what selection pulls into the window is present for reasoning this turn. Containment is schematic, not a token-count scale.</figcaption>
 </figure>
 
 That's the whole reason [[memory-promotion-pipeline|memory promotion]] and [[federated-memory-for-enterprise-agents|federated memory]] exist as problems. They solve selection: surfacing the right thing at the right time into a finite space. A bigger window doesn't help if nothing good fills it.
