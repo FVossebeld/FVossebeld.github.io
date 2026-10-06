@@ -884,6 +884,25 @@ a[data-footnote-ref],
     margin-bottom: 0;
   }
 
+  .timeline {
+    margin: 1rem 0 0;
+    border-color: var(--plate-ink);
+  }
+
+  .timeline > li::before {
+    background: var(--plate-ink);
+  }
+
+  .t-when,
+  .t-what,
+  .t-note {
+    color: var(--plate-ink);
+  }
+
+  .t-when {
+    font-size: 0.875rem;
+  }
+
   .plate-route {
     position: relative;
     padding-top: 2rem;

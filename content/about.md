@@ -21,6 +21,10 @@ A lot of AI looks convincing right up until it touches any of that. I spend my t
 
 My background is in computer science and data science, and the thread running through it is tool use, feedback loops, and systems that can correct themselves. That's the lens I brought to my master's thesis: using reinforcement learning to teach an agent to walk a knowledge graph, use tools, and recover from its own wrong turns instead of answering in one shot. It's still how I look at most things. The route here:
 
+<figure class="editorial-plate" aria-labelledby="background-title" aria-describedby="background-caption">
+<div class="plate-tab">BACKGROUND / CHRONOLOGY</div>
+<div class="plate-body">
+<p class="plate-claim" id="background-title">The route here.</p>
 <ol class="timeline">
   <li>
     <span class="t-when">2019–2022</span>
@@ -48,6 +52,9 @@ My background is in computer science and data science, and the thread running th
     <span class="t-note">Hands-on with the largest banks and insurers, moving GenAI from proof-of-concept to production.</span>
   </li>
 </ol>
+</div>
+<figcaption class="plate-source" id="background-caption">Dates overlap. The rail orders these entries; spacing does not measure their duration.</figcaption>
+</figure>
 
 ## What I write here
 

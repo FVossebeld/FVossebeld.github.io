@@ -171,12 +171,13 @@ limitations recorded above still apply.
 
 ## Public figure migration, 2026-10-06
 
-All 15 existing figures across 13 pages were rebuilt as editorial HTML plates and
-checked on their actual Quartz routes, not just extracted fixtures. The 90 cases cover
+The 15 explanatory figures across 13 pages were rebuilt as editorial HTML plates; the
+existing About chronology also adopted the frame, retaining its dates and text.
+All 16 were checked on their actual Quartz routes, not just extracted fixtures. The 96 cases cover
 390, 720 and 1440 CSS px in both themes, with normal-height viewports (844px at 390px;
 1000px otherwise). Essential text was at least 14px, minimum text contrast was 7.00:1,
 and no page/figure horizontal overflow or fixed-shell intersections were found.
-All 60 desktop/mobile captures were inspected in unscaled comparison sheets.
+All 64 desktop/mobile captures were inspected in unscaled comparison sheets.
 
 The migration exposed inherited article styles on nested labels and lists, including
 pale text on blue fills in dark mode. Plate labels, chips and inline code now inherit
