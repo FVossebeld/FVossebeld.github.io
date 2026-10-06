@@ -12,56 +12,19 @@ tags:
 
 So you need a coordination layer, and the shape I keep landing on is **broad intent, narrow execution**: a conversational orchestrator holds the messy human goal and decides who does what; each scoped specialist performs the actual mutation, but only inside its own system and permissions. Breadth lives in the *understanding*; narrowness lives in the *doing*. The orchestrator can reason about a goal spanning six systems while holding write access to none of them.
 
-<figure class="sketch-board" role="group" aria-labelledby="orch-title">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 330" width="100%" role="img" aria-labelledby="orch-title orch-desc">
-<title id="orch-title">System-scoped specialists coordinated by a process-scoped orchestrator</title>
-<desc id="orch-desc">Cross-system user intent flows into a process-scoped orchestrator, which routes work to three scoped specialists: Salesforce for CRM, SAP for ERP, and ServiceNow for ITSM. Each specialist mutates only its own system.</desc>
-<style>
-.orch-tip{fill:var(--secondary);stroke:none}
-.orch-flow{stroke:var(--secondary);stroke-width:1.5;fill:none}
-.orch-h{fill:var(--darkgray);font-family:var(--bodyFont);font-size:12px;font-weight:600;text-anchor:middle}
-.orch-s{fill:var(--gray);font-family:var(--bodyFont);font-size:10px;text-anchor:middle}
-.orch-ha{fill:var(--light);font-family:var(--bodyFont);font-size:12px;font-weight:600;text-anchor:middle}
-.orch-sa{fill:var(--light);font-family:var(--bodyFont);font-size:10px;opacity:.8;text-anchor:middle}
-.orch-sys{fill:var(--darkgray);font-family:var(--bodyFont);font-size:11px;font-weight:600;text-anchor:middle}
-.orch-sysb{fill:color-mix(in srgb,var(--lightgray) 55%,var(--light));stroke:var(--gray);stroke-width:1}
-</style>
-<rect class="sketch-node" rx="9" x="220" y="10" width="200" height="46"/>
-<text class="orch-h" x="320" y="29">Cross-system user intent</text>
-<rect class="sketch-node-accent" rx="9" x="220" y="92" width="200" height="46"/>
-<text class="orch-ha" x="320" y="111">Process-scoped orchestrator</text>
-<text class="orch-sa" x="320" y="126">plans and routes</text>
-<rect class="sketch-node" rx="9" x="20" y="178" width="160" height="46"/>
-<text class="orch-h" x="100" y="197">Salesforce specialist</text>
-<text class="orch-s" x="100" y="212">system scope: CRM</text>
-<rect class="sketch-node" rx="9" x="240" y="178" width="160" height="46"/>
-<text class="orch-h" x="320" y="197">SAP specialist</text>
-<text class="orch-s" x="320" y="212">system scope: ERP</text>
-<rect class="sketch-node" rx="9" x="460" y="178" width="160" height="46"/>
-<text class="orch-h" x="540" y="197">ServiceNow specialist</text>
-<text class="orch-s" x="540" y="212">system scope: ITSM</text>
-<rect class="orch-sysb" rx="20" x="20" y="262" width="160" height="46"/>
-<text class="orch-sys" x="100" y="290">CRM</text>
-<rect class="orch-sysb" rx="20" x="240" y="262" width="160" height="46"/>
-<text class="orch-sys" x="320" y="290">ERP</text>
-<rect class="orch-sysb" rx="20" x="460" y="262" width="160" height="46"/>
-<text class="orch-sys" x="540" y="290">ITSM</text>
-<line class="orch-flow" x1="320" y1="56" x2="320" y2="84"/>
-<polygon class="orch-tip" points="316,84 324,84 320,92"/>
-<line class="orch-flow" x1="320" y1="138" x2="100" y2="170"/>
-<polygon class="orch-tip" points="96,170 104,170 100,178"/>
-<line class="orch-flow" x1="320" y1="138" x2="320" y2="170"/>
-<polygon class="orch-tip" points="316,170 324,170 320,178"/>
-<line class="orch-flow" x1="320" y1="138" x2="540" y2="170"/>
-<polygon class="orch-tip" points="536,170 544,170 540,178"/>
-<line class="orch-flow" x1="100" y1="224" x2="100" y2="254"/>
-<polygon class="orch-tip" points="96,254 104,254 100,262"/>
-<line class="orch-flow" x1="320" y1="224" x2="320" y2="254"/>
-<polygon class="orch-tip" points="316,254 324,254 320,262"/>
-<line class="orch-flow" x1="540" y1="224" x2="540" y2="254"/>
-<polygon class="orch-tip" points="536,254 544,254 540,262"/>
-</svg>
-<figcaption>Breadth in the orchestrator, narrowness in the specialists: each mutation stays inside one system's boundary.</figcaption>
+<figure class="editorial-plate" aria-labelledby="orch-title" aria-describedby="orch-caption">
+<div class="plate-tab">ORCHESTRATION / SYSTEM BOUNDARIES</div>
+<div class="plate-body">
+<p class="plate-claim" id="orch-title">Coordinate across systems. Write inside one.</p>
+<div class="plate-flow"><div class="plate-node"><strong>Cross-system user intent</strong></div><p class="plate-arrow">&#8595;</p><div class="plate-node plate-node--restricted"><strong>Process-scoped orchestrator</strong><span>plans and routes<br>No direct system writes</span></div></div>
+<div class="plate-grid plate-grid--three">
+<div class="plate-route"><p class="plate-arrow">&#8595; from orchestrator</p><div class="plate-scope"><div class="plate-flow"><div class="plate-node"><strong>Salesforce specialist</strong></div><p class="plate-arrow">&#8595;</p><div class="plate-node"><strong>CRM</strong></div></div></div></div>
+<div class="plate-route"><p class="plate-arrow">&#8595; from orchestrator</p><div class="plate-scope"><div class="plate-flow"><div class="plate-node"><strong>SAP specialist</strong></div><p class="plate-arrow">&#8595;</p><div class="plate-node"><strong>ERP</strong></div></div></div></div>
+<div class="plate-route"><p class="plate-arrow">&#8595; from orchestrator</p><div class="plate-scope"><div class="plate-flow"><div class="plate-node"><strong>ServiceNow specialist</strong></div><p class="plate-arrow">&#8595;</p><div class="plate-node"><strong>ITSM</strong></div></div></div></div>
+</div>
+<p class="plate-key">Dashed: coordination only. Solid: system-scoped execution.</p>
+</div>
+<figcaption class="plate-source" id="orch-caption">Each mutation stays inside one system's boundary. Conceptual routing, not a distributed transaction guarantee.</figcaption>
 </figure>
 
 That separation is the easy part to state. The work is in three problems it creates.

@@ -168,3 +168,28 @@ endpoints. The recipe now places tick centres at the track's start, midpoint and
 the checker asserts alignment within one CSS pixel in all six schedule cases.
 The same native-zoom, assistive-technology, comprehension and normal-height shell
 limitations recorded above still apply.
+
+## Public figure migration, 2026-10-06
+
+The 15 explanatory figures across 13 pages were rebuilt as editorial HTML plates; the
+existing About chronology also adopted the frame, retaining its dates and text.
+All 16 were checked on their actual Quartz routes, not just extracted fixtures. The 96 cases cover
+390, 720 and 1440 CSS px in both themes, with normal-height viewports (844px at 390px;
+1000px otherwise). Essential text was at least 14px, minimum text contrast was 7.00:1,
+and no page/figure horizontal overflow or fixed-shell intersections were found.
+All 64 desktop/mobile captures were inspected in unscaled comparison sheets.
+
+The migration exposed inherited article styles on nested labels and lists, including
+pale text on blue fills in dark mode. Plate labels, chips and inline code now inherit
+their enclosing component's ink; chip strokes use that same colour. Check nested
+content on accent fills, not just the accent container itself.
+
+The semantic-UI figure keeps its two alternative paths side by side on mobile, where
+stacking had made them look sequential. Stacked specialist panels name the orchestrator
+as each handoff's origin so one specialist cannot appear to route to the next. Equal
+memory categories separate audience scope from reusable procedures; the promotion rail
+labels gates without implying pass rates.
+
+Native browser zoom, assistive-technology operation and reader comprehension remain
+unmeasured. Several mobile figures are taller than a viewport; this is the tradeoff
+for readable labels and explicit boundaries, not a claim about ideal reading speed.

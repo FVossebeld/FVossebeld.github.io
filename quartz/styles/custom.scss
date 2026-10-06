@@ -587,6 +587,19 @@ a[data-footnote-ref],
 }
 
 .editorial-plate {
+  strong,
+  li,
+  code {
+    color: inherit;
+  }
+
+  code {
+    border-color: currentColor;
+    background: transparent;
+    font-family: var(--monoFont);
+    font-size: 0.875rem;
+  }
+
   --plate-paper: #f7f4ef;
   --plate-ink: #140206;
   --plate-inset: #fbf9f6;
@@ -709,6 +722,211 @@ a[data-footnote-ref],
 
 .editorial-plate .plate-accent--video {
   background: var(--plate-video);
+}
+
+.editorial-plate {
+  .plate-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .plate-grid--three {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .plate-node,
+  .plate-scope {
+    min-width: 0;
+    padding: 0.85rem;
+    border: 1px solid var(--plate-ink);
+    background: var(--plate-inset);
+  }
+
+  .plate-node > strong,
+  .plate-node > span,
+  .plate-scope > strong,
+  .plate-scope > span {
+    display: block;
+  }
+
+  .plate-node > span,
+  .plate-scope > span {
+    margin-top: 0.35rem;
+  }
+
+  .plate-node.plate-accent--speech {
+    background: var(--plate-speech);
+    border-color: #140206;
+    color: #140206;
+  }
+
+  .plate-node.plate-accent--video {
+    background: var(--plate-video);
+    border-color: #140206;
+    color: #140206;
+  }
+
+  .plate-node--restricted {
+    border-style: dashed;
+  }
+
+  .plate-sequence {
+    list-style: none;
+    margin: 1rem 0 0;
+    padding: 0;
+    counter-reset: plate-step;
+  }
+
+  .plate-sequence > li {
+    position: relative;
+    display: grid;
+    grid-template-columns: 2.25rem minmax(0, 1fr);
+    column-gap: 0.75rem;
+    padding: 0 0 0.75rem;
+    counter-increment: plate-step;
+  }
+
+  .plate-sequence > li::before {
+    content: counter(plate-step, decimal-leading-zero);
+    z-index: 1;
+    align-self: start;
+    padding: 0.35rem 0;
+    border: 1px solid var(--plate-ink);
+    background: var(--plate-paper);
+    text-align: center;
+    font-family: var(--monoFont);
+    font-size: 0.875rem;
+  }
+
+  .plate-sequence > li:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    top: 2rem;
+    bottom: 0;
+    left: 1.125rem;
+    border-left: 1px solid var(--plate-ink);
+  }
+
+  .plate-gate {
+    grid-column: 2;
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    border: 1px dashed var(--plate-ink);
+    font-family: var(--monoFont);
+    font-size: 0.875rem;
+  }
+
+  .plate-gate.plate-accent--speech {
+    border-color: #140206;
+  }
+
+  .plate-flow {
+    display: grid;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  .plate-arrow {
+    margin: 0;
+    color: var(--plate-ink);
+    font-family: var(--monoFont);
+    font-size: 0.875rem;
+    text-align: center;
+  }
+
+  .plate-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 0.75rem 0 0;
+    padding: 0;
+    list-style: none;
+    color: inherit;
+  }
+
+  .plate-chips > li {
+    padding: 0.35rem 0.55rem;
+    border: 1px solid currentColor;
+    font-family: var(--monoFont);
+    font-size: 0.875rem;
+  }
+
+  .plate-nest {
+    margin-top: 0.75rem;
+    padding: clamp(0.6rem, 2vw, 1.25rem);
+    border: 1px solid var(--plate-ink);
+    background: var(--plate-inset);
+  }
+
+  .plate-nest--selected {
+    background: var(--plate-video);
+    border-color: #140206;
+    color: #140206;
+  }
+
+  .plate-nest > strong,
+  .plate-nest > span {
+    display: block;
+  }
+
+  .plate-nest > span {
+    margin-top: 0.35rem;
+  }
+
+  .plate-return {
+    margin-top: 1rem;
+    padding-left: 1rem;
+    border-left: 2px dashed var(--plate-ink);
+  }
+
+  .plate-return > .plate-apparatus {
+    margin-bottom: 0;
+  }
+
+  .timeline {
+    margin: 1rem 0 0;
+    border-color: var(--plate-ink);
+  }
+
+  .timeline > li::before {
+    background: var(--plate-ink);
+  }
+
+  .t-when,
+  .t-what,
+  .t-note {
+    color: var(--plate-ink);
+  }
+
+  .t-when {
+    font-size: 0.875rem;
+  }
+
+  .plate-route {
+    position: relative;
+    padding-top: 2rem;
+  }
+
+  .plate-route > .plate-arrow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    line-height: 2rem;
+  }
+
+  @media (max-width: 600px) {
+    .plate-grid,
+    .plate-grid--three {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .plate-grid--alternatives {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.5rem;
+    }
+  }
 }
 
 @media all and ($mobile) {

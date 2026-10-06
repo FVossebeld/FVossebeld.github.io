@@ -66,6 +66,14 @@ boxes. But every visual still has to clarify, not decorate.
 
 ## Editorial plate frame
 
+The public figures also use scoped composition helpers from `custom.scss`:
+`.plate-sequence` for ordered stages, `.plate-gate` for a conditional transition,
+`.plate-nest` for containment, `.plate-route` for independently bounded destinations,
+and `.plate-grid` for categorical comparisons. `.plate-grid--alternatives` preserves
+two branches on mobile; use it only when both labels still fit at 14px or larger.
+Ordinary grids stack below 600px. Do not use sequence numbers for unordered categories,
+or a stacked destination layout that implies one destination hands work to the next.
+
 Use `.editorial-plate` for a bespoke, claim-led figure that benefits from warm paper,
 hairline ink, a serif claim and mono apparatus. The classes install a figure-scoped
 palette and frame in `quartz/styles/custom.scss`; the rest of the page and `.sketch-board`
