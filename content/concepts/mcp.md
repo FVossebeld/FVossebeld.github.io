@@ -13,13 +13,20 @@ MCP (Model Context Protocol) is a wire standard: one protocol for any model to d
 
 What I actually care about: MCP carries [[write-access]]. A model that discovers a tool through MCP can call it, and "call it" often means mutating a system other people depend on. The protocol describes what a tool accepts. It says nothing about who may invoke it, under what conditions, with what oversight. Scope, [[permission-boundary|permissions]], [[approval-gate|approval]], audit: all above the wire, not inside it. That makes every MCP server a governance surface whether anyone designed it as one. If you expose a write tool over MCP you are publishing a mutation endpoint to anything with a token. MCP answers "can the model call this." Nobody answers "should it."
 
-<figure class="editorial-plate" aria-labelledby="mcpw-title" aria-describedby="mcpw-caption">
+<figure class="editorial-plate creative-figure protocol-figure" aria-labelledby="mcpw-title" aria-describedby="mcpw-caption">
 <div class="plate-tab">MCP / WIRE AND GOVERNANCE</div>
 <div class="plate-body">
-<p class="plate-claim" id="mcpw-title">The wire carries calls, not permission.</p>
-<div class="plate-node plate-node--restricted"><strong>Above the wire</strong><span>scope &middot; permissions &middot; approval &middot; audit</span></div><p class="plate-key">PROTOCOL</p><div class="plate-flow"><div class="plate-node "><strong>Model</strong></div><p class="plate-arrow">&#8595; </p><div class="plate-node "><strong>MCP</strong><span>JSON-RPC + tool schema<br>discovery &middot; invocation &middot; write access</span></div><p class="plate-arrow">&#8595; </p><div class="plate-node "><strong>Systems</strong></div></div>
+<p class="plate-claim" id="mcpw-title">The wire carries calls; policy governs their use.</p>
+<div class="protocol-layout">
+<div class="protocol-channel">
+<div class="protocol-model"><strong>Model</strong></div>
+<div class="protocol-wire"><strong>MCP</strong><span>JSON-RPC + tool schema</span><span>discovery &middot; invocation &middot; write access</span></div>
+<div class="protocol-systems"><strong>Systems</strong></div>
 </div>
-<figcaption class="plate-source" id="mcpw-caption">The protocol carries the call. Everything that decides whether the call should happen lives above it.</figcaption>
+<div class="protocol-governance"><strong>Tool-level policy</strong><span>scope &middot; permissions<br>approval &middot; audit</span><span class="plate-apparatus">PERMISSION TO EXECUTE</span></div>
+</div>
+</div>
+<figcaption class="plate-source" id="mcpw-caption">MCP carries discovery and calls, including writes. The separate panel shows tool-level policy; transport authorization is not shown. See the <a href="https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization">MCP authorization spec</a>.</figcaption>
 </figure>
 
 MCP also standardizes [[tool-calling]] on JSON-RPC, which inherits the argument from [[json-as-transport-not-cognition]]: JSON is excellent transport and a clumsy action layer. One call, one result, MCP is fine. A ten-step chain, you feel the cost. But that's a complaint about the cognitive layer, not the connector. The connector does its job.

@@ -34,33 +34,39 @@ fails); size with `rem`/`%`/`auto-fit` so it reflows on mobile.
 
 ## How to choose
 
-| The content is…                       | Reach for | Pattern                                                                 |
-| ------------------------------------- | --------- | ----------------------------------------------------------------------- |
-| A process / pipeline / request path   | Mermaid   | [Flowchart](#flowchart--pipeline)                                       |
-| Services & how they connect           | Mermaid   | [Architecture w/ subgraphs](#architecture-with-subgraphs)               |
-| Actors exchanging messages over time  | Mermaid   | [Sequence](#sequence)                                                   |
-| A lifecycle / status machine          | Mermaid   | [State](#state-machine)                                                 |
-| A 2×2 / prioritization                | Mermaid   | [Quadrant](#quadrant--2×2)                                              |
-| Branch/merge / version history        | Mermaid   | [Git graph](#git-graph)                                                 |
-| **Headline numbers**                  | HTML      | [Stat cards](#stat-cards)                                               |
-| **A chronology / "how we got here"**  | HTML      | [Vertical timeline](#vertical-timeline)                                 |
-| **An ordered how-to (1-2-3)**         | HTML      | [Numbered stepper](#numbered-stepper)                                   |
-| **Who does what, across stages**      | HTML      | [Swimlane](#swimlane)                                                   |
-| **A vs B**                            | HTML      | [Comparison](#comparison-a-vs-b)                                        |
-| **Trade-offs / keeps vs costs**       | HTML      | [Pros & cons](#pros--cons)                                              |
-| **"At a glance" facts**               | HTML      | [Spec list](#spec-list)                                                 |
-| **Relative magnitudes / a mix**       | HTML      | [Meter bars](#meter-bars)                                               |
-| **A line worth pausing on**           | HTML      | [Pull quote](#pull-quote)                                               |
-| **A cleaner custom sketch**           | SVG       | [Sketch board (inline SVG)](#sketch-board-inline-svg)                   |
-| **Enterprise-agent recurring motifs** | Mermaid   | [Signature system motifs](#signature-system-motifs-reuse-when-they-fit) |
-| **A claim with a visible boundary**   | HTML      | [Editorial plate frame](#editorial-plate-frame)                         |
-| **Separately bounded destinations**   | HTML      | [Authority handoffs](#authority-handoffs)                               |
-| **Sequence versus overlap**           | HTML      | [Illustrative schedule comparison](#illustrative-schedule-comparison)   |
+| The content is…                                | Reach for  | Pattern                                                                   |
+| ---------------------------------------------- | ---------- | ------------------------------------------------------------------------- |
+| A process / pipeline / request path            | Mermaid    | [Flowchart](#flowchart--pipeline)                                         |
+| Services & how they connect                    | Mermaid    | [Architecture w/ subgraphs](#architecture-with-subgraphs)                 |
+| Actors exchanging messages over time           | Mermaid    | [Sequence](#sequence)                                                     |
+| A lifecycle / status machine                   | Mermaid    | [State](#state-machine)                                                   |
+| A 2×2 / prioritization                         | Mermaid    | [Quadrant](#quadrant--2×2)                                                |
+| Branch/merge / version history                 | Mermaid    | [Git graph](#git-graph)                                                   |
+| **Headline numbers**                           | HTML       | [Stat cards](#stat-cards)                                                 |
+| **A chronology / "how we got here"**           | HTML       | [Vertical timeline](#vertical-timeline)                                   |
+| **An ordered how-to (1-2-3)**                  | HTML       | [Numbered stepper](#numbered-stepper)                                     |
+| **Who does what, across stages**               | HTML       | [Swimlane](#swimlane)                                                     |
+| **A vs B**                                     | HTML       | [Comparison](#comparison-a-vs-b)                                          |
+| **Trade-offs / keeps vs costs**                | HTML       | [Pros & cons](#pros--cons)                                                |
+| **"At a glance" facts**                        | HTML       | [Spec list](#spec-list)                                                   |
+| **Relative magnitudes / a mix**                | HTML       | [Meter bars](#meter-bars)                                                 |
+| **A line worth pausing on**                    | HTML       | [Pull quote](#pull-quote)                                                 |
+| **A cleaner custom sketch**                    | SVG        | [Sketch board (inline SVG)](#sketch-board-inline-svg)                     |
+| **A relationship the set should make visible** | HTML / SVG | [Compositions from reviewed figures](#compositions-from-reviewed-figures) |
+| **A claim with a visible boundary**            | HTML       | [Editorial plate frame](#editorial-plate-frame)                           |
+| **Separately bounded destinations**            | HTML       | [Authority handoffs](#authority-handoffs)                                 |
+| **Sequence versus overlap**                    | HTML       | [Illustrative schedule comparison](#illustrative-schedule-comparison)     |
 
 Rule of thumb: **simple relationships → Mermaid; reflowing editorial layout → HTML;
 precise geometry → SVG.** A garden
 page should _vary its texture_ - a wall of flat prose tires the reader as much as a wall of
 boxes. But every visual still has to clarify, not decorate.
+
+For a set of figures, compare the inner geometry, not only the shared frame or palette.
+Different claims may need a rail, fan-out, fork/join, nesting, paired comparison, or return
+path. There is no target number of layouts: keep a repeated form when the relationship is
+the same, and change it when the form hides a different relationship. Never add a branch,
+mark, or ornament just to make a contact sheet look varied.
 
 ---
 
@@ -497,94 +503,154 @@ unrelated page. Recheck after every adaptation.
 
 ---
 
-# Signature system motifs (reuse when they fit)
+# Compositions from reviewed figures
 
-These are the recurring visuals for this garden's core thesis. Reuse these when they fit so
-readers see one coherent visual language across pages.
+These starting structures come from the 16 existing figures reviewed at 390px and
+1440px in light and dark. The full examples are linked so you can inspect their actual
+labels, source caveats and figure-scoped CSS. The class names below are implementation
+details of those figures, not a new shared component API. Copy the relevant markup and
+scoped rules together, replace the source-specific facts, then build and inspect the
+adaptation. Keep the shared plate frame; choose the inside shape from the relationship.
 
-## Capability ladder (chatbot → copilot → system operator)
+| Reader needs to understand                                               | Start from the rendered figure                                                                                                               | Preserve on narrow screens                                                                                           |
+| ------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| One coordinator routes to independent bounded systems                    | [Scoped routing](../../../content/concepts/orchestrating-scoped-agents.md), `routing-origin` + `routing-fanout` + separate `routing-target`s | Keep a shared origin rail and one inward handoff per target; rows must not read as specialist-to-specialist routing. |
+| Two alternatives converge on one governed destination                    | [Semantic UI](../../../content/concepts/the-agent-as-semantic-ui.md), `interface-fork` + `interface-options` + `interface-join`              | Keep alternatives side by side when labels fit; draw one join into the common destination.                           |
+| A forward execution spine has controls that apply across selected stages | [Architecture](../../../content/thoughts/from-chatbots-to-system-operators.md), `execution-map` + attached policy and memory lanes           | Keep lane endpoints attached to the stages they govern; do not extend them to unrelated intent or output.            |
+| A process returns from evaluation to its next beginning                  | [Governance feedback](../../../content/concepts/scoped-system-specialist-agents.md), `feedback-loop` + ordered stages                        | Draw the return from the final stage into the first; a margin rule without two attached ends is not a loop.          |
+| The same actor has different persistence or access in two environments   | [Workspace comparison](../../../content/concepts/agent-workspaces.md), aligned `workspace-model` marks and paired environment columns        | Preserve the side-by-side comparison rather than turning the two cases into successive steps.                        |
+| An ordered relationship is qualitative, not measured                     | [Rollback continuum](../../../content/concepts/rollback.md), labelled endpoints and an intermediate point                                    | Rotate the rail with the reading direction; retain order but do not add ticks or imply measured distance.            |
+| Selection occurs inside a wider retrievable set                          | [Context selection](../../../content/concepts/context-window.md), nested `context-region`s and a selection path                              | Keep the selected region focal and the containment visible; do not label its area as capacity.                       |
+| A single human gate separates drafting from automated publication        | [Publishing rail](../../../content/how-this-works.md), open stage rail with one crossing                                                     | Keep exactly one review crossing; do not duplicate the review as another stage.                                      |
+| Entries are ordered in time, while spacing has no duration meaning       | [About chronology](../../../content/about.md), quiet timeline rail                                                                           | Keep dates and sequence legible; retain the overlap and spacing caveat.                                              |
 
-Use this as a high-level shorthand. The long-form essay expands it into six stages.
+### Shared origin, independent destinations
 
-````markdown
-```mermaid
-flowchart LR
-  accTitle: Capability ladder from chatbot to system operator
-  accDescr: Capability moves from chatbot text responses to copilot assistance and then to governed system operation.
-  classDef copilot fill:#2c5285,stroke:#1f3f6a,color:#f7f8fa,rx:6,ry:6
-  classDef operator fill:#35629a,stroke:#244c80,color:#f7f8fa,rx:6,ry:6
-  A[Chatbot<br/>text responses] --> B[Copilot<br/>prepares and suggests actions]:::copilot
-  B --> C[System operator<br/>executes approved changes]:::operator
+Use this when the claim is one-to-many routing and every target has its own authority
+boundary. The coordinator is one origin; each destination is a separate semantic section.
+The connector should visibly split and meet each target. On mobile, a shared vertical
+rail with separate arrows preserves the fan-out without implying a serial chain.
+Put this fragment inside the native labelled `<figure>` and `.plate-body` structure from
+[Editorial plate frame](#editorial-plate-frame), with its own visible caption.
+
+```html
+<div class="routing-origin">
+  <p>One source of intent</p>
+  <div class="routing-coordinator"><strong>Coordinator</strong><span>plans and routes</span></div>
+</div>
+<div class="routing-fanout">
+  <section class="routing-target"><strong>Specialist A</strong><span>System A</span></section>
+  <section class="routing-target"><strong>Specialist B</strong><span>System B</span></section>
+  <section class="routing-target"><strong>Specialist C</strong><span>System C</span></section>
+</div>
 ```
-````
 
-## Coordination boundary (process-scoped orchestrator vs system-scoped specialists)
+This structure is from the [scoped-routing figure](../../../content/concepts/orchestrating-scoped-agents.md).
+Its connectors are figure-scoped CSS in `quartz/styles/custom.scss`. Preserve that geometry
+or redraw it for the labels and count you actually have. Keep the caption explicit about
+the limits of each destination; enclosure alone does not define permission.
 
-````markdown
-```mermaid
-flowchart TD
-  accTitle: Process-scoped orchestration with system-scoped execution
-  accDescr: An orchestrator manages cross-system process flow while specialists mutate only their own systems.
-  classDef orchestrator fill:#35629a,stroke:#244c80,color:#f7f8fa,rx:6,ry:6
-  classDef specialist fill:#2c5285,stroke:#1f3f6a,color:#f7f8fa,rx:6,ry:6
-  I[Cross-system intent] --> O[Process-scoped orchestrator]:::orchestrator
-  O --> S1[Salesforce specialist<br/>system scope: CRM]:::specialist
-  O --> S2[SAP specialist<br/>system scope: ERP]:::specialist
-  O --> S3[ServiceNow specialist<br/>system scope: ITSM]:::specialist
+### Fork, alternatives, join
+
+Use this when two surfaces are genuine alternatives that reach one shared execution path.
+The connection marks are decorative, so the native reading order remains origin,
+alternatives, destination. Keep the alternatives parallel on mobile if they fit; stacking
+can falsely turn a choice into a sequence.
+Put the fragment inside a native labelled `<figure>` and `.plate-body`; the source figure
+linked below shows the complete semantics and caption.
+
+```html
+<div class="interface-origin"><strong>User intent</strong></div>
+<div class="interface-fork" aria-hidden="true"><i></i><i></i></div>
+<div class="interface-options">
+  <div><strong>Surface A</strong><span>First route</span></div>
+  <div><strong>Surface B</strong><span>Alternative route</span></div>
+</div>
+<div class="interface-join" aria-hidden="true"><i></i><i></i></div>
+<div class="interface-execution"><strong>Shared destination</strong></div>
 ```
-````
 
-## Memory stack (enterprise layers)
+This is the native structure of the [semantic-UI fork/join](../../../content/concepts/the-agent-as-semantic-ui.md).
+Replace its figure-scoped CSS only as needed; keep one visible junction into the common
+destination and do not imply that one alternative replaces the other.
 
-````markdown
-```mermaid
-flowchart TD
-  accTitle: Enterprise memory layers
-  accDescr: Memory broadens from thread to reusable skill, with stricter governance at wider layers.
-  classDef narrow fill:#2c5285,stroke:#1f3f6a,color:#f7f8fa,rx:6,ry:6
-  classDef wide fill:#35629a,stroke:#244c80,color:#f7f8fa,rx:6,ry:6
-  T[Thread]:::narrow --> U[User]
-  U --> C[Customer or project]
-  C --> O[Team or organization]:::wide
-  O --> P[Procedural playbook]
-  P --> S[Reusable skill]:::wide
+### Spine with attached control lanes
+
+Use a main sequence when execution is ordered, with side lanes only when a second concern
+applies to specific stages. Connect lane marks to those stages; detached notes below the
+diagram leave the reader to infer scope.
+Put this fragment inside a native labelled `<figure>` and `.plate-body`, with the full
+source/evidence caption as in the linked example.
+
+```html
+<div class="execution-map">
+  <div class="execution-stage execution-stage--intent"><strong>Intent</strong></div>
+  <div class="execution-stage execution-stage--orchestrator"><strong>Coordinator</strong></div>
+  <div class="execution-stage execution-stage--specialists"><strong>Specialists</strong></div>
+  <div class="execution-stage execution-stage--action"><strong>Action</strong></div>
+  <div class="execution-stage execution-stage--systems"><strong>Systems</strong></div>
+  <div class="execution-lane execution-lane--policy">
+    <strong>Policy</strong><i aria-hidden="true"></i><i aria-hidden="true"></i>
+  </div>
+  <div class="execution-lane execution-lane--memory">
+    <strong>Memory</strong><i aria-hidden="true"></i><i aria-hidden="true"></i>
+  </div>
+</div>
 ```
-````
 
-## Action surface map (GUI / API / CLI / DSL)
+Adapted from the [execution architecture](../../../content/thoughts/from-chatbots-to-system-operators.md).
+Its lane connections intentionally span only the coordinator and specialist stages.
+At narrow widths the lanes flank the spine; do not shrink labels or attach them to every
+stage for symmetry.
 
-````markdown
-```mermaid
-flowchart LR
-  accTitle: Action surfaces converging on governed execution
-  accDescr: Intent can route through GUI, API, CLI, and DSL surfaces into one governed action path.
-  classDef accent fill:#35629a,stroke:#244c80,color:#f7f8fa,rx:6,ry:6
-  I[Intent] --> GUI[GUI]
-  I --> API[API]
-  I --> CLI[CLI]
-  I --> DSL[DSL]
-  GUI --> G[Governed execution]:::accent
-  API --> G
-  CLI --> G
-  DSL --> G
+### Forward path with a real return
+
+Use a separate return rail when the last stage informs the next pass. Keep it outside
+the forward spine, label its direction, and attach both ends. A dashed line is not a
+feedback loop unless it visibly returns to the start.
+
+```html
+<div class="feedback-loop">
+  <span class="feedback-label">Feeds the next intent</span>
+  <ol class="feedback-stages">
+    <li><strong>Intent</strong></li>
+    <li><strong>Approval</strong></li>
+    <li><strong>Action</strong></li>
+    <li><strong>Trace</strong></li>
+    <li><strong>Evaluation</strong></li>
+  </ol>
+</div>
 ```
-````
 
-## Governance loop (intent → approval → action → trace → evaluation)
+This is adapted from the [governance-loop figure](../../../content/concepts/scoped-system-specialist-agents.md).
+Its return is conceptual, not a safety guarantee. Keep that evidence limit in the caption.
 
-````markdown
-```mermaid
-flowchart LR
-  accTitle: Agent governance loop
-  accDescr: Actions run through approval and traceability, then feed evaluation for the next cycle.
-  classDef accent fill:#2c5285,stroke:#1f3f6a,color:#f7f8fa,rx:6,ry:6
-  I[Intent] --> A[Approval]
-  A --> C[Action]
-  C --> T[Trace]
-  T --> E[Evaluation]:::accent
-  E --> I
+### Different persistence, matched comparison
+
+Use paired columns when the actor is held constant and the environment changes. Align
+the repeated actor first; then show the distinct persistence or access path in each
+column. This makes the contrast about the environment rather than two unrelated actors.
+
+```html
+<div class="workspace-pair">
+  <div class="workspace-heading">Environment A</div>
+  <div class="workspace-heading">Environment B</div>
+  <div class="workspace-model">Same actor</div>
+  <div class="workspace-model">Same actor</div>
+  <div class="workspace-connection"><span>one-way relation</span></div>
+  <div class="workspace-connection workspace-connection--return"><span>read / write</span></div>
+  <div class="workspace-transcript">
+    <strong>What persists</strong><span>Source-backed limit</span>
+  </div>
+  <div class="workspace-durable">
+    <strong>Durable environment</strong><span>Source-backed contents</span>
+  </div>
+</div>
 ```
-````
+
+Adapted from the [workspace comparison](../../../content/concepts/agent-workspaces.md).
+The original keeps its columns paired at 390px. Use only when essential labels remain
+readable; otherwise redesign both sides as a deliberate comparison, not a two-step list.
 
 ---
 

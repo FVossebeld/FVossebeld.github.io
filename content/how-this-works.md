@@ -11,13 +11,14 @@ This site is built on a simple but powerful idea: **a living wiki that an AI hel
 
 The garden is built in three layers, and the difference between them is _who's allowed to touch what_.
 
-<figure class="editorial-plate" aria-labelledby="layers-fig-title" aria-describedby="layers-fig-caption">
+<figure class="editorial-plate creative-figure layers-figure" aria-labelledby="layers-fig-title" aria-describedby="layers-fig-caption">
 <div class="plate-tab">GARDEN / EDITING RIGHTS</div>
 <div class="plate-body">
 <p class="plate-claim" id="layers-fig-title">Different layers. Different permissions.</p>
-<div class="plate-flow"><div class="plate-node "><strong>Raw sources</strong><span>Articles, notes and ideas: immutable inputs.</span></div><p class="plate-apparatus">AI reads only</p><div class="plate-node "><strong>The wiki</strong><span>The interlinked published pages.</span></div><p class="plate-apparatus">AI drafts &middot; I approve</p><div class="plate-node "><strong>The schema</strong><span><code>AGENTS.md</code>: conventions, linking, logging.</span></div><p class="plate-apparatus">Governs the AI</p></div>
+<div class="garden-schema"><strong>The schema</strong><span><code>AGENTS.md</code>: conventions, linking, logging</span><span class="plate-apparatus">GOVERNS THE AI</span></div>
+<div class="garden-transformation"><div class="garden-source"><strong>Raw sources</strong><span>Articles, notes and ideas</span><span class="plate-apparatus">AI READS ONLY</span><span>immutable inputs</span></div><div class="garden-handoff"><span>AI drafts</span></div><div class="garden-wiki"><strong>The wiki</strong><span>Interlinked published pages</span><span class="plate-apparatus">I APPROVE</span></div></div>
 </div>
-<figcaption class="plate-source" id="layers-fig-caption">The schema governs how the AI turns raw sources into the wiki.</figcaption>
+<figcaption class="plate-source" id="layers-fig-caption">The schema governs the AI's raw-to-wiki work. Raw sources stay immutable; AI drafts the interlinked pages and I approve changes.</figcaption>
 </figure>
 
 ## Why it's different from a normal blog
@@ -36,11 +37,11 @@ I am. 🧑‍✈️ I curate the sources, ask the questions, and approve edits (
 
 ## How a page gets published
 
-<figure class="editorial-plate" aria-labelledby="pub-title" aria-describedby="pub-caption">
+<figure class="editorial-plate creative-figure publishing-figure" aria-labelledby="pub-title" aria-describedby="pub-caption">
 <div class="plate-tab">PUBLISHING / REVIEW GATE</div>
 <div class="plate-body">
 <p class="plate-claim" id="pub-title">Review comes before publication.</p>
-<ol class="plate-sequence"><li><div class="plate-node "><strong>Write</strong><span>markdown</span></div></li><li><div class="plate-node "><strong>AI drafts</strong><span>on a branch</span></div><div class="plate-gate plate-accent--speech">&#8595; human review</div></li><li><div class="plate-node "><strong>Review</strong><span>and merge</span></div></li><li><div class="plate-node "><strong>GitHub Action</strong><span>builds the site</span></div></li><li><div class="plate-node "><strong>Site is live</strong></div></li></ol>
+<ol class="publishing-rail"><li><strong>Write</strong><span>markdown</span></li><li><strong>AI drafts</strong><span>on a branch</span></li><li class="publishing-review"><strong>Review and merge</strong><span>human review</span></li><li><strong>GitHub Action</strong><span>builds the site</span></li><li><strong>Site is live</strong></li></ol>
 </div>
-<figcaption class="plate-source" id="pub-caption">No database, no admin panel: just markdown in git.</figcaption>
+<figcaption class="plate-source" id="pub-caption">Human review and merge separate branch drafts from the automated build. No database or admin panel: just markdown in git.</figcaption>
 </figure>

@@ -12,13 +12,13 @@ A permission boundary is the scope you draw before the agent starts. Not what it
 
 Concretely: a Salesforce-[[scoped-agent|scoped agent]] might have read/write on Opportunities and Tasks, read-only on Accounts, and zero access to Contacts or custom objects it doesn't need. That's the boundary. Whether it should actually move a deal to "Closed Won" without asking is the gate's job. What it changed, and on whose say-so, is the trail's job. Three primitives, three moments: boundary before, gate during, trail after.
 
-<figure class="editorial-plate" aria-labelledby="pbt-title" aria-describedby="pbt-caption">
+<figure class="editorial-plate creative-figure moments-figure" aria-labelledby="pbt-title" aria-describedby="pbt-caption">
 <div class="plate-tab">GOVERNANCE / THREE MOMENTS</div>
 <div class="plate-body">
 <p class="plate-claim" id="pbt-title">Before. During. After.</p>
-<div class="plate-grid plate-grid--three"><div class="plate-node plate-node--restricted"><strong>Permission boundary</strong><span>BEFORE<br>static scope set before execution</span></div><div class="plate-node plate-accent--speech"><strong>Approval gate</strong><span>DURING<br>risky mutation</span></div><div class="plate-node "><strong>Audit trail</strong><span>AFTER<br>record of what happened</span></div></div>
+<div class="governance-moments"><div><span class="moment-time">BEFORE</span><strong>Permission boundary</strong><span>static scope set before execution</span></div><div><span class="moment-time moment-time--review">DURING</span><strong>Approval gate</strong><span>risky mutation</span></div><div><span class="moment-time">AFTER</span><strong>Audit trail</strong><span>record of what happened</span></div></div>
 </div>
-<figcaption class="plate-source" id="pbt-caption">Boundary sets the outer limit, gate catches mutations inside it, trail writes the receipt.</figcaption>
+<figcaption class="plate-source" id="pbt-caption">Boundary sets the outer limit before execution, gate catches risky mutations inside it, trail records what happened.</figcaption>
 </figure>
 
 My complaint: we draw these fences too tight. The instinct with new technology is to confine it, so most enterprise agents today can read broadly but [[write-access|write almost nothing]]. That makes them expensive search bars. The model can find the stalled deal, explain why the validation rule fires, and draft the update, but it can't commit the change. You get the cost of running the agent and still pay the full cost of doing the work by hand.

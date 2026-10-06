@@ -11,13 +11,19 @@ tags:
 
 Raw experience shouldn't become shared knowledge automatically. It gets *promoted* through stages, shedding specificity and gaining trust at each one. Each arrow below is a gate: knowledge clears it before it earns a wider audience, or it stays put.
 
-<figure class="editorial-plate" aria-labelledby="promo-title" aria-describedby="promo-caption">
+<figure class="editorial-plate creative-figure promotion-figure" aria-labelledby="promo-title" aria-describedby="promo-caption">
 <div class="plate-tab">MEMORY / PROMOTION GATES</div>
 <div class="plate-body">
 <p class="plate-claim" id="promo-title">Every promotion has a gate.</p>
-<ol class="plate-sequence"><li><div class="plate-node"><strong>Raw episode</strong><span>private detail</span></div><div class="plate-gate">&#8595; scope to one tenant</div></li><li><div class="plate-node"><strong>Private memory</strong><span>user or tenant</span></div><div class="plate-gate">&#8595; strip identifying detail</div></li><li><div class="plate-node"><strong>Sanitized lesson</strong><span>generalised</span></div><div class="plate-gate plate-accent--speech">&#8595; human review + provenance</div></li><li><div class="plate-node"><strong>Approved playbook</strong><span>reviewed, signed off</span></div><div class="plate-gate">&#8595; compress the playbook into a skill</div></li><li><div class="plate-node"><strong>Reusable skill</strong><span>shareable</span></div></li></ol><p class="plate-caveat">A blocked gate leaves the lesson at its current stage. No implied pass rate.</p>
+<ol class="promotion-track">
+<li><div class="promotion-stage"><strong>Raw episode</strong><span>private detail</span></div><div class="promotion-crossing">scope to one tenant</div></li>
+<li><div class="promotion-stage"><strong>Private memory</strong><span>user or tenant</span></div><div class="promotion-crossing">strip identifying detail</div></li>
+<li><div class="promotion-stage"><strong>Sanitized lesson</strong><span>generalised</span></div><div class="promotion-crossing promotion-crossing--human">human review + provenance</div></li>
+<li><div class="promotion-stage"><strong>Approved playbook</strong><span>reviewed, signed off</span></div><div class="promotion-crossing">compress the playbook into a skill</div></li>
+<li><div class="promotion-stage"><strong>Reusable skill</strong><span>shareable</span></div></li>
+</ol>
 </div>
-<figcaption class="plate-source" id="promo-caption">Scope the episode, remove identifying detail, review the lesson, then compress the playbook into a skill. Most episodes stay local. Working promotion pipeline.</figcaption>
+<figcaption class="plate-source" id="promo-caption">A blocked gate leaves the lesson at its current stage. Most episodes stay local. Scope, sanitize, review, then compress. Working promotion pipeline; no implied pass rate.</figcaption>
 </figure>
 
 The climb is deliberate. A **raw episode** is what actually happened this session, private detail and all, and it stays local. Promote it and it becomes a **private memory**, a durable note still scoped to one user or tenant. Strip the identifying detail and you have a **sanitized lesson**, generalisable and carrying nobody's name. Once a human signs that off with provenance attached, it is an **approved playbook**. Compress the playbook into a procedure the agent reaches for by default, and it is a **reusable skill**.

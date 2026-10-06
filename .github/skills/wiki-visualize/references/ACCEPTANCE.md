@@ -4,14 +4,21 @@ Use these scenarios to check the skill's behavior and each new pattern. They are
 manual acceptance cases, not an automated model evaluation. Record actual outcomes
 in the PR; a scenario description is not evidence that a run passed.
 
-| Prompt / fixture                                                                  | Expected behavior                                                                                                             | Reject                                                                                    |
-| --------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
-| "Learn from this reference site's infographics"                                   | Inspect rendered graphics at desktop and narrow widths; distinguish observation from proposal; preserve the garden's identity | Text-only scan presented as a visual review; copied assets; theme change without approval |
-| "Visualize broad intent, narrow execution" with the essay's orchestration passage | Compare two compositions; fix responsibilities and boundaries in a standalone brief; get approval before embedding            | Generic boxes selected before reading the claim; implied unrestricted writes              |
-| "Make a latency chart" with no measured durations                                 | Ask for durations or use an explicitly qualitative relationship without a numerical axis                                      | Invented times, baselines or improvement percentages                                      |
-| "Make this six-stage SVG responsive" with a 580-unit viewBox and 11-unit labels   | Calculate effective label size; reflow HTML or provide a narrow composition                                                   | `width:100%` declared sufficient while labels render around 7px                           |
-| "Use the editorial evidence panel twice"                                          | Replace IDs and claims/sources together; preserve meaningful border distinctions                                              | Duplicate `scope-demo-caption` IDs; example facts pasted into unrelated content           |
-| "Animate the authority boundary"                                                  | Prefer static; explain any real benefit; no scripts in page embeds; obtain separate approval for component work               | Endless decorative animation or meaning lost under reduced motion                         |
+Acceptance has two independent gates. **Technical reliability** covers Quartz rendering,
+semantics, readable labels, theme contrast, responsive layout, identifiers and overflow.
+**Art direction** covers whether the reader can see the source relationship in the actual
+composition, and whether a set of figures varies its geometry where its arguments differ.
+Neither gate can stand in for the other.
+
+| Prompt / fixture                                                                  | Expected behavior                                                                                                                               | Reject                                                                                                          |
+| --------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| "Learn from this reference site's infographics"                                   | Inspect rendered graphics at desktop and narrow widths; distinguish observation from proposal; preserve the garden's identity                   | Text-only scan presented as a visual review; copied assets; theme change without approval                       |
+| "Visualize broad intent, narrow execution" with the essay's orchestration passage | Compare two compositions; fix responsibilities and boundaries in a standalone brief; get approval before embedding                              | Generic boxes selected before reading the claim; implied unrestricted writes                                    |
+| "Review all figures as one collection"                                            | Inspect actual figures together, including a text-masked composition sheet; keep the common frame while choosing geometry for each relationship | A repeated box layout despite different relationships; arbitrary variation quotas; decorative branches or marks |
+| "Make a latency chart" with no measured durations                                 | Ask for durations or use an explicitly qualitative relationship without a numerical axis                                                        | Invented times, baselines or improvement percentages                                                            |
+| "Make this six-stage SVG responsive" with a 580-unit viewBox and 11-unit labels   | Calculate effective label size; reflow HTML or provide a narrow composition                                                                     | `width:100%` declared sufficient while labels render around 7px                                                 |
+| "Use the editorial evidence panel twice"                                          | Replace IDs and claims/sources together; preserve meaningful border distinctions                                                                | Duplicate `scope-demo-caption` IDs; example facts pasted into unrelated content                                 |
+| "Animate the authority boundary"                                                  | Prefer static; explain any real benefit; no scripts in page embeds; obtain separate approval for component work                                 | Endless decorative animation or meaning lost under reduced motion                                               |
 
 ## Rendering the evidence-panel recipe
 
@@ -169,7 +176,7 @@ the checker asserts alignment within one CSS pixel in all six schedule cases.
 The same native-zoom, assistive-technology, comprehension and normal-height shell
 limitations recorded above still apply.
 
-## Public figure migration, 2026-10-06
+## Initial figure migration: technical pass, visual revise, 2026-10-06
 
 The 15 explanatory figures across 13 pages were rebuilt as editorial HTML plates; the
 existing About chronology also adopted the frame, retaining its dates and text.
@@ -193,3 +200,51 @@ labels gates without implying pass rates.
 Native browser zoom, assistive-technology operation and reader comprehension remain
 unmeasured. Several mobile figures are taller than a viewport; this is the tradeoff
 for readable labels and explicit boundaries, not a claim about ideal reading speed.
+
+Those checks did **not** establish that the migration was visually finished. Fresh
+production comparison images and full-page context captures received a **REVISE**:
+equal-weight borders made the plates read like forms; arrows floated instead of joining;
+some mobile fan-outs became serial lists; and empty enclosures added bulk without
+meaning. The migration's technical pass and visual failure are both part of the record.
+In particular, 96 passing route cases cannot be cited as evidence that the figures made
+their arguments clear.
+
+## Composition revision: technical and visual gates passed, 2026-10-06
+
+The follow-up candidate recomposed the same 16 existing figures across 14 pages; it did
+not add public figures or measurements. Figure copy was tightened where its older
+wording could overstate the mechanism. The shared editorial frame
+remains, while the inner compositions now use geometry chosen for their relationships:
+chronology, staircase, execution spine with attached lanes, fan-out, fork/join, nested
+selection, matched comparison, gated rail, continuum and feedback return. A
+text-masked sheet was used to check that the collection's variety lives in the
+compositions, not only in labels or accent colors.
+
+The technical record for this candidate reports 96 route cases passed, including
+390/720/1440 CSS px in light and dark, with essential labels at least 14px, minimum
+text contrast of 7.00:1, and no page or figure horizontal overflow. Targeted connector,
+generated-link/asset, path-guard and whitespace checks also passed. These results remain
+the technical gate, not the visual verdict.
+
+The independent visual review opened all 16 final comparison sheets, the masked
+composition sheet, representative figure crops, and six full-page captures in context.
+It returned **PASS** with no material corrections: the branches remain alternatives
+rather than a sequence, system targets retain their individual boundaries, side lanes
+meet only the stages they govern, and the return path reaches the next intent. The
+review also confirms that the shared paper/ink frame does not force one inner layout.
+
+Parent inspection subsequently found two issues in that passing candidate: the MCP
+governance panel lay on the protocol path, implying it belonged to the protocol, and
+the desktop feedback loop left a large unexplained empty area. A narrow follow-up
+separated tool-level policy from the call channel and centered the bounded feedback
+mechanism. It also made conditional approval explicit and distinguished transport
+authorization from tool policy, with a link to the MCP authorization specification.
+The affected images were reopened at desktop and mobile sizes in both themes; the
+follow-up rendered all 96 figure cases and passed 66 targeted topology assertions.
+The earlier independent PASS is candidate evidence, not a claim that the later
+corrections were unnecessary. Evidence retains both versions.
+
+This is screenshot-based composition review, not evidence of reader comprehension.
+Native browser zoom and assistive-technology operation remain untested; some mobile
+figures are taller than one viewport to keep labels readable. The candidate is in the
+working branch and is not represented as merged or deployed.

@@ -115,6 +115,26 @@ used to claim causation. Repeated cells imply counts unless explicitly marked sc
 No source values means no numerical axis. No source counts means no countable waffle.
 Label illustrative timing as illustrative. Keep exceptions beside the headline.
 
+### A set needs its own art-direction pass
+
+A shared paper, type and frame can make a collection feel related. It cannot do the
+explanatory work inside each figure. Review the set together, preferably as a sheet of
+rendered figures with labels masked or reduced. Ask whether each geometry makes its
+own relationship visible: a chronology, execution spine, attached side lanes, branching
+fan-out, fork/join, nested selection, comparison, continuum, or return path. Those are
+examples from the reviewed set, not a required menu.
+
+Do not invent a different shape merely to fill a quota. Reuse geometry when the claim is
+the same; recompose when a repeated stack of equal boxes turns a boundary, branch, choice,
+or feedback path into a checklist. Treat every connector, enclosure, line weight, gap and
+empty region as a claim. Remove marks without a job. A technical pass for text size,
+contrast or overflow cannot establish composition quality.
+
+On narrow screens, preserve the relation, not just the words. A shared rail with several
+inward arrows can retain fan-out; paired alternatives may need to remain side by side;
+a qualitative continuum can turn vertical while retaining its endpoint order. Stacking is
+right only when it does not change the reading.
+
 ## Procedure: compose, do not decorate
 
 1. **Read the passage and source.** Record the exact claim, relationships and known
@@ -127,20 +147,24 @@ Label illustrative timing as illustrative. Keep exceptions beside the headline.
    with a sequence diagram. Two colours of the same card grid are not two ideas.
 4. **Assign meaning to the marks.** Position, length, enclosure, repetition, line type
    and colour each need a job. Drop visual elements with no explanatory role.
-5. **Write a standalone brief.** Resolve missing data before construction. For
+5. **Check the collection.** Compare the proposed inner geometry with the site's other
+   figures. A common frame is enough for family resemblance. If several figures reduce
+   to the same boxes, identify which relationship that geometry hides and recompose it.
+   Do not add variation that changes or decorates the source claim.
+6. **Write a standalone brief.** Resolve missing data before construction. For
    non-trivial bespoke work, send only the brief to `figure-spec-checker`.
-6. **Get Floris's approval before a public embed.** A skill update or private prototype
+7. **Get Floris's approval before a public embed.** A skill update or private prototype
    is not permission to rewrite essays or replace the theme.
-7. **Build natively.** HTML for reflowing labels and panels; SVG for precise geometry;
+8. **Build natively.** HTML for reflowing labels and panels; SVG for precise geometry;
    Mermaid when automatic layout fits. A new composition is experimental until its
    actual Quartz output has been checked.
-8. **Run the visual learning loop.** Build, inspect actual images, critique a concrete
+9. **Run the visual learning loop.** Build, inspect actual images, critique a concrete
    misunderstanding, revise, then rebuild and recheck. Promote only source-safe lessons
    supported by the comparison. See [`LEARNING-LOOP.md`](./LEARNING-LOOP.md).
-9. **Inspect the result.** Both themes, 390/1440px, essential labels at least 14 CSS px,
-   contrast, clipping, unique IDs, logical reading order and static fallback. Treat
-   native zoom and assistive technology as separate checks; see
-   [`ACCEPTANCE.md`](./ACCEPTANCE.md).
+10. **Inspect the result.** Both themes, 390/1440px, essential labels at least 14 CSS px,
+    contrast, clipping, unique IDs, logical reading order and static fallback. Treat
+    native zoom and assistive technology as separate checks; see
+    [`ACCEPTANCE.md`](./ACCEPTANCE.md).
 
 ### Standalone brief
 
@@ -164,75 +188,26 @@ Fix the facts and meaning in the brief; allow freedom in spacing and finish.
 Never reuse another site's product claims, study results or technical architecture
 as if they were evidence for the garden's argument.
 
-## Site changes, in order
+## Implementation status
 
-The authoring procedure and opt-in plate styles are implemented. Public per-page
-adoption, narrow-screen repairs and any broader theme migration remain proposed work
-requiring Floris's approval.
+The opt-in `.editorial-plate` family and its dark-mode tokens are implemented in
+`quartz/styles/custom.scss`. The current feature branch also contains revised compositions
+for all 16 existing figures across 14 pages. The first figure migration passed its
+rendering checks but failed visual review as a set of boxed lists; the later candidate
+was recomposed and independently reviewed against actual Quartz captures. The staged
+evidence and limits are recorded in [`ACCEPTANCE.md`](./ACCEPTANCE.md). These are working
+tree changes, not a claim that the branch has been merged or deployed.
 
-### 1. Change authoring first
-
-Claim-first composition is now part of this skill and `DIAGRAMS.md`. The
-[editorial plate frame](../PATTERNS.md#editorial-plate-frame) is an original,
-Quartz-native recipe requiring the shared `.editorial-plate` styles in
-`quartz/styles/custom.scss`. Its warm palette and dark-mode counterparts are implemented
-within that opt-in family; the root site palette and existing figures are unchanged.
-
-The first useful public candidate is the orchestration section in "From chatbots to
-system operators": show **coordinates** versus **changes state**, not merely component
-names. It is a working theory, not a measured comparison.
-
-### 2. Repair narrow-screen figures
-
-The six-stage ladder has a 580-unit viewBox and 11-13-unit labels. In the inspected
-390px layout the whole figure, including padding, was about 358px wide. Even before
-subtracting padding, that bounds effective text at about 6.8-8px. The architecture
-drawing has a 680-unit viewBox and some 10-unit labels, so it has the same problem.
-`width:100%` prevents overflow but does not preserve readability.
-
-Replace the ladder with HTML rows that preserve font size. For architecture, test a
-narrow vertical arrangement with policy/memory notes outside the geometry. Review each
-page; do not blindly restyle all `.sketch-board` instances.
-
-### 3. Opt into the editorial plate family
-
-The shared frame and semantic aliases are implemented in `quartz/styles/custom.scss`.
-Use the classes in [`PATTERNS.md`](../PATTERNS.md#editorial-plate-frame) for the tab,
-claim, apparatus, key, caveat, interpretation and source. The palette has tested dark
-counterparts. Keep the legacy sketch family for informal drawings.
-
-Make the identifier tab, sharp rules and typographic roles consistent across different
-compositions. Do not apply a border-radius-only facelift and call it a visual system.
-Test normal text and meaningful strokes independently.
-
-### 4. Give selected figures more room
-
-The stylesheet caps the article and its blocks at `--measure:72ch`. Keep that prose
-measure. An opt-in wider figure requires coordinating the article container, paragraph
-measure and figure width; a child cannot escape a capped parent by setting width alone.
-Check 390, 768, 1024 and 1440px and preserve the navigation rails.
-
-No negative-margin breakout that collides with the TOC. No need to replace Quartz,
-install a visualization framework or remove search, backlinks, reader mode or dark mode.
-
-### 5. Decide the overall shell separately
-
-If Floris wants the entire site to follow the warm-paper direction, change the root
-palette in `quartz.config.ts` and harmonize the existing cool `--panel` surfaces in
-`quartz/styles/custom.scss`. Review homepage, essays, concept pages, code, tables,
-graphs and both themes together. Figure styling alone is not a complete theme migration.
-
-Only then consider atmospheric openings. Interactive mechanism playback requires a
-separately approved component, keyboard controls, Quartz SPA cleanup, reduced-motion
-behavior and a full static alternative. Never insert scripts into Markdown pages.
+The root site palette and page chrome were not migrated. Any wider shell change remains
+a separate decision. Interactive mechanism playback also remains out of scope; page
+embeds stay static and contain no scripts.
 
 ## Reference-study discipline
 
 When studying another design, inspect the actual rendered graphics and narrow layouts.
 Record layout, visual hierarchy, geometry, roles of colour and type, meaningful motion,
 and failures worth avoiding. Extract a house specification and original compositions,
-not a branded homage. Do not name the inspiration in authored pages or skill output
-unless Floris asks for attribution.
+not a branded homage. Never name external inspiration in authored pages or skill output.
 
 Do not claim that hidden DOM controls were reviewed as visible interactions. Distinguish
 what rendered, what was inferred from source, and what has only been proposed.

@@ -25,13 +25,14 @@ The reason it's hard is that the valuable lesson and the sensitive detail arrive
 
 Each layer up is a wider audience. The work is keeping a memory at the lowest layer that's still useful, and only moving it up deliberately.
 
-<figure class="editorial-plate" aria-labelledby="mem-stack-title" aria-describedby="mem-stack-caption">
+<figure class="editorial-plate creative-figure memory-figure" aria-labelledby="mem-stack-title" aria-describedby="mem-stack-caption">
 <div class="plate-tab">MEMORY / BOUNDARIES</div>
 <div class="plate-body">
 <p class="plate-claim" id="mem-stack-title">Keep the lesson inside its boundary.</p>
-<div class="plate-grid"><div class="plate-scope"><strong class="plate-apparatus">AUDIENCE</strong><div class="plate-flow"><div class="plate-node "><strong>Thread</strong><span>single conversation</span></div><div class="plate-node "><strong>User</strong><span>one person</span></div><div class="plate-node "><strong>Customer or project</strong><span>one account</span></div><div class="plate-node "><strong>Team or organization</strong><span>shared context</span></div></div></div><div class="plate-scope"><strong class="plate-apparatus">REUSABLE KNOW-HOW</strong><div class="plate-flow"><div class="plate-node "><strong>Procedural memory</strong><span>sanitized playbooks</span></div><div class="plate-node "><strong>Reusable skills</strong><span>portable execution patterns</span></div></div></div></div><p class="plate-caveat">Audience scope and reusable procedures are different dimensions. Sharing requires review.</p>
+<div class="memory-audiences"><span class="memory-direction">Wider audience</span><div class="memory-audience"><strong>Thread</strong><span>single conversation</span></div><div class="memory-audience"><strong>User</strong><span>one person</span></div><div class="memory-audience"><strong>Customer or project</strong><span>one account</span></div><div class="memory-audience"><strong>Team or organization</strong><span>shared context</span></div></div>
+<div class="memory-knowhow"><p class="plate-apparatus">A DIFFERENT DIMENSION / REUSABLE KNOW-HOW</p><div><strong>Procedural memory</strong><span>sanitized playbooks</span></div><div><strong>Reusable skills</strong><span>portable execution patterns</span></div></div>
 </div>
-<figcaption class="plate-source" id="mem-stack-caption">Wider sharing creates more opportunities for leakage. Keep a memory at the lowest useful scope; promotion is deliberate. Working taxonomy.</figcaption>
+<figcaption class="plate-source" id="mem-stack-caption">Wider sharing creates more opportunities for leakage. Keep memory at the lowest useful scope; promotion is deliberate and sharing requires review. Audience scope and reusable procedures are different dimensions. Working taxonomy, not a size scale.</figcaption>
 </figure>
 
 ## The threat model

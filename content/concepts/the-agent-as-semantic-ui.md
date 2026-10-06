@@ -14,13 +14,17 @@ Call it a semantic UI. The interface moves from **fields** to **intent**. "Move 
 
 This is not the same thing as a chatbot embedded in the corner of an app. The distinction is load-bearing. A bolted-on chatbot answers questions *about* the software: "you can reassign deals on the Pipeline tab, filter by last activity, then use Bulk Actions." It is a help surface. A semantic UI *does the thing*: it issues the same governed operations the GUI would, against the same [[system-of-record|system of record]], and the deals move. The chatbot points you at the screen. The semantic UI acts on the system.
 
-<figure class="editorial-plate" aria-labelledby="actsf-title" aria-describedby="actsf-caption">
+<figure class="editorial-plate creative-figure interface-figure" aria-labelledby="actsf-title" aria-describedby="actsf-caption">
 <div class="plate-tab">INTERFACES / SHARED EXECUTION</div>
 <div class="plate-body">
 <p class="plate-claim" id="actsf-title">Two surfaces. The same governed path.</p>
-<div class="plate-node"><strong>User intent</strong></div><div class="plate-grid plate-grid--alternatives"><div class="plate-flow"><p class="plate-arrow">&#8595; via GUI</p><div class="plate-node"><strong>GUI</strong><span>fields and clicks</span></div><p class="plate-arrow">&#8595; same execution</p></div><div class="plate-flow"><p class="plate-arrow">&#8595; via semantic UI</p><div class="plate-node plate-accent--speech"><strong>Semantic UI</strong><span>natural language</span></div><p class="plate-arrow">&#8595; same execution</p></div></div><div class="plate-node"><strong>Governed execution</strong><span>same APIs &middot; same permissions &middot; same audit log</span></div>
+<div class="interface-origin"><strong>User intent</strong></div>
+<div class="interface-fork" aria-hidden="true"><i></i><i></i></div>
+<div class="interface-options"><div><strong>GUI</strong><span>fields and clicks</span></div><div class="interface-semantic"><strong>Semantic UI</strong><span>natural language</span></div></div>
+<div class="interface-join" aria-hidden="true"><i></i><i></i></div>
+<div class="interface-execution"><strong>Governed execution</strong><span>same APIs &middot; same permissions &middot; same audit log</span></div>
 </div>
-<figcaption class="plate-source" id="actsf-caption">Both surfaces hit the same governed path. The semantic UI starts closer to what you meant. Conceptual interface comparison.</figcaption>
+<figcaption class="plate-source" id="actsf-caption">Both surfaces hit the same governed path. The semantic UI starts closer to what you meant. Conceptual interface comparison; the GUI remains available.</figcaption>
 </figure>
 
 It does not replace the GUI; it sits above it. Enterprise users still need dashboards for state-at-a-glance, bulk-editing grids, visual workflow builders, approval screens, and audit views. Some tasks are spatial: you want a hundred rows in front of you, not narrated through a conversation. And for anything ambiguous or irreversible, the agent should drop the user back into the explicit surface to confirm.

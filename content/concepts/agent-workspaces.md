@@ -14,13 +14,19 @@ An agent workspace is the opposite bet: give the model a place to stand. Files i
 
 Once the environment is durable, behaviour changes. The agent can leave itself notes, build scratch artifacts, check what it did last time, recover from a failed step by looking at *what actually happened* instead of re-deriving from the prompt. That is the gap between answering a question and operating a system. A stateless chat starts from zero every turn. A situated agent accumulates.
 
-<figure class="editorial-plate" aria-labelledby="aws-title" aria-describedby="aws-caption">
+<figure class="editorial-plate creative-figure workspace-figure" aria-labelledby="aws-title" aria-describedby="aws-caption">
 <div class="plate-tab">WORKSPACE / COMPARISON</div>
 <div class="plate-body">
 <p class="plate-claim" id="aws-title">Same model. Different environment.</p>
-<div class="plate-grid"><div class="plate-scope"><strong class="plate-apparatus">STATELESS CHAT</strong><div class="plate-flow"><div class="plate-node "><strong>Model</strong></div><p class="plate-arrow">&#8595; </p><div class="plate-node "><strong>Transcript</strong></div></div><p>Only the transcript persists.</p></div><div class="plate-scope"><strong class="plate-apparatus">SITUATED AGENT</strong><div class="plate-node "><strong>Model</strong></div><p class="plate-arrow">&#8597; reads and writes</p><div class="plate-node plate-accent--video"><strong>Durable workspace</strong><ul class="plate-chips"><li>Files</li><li>Shell</li><li>Memory</li></ul></div><p>Artifacts survive the turn. The model can return to them.</p></div></div>
+<div class="workspace-pair">
+<div class="workspace-heading">Stateless chat</div><div class="workspace-heading">Situated agent</div>
+<div class="workspace-model">Model</div><div class="workspace-model">Model</div>
+<div class="workspace-connection"><span>reply</span></div><div class="workspace-connection workspace-connection--return"><span>read / write</span></div>
+<div class="workspace-transcript"><strong>Transcript</strong><span>Only text persists.</span></div><div class="workspace-durable"><strong>Durable workspace</strong><span>Files<br>Shell<br>Memory</span></div>
+<p>Starts from the transcript each turn.</p><p>Artifacts survive the turn. The model can return to them.</p>
 </div>
-<figcaption class="plate-source" id="aws-caption">Same model on both sides. A durable workspace lets it leave artifacts and return to them. Conceptual comparison.</figcaption>
+</div>
+<figcaption class="plate-source" id="aws-caption">Same model on both sides. Chat preserves only the transcript; the workspace preserves artifacts the model can read, write and return to. Conceptual comparison.</figcaption>
 </figure>
 
 I keep seeing the same structure. Copilot CLI works in a real checkout with a terminal and a test runner. Cursor gets the developer's directory and a shell. Claude Code gets a sandbox it can fork and roll back. The models underneath are from the same generation, give or take. The gap in useful output traces to the environment at least as much as to the weights.

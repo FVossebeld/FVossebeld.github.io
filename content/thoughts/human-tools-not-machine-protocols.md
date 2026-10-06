@@ -22,13 +22,15 @@ There is also a historical reason the machine protocols stuck. Part of it, from 
 
 There is a shape to how agents actually call tools, and it mirrors the hierarchy. The model does not talk to the world directly. It calls a small set of typed tools: `bash`, `edit`, `grep`, `view`, a handful more. Those are the ones closest to the model, invoked by structured tool calling with a schema the runtime validates. But `bash` is not one tool. It is a door into everything the shell can reach: `git`, `npm`, `curl`, `docker`, `python`, `jq`, and anything else on the PATH. One structured call fans out into thousands of possible actions.
 
-<figure class="editorial-plate" aria-labelledby="tools-title" aria-describedby="tools-caption">
+<figure class="editorial-plate creative-figure tools-figure" aria-labelledby="tools-title" aria-describedby="tools-caption">
 <div class="plate-tab">TOOLS / TWO TIERS</div>
 <div class="plate-body">
 <p class="plate-claim" id="tools-title">One typed call can open a toolbox.</p>
-<div class="plate-node "><strong>Model</strong></div><p class="plate-arrow">&#8595; typed tools</p><ul class="plate-chips"><li>bash</li><li>edit</li><li>grep</li><li>view</li></ul><div class="plate-route"><p class="plate-arrow">&#8595; bash only</p><div class="plate-scope"><strong class="plate-apparatus">BASH OPENS THE COMMAND LINE</strong><ul class="plate-chips"><li>git</li><li>npm</li><li>curl</li><li>python</li><li>anything on PATH</li></ul></div></div>
+<div class="tools-model"><strong>Model</strong><span>typed tools</span></div>
+<div class="tools-entrypoints"><div class="tools-bash"><code>bash</code></div><div><code>edit</code></div><div><code>grep</code></div><div><code>view</code></div></div>
+<div class="tools-expansion"><span class="tools-branch-label">bash opens the command line</span><div class="tools-shelf"><code>git</code><code>npm</code><code>curl</code><code>python</code><span>anything on PATH</span></div></div>
 </div>
-<figcaption class="plate-source" id="tools-caption">The model calls a few typed tools. One of them, bash, is a door into everything the shell can reach.</figcaption>
+<figcaption class="plate-source" id="tools-caption">The model calls a few typed tools. Only the bash branch opens the command line: git, npm, curl, python and anything on PATH. Conceptual tool hierarchy.</figcaption>
 </figure>
 
 So the tool surface is tiered. A few formal entry points at the top, validated by schema. Below that, the full Unix toolbox, accessed through the human interface of the command line. The model gets both: the safety of structured calls where the runtime can check arguments, and the expressiveness of a shell where it can compose arbitrary pipelines. The hierarchy is doing real work. It is not a leaky abstraction; it is the design.

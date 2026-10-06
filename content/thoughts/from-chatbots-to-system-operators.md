@@ -63,13 +63,20 @@ So when someone tells me a new model "feels much more capable," my first guess i
 
 Stack those shifts up and you get a progression. Each step doesn't replace the last so much as wrap it in more environment and more governance.
 
-<figure class="editorial-plate" aria-labelledby="evl-title" aria-describedby="evl-caption">
+<figure class="editorial-plate creative-figure capability-figure" aria-labelledby="evl-title" aria-describedby="evl-caption">
 <div class="plate-tab">CAPABILITY / WORKING THEORY</div>
 <div class="plate-body">
 <p class="plate-claim" id="evl-title">From replies to governed work.</p>
-<ol class="plate-sequence"><li><div class="plate-node "><strong>Chatbot</strong><span>text in, text out</span></div></li><li><div class="plate-node "><strong>Copilot</strong><span>suggests and prepares structured actions</span></div></li><li><div class="plate-node "><strong>System operator</strong><span>CLI and code execution</span></div></li><li><div class="plate-node "><strong>Workspace operator</strong><span>files, shell, memory, state</span></div></li><li><div class="plate-node "><strong>Scoped system specialist</strong><span>one system, bounded blast radius</span></div></li><li><div class="plate-node "><strong>Governed learning system</strong><span>federated memory and promotion</span></div></li></ol>
+<ol class="capability-stairs">
+<li><strong>Chatbot</strong><span>text in, text out</span></li>
+<li><strong>Copilot</strong><span>suggests and prepares structured actions</span></li>
+<li><strong>System operator</strong><span>CLI and code execution</span></li>
+<li><strong>Workspace operator</strong><span>files, shell, memory, state</span></li>
+<li><strong>Scoped system specialist</strong><span>one system, bounded blast radius</span></li>
+<li><strong>Governed learning system</strong><span>federated memory and promotion</span></li>
+</ol>
 </div>
-<figcaption class="plate-source" id="evl-caption">Six-stage progression: from a chat transcript to a governed operator that learns. Working theory; stages can coexist.</figcaption>
+<figcaption class="plate-source" id="evl-caption">Each stage adds environment or governance. Working theory; stages can coexist. The offsets are schematic, not a capability scale.</figcaption>
 </figure>
 
 ## The useful enterprise shape is scoped, not omniscient
@@ -90,11 +97,20 @@ The missing layer is [[orchestrating-scoped-agents|orchestration]], and the patt
 
 That gives a rough architecture, less a finished blueprint than the boxes I keep redrawing:
 
-<figure class="editorial-plate" aria-labelledby="arch-title" aria-describedby="arch-caption">
+<figure class="editorial-plate creative-figure architecture-figure" aria-labelledby="arch-title" aria-describedby="arch-caption">
 <div class="plate-tab">ARCHITECTURE / EXECUTION SCOPE</div>
 <div class="plate-body">
 <p class="plate-claim" id="arch-title">Broad intent. Narrow execution.</p>
-<ol class="plate-sequence"><li><div class="plate-node"><strong>Human intent</strong><span>natural language</span></div></li><li><div class="plate-node"><strong>Orchestrator</strong><span>routes, clarifies, coordinates</span></div></li><li><div class="plate-node"><strong>Scoped specialists</strong><span>Salesforce, SAP, ServiceNow</span></div></li><li><div class="plate-node"><strong>Action layer</strong><span>APIs, MCP, connectors, code</span></div></li><li><div class="plate-node"><strong>Enterprise systems</strong><span>of record</span></div></li></ol><div class="plate-grid"><div class="plate-node plate-node--restricted"><strong>Policy layer</strong><span>Identity, permissions, audit. Enforces policy for the orchestrator and specialists.</span></div><div class="plate-node plate-node--restricted"><strong>Memory layer</strong><span>Scoped, federated. Context for the orchestrator; outcome context for specialists.</span></div></div>
+<div class="execution-map">
+<div class="execution-stage execution-stage--intent"><strong>Human intent</strong><span>natural language</span></div>
+<div class="execution-stage execution-stage--orchestrator"><strong>Orchestrator</strong><span>routes, clarifies, coordinates</span></div>
+<div class="execution-stage execution-stage--specialists"><strong>Scoped specialists</strong><span>Salesforce, SAP, ServiceNow</span></div>
+<div class="execution-stage execution-stage--action"><strong>Action layer</strong><span>APIs, MCP, connectors, code</span></div>
+<div class="execution-stage execution-stage--systems"><strong>Enterprise systems</strong><span>of record</span></div>
+<div class="execution-lane execution-lane--policy"><strong>Policy layer</strong><span>identity<br>permissions<br>audit</span><i aria-hidden="true"></i><i aria-hidden="true"></i></div>
+<div class="execution-lane execution-lane--memory"><strong>Memory layer</strong><span>scoped<br>federated</span><i aria-hidden="true"></i><i aria-hidden="true"></i></div>
+</div>
+<div class="execution-legend"><p><strong>Policy:</strong> identity, permissions and audit for orchestrator and specialists.</p><p><strong>Memory:</strong> scoped, federated context for the orchestrator; outcome context for specialists.</p></div>
 </div>
 <figcaption class="plate-source" id="arch-caption">The orchestrator routes; specialists mutate; policy and memory constrain their work. Working architecture, not a deployed blueprint.</figcaption>
 </figure>
