@@ -26,7 +26,7 @@ Once the environment is durable, behaviour changes. The agent can leave itself n
 <p>Starts from the transcript each turn.</p><p>Artifacts survive the turn. The model can return to them.</p>
 </div>
 </div>
-<figcaption class="plate-source" id="aws-caption">Same model on both sides. Chat preserves only the transcript; the workspace preserves artifacts the model can read, write and return to. Conceptual comparison.</figcaption>
+<figcaption class="plate-source" id="aws-caption">Same model on both sides. In this comparison, chat keeps the transcript; the workspace keeps artifacts the model can read, change and return to.</figcaption>
 </figure>
 
 I keep seeing the same structure. Copilot CLI works in a real checkout with a terminal and a test runner. Cursor gets the developer's directory and a shell. Claude Code gets a sandbox it can fork and roll back. The models underneath are from the same generation, give or take. The gap in useful output traces to the environment at least as much as to the weights.
